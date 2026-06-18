@@ -1,0 +1,15 @@
+<div class="min-h-screen flex">
+
+  <!-- Left side (form area) -->
+  <div class="w-full md:w-1/2 flex items-center justify-center bg-white p-8">
+    <div class="w-full max-w-md">
+      <ng-content select="[auth-form]"></ng-content>
+    </div>
+  </div>
+
+  <!-- Right side (image area) -->
+  <div class="hidden md:flex w-1/2 items-center justify-center bg-gray-100">
+    <ng-content select="[auth-image]"></ng-content>
+  </div>
+
+</div>

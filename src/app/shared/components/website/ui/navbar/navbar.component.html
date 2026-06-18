@@ -1,0 +1,38 @@
+<nav class="w-full bg-white shadow-md px-6 py-3 flex items-center justify-between">
+
+  <!-- Logo -->
+  <div class="text-xl font-bold text-indigo-600">
+    MyApp
+  </div>
+
+  <!-- Links -->
+  <ul class="hidden md:flex gap-6 text-gray-600 font-medium">
+    <li class="hover:text-indigo-600 cursor-pointer">Home</li>
+    <li class="hover:text-indigo-600 cursor-pointer">About</li>
+    <li class="hover:text-indigo-600 cursor-pointer">Services</li>
+    <li class="hover:text-indigo-600 cursor-pointer">Contact</li>
+  </ul>
+
+  <!-- Actions -->
+  <div class="flex items-center gap-3">
+
+    <!-- Login Button -->
+    <button
+      pButton
+      type="button"
+      label="Login"
+      class="p-button-outlined p-button-sm"
+      (click)="goToLogin()">
+    </button>
+
+    <!-- Register Button -->
+    <button
+      pButton
+      type="button"
+      label="Register"
+      class="p-button-sm"
+      (click)="goToRegister()">
+    </button>
+
+  </div>
+</nav>
