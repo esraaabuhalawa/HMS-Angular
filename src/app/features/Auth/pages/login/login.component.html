@@ -4,9 +4,25 @@
   <div auth-form>
     <h2 class="text-2xl font-bold mb-6">Login</h2>
 
-    <form>
-      <input class="w-full border p-2 mb-3" placeholder="Email" />
-      <input class="w-full border p-2 mb-3" type="password" placeholder="Password" />
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input class="w-full border p-2 mb-3" placeholder="email" formControlName="email">
+
+      @if (f['email'].touched && f['email'].errors?.['required']) {
+      <small>Email is required</small>
+      }
+      @if (f['email'].touched && f['email'].errors?.['email']) {
+      <small>Invalid email format</small>
+      }
+
+      <input class="w-full border p-2 mb-3" type="password" placeholder="password" formControlName="password">
+
+      @if (f['password'].touched && f['password'].errors?.['required']) {
+      <small>Password is required</small>
+      }
+
+      @if (f['password'].touched && f['password'].errors?.['minlength']) {
+      <small>Minimum 8 characters</small>
+      }
 
       <button class="w-full bg-indigo-600 text-white p-2">
         Login
