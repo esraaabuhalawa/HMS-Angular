@@ -1,8 +1,11 @@
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { AuthLayoutComponent } from "../../../../core/layouts/auth-layout/auth-layout.component";
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import {
   FormBuilder,
@@ -10,10 +13,12 @@ import {
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
+import { GoogleLoginProvider, GoogleSigninButtonDirective, SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
+import { RoleEnum } from '../../../../core/enums/role.enum';
 
 @Component({
   selector: 'app-login',
-  imports: [AuthLayoutComponent, ReactiveFormsModule],
+  imports: [AuthLayoutComponent, ReactiveFormsModule, GoogleSigninButtonDirective, ButtonModule, PasswordModule, InputTextModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -21,22 +26,31 @@ export class LoginComponent implements OnDestroy {
   private readonly messageService = inject(MessageService);
   private formSub = new Subscription();
   private readonly fb = inject(FormBuilder);
-
+  private readonly socialAuthService = inject(SocialAuthService)
   private readonly authservice = inject(AuthService);
   private readonly router = inject(Router);
+  private authSub?: Subscription;
   loginForm!: FormGroup;
-  hide = true;
-  // Variables
   isLoading: boolean = false;
 
-  // Constructor
   constructor() {
     this.formInit();
   }
 
-  // Life Cycle Hooks
-  ngOnDestroy(): void {
-    this.formSub.unsubscribe();
+  user: SocialUser | null = null;
+  ngOnInit(): void {
+    // Subscribe to auth state changes
+    this.authSub = this.socialAuthService.authState.subscribe(
+      (user: SocialUser) => {
+        console.log('Auth state changed:', user);
+        this.user = user;
+        if (user.idToken) {
+          this.authservice.loginWithGoogle(user.idToken);
+        } else {
+          console.warn('SocialUser has no idToken — check Google config');
+        }
+      }
+    );
   }
 
   // Forms Functions
@@ -58,7 +72,6 @@ export class LoginComponent implements OnDestroy {
   onLogin(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      this.isLoading = false;
       return;
     }
     // start loader
@@ -67,7 +80,14 @@ export class LoginComponent implements OnDestroy {
     this.formSub = this.authservice.onLogin(this.loginForm.value).subscribe({
       next: (res) => {
         localStorage.setItem('HMSToken', res.data.token);
-        this.authservice.getProfile();
+        this.authservice.loadCurrentUser();
+
+        if (res.data.user.role === RoleEnum.Admin) {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/website']);
+        }
+
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -83,11 +103,27 @@ export class LoginComponent implements OnDestroy {
         this.isLoading = false;
       },
       complete: () => {
-        this.router.navigate(['/admin']);
         this.isLoading = false;
       },
     });
   }
+
+  // Manual Google sign-in method
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  // Sign out method
+  signOut(): void {
+    this.socialAuthService.signOut();
+  }
+
+  // Life Cycle Hooks
+  ngOnDestroy(): void {
+    this.authSub?.unsubscribe();
+    this.formSub.unsubscribe();
+  }
+
   get f() {
     return this.loginForm.controls;
   }
