@@ -1,3 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@use "./assets/fonts.scss";
 @use "tailwindcss";
 @import "primeicons/primeicons.css";
+
+@theme {
+  --font-en: "Poppins", sans-serif;
+  --font-ar: "Tajawal", "Cairo", sans-serif;
+  --color-primary: #152C5B;
+  --color-secondary: #FDFFFC;
+  --font-poppins: "Poppins", sans-serif;
+}
+
+:root {
+   /* English */
+  --font-en: "Poppins", sans-serif;
+  /* Arabic */
+  --font-ar: "Tajawal", "Cairo", sans-serif;
+  --primar-color: #152C5B;
+}
+
+
+html[lang="en"] {
+  --font-base: var(--font-en);
+}
+
+html[lang="ar"] {
+  --font-base: var(--font-ar);
+}
+
+body , h1 ,h2 ,h3{
+  font-family: var(--font-base);
+}

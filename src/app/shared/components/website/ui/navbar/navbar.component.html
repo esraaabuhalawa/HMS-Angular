@@ -14,25 +14,17 @@
   </ul>
 
   <!-- Actions -->
+  @if(!isloggedIn){
   <div class="flex items-center gap-3">
-
     <!-- Login Button -->
-    <button
-      pButton
-      type="button"
-      label="Login"
-      class="p-button-outlined p-button-sm"
-      (click)="goToLogin()">
+    <button pButton type="button" label="Login" class="p-button-outlined p-button-sm" (click)="goToLogin()">
     </button>
 
     <!-- Register Button -->
-    <button
-      pButton
-      type="button"
-      label="Register"
-      class="p-button-sm"
-      (click)="goToRegister()">
+    <button pButton type="button" label="Register" class="p-button-sm" (click)="goToRegister()">
     </button>
-
   </div>
+  } @else{
+  <app-profile-dropdown></app-profile-dropdown>
+  }
 </nav>

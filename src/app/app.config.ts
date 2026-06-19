@@ -3,12 +3,18 @@ import { provideRouter } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 import { providePrimeNG } from 'primeng/config';
+import {
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from '@abacritt/angularx-social-login';
 
 import { routes } from './app.routes';
 import { HotelPreset } from './core/theme/hotel-preset';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { generalInterceptor } from './core/interceptors/general-interceptor';
 import { unAuthInterceptor } from './core/interceptors/un-auth-interceptor';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,9 +22,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
 
     provideHttpClient(
-      withInterceptors([generalInterceptor,unAuthInterceptor])
+      withInterceptors([generalInterceptor, unAuthInterceptor])
     ),
-
     MessageService,
     providePrimeNG({
       theme: {
@@ -28,17 +33,33 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.dark',
           cssLayer: false
         }
-      }
-      // theme: {
-      //   preset: HotelPreset,
-      //   options: {
-      //     darkModeSelector: '.app-dark', // toggle this class on <html> for dark mode
-      //     cssLayer: {
-      //       name: 'primeng',
-      //       order: 'tailwind-base, primeng, tailwind-utilities', // if using Tailwind
-      //     },
-      //   },
-      // },
+      },
     }),
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.googleClientId,
+              {
+                oneTapEnabled: false,
+              }
+            ),
+          },
+        {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider(
+          environment.facebookAppId,
+          {
+            version: 'v18.0',
+          }
+        ),}
+        ],
+        onError: (err: any) => console.error(err),
+      } as SocialAuthServiceConfig,
+    },
   ]
 };

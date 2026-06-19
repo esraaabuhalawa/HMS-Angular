@@ -1,24 +1,5 @@
 import { JwtPayload } from 'jwt-decode';
 
-export interface ICurrentUser {
-  id: number;
-  userName: string;
-  email: string;
-  country: string;
-  phoneNumber: string;
-  imagePath?: string;
-  group: IGroup;
-  creationDate: string;
-  modificationDate: string;
-}
-
-export interface IGroup {
-  id: number;
-  name: string;
-  creationDate: string;
-  modificationDate: string;
-}
-
 export interface IDecodedToken extends JwtPayload {
   _id: string;
   role: string;
@@ -26,12 +7,32 @@ export interface IDecodedToken extends JwtPayload {
   iat: number;
   exp: number;
 }
-
 export interface ILogin {
   email: string;
   password: string;
 }
+
+export interface ICurrentUser {
+  _id: string;
+  userName: string;
+  email: string;
+  phoneNumber: number;
+  country: string;
+  role: string;
+  profileImage: string;
+  verified: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
 // ======Response Interfaces=======
+export interface ICurrentUserResponse {
+  success: boolean;
+  message: string;
+  data: {
+    user: ICurrentUser;
+  };
+}
+
 export interface ILoginResponse {
   success: boolean;
   message: string;
