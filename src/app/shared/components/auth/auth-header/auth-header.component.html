@@ -1,11 +1,13 @@
-<h1 class="text-3xl font-medium text-black mb-4">
+<h1 class="text-3xl font-medium text-black mb-4 capitalize">
   {{ title }}
 </h1>
 
 <p class="text-base font-normal mb-6 text-gray-600">
   {{ description }}
-    <br />
+  @if( subText){
+     <br />
   {{ subText }}
+  }
 
   <a
     [routerLink]="linkUrl"
