@@ -9,6 +9,8 @@ import {
   ILoginResponse,
   IDecodedToken,
   ICurrentUserResponse,
+  IResetResponse,
+  IReset,
 } from '../interfaces/auth';
 
 @Injectable({
