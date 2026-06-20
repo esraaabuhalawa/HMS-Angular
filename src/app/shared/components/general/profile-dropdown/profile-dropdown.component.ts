@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { ICurrentUser } from '../../../features/Auth/interfaces/auth';
-import { AuthService } from '../../../features/Auth/services/auth.service';
 import { AsyncPipe } from '@angular/common';
 import { Router, RouterLink } from "@angular/router";
 import { Skeleton } from 'primeng/skeleton';
-import { environment } from '../../../../environments/environment.development';
 import { Popover } from 'primeng/popover';
-import { RoleEnum } from '../../../core/enums/role.enum';
+import { environment } from '../../../../../environments/environment.development';
+import { RoleEnum } from '../../../../core/enums/role.enum';
+import { ICurrentUser } from '../../../../features/Auth/interfaces/auth';
+import { AuthService } from '../../../../features/Auth/services/auth.service';
 @Component({
   selector: 'app-profile-dropdown',
   imports: [AsyncPipe, RouterLink, Popover, Skeleton,],

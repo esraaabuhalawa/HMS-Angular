@@ -13,8 +13,8 @@ import { routes } from './app.routes';
 import { HotelPreset } from './core/theme/hotel-preset';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { generalInterceptor } from './core/interceptors/general-interceptor';
-import { unAuthInterceptor } from './core/interceptors/un-auth-interceptor';
 import { environment } from '../environments/environment';
+import { errorInterceptor } from './core/interceptors/error-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
 
     provideHttpClient(
-      withInterceptors([generalInterceptor, unAuthInterceptor])
+      withInterceptors([generalInterceptor, errorInterceptor])
     ),
     MessageService,
     providePrimeNG({

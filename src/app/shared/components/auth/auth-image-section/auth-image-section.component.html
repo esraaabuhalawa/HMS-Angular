@@ -1,0 +1,19 @@
+<div class="relative w-full h-full">
+  <img
+    [src]="imageSrc"
+    [alt]="imageAlt"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+  <div class="absolute left-20 bottom-10 right-10">
+    <h2 class="text-2xl font-semibold mb-1 font-poppins text-secondary">
+      {{ title }}
+    </h2>
+
+    <p class="text-lg font-normal font-poppins text-secondary">
+      {{ subtitle }}
+    </p>
+  </div>
+</div>

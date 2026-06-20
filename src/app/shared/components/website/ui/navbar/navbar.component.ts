@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../../../../features/Auth/services/auth.service';
-import { ProfileDropdownComponent } from '../../../profile-dropdown/profile-dropdown.component';
+import { ProfileDropdownComponent } from '../../../general/profile-dropdown/profile-dropdown.component';
 
 @Component({
   selector: 'app-navbar',

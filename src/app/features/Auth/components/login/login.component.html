@@ -1,0 +1,73 @@
+<app-auth-layout>
+  <!-- FORM SLOT -->
+  <div class="h-full" auth-form>
+    <!--Header Component-->
+    <app-auth-header title="Sign in" description="If you don't have an account register." subText="You can"
+      linkText="Register here!" linkUrl="/auth/register" linkClass="text-primary">
+    </app-auth-header>
+
+    <!--Start Of Form-->
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="mb-[2rem]">
+        <label class="text-primary font-normal mb-2 block">Email Address</label>
+        <input pInputText class="w-full" placeholder="Email" formControlName="email" />
+
+        @if (f['email'].touched && f['email'].errors?.['required']) {
+        <small class="text-red-500"> Email is required </small>
+        }
+
+        @if (f['email'].touched && f['email'].errors?.['email']) {
+        <small class="text-red-500"> Invalid email format </small>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="text-primary font-normal mb-2 block">Password</label>
+        <p-password formControlName="password" [toggleMask]="true" [feedback]="false" placeholder="Password"
+          styleClass="w-full" inputStyleClass="w-full">
+        </p-password>
+
+        @if (f['password'].touched && f['password'].errors?.['required']) {
+        <small class="text-red-500"> Password is required </small>
+        }
+
+        @if (f['password'].touched && f['password'].errors?.['pattern']) {
+        <small class="text-red-500">
+          Password must contain uppercase, lowercase, special character and minimum 6 characters
+        </small>
+        }
+      </div>
+
+      <div class="text-right mt-1">
+        <a routerLink="/auth/forgot-password" class="text-xs text-primary font-medium hover:underline">Forgot
+          Password?</a>
+      </div>
+
+      <div class="mt-[50px]">
+        <p-button type="submit" label="Login" [loading]="isLoading" styleClass="w-full"> </p-button>
+      </div>
+    </form>
+
+    <!-- Google Sign-In Divider -->
+    <div class="flex items-center gap-4 my-6">
+      <div class="flex-1 border-t"></div>
+      <span class="text-gray-500 text-sm">Or continue with</span>
+      <div class="flex-1 border-t"></div>
+    </div>
+
+    <!-- Google Sign-In Button -->
+    <div class="flex justify-center">
+      <asl-google-signin-button type="standard" size="large" theme="outline" text="signin_with" shape="rectangular"
+        [width]="300" (click)="signInWithGoogle()">
+      </asl-google-signin-button>
+    </div>
+  </div>
+
+  <!-- IMAGE SLOT -->
+  <div auth-image class="w-full h-full">
+    <app-auth-image-section class="block w-full h-full" imageSrc="/images/login.png" imageAlt="Login"
+      title="Sign in to Roamhome" subtitle="Homes as unique as you.">
+    </app-auth-image-section>
+  </div>
+
+</app-auth-layout>
