@@ -6,7 +6,7 @@ export const ROOMS_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/room-list/room-list.component')
+      import('./components/room-list/room-list.component')
         .then(c => c.RoomListComponent),
   },
 

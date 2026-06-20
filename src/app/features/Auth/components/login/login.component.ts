@@ -15,6 +15,8 @@ import {
   SocialUser,
 } from '@abacritt/angularx-social-login';
 import { RoleEnum } from '../../../../core/enums/role.enum';
+import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
+import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,9 @@ import { RoleEnum } from '../../../../core/enums/role.enum';
     PasswordModule,
     InputTextModule,
     RouterLink,
-  ],
+    AuthHeaderComponent,
+    AuthImageSectionComponent
+],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

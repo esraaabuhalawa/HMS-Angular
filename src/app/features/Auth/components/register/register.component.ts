@@ -20,6 +20,8 @@ import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { BadgeModule } from 'primeng/badge';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
+import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
 
 @Component({
   selector: 'app-register',
@@ -34,7 +36,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
     ToastModule,
     BadgeModule,
     ProgressBarModule,
-  ],
+    AuthHeaderComponent,
+    AuthImageSectionComponent
+],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })

@@ -1,0 +1,16 @@
+<h1 class="text-3xl font-medium text-black mb-4">
+  {{ title }}
+</h1>
+
+<p class="text-base font-normal mb-6 text-gray-600">
+  {{ description }}
+    <br />
+  {{ subText }}
+
+  <a
+    [routerLink]="linkUrl"
+    class="font-semibold hover:underline" [class]="linkClass"
+  >
+    {{ linkText }}
+  </a>
+</p>

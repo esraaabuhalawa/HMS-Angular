@@ -1,5 +1,5 @@
 import { Component,} from '@angular/core';
-import { ProfileDropdownComponent } from "../../../profile-dropdown/profile-dropdown.component";
+import { ProfileDropdownComponent } from '../../../general/profile-dropdown/profile-dropdown.component';
 
 @Component({
   selector: 'app-header',
