@@ -53,3 +53,12 @@ export interface IUser {
 export interface IRegisterResponse {
   message: string;
 }
+export interface IReset {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  seed: string;
+}
+export interface IResetResponse {
+  message: string;
+}

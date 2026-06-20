@@ -2,23 +2,31 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { Component, inject, OnDestroy } from '@angular/core';
-import { AuthLayoutComponent } from "../../../../core/layouts/auth-layout/auth-layout.component";
+import { AuthLayoutComponent } from '../../../../core/layouts/auth-layout/auth-layout.component';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule
-} from '@angular/forms';
-import { GoogleLoginProvider, GoogleSigninButtonDirective, SocialAuthService, SocialUser } from "@abacritt/angularx-social-login";
+  GoogleLoginProvider,
+  GoogleSigninButtonDirective,
+  SocialAuthService,
+  SocialUser,
+} from '@abacritt/angularx-social-login';
 import { RoleEnum } from '../../../../core/enums/role.enum';
 
 @Component({
   selector: 'app-login',
-  imports: [AuthLayoutComponent, ReactiveFormsModule, GoogleSigninButtonDirective, ButtonModule, PasswordModule, InputTextModule, RouterLink],
+  imports: [
+    AuthLayoutComponent,
+    ReactiveFormsModule,
+    GoogleSigninButtonDirective,
+    ButtonModule,
+    PasswordModule,
+    InputTextModule,
+    RouterLink,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -26,7 +34,7 @@ export class LoginComponent implements OnDestroy {
   private readonly messageService = inject(MessageService);
   private formSub = new Subscription();
   private readonly fb = inject(FormBuilder);
-  private readonly socialAuthService = inject(SocialAuthService)
+  private readonly socialAuthService = inject(SocialAuthService);
   private readonly authservice = inject(AuthService);
   private readonly router = inject(Router);
   private authSub?: Subscription;
@@ -40,17 +48,15 @@ export class LoginComponent implements OnDestroy {
   user: SocialUser | null = null;
   ngOnInit(): void {
     // Subscribe to auth state changes
-    this.authSub = this.socialAuthService.authState.subscribe(
-      (user: SocialUser) => {
-        console.log('Auth state changed:', user);
-        this.user = user;
-        if (user.idToken) {
-          this.authservice.loginWithGoogle(user.idToken);
-        } else {
-          console.warn('SocialUser has no idToken — check Google config');
-        }
+    this.authSub = this.socialAuthService.authState.subscribe((user: SocialUser) => {
+      console.log('Auth state changed:', user);
+      this.user = user;
+      if (user.idToken) {
+        this.authservice.loginWithGoogle(user.idToken);
+      } else {
+        console.warn('SocialUser has no idToken — check Google config');
       }
-    );
+    });
   }
 
   // Forms Functions
@@ -61,9 +67,7 @@ export class LoginComponent implements OnDestroy {
         null,
         [
           Validators.required,
-          Validators.pattern(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&#?&]{8,}$/,
-          ),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&#?&]{8,}$/),
         ],
       ],
     });
@@ -91,14 +95,14 @@ export class LoginComponent implements OnDestroy {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'You have been logged in successfully!'
+          detail: 'You have been logged in successfully!',
         });
       },
       error: (err) => {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: err.error.message
+          detail: err.error.message,
         });
         this.isLoading = false;
       },
