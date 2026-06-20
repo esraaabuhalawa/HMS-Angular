@@ -3,7 +3,6 @@ import { AsyncPipe } from '@angular/common';
 import { Router, RouterLink } from "@angular/router";
 import { Skeleton } from 'primeng/skeleton';
 import { Popover } from 'primeng/popover';
-import { environment } from '../../../../../environments/environment.development';
 import { RoleEnum } from '../../../../core/enums/role.enum';
 import { ICurrentUser } from '../../../../features/Auth/interfaces/auth';
 import { AuthService } from '../../../../features/Auth/services/auth.service';
@@ -18,7 +17,6 @@ export class ProfileDropdownComponent {
   private readonly router = inject(Router)
   currentUser!: ICurrentUser | null;
   currentUser$ = this.authService.currentUser$;
-  assetUrl = environment.assetUrl;
 
   logout() {
     this.authService.logout();
