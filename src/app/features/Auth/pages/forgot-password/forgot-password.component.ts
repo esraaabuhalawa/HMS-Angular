@@ -39,21 +39,38 @@ export class ForgotPasswordComponent {
 }
 
 onSubmit(): void {
-
   if (this.forgotForm.invalid) {
     this.forgotForm.markAllAsTouched();
     return;
   }
 
+  this.isLoading = true;
+
   const email = this.forgotForm.value.email;
 
-  localStorage.setItem('userEmail', email);
+  this.authservice.forgotPassword(email).subscribe({
+    next: (res) => {
+      localStorage.setItem('userEmail', email);
+      this.router.navigate(['/auth/reset-password']);
+      this.isLoading = false;
 
-  this.router.navigate(['/auth/reset-password']);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Reset link sent successfully'
+      });
+    },
 
+    error: (err) => {
+      this.isLoading = false;
 
-
-  this.isLoading = true;
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: err.error?.message || 'Something went wrong'
+      });
+    }
+  });
 }
 
 get f() {
