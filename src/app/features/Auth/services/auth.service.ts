@@ -8,8 +8,6 @@ import {
   ILogin,
   ILoginResponse,
   IDecodedToken,
-  IReset,
-  IResetResponse,
   ICurrentUserResponse,
 } from '../interfaces/auth';
 
@@ -135,4 +133,8 @@ export class AuthService {
   //       },
   //     });
   // }
+
+  register(data: FormData): Observable<ICurrentUserResponse> {
+    return this.http.post<ICurrentUserResponse>('portal/users', data);
+  }
 }

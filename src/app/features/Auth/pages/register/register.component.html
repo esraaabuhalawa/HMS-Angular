@@ -1,1 +1,165 @@
-<p>register works!</p>
+<app-auth-layout>
+  <div class="h-full" auth-form>
+    <h1 class="text-3xl font-medium text-black mb-4">Sign up</h1>
+
+    <p class="text-base font-normal mb-6 text-gray-600">
+      If you already have an account register<br />
+      You can
+      <a routerLink="/auth/login" class="font-semibold text-red-500"> Login here ! </a>
+    </p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div class="mx-auto w-[50%] mb-[2rem] text-center">
+        <div class="profile-upload-wrapper mx-auto">
+          <p-fileupload
+            #fu
+            chooseIcon="pi pi-upload"
+            accept="image/*"
+            maxFileSize="1000000"
+            [customUpload]="true"
+            [auto]="true"
+            (onSelect)="onSelect($event)"
+            (onClear)="onClear()"
+            aria-required
+          />
+        </div>
+        @if (f['profileImage'].touched && f['profileImage'].invalid) {
+          <small class="text-red-500 my-2">Profile image is required</small>
+        }
+      </div>
+
+      <div class="mb-[2rem]">
+        <label class="text-primary font-normal mb-2 block">User Name</label>
+        <input
+          pInputText
+          class="w-full"
+          placeholder="Please type here ..."
+          formControlName="userName"
+        />
+
+        @if (f['userName'].touched && f['userName'].errors?.['required']) {
+          <small class="text-red-500"> userName is required </small>
+        }
+
+        @if (f['userName'].touched && f['userName'].errors?.['minLength']) {
+          <small class="text-red-500"> Username must be at least 3 characters </small>
+        }
+        @if (f['userName'].touched && f['userName'].errors?.['maxLength']) {
+          <small class="text-red-500"> Username cannot exceed 20 characters </small>
+        }
+      </div>
+      <div class="mb-[2rem] flex justify-content-between align-items-center gap-3">
+        <div class="w-[50%]">
+          <label class="text-primary font-normal mb-2 block">Phone Number</label>
+          <input
+            pInputText
+            class="w-full"
+            placeholder="Please type here "
+            formControlName="phoneNumber"
+          />
+
+          @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['required']) {
+            <small class="text-red-500"> phone Number is required </small>
+          }
+
+          @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['pattern']) {
+            <small class="text-red-500"> Must start with 010, 011, 012, or 015 (11 digits) </small>
+          }
+        </div>
+        <div class="w-[50%]">
+          <label class="text-primary font-normal mb-2 block">Country</label>
+          <input
+            pInputText
+            class="w-full"
+            placeholder="Please type here ."
+            formControlName="country"
+          />
+
+          @if (f['country'].touched && f['country'].errors?.['required']) {
+            <small class="text-red-500">country is required </small>
+          }
+
+          @if (f['country'].touched && f['country'].errors?.['pattern']) {
+            <small class="text-red-500"> Country name must contain letters only </small>
+          }
+          @if (f['country'].touched && f['country'].errors?.['minlength']) {
+            <small class="text-red-500"> Country name is too short </small>
+          }
+        </div>
+      </div>
+      <div class="mb-[2rem]">
+        <label class="text-primary font-normal mb-2 block">Email Address</label>
+        <input pInputText class="w-full" placeholder="Email" formControlName="email" />
+
+        @if (f['email'].touched && f['email'].errors?.['required']) {
+          <small class="text-red-500"> Email is required </small>
+        }
+
+        @if (f['email'].touched && f['email'].errors?.['email']) {
+          <small class="text-red-500"> Invalid email format </small>
+        }
+      </div>
+
+      <div class="mb-[2rem]">
+        <label class="text-primary font-normal mb-2 block">Password</label>
+        <p-password
+          formControlName="password"
+          [toggleMask]="true"
+          placeholder="Password"
+          styleClass="w-full"
+          inputStyleClass="w-full"
+          autocomplete="off"
+        >
+        </p-password>
+
+        @if (f['password'].touched && f['password'].errors?.['required']) {
+          <small class="text-red-500"> Password is required </small>
+        }
+
+        @if (f['password'].touched && f['password'].errors?.['pattern']) {
+          <small class="text-red-500">
+            Password must contain uppercase, lowercase, special character and minimum 6 characters
+          </small>
+        }
+      </div>
+      <div class="mb-[2rem]">
+        <label class="text-primary font-normal mb-2 block">Confirm Password</label>
+        <p-password
+          formControlName="confirmPassword"
+          [toggleMask]="true"
+          placeholder="confirm Password"
+          styleClass="w-full"
+          inputStyleClass="w-full"
+        >
+        </p-password>
+
+        @if (f['confirmPassword'].touched && f['confirmPassword'].errors?.['required']) {
+          <small class="text-red-500"> confirm Password is required </small>
+        }
+
+        @if (f['confirmPassword'].touched && registerForm.errors?.['passwordMismatch']) {
+          <small class="text-red-500">Passwords do not match.</small>
+        }
+      </div>
+
+      <div class="mt-[50px]">
+        <p-button type="submit" label="Sign up" [loading]="isLoading" styleClass="w-full">
+        </p-button>
+      </div>
+    </form>
+  </div>
+
+  <div auth-image class="relative w-full h-full">
+    <img
+      src="/images/register.jpg"
+      alt="Tea plantation"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+    <div class="absolute left-20 bottom-10 right-10 text-white">
+      <h2 class="text-2xl font-semibold mb-1 font-poppins text-secondary">Sign up to Roamhome</h2>
+
+      <p class="text-lg font-normal font-poppins text-secondary">Homes as unique as you.</p>
+    </div>
+  </div>
+</app-auth-layout>

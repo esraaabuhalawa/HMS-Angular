@@ -16,6 +16,7 @@ export interface ICurrentUser {
   _id: string;
   userName: string;
   email: string;
+  password: string;
   phoneNumber: number;
   country: string;
   role: string;
@@ -48,17 +49,4 @@ export interface IUser {
   _id: string;
   userName: string;
   role: string;
-}
-
-export interface IRegisterResponse {
-  message: string;
-}
-export interface IReset {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  seed: string;
-}
-export interface IResetResponse {
-  message: string;
 }

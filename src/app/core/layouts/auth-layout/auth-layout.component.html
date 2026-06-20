@@ -1,12 +1,13 @@
 <div class="min-h-screen flex">
-
   <!-- Left side (form area) -->
-  <div class="w-full md:w-1/2  bg-white">
-    <div class="py-[28px] px-[48px]">
-      <img src="../images/logo.svg">
+  <div class="w-full md:w-1/2 bg-white">
+    <div class="py-[28px] px-[48px] mb-8">
+      <img src="../images/logo.svg" />
     </div>
     <div class="w-full max-w-lg flex flex-col items-center mx-auto">
-      <ng-content select="[auth-form]"></ng-content>
+      <div class="w-[85%] pt-[2rem] mt[2rem]">
+        <ng-content select="[auth-form]"></ng-content>
+      </div>
     </div>
   </div>
 
@@ -14,5 +15,4 @@
   <div class="hidden md:flex w-1/2 items-center justify-center">
     <ng-content select="[auth-image]"></ng-content>
   </div>
-
 </div>
