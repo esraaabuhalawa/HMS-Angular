@@ -3,7 +3,13 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ICurrentUser, ILogin, ILoginResponse, IDecodedToken, ICurrentUserResponse } from '../interfaces/auth';
+import {
+  ICurrentUser,
+  ILogin,
+  ILoginResponse,
+  IDecodedToken,
+  ICurrentUserResponse,
+} from '../interfaces/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -32,11 +38,11 @@ export class AuthService {
 
     this.getCurrentUserProfile(decoded._id).subscribe({
       next: (res: ICurrentUserResponse) => {
-       this.currentUserSubject.next(res.data.user);
+        this.currentUserSubject.next(res.data.user);
       },
       error: () => {
         this.currentUserSubject.next(null);
-      }
+      },
     });
   }
 
@@ -103,4 +109,8 @@ export class AuthService {
   //       },
   //     });
   // }
+
+  register(data: FormData): Observable<ICurrentUserResponse> {
+    return this.http.post<ICurrentUserResponse>('portal/users', data);
+  }
 }
