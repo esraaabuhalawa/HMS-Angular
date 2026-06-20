@@ -103,6 +103,13 @@ export class AuthService {
       });
   }
 
+
+
+
+  forgotPassword(email: string): Observable<any> {
+  return this.http.post('portal/users/forgot-password', { email });
+}
+
   // loginWithFacebook(accessToken: string, userID: string): void {
   //   if (!accessToken || !userID) {
   //     console.error('Missing accessToken or userID');
