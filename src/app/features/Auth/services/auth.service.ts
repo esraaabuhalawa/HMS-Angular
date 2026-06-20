@@ -24,6 +24,22 @@ export class AuthService {
     return this.http.post<ILoginResponse>('portal/users/Login', data);
   }
 
+  onResetPass(data: IReset): Observable<IResetResponse> {
+    return this.http.post<IResetResponse>('portal/users/reset-password', data);
+  }
+
+  getProfile() {
+    let token = localStorage.getItem('HMSToken');
+    if (token) {
+      let userDecode = jwtDecode<IDecodedToken>(token);
+      localStorage.setItem('role', userDecode.role);
+    }
+  }
+
+  updateCurrentUserData(data: FormData): Observable<any> {
+    return this.http.put<any>('Users', data);
+  }
+
   //====== get logged person Data ======
   getCurrentUserProfile(id: string): Observable<ICurrentUserResponse> {
     return this.http.get<ICurrentUserResponse>(`portal/users/${id}`);
@@ -57,6 +73,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('HMSToken');
     localStorage.removeItem('role');
+    this.router.navigate(['/auth/login']);
   }
 
   loginWithGoogle(idToken: string | undefined): void {
@@ -78,11 +95,18 @@ export class AuthService {
             this.router.navigate(['/website']);
           }
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error('Error details:', err.error);
         },
       });
   }
+
+
+
+
+  forgotPassword(email: string): Observable<any> {
+  return this.http.post('portal/users/forgot-password', { email });
+}
 
   // loginWithFacebook(accessToken: string, userID: string): void {
   //   if (!accessToken || !userID) {
