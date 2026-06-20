@@ -4,7 +4,7 @@
 <div class="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-gray-100" (click)="op.toggle($event)">
   <!-- Avatar -->
   @if (user.profileImage) {
-  <img [src]="assetUrl + user.profileImage" class="w-10 h-10 rounded-full object-cover"
+  <img [src]="user.profileImage" class="w-10 h-10 rounded-full object-cover"
     (error)="onImageError($event)" />
   } @else {
   <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold">
