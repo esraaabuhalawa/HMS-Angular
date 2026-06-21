@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { AuthLayoutComponent } from "../../../../core/layouts/auth-layout/auth-layout.component";
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,9 +12,12 @@ import {
 } from '@angular/forms';
 import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
 import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
+import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-forgot-password',
-  imports: [AuthLayoutComponent, ReactiveFormsModule, InputTextModule, ButtonModule, AuthHeaderComponent, AuthImageSectionComponent],
+  imports: [AuthLayoutComponent, ReactiveFormsModule, InputTextModule, ButtonModule,
+    AuthHeaderComponent, AuthImageSectionComponent,TranslatePipe],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss',
 })
