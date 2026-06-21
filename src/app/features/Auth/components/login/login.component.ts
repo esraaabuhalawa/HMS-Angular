@@ -2,7 +2,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { Component, inject, OnDestroy } from '@angular/core';
-import { AuthLayoutComponent } from '../../../../core/layouts/auth-layout/auth-layout.component';
+import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
@@ -17,7 +17,7 @@ import {
 import { RoleEnum } from '../../../../core/enums/role.enum';
 import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
 import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
-
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   imports: [
@@ -29,8 +29,9 @@ import { AuthImageSectionComponent } from "../../../../shared/components/auth/au
     InputTextModule,
     RouterLink,
     AuthHeaderComponent,
-    AuthImageSectionComponent
-],
+    AuthImageSectionComponent,
+    TranslatePipe
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -44,12 +45,13 @@ export class LoginComponent implements OnDestroy {
   private authSub?: Subscription;
   loginForm!: FormGroup;
   isLoading: boolean = false;
+  user: SocialUser | null = null;
 
   constructor() {
     this.formInit();
   }
 
-  user: SocialUser | null = null;
+
   ngOnInit(): void {
     // Subscribe to auth state changes
     this.authSub = this.socialAuthService.authState.subscribe((user: SocialUser) => {
@@ -121,10 +123,10 @@ export class LoginComponent implements OnDestroy {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  // Sign out method
-  signOut(): void {
-    this.socialAuthService.signOut();
-  }
+  // // Sign out method
+  // signOut(): void {
+  //   this.socialAuthService.signOut();
+  // }
 
   // Life Cycle Hooks
   ngOnDestroy(): void {
