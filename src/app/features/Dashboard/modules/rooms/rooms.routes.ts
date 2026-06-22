@@ -1,5 +1,3 @@
-// features/rooms/rooms.routes.ts
-
 import { Routes } from '@angular/router';
 
 export const ROOMS_ROUTES: Routes = [
@@ -10,20 +8,19 @@ export const ROOMS_ROUTES: Routes = [
         .then(c => c.RoomListComponent),
   },
 
-
   {
     path: 'add',
     loadComponent: () =>
-      import('./components/add-edit-room/add-edit-room.component')
-        .then(c => c.AddEditRoomComponent),
+      import('./components/add-edit/add-edit.component')
+        .then(c => c.AddEditComponent),
   },
 
-  // {
-  //   path: 'create',
-  //   loadComponent: () =>
-  //     import('./pages/room-create/room-create.component')
-  //       .then(c => c.RoomCreateComponent),
-  // },
+    {
+    path: 'edit/:id',
+    loadComponent: () =>
+      import('./components/add-edit/add-edit.component')
+        .then(c => c.AddEditComponent),
+  },
 
   // {
   //   path: ':id',
@@ -32,10 +29,4 @@ export const ROOMS_ROUTES: Routes = [
   //       .then(c => c.RoomDetailsComponent),
   // },
 
-  // {
-  //   path: 'edit/:id',
-  //   loadComponent: () =>
-  //     import('./pages/room-edit/room-edit.component')
-  //       .then(c => c.RoomEditComponent),
-  // },
 ];

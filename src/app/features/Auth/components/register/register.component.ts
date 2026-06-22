@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AuthLayoutComponent } from '../../../../core/layouts/auth-layout/auth-layout.component';
 import {
   AbstractControl,
   FormBuilder,
@@ -22,6 +21,7 @@ import { BadgeModule } from 'primeng/badge';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
 import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
+import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
 
 @Component({
   selector: 'app-register',

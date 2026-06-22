@@ -8,7 +8,7 @@ import { matchPasswordValidator } from '../../../../shared/confirm-password-vali
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
-import { AuthLayoutComponent } from '../../../../core/layouts/auth-layout/auth-layout.component';
+import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
 import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
 import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
 @Component({
@@ -23,7 +23,7 @@ import { AuthImageSectionComponent } from "../../../../shared/components/auth/au
     AuthLayoutComponent,
     AuthHeaderComponent,
     AuthImageSectionComponent
-],
+  ],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
 })
