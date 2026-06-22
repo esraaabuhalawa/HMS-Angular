@@ -10,6 +10,14 @@ export const ROOMS_ROUTES: Routes = [
         .then(c => c.RoomListComponent),
   },
 
+
+  {
+    path: 'add',
+    loadComponent: () =>
+      import('./components/add-edit-room/add-edit-room.component')
+        .then(c => c.AddEditRoomComponent),
+  },
+
   // {
   //   path: 'create',
   //   loadComponent: () =>
