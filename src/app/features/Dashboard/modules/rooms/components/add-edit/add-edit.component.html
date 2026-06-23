@@ -47,13 +47,40 @@
   </div>
 
   <!-- Upload -->
-  <p-fileUpload
-    mode="advanced"
-    [multiple]="true"
-    chooseLabel="Choose Room Images"
-    dragDropSupport="true"
-    [showUploadButton]="false"
-    [showCancelButton]="false">
-  </p-fileUpload>
+ <p-fileUpload
+    #fileUpload
+  mode="advanced"
+  [multiple]="true"
+  [showUploadButton]="false"
+  [showCancelButton]="false"
+  (onSelect)="onSelectFiles($event)"
+  >
 
+  <ng-template pTemplate="content">
+    <div
+      class="upload-area"
+      (click)="fileUpload.choose()">
+
+      <i class="pi pi-upload text-4xl mb-4"></i>
+
+      <p>
+        Drag & Drop or
+        <span class="text-green-600 font-medium">
+          Choose a Room Images
+        </span>
+        to Upload
+      </p>
+
+    </div>
+  </ng-template>
+
+</p-fileUpload>
+
+
+
+<div class="flex gap-3 mt-3 flex-wrap">
+  @for (img of previewUrls; track img) {
+  <img [src]="img" class="w-20 h-20 object-cover rounded" />
+}
+</div>
 </form>
