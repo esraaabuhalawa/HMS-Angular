@@ -4,35 +4,26 @@
 
   <!-- Links -->
   <ul class="hidden md:flex gap-6 text-gray-600 font-medium">
-  <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.HOME' | translate }}</li>
-  <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.ABOUT' | translate }}</li>
-  <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.SERVICES' | translate }}</li>
-  <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.CONTACT' | translate }}</li>
-</ul>
+    <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.HOME' | translate }}</li>
+    <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.ABOUT' | translate }}</li>
+    <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.SERVICES' | translate }}</li>
+    <li class="hover:text-indigo-600 cursor-pointer">{{ 'NAV.CONTACT' | translate }}</li>
+  </ul>
 
-  <app-language-switcher />
-  <!-- Actions -->
-  @if (!isloggedIn) {
+  <div class="flex ">
+    <app-language-switcher />
+    <!-- Actions -->
+    @if (!isloggedIn) {
     <div class="flex items-center gap-3">
       <!-- Login Button -->
-      <button
-        pButton
-        routerLink="/auth/login"
-        type="button"
-        label="Login"
-        class="p-button-outlined p-button-sm"
-      ></button>
+      <button pButton routerLink="/auth/login" type="button" label="Login"
+        class="p-button-outlined p-button-sm"></button>
 
       <!-- Register Button -->
-      <button
-        pButton
-        routerLink="/auth/register"
-        type="button"
-        label="Register"
-        class="p-button-sm"
-      ></button>
+      <button pButton routerLink="/auth/register" type="button" label="Register" class="p-button-sm"></button>
     </div>
-  } @else {
+    } @else {
     <app-profile-dropdown></app-profile-dropdown>
-  }
+    }
+  </div>
 </nav>
