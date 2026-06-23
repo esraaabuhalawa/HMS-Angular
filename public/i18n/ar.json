@@ -5,7 +5,7 @@
     "SERVICES": "الخدمات",
     "CONTACT": "تواصل معنا"
   },
-   "LOGIN": {
+  "LOGIN": {
     "TITLE": "تسجيل الدخول",
     "DESCRIPTION": "إذا لم يكن لديك حساب قم بالتسجيل.",
     "SUB_TEXT": "يمكنك",
@@ -18,8 +18,7 @@
 
     "PASSWORD_LABEL": "كلمة المرور",
     "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
-    "PASSWORD_PATTERN":
-      "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورمز خاص ولا تقل عن 6 أحرف",
+    "PASSWORD_PATTERN": "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورمز خاص ولا تقل عن 6 أحرف",
 
     "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
     "BUTTON_LOGIN": "تسجيل الدخول",
@@ -37,5 +36,31 @@
     "BUTTON": "إرسال البريد",
     "HEADER_TITLE": "نسيت كلمة المرور",
     "HEADER_SUBTITLE": "منازل فريدة مثل أصحابها."
+  },
+  "ROOMS": {
+    "ROOM": "غرفه"
+  },
+   "ROOM_DETAILS": {
+    "ROOM": "غرفة",
+    "ADDED_BY": "تمت الإضافة بواسطة",
+    "PER_NIGHT": "/ ليلة",
+    "UP_TO": "حتى",
+    "GUEST": "ضيف",
+    "GUESTS": "ضيوف",
+    "FACILITIES": "المرافق",
+    "NO_FACILITIES": "لا توجد مرافق متاحة.",
+    "CREATED": "تاريخ الإنشاء",
+    "LAST_UPDATED": "آخر تحديث"
+  },
+  "ALERTS": {
+    "DELETE_TITLE": "حذف {{entity}}؟",
+    "DELETE_MESSAGE": "هل أنت متأكد من حذف ؟",
+    "DELETE_WARNING": "لا يمكن التراجع عن هذا الإجراء!",
+    "DELETE_CONFIRM": "نعم، قم بالحذف",
+    "DELETE_SUCCESSFULLY": "تم الحذف بنجاح",
+    "DELETE_CANCEL": "إلغاء",
+    "CLOSE": "اغلاق",
+    "DELETE_FAILED": "فشل الحذف",
+    "SOMETHING_WENT_WRONG": "حدث خطأ ما"
   }
 }

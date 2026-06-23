@@ -1,0 +1,23 @@
+:host ::ng-deep {
+  .lang-switcher {
+    min-width: 130px;
+
+    .p-select-label {
+      padding: 0.4rem 0.75rem;
+    }
+  }
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.flag-icon {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}

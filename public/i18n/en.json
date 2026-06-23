@@ -1,5 +1,5 @@
 {
-    "NAV": {
+  "NAV": {
     "HOME": "Home",
     "ABOUT": "About",
     "SERVICES": "Services",
@@ -10,33 +10,52 @@
     "DESCRIPTION": "If you don't have an account register.",
     "SUB_TEXT": "You can",
     "REGISTER": "Register here!",
-
     "EMAIL_LABEL": "Email Address",
     "EMAIL_PLACEHOLDER": "Email",
     "EMAIL_REQUIRED": "Email is required",
     "EMAIL_INVALID": "Invalid email format",
-
     "PASSWORD_LABEL": "Password",
     "PASSWORD_REQUIRED": "Password is required",
-    "PASSWORD_PATTERN":
-      "Password must contain uppercase, lowercase, special character and minimum 6 characters",
-
+    "PASSWORD_PATTERN": "Password must contain uppercase, lowercase, special character and minimum 6 characters",
     "FORGOT_PASSWORD": "Forgot Password?",
     "BUTTON_LOGIN": "Login",
-
     "OR_CONTINUE": "Or continue with",
     "GOOGLE_SIGNIN": "Sign in with Google",
-
     "HEADER_TITLE": "Sign in",
     "HEADER_DESC": "Homes as unique as you."
   },
-   "FORGOT": {
+  "FORGOT": {
     "TITLE": "Forgot Password",
     "DESCRIPTION": "Don't worry, it happens. Enter your email address to reset your password.",
     "LINK_TEXT": "Sign in here!",
     "BUTTON": "Send mail",
     "HEADER_TITLE": "Forgot Password",
     "HEADER_SUBTITLE": "Homes as unique as you."
+  },
+  "ROOMS": {
+    "ROOM": "Room"
+  },
+    "ROOM_DETAILS": {
+    "ROOM": "Room",
+    "ADDED_BY": "Added by",
+    "PER_NIGHT": "/ night",
+    "UP_TO": "Up to",
+    "GUEST": "guest",
+    "GUESTS": "guests",
+    "FACILITIES": "Facilities",
+    "NO_FACILITIES": "No facilities listed.",
+    "CREATED": "Created",
+    "LAST_UPDATED": "Last updated"
+  },
+  "ALERTS": {
+    "DELETE_TITLE": "Delete {{entity}}?",
+    "DELETE_MESSAGE": "Are you sure you want to delete?",
+    "DELETE_WARNING": "This action cannot be undone!",
+    "DELETE_CONFIRM": "Yes, delete it!",
+    "DELETE_SUCCESSFULLY": "deleted successfully",
+    "DELETE_CANCEL": "Cancel",
+    "CLOSE": "Close",
+    "DELETE_FAILED": "Delete failed",
+    "SOMETHING_WENT_WRONG": "Something went wrong"
   }
-
 }

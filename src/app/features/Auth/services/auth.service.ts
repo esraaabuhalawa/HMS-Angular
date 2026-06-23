@@ -76,7 +76,7 @@ export class AuthService {
     localStorage.removeItem('HMSToken');
     localStorage.removeItem('role');
     this.currentUserSubject.next(null);
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/']);
   }
 
   loginWithGoogle(idToken: string | undefined): void {
