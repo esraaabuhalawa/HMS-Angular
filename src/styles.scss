@@ -13,7 +13,7 @@
 }
 
 :root {
-   /* English */
+  /* English */
   --font-en: "Poppins", sans-serif;
   /* Arabic */
   --font-ar: "Tajawal", "Cairo", sans-serif;
@@ -29,6 +29,22 @@ html[lang="ar"] {
   --font-base: var(--font-ar);
 }
 
-body , h1 ,h2 ,h3{
+body,
+h1,
+h2,
+h3 {
   font-family: var(--font-base);
+}
+
+div:where(.swal2-container) button:where(.swal2-close) {
+  margin: 10px !important;
+  color: red !important;
+  width: 37px !important;
+  height: 37px !important;
+  display: flex !important;
+  border-radius: 50% !important;
+  justify-content: center !important;
+  margin-bottom: 0 !important;
+  align-items: center !important;
+  border: 1px solid red !important;
 }

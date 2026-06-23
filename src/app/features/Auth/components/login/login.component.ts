@@ -92,11 +92,7 @@ export class LoginComponent implements OnDestroy {
         localStorage.setItem('HMSToken', res.data.token);
         this.authservice.loadCurrentUser();
 
-        if (res.data.user.role === RoleEnum.Admin) {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/website']);
-        }
+        this.router.navigate(['/']);
 
         this.messageService.add({
           severity: 'success',

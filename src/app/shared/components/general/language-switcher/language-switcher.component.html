@@ -1,8 +1,20 @@
-  <!-- <button id="dropdownDefaultButton" (click)="switchLanguage()"
-    class="text-white hover:cursor-pointer hover:text-red-600 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-    type="button"><i class="fa-solid fa-globe"></i>
-  </button> -->
+<p-select [options]="languages()" [ngModel]="selectedLanguage()"
+  (onChange)="changeLanguage($event.value)"
+  optionLabel="label" [showClear]="false" styleClass="lang-switcher">
 
+  <!-- Currently selected display -->
+  <ng-template #selectedItem let-selectedOption>
+    <div class="lang-option">
+      <img [src]="selectedOption.flag" class="flag-icon" width="24" />
+      <span>{{ selectedOption.label }}</span>
+    </div>
+  </ng-template>
 
-  <button (click)="changeLanguage('en')">English</button>
-  <button (click)="changeLanguage('ar')">العربية</button>
+  <ng-template #item let-option>
+    <div class="lang-option">
+      <img [src]="option.flag" width="24" class="flag-icon" />
+      <span>{{ option.label }}</span>
+    </div>
+  </ng-template>
+
+</p-select>
