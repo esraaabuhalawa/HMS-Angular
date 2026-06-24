@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../../../../environments/environment.development';
 import { Observable } from 'rxjs';
-import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse } from '../interfaces/rooms.interface';
+import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomResponse } from '../interfaces/rooms.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +9,18 @@ import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse } from '../interfa
 export class RoomsService {
   private http = inject(HttpClient);
 
-    private baseUrl = `${environment.apiUrl}/rooms`;
 
-  createRoom(data: FormData) {
-    return this.http.post(this.baseUrl, data);
-  }
+
+createRoom(data: FormData): Observable<ICreateRoomResponse> {
+  return this.http.post<ICreateRoomResponse>('admin/rooms', data);
+}
+
+updateRoom(id: string, data: FormData): Observable<ICreateRoomResponse> {
+  return this.http.put<ICreateRoomResponse>(
+    `admin/rooms/${id}`,
+    data
+  );
+}
 
 
 

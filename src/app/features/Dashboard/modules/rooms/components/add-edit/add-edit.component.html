@@ -1,4 +1,14 @@
-<form [formGroup]="roomForm" class="max-w-4xl mx-auto p-6">
+
+<div class="max-w-4xl mx-auto p-6 flex justify-end mb-6">
+  <button
+    type="submit"
+    form="roomForm"
+    class="bg-blue-700 text-white px-12 py-3 rounded-xl text-lg font-semibold ">
+    {{ roomId ? 'Update Room' : 'Add New Room' }}
+  </button>
+</div>
+
+<form id="roomForm" [formGroup]="roomForm" class="max-w-4xl mx-auto p-6" (ngSubmit)="save()">
 
   <!-- Room Number -->
   <div class="mb-5">
@@ -80,7 +90,20 @@
 
 <div class="flex gap-3 mt-3 flex-wrap">
   @for (img of previewUrls; track img) {
-  <img [src]="img" class="w-20 h-20 object-cover rounded" />
-}
+    <img [src]="img" class="w-20 h-20 object-cover rounded" />
+  }
 </div>
+
+@if (existingImages.length) {
+  <div class="flex gap-3 mt-3 flex-wrap">
+    @for (img of existingImages; track img) {
+      <img
+        [src]="img"
+        class="w-20 h-20 object-cover rounded border"
+      />
+    }
+  </div>
+}
+
+
 </form>

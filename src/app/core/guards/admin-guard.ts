@@ -4,5 +4,12 @@ import { inject } from '@angular/core';
 import { RoleEnum } from '../enums/role.enum';
 
 export const adminGuard: CanActivateFn = (route, state) => {
-  return true;
+  const authService = inject(AuthService);
+  const userRole = authService.getRole();
+
+  if (userRole == RoleEnum.Admin) {
+    return true;
+  }
+
+  return false;
 };

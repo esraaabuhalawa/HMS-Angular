@@ -48,3 +48,10 @@ export interface Facility {
   name: string;
 }
 
+export interface ICreateRoomResponse {
+  success: boolean;
+  message: string;
+  data: {
+    room: IRoom;
+  };
+}
