@@ -1,13 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse } from '../interfaces/rooms.interface';
+import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomResponse } from '../interfaces/rooms.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoomsService {
   private http = inject(HttpClient);
+
+
+
+createRoom(data: FormData): Observable<ICreateRoomResponse> {
+  return this.http.post<ICreateRoomResponse>('admin/rooms', data);
+}
+
+updateRoom(id: string, data: FormData): Observable<ICreateRoomResponse> {
+  return this.http.put<ICreateRoomResponse>(
+    `admin/rooms/${id}`,
+    data
+  );
+}
+
+
+
 
   // ============== Esraa Code ===================
   //Get All Rooms
