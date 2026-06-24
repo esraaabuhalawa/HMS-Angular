@@ -22,11 +22,10 @@ export const ROOMS_ROUTES: Routes = [
         .then(c => c.AddEditComponent),
   },
 
-  // {
-  //   path: ':id',
-  //   loadComponent: () =>
-  //     import('./pages/room-details/room-details.component')
-  //       .then(c => c.RoomDetailsComponent),
-  // },
-
+  {
+    path: 'view/:id',
+    loadComponent: () =>
+      import('./components/view/view.component')
+        .then(c => c.ViewComponent),
+  },
 ];

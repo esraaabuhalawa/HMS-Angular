@@ -41,7 +41,10 @@ export const routes: Routes = [
     ],
   },
   {
-    path: '**',
-    redirectTo: '',
-  },
+  path: '**',
+  loadComponent: () =>
+    import('./shared/components/general/not-found/not-found.component').then(
+      m => m.NotFoundComponent
+    ),
+}
 ];
