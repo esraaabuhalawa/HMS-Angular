@@ -1,0 +1,10 @@
+@if (chartData()) {
+  <div class="card flex justify-center">
+    <p-chart
+      type="doughnut"
+      [data]="chartData()"
+      [options]="chartOptions"
+      class="w-full md:w-[30rem]"
+    />
+  </div>
+}
