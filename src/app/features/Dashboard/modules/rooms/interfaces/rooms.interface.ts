@@ -48,6 +48,15 @@ export interface Facility {
   name: string;
 }
 
+export interface IFacilitiesResponse {
+  success: boolean;
+  message: string;
+  data: {
+    facilities: Facility[];
+    totalCount: number;
+  };
+}
+
 export interface ICreateRoomResponse {
   success: boolean;
   message: string;

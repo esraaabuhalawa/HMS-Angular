@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomResponse } from '../interfaces/rooms.interface';
+import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomResponse ,IFacilitiesResponse} from '../interfaces/rooms.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,12 @@ updateRoom(id: string, data: FormData): Observable<ICreateRoomResponse> {
   return this.http.put<ICreateRoomResponse>(
     `admin/rooms/${id}`,
     data
+  );
+}
+
+getFacilities() {
+  return this.http.get<IFacilitiesResponse>(
+    'admin/room-facilities'
   );
 }
 
