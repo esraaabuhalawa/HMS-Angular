@@ -59,7 +59,8 @@ export interface IFacilitiesResponse {
   message: string;
   data: {
     facilities: Facility[];
-
+  }
+}
 export interface ICreateRoomResponse {
   success: boolean;
   message: string;

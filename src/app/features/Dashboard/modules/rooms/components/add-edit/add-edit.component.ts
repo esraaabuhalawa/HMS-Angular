@@ -82,9 +82,7 @@ onSelectFiles(event: any) {
     formData.append('imgs', file);
   });
 
-  const request$ = this.roomId
-    ? this.roomsService.updateRoom(this.roomId, formData)
-    : this.roomsService.createRoom(formData);
+  const request$ = this.roomId? this.roomsService.updateRoom(this.roomId, formData): this.roomsService.createRoom(formData);
 
   request$.subscribe({
     next: () => {
@@ -95,10 +93,6 @@ onSelectFiles(event: any) {
     }
   });
 }
-
-
-
-
 
   ngOnInit() {
   this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -115,7 +109,7 @@ onSelectFiles(event: any) {
       const room = res.data.room;
 
       console.log(room.facilities);
-      
+
       this.existingImages = room.images;
 
       this.roomForm.patchValue({

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { Select } from 'primeng/select';
 import { Paginator, PaginatorState } from 'primeng/paginator';
 import { DividerModule } from 'primeng/divider';
+import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
 
 @Component({
   selector: 'app-room-list',
@@ -106,5 +107,16 @@ export class RoomListComponent {
       if (room !== selectedRoom) (room as any).showActions = false;
     });
     selectedRoom.showActions = !selectedRoom.showActions;
+  }
+
+    //Delete Room
+  private alertService = inject(AlertDeleteService);
+  deleteRoom(room: IRoom) {
+    this.alertService.delete({
+      entity: 'ROOMS.ROOM',
+      label: room.roomNumber,
+      request: () => this.roomsService.deleteRoom(room._id),
+      onSuccess: () => this.loadRooms(),
+    });
   }
 }
