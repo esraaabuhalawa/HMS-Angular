@@ -1,1 +1,37 @@
-<p>not-found works!</p>
+<div class="min-h-screen flex items-center justify-center bg-slate-50 px-6">
+  <div class="max-w-lg text-center">
+
+    <!-- Decorative Element -->
+    <div class="mt-12 flex justify-center">
+      <div class="relative">
+        <div class="w-40 h-40 rounded-full bg-[#3252df]/10"></div>
+        <div class="absolute inset-0 flex items-center justify-center text-6xl font-bold text-[#3252df]">
+          ?
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Code -->
+    <h1 class="text-8xl md:text-9xl font-bold text-[#3252df]">
+      404
+    </h1>
+
+    <!-- Title -->
+    <h2 class="mt-4 text-3xl font-bold text-slate-900">
+      {{ 'NOT_FOUND.TITLE' | translate }}
+    </h2>
+
+    <!-- Description -->
+    <p class="mt-4 text-slate-600 leading-relaxed">
+       {{ 'NOT_FOUND.DESCRIPTION' | translate }}
+    </p>
+
+    <!-- Actions -->
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <button routerLink="/dashboard"
+        class="px-6 py-3 rounded-xl hover:cursor-pointer bg-[#3252df] text-white font-medium hover:bg-[#1f3fc9] transition-all duration-200">
+        {{ 'NOT_FOUND.BUTTON' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

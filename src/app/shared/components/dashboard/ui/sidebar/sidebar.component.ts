@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { NavbarUiServiceService } from '../../../../../core/services/navbar-ui-service.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { NavbarUiService } from '../../../../../core/services/navbar-ui.service';
 interface Menu {
   label: string,
   icon: string,
@@ -9,42 +10,47 @@ interface Menu {
 }
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink, AsyncPipe],
+  imports: [RouterLink, AsyncPipe, RouterLinkActive, TranslatePipe],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  readonly navbarUiService = inject(NavbarUiServiceService);
+  readonly navbarUiService = inject(NavbarUiService);
 
   isMobileOpen$ = this.navbarUiService.isMobileOpen$;
   isMobile$ = this.navbarUiService.isMobile$;
 
   navMenu: Menu[] = [
     {
-      label: 'Home',
+      label: 'SIDEBAR.HOME',
       icon: 'fa fa-home',
       routerNavigate: '/dashboard',
     },
     {
-      label: 'Rooms',
+      label: 'SIDEBAR.USERS',
       icon: 'fa-solid fa-user-group',
+      routerNavigate: '/dashboard/users',
+    },
+    {
+      label: 'SIDEBAR.ROOMS',
+      icon: 'fa-solid fa-border-all',
       routerNavigate: '/dashboard/rooms',
     },
     {
-      label: 'Facilities',
-      icon: 'fa-solid fa-border-all',
-      routerNavigate: '/dashboard',
+      label: 'SIDEBAR.ADS',
+      icon: 'fa-solid fa-bullhorn',
+      routerNavigate: '/dashboard/ads',
     },
     {
-      label: 'Home',
-      icon: 'fa fa-home',
-      routerNavigate: '/dashboard',
+      label: 'SIDEBAR.BOOKINGS',
+      icon: 'fa-solid fa-calendar-check',
+      routerNavigate: '/dashboard/bookings',
     },
     {
-      label: 'Home',
-      icon: 'fa fa-home',
-      routerNavigate: '/dashboard',
-    },
+      label: 'SIDEBAR.FACILITIES',
+      icon: 'fa-solid fa-building',
+      routerNavigate: '/dashboard/facilities',
+    }
   ];
 
 

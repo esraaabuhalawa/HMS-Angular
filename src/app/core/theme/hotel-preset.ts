@@ -1,4 +1,3 @@
-// src/app/theme/hotel-preset.ts
 import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
 
