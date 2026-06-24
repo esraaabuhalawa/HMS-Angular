@@ -63,8 +63,7 @@ export interface IFacilitiesResponse {
   };
 }
 
-  }
-}
+
 export interface ICreateRoomResponse {
   success: boolean;
   message: string;

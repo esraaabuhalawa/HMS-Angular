@@ -1,5 +1,5 @@
-import { Component ,inject ,OnInit } from '@angular/core';
-import { FormBuilder,ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -14,17 +14,17 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-add-edit',
   imports: [ReactiveFormsModule,
-  InputTextModule,
-  InputNumberModule,
-  SelectModule,
-  FileUploadModule,
+    InputTextModule,
+    InputNumberModule,
+    SelectModule,
+    FileUploadModule,
     CommonModule,
     MultiSelectModule
-],
+  ],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss',
 })
-export class AddEditComponent implements OnInit{
+export class AddEditComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private roomsService = inject(RoomsService);
@@ -37,129 +37,120 @@ export class AddEditComponent implements OnInit{
   existingImages: string[] = [];
   previewUrls: string[] = [];
 
-   loading = false;
+  loading = false;
 
 
 
-roomForm = this.fb.group({
-  roomNumber: [''],
-  price: [null as number | null],
-capacity: [null as number | null],
-discount: [null as number | null],
-  facilities: [[] as string[]]
-});
-
-facilities: any[] = [];
-
-selectedFiles: File[] = [];
-
-onSelectFiles(event: any) {
-
-
-  const files = event.currentFiles || event.files;
-
-  this.selectedFiles = files;
-
-  this.previewUrls = files.map((file: File) =>
-    URL.createObjectURL(file)
-  );
-}
-
-
-loadFacilities() {
-  this.roomsService.getFacilities().subscribe({
-    next: (res) => {
-      this.facilities = res.data.facilities;
-
-
-    }
-  });
-}
-
-
- save() {
-
-  this.loading = true;
-
-  const formData = new FormData();
-
-  formData.append('roomNumber', this.roomForm.value.roomNumber ?? '');
-  formData.append('price', String(this.roomForm.value.price ?? ''));
-  formData.append('capacity', String(this.roomForm.value.capacity ?? ''));
-  formData.append('discount', String(this.roomForm.value.discount ?? ''));
-const facilities = this.roomForm.value.facilities || [];
-
-facilities.forEach((facilityId: string) => {
-  formData.append('facilities', facilityId);
-});
-
-  this.selectedFiles.forEach(file => {
-    formData.append('imgs', file);
+  roomForm = this.fb.group({
+    roomNumber: [''],
+    price: [null as number | null],
+    capacity: [null as number | null],
+    discount: [null as number | null],
+    facilities: [[] as string[]]
   });
 
-  const request$ = this.roomId? this.roomsService.updateRoom(this.roomId, formData): this.roomsService.createRoom(formData);
+  facilities: any[] = [];
 
-  request$.subscribe({
-  next: (res) => {
-    this.loading = false;
+  selectedFiles: File[] = [];
 
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: res.message
-    });
-  },
-  error: (err) => {
-    this.loading = false;
+  onSelectFiles(event: any) {
 
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Error',
-      detail: err.error?.message || 'Something went wrong'
+
+    const files = event.currentFiles || event.files;
+
+    this.selectedFiles = files;
+
+    this.previewUrls = files.map((file: File) =>
+      URL.createObjectURL(file)
+    );
+  }
+
+
+  loadFacilities() {
+    this.roomsService.getFacilities().subscribe({
+      next: (res) => {
+        this.facilities = res.data.facilities;
+
+
+      }
     });
   }
-});
-}
 
 
+  save() {
 
+    this.loading = true;
 
+    const formData = new FormData();
 
- ngOnInit() {
+    formData.append('roomNumber', this.roomForm.value.roomNumber ?? '');
+    formData.append('price', String(this.roomForm.value.price ?? ''));
+    formData.append('capacity', String(this.roomForm.value.capacity ?? ''));
+    formData.append('discount', String(this.roomForm.value.discount ?? ''));
+    const facilities = this.roomForm.value.facilities || [];
 
-  this.loadFacilities();
+    facilities.forEach((facilityId: string) => {
+      formData.append('facilities', facilityId);
+    });
 
-  ngOnInit() {
-  this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.selectedFiles.forEach(file => {
+      formData.append('imgs', file);
+    });
 
-  if (this.roomId) {
-    this.getRoomData(this.roomId);
+    const request$ = this.roomId ? this.roomsService.updateRoom(this.roomId, formData) : this.roomsService.createRoom(formData);
+
+    request$.subscribe({
+      next: (res) => {
+        this.loading = false;
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: res.message
+        });
+      },
+      error: (err) => {
+        this.loading = false;
+
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error?.message || 'Something went wrong'
+        });
+      }
+    });
   }
-}
 
+    ngOnInit() {
+      this.loadFacilities();
+      this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
 
- getRoomData(id: string) {
-  this.roomsService.getRoomDetails(id).subscribe({
-    next: (res) => {
-      const room = res.data.room;
-
-
-      console.log(room.facilities);
-
-      this.existingImages = room.images;
-
-      this.roomForm.patchValue({
-  roomNumber: room.roomNumber,
-  price: room.price,
-  capacity: room.capacity,
-  discount: room.discount,
-  facilities: room.facilities.map(f => f._id)
-});
+      if (this.roomId) {
+        this.getRoomData(this.roomId);
+      }
     }
 
-  });
-}
+    getRoomData(id: string) {
+      this.roomsService.getRoomDetails(id).subscribe({
+        next: (res) => {
+          const room = res.data.room;
+
+
+          console.log(room.facilities);
+
+          this.existingImages = room.images;
+
+          this.roomForm.patchValue({
+            roomNumber: room.roomNumber,
+            price: room.price,
+            capacity: room.capacity,
+            discount: room.discount,
+            facilities: room.facilities.map(f => f._id)
+          });
+        }
+
+      });
+    }
 
 }
-
 
