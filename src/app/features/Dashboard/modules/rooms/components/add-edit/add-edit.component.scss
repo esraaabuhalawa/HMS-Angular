@@ -1,0 +1,25 @@
+.upload-area {
+  min-height: 180px;
+  border: 2px dashed #4ade80;
+  border-radius: 10px;
+  background: #eef8ee;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+:host ::ng-deep .p-fileupload-content {
+  border: none !important;
+  padding: 0 !important;
+}
+
+:host ::ng-deep .p-fileupload {
+  border: none !important;
+}
+:host ::ng-deep .p-fileupload-header {
+  display: none !important;
+}
