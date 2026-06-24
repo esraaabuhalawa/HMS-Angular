@@ -23,32 +23,32 @@ export class SidebarComponent {
   navMenu: Menu[] = [
     {
       label: 'SIDEBAR.HOME',
-      icon: 'fa fa-home',
+      icon: 'pi pi-home',
       routerNavigate: '/dashboard',
     },
     {
       label: 'SIDEBAR.USERS',
-      icon: 'fa-solid fa-user-group',
+      icon: 'pi pi-users',
       routerNavigate: '/dashboard/users',
     },
     {
       label: 'SIDEBAR.ROOMS',
-      icon: 'fa-solid fa-border-all',
+      icon: 'pi pi-th-large',
       routerNavigate: '/dashboard/rooms',
     },
     {
       label: 'SIDEBAR.ADS',
-      icon: 'fa-solid fa-bullhorn',
+      icon: 'pi pi-megaphone',
       routerNavigate: '/dashboard/ads',
     },
     {
       label: 'SIDEBAR.BOOKINGS',
-      icon: 'fa-solid fa-calendar-check',
+      icon: 'pi pi-calendar',
       routerNavigate: '/dashboard/bookings',
     },
     {
       label: 'SIDEBAR.FACILITIES',
-      icon: 'fa-solid fa-building',
+      icon: 'pi pi-building',
       routerNavigate: '/dashboard/facilities',
     }
   ];
