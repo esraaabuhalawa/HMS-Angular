@@ -69,11 +69,6 @@
   }
 
 <div class="max-w-4xl mx-auto p-6 flex justify-end mb-6">
-  <button
-    type="submit"
-    form="roomForm"
-    class="bg-blue-700 text-white px-12 py-3 rounded-xl text-lg font-semibold ">
-    {{ roomId ? 'Update Room' : 'Add New Room' }}
-  </button>
+  <p-button type="submit" [label]="roomId ? 'Update Room' : 'Add New Room'" [loading]="loading" styleClass="w-full"></p-button>
 </div>
 </form>

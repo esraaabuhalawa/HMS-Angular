@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { MessageService } from 'primeng/api';
     InputTextModule,
     InputNumberModule,
     SelectModule,
+    ButtonModule,
     FileUploadModule,
     CommonModule,
     MultiSelectModule
@@ -31,15 +33,10 @@ export class AddEditComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private messageService = inject(MessageService);
 
-
   roomId: string | null = null;
-
   existingImages: string[] = [];
   previewUrls: string[] = [];
-
   loading = false;
-
-
 
   roomForm = this.fb.group({
     roomNumber: [''],
@@ -50,16 +47,10 @@ export class AddEditComponent implements OnInit {
   });
 
   facilities: any[] = [];
-
   selectedFiles: File[] = [];
-
   onSelectFiles(event: any) {
-
-
     const files = event.currentFiles || event.files;
-
     this.selectedFiles = files;
-
     this.previewUrls = files.map((file: File) =>
       URL.createObjectURL(file)
     );
@@ -70,15 +61,12 @@ export class AddEditComponent implements OnInit {
     this.roomsService.getFacilities().subscribe({
       next: (res) => {
         this.facilities = res.data.facilities;
-
-
       }
     });
   }
 
 
   save() {
-
     this.loading = true;
 
     const formData = new FormData();
@@ -106,7 +94,7 @@ export class AddEditComponent implements OnInit {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: res.message
+          detail: res.message || "Room Is added Successfully"
         });
       },
       error: (err) => {
