@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
-import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
-import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
+import { AuthHeaderComponent } from '../../../../shared/components/auth/auth-header/auth-header.component';
+import { AuthImageSectionComponent } from '../../../../shared/components/auth/auth-image-section/auth-image-section.component';
 @Component({
   standalone: true,
   selector: 'app-reset-password',
@@ -22,7 +22,7 @@ import { AuthImageSectionComponent } from "../../../../shared/components/auth/au
     ButtonModule,
     AuthLayoutComponent,
     AuthHeaderComponent,
-    AuthImageSectionComponent
+    AuthImageSectionComponent,
   ],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
@@ -87,5 +87,8 @@ export class ResetPasswordComponent implements OnInit {
         this.router.navigate(['/auth/login']);
       },
     });
+  }
+  get f() {
+    return this.resetForm.controls;
   }
 }
