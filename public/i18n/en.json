@@ -35,7 +35,7 @@
   "ROOMS": {
     "ROOM": "Room"
   },
-    "ROOM_DETAILS": {
+  "ROOM_DETAILS": {
     "ROOM": "Room",
     "ADDED_BY": "Added by",
     "PER_NIGHT": "/ night",
@@ -57,5 +57,20 @@
     "CLOSE": "Close",
     "DELETE_FAILED": "Delete failed",
     "SOMETHING_WENT_WRONG": "Something went wrong"
-  }
+  },
+  "NOT_FOUND": {
+    "TITLE": "Page Not Found",
+    "DESCRIPTION": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "BUTTON": "Back to Dashboard"
+  },
+  "SIDEBAR": {
+    "HOME": "Home",
+    "USERS": "Users",
+    "ROOMS": "Rooms",
+    "ADS": "Ads",
+    "BOOKINGS": "Bookings",
+    "FACILITIES": "Facilities"
+  },
+  "SEARCH_PLACEHOLDER": "Search here..."
+
 }

@@ -44,19 +44,16 @@
 
 <!-- Sidebar -->
 <aside class="sidebar"  [class.mobile-open]="(isMobileOpen$ | async)">
-  <div class="sidebar-logo">
-    <img src="../../../../assets/images/nav-logo.svg" alt="logo">
-  </div>
-
   <nav class="nav-section  d-flex flex-column h-100 justify-content-between">
     <ul class="nav">
        @for (item of navMenu; track item.routerNavigate) {
         <li  (click)="onNavItemClick()">
-          <a class="nav-item" [routerLink]="item.routerNavigate" routerLinkActive="active">
+          <a class="nav-item" [routerLink]="item.routerNavigate" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.routerNavigate === '/dashboard'}">
             <span class="span-hover">
               <i class="nav-icon me-2" [class]="item.icon"></i>
               <span class="nav-text text-capitalize">
-                {{ item.label }}
+                {{ item.label | translate }}
               </span>
             </span>
           </a>

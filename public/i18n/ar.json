@@ -40,7 +40,7 @@
   "ROOMS": {
     "ROOM": "غرفه"
   },
-   "ROOM_DETAILS": {
+  "ROOM_DETAILS": {
     "ROOM": "غرفة",
     "ADDED_BY": "تمت الإضافة بواسطة",
     "PER_NIGHT": "/ ليلة",
@@ -62,5 +62,19 @@
     "CLOSE": "اغلاق",
     "DELETE_FAILED": "فشل الحذف",
     "SOMETHING_WENT_WRONG": "حدث خطأ ما"
-  }
+  },
+  "NOT_FOUND": {
+    "TITLE": "الصفحة غير موجودة",
+    "DESCRIPTION": "عذرًا، الصفحة التي تبحث عنها غير موجودة أو تم نقلها إلى موقع آخر.",
+    "BUTTON": "العودة إلى لوحة التحكم"
+  },
+  "SIDEBAR": {
+    "HOME": "الرئيسية",
+    "USERS": "المستخدمون",
+    "ROOMS": "الغرف",
+    "ADS": "الإعلانات",
+    "BOOKINGS": "الحجوزات",
+    "FACILITIES": "المرافق"
+  },
+   "SEARCH_PLACEHOLDER": "ابحث هنا..."
 }
