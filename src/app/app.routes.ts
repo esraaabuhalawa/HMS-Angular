@@ -24,7 +24,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'admin',
+    path: 'dashboard',
     canActivate: [adminGuard],
 
     loadComponent: () =>
@@ -41,10 +41,10 @@ export const routes: Routes = [
     ],
   },
   {
-  path: '**',
-  loadComponent: () =>
-    import('./shared/components/general/not-found/not-found.component').then(
-      m => m.NotFoundComponent
-    ),
-}
+    path: '**',
+    loadComponent: () =>
+      import('./shared/components/general/not-found/not-found.component').then(
+        m => m.NotFoundComponent
+      ),
+  }
 ];

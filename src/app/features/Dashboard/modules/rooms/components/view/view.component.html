@@ -2,7 +2,7 @@
 
   <!-- Back button -->
   <p-button icon="pi pi-arrow-left" label="Back to rooms" [text]="true" severity="secondary" class="mb-6"
-    routerLink="/admin/rooms">
+    routerLink="/dashboard/rooms">
   </p-button>
 
   <!-- ============== LOADING STATE (SKELETON) ============== -->
@@ -77,7 +77,7 @@
         <div>
           <h2 class="text-2xl font-bold text-gray-600"> {{ 'ROOM_DETAILS.ROOM' | translate }} {{ r.roomNumber }}</h2>
           <p class="text-sm text-gray-500 mt-1">
-             {{ 'ROOM_DETAILS.ADDED_BY' | translate }} {{ r.createdBy.userName  }}
+            {{ 'ROOM_DETAILS.ADDED_BY' | translate }} {{ r.createdBy.userName }}
           </p>
         </div>
 

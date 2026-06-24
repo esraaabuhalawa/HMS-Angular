@@ -1,1 +1,64 @@
-<p>sidebar works!</p>
+<!-- Mobile overlay -->
+<div class="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300" [class.opacity-100]="isMobileOpen$ | async"
+  [class.visible]="isMobileOpen$ | async" [class.opacity-0]="!(isMobileOpen$ | async)"
+  [class.invisible]="!(isMobileOpen$ | async)" (click)="navbarUiService.closeMobileMenu()">
+</div>
+
+<!-- Sidebar -->
+<!-- <aside
+  class="fixed top-0 left-0 h-screen w-64 bg-white shadow-lg z-50 transition-transform duration-300 lg:translate-x-0"
+  [class.translate-x-0]="isMobileOpen$ | async" [class.-translate-x-full]="!(isMobileOpen$ | async)">
+
+  <div class="flex items-center justify-center p-6 border-b">
+    <img src="../../../../assets/images/nav-logo.svg" alt="logo" class="h-10 w-auto">
+  </div>
+
+
+  <nav class="flex flex-col justify-between h-[calc(100vh-88px)]">
+    <ul class="flex flex-col py-4">
+      <nav class="flex flex-col justify-between h-[calc(100vh-88px)]">
+        <ul class="flex flex-col py-4">
+          @for (item of navMenu; track item.routerNavigate) {
+          <li (click)="onNavItemClick()">
+            <a class="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+              [routerLink]="item.routerNavigate" routerLinkActive="bg-blue-50 text-blue-600 font-medium">
+
+              <span class="flex items-center w-full">
+                <i class="me-2 text-lg" [class]="item.icon">
+                </i>
+
+                <span class="capitalize">
+                  {{ item.label }}
+                </span>
+              </span>
+
+            </a>
+          </li>
+          }
+        </ul>
+      </nav>
+    </ul>
+  </nav>
+</aside> -->
+
+
+<!-- Sidebar -->
+<aside class="sidebar"  [class.mobile-open]="(isMobileOpen$ | async)">
+  <nav class="nav-section  d-flex flex-column h-100 justify-content-between">
+    <ul class="nav">
+       @for (item of navMenu; track item.routerNavigate) {
+        <li  (click)="onNavItemClick()">
+          <a class="nav-item" [routerLink]="item.routerNavigate" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.routerNavigate === '/dashboard'}">
+            <span class="span-hover">
+              <i class="nav-icon me-2" [class]="item.icon"></i>
+              <span class="nav-text text-capitalize">
+                {{ item.label | translate }}
+              </span>
+            </span>
+          </a>
+        </li>
+       }
+    </ul>
+  </nav>
+</aside>

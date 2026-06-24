@@ -97,9 +97,7 @@ facilities.forEach((facilityId: string) => {
     formData.append('imgs', file);
   });
 
-  const request$ = this.roomId
-    ? this.roomsService.updateRoom(this.roomId, formData)
-    : this.roomsService.createRoom(formData);
+  const request$ = this.roomId? this.roomsService.updateRoom(this.roomId, formData): this.roomsService.createRoom(formData);
 
   request$.subscribe({
   next: (res) => {
@@ -131,6 +129,7 @@ facilities.forEach((facilityId: string) => {
 
   this.loadFacilities();
 
+  ngOnInit() {
   this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
 
   if (this.roomId) {
@@ -145,6 +144,7 @@ facilities.forEach((facilityId: string) => {
       const room = res.data.room;
 
 
+      console.log(room.facilities);
 
       this.existingImages = room.images;
 

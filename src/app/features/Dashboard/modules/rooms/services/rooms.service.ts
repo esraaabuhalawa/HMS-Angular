@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomResponse ,IFacilitiesResponse} from '../interfaces/rooms.interface';
@@ -9,18 +9,16 @@ import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomRespon
 export class RoomsService {
   private http = inject(HttpClient);
 
+  getAllRooms(paramsData: RoomParams): Observable<IRoomsResponse> {
+    let params = new HttpParams()
+      .set('page', paramsData.page.toString())
+      .set('size', paramsData.size.toString());
 
+    if (paramsData.search) params = params.set('search', paramsData.search);
+    if (paramsData.capacity) params = params.set('capacity', paramsData.capacity.toString());
+    if (paramsData.facility) params = params.set('facility', paramsData.facility);
 
-createRoom(data: FormData): Observable<ICreateRoomResponse> {
-  return this.http.post<ICreateRoomResponse>('admin/rooms', data);
-}
-
-updateRoom(id: string, data: FormData): Observable<ICreateRoomResponse> {
-  return this.http.put<ICreateRoomResponse>(
-    `admin/rooms/${id}`,
-    data
-  );
-}
+    return this.http.get<IRoomsResponse>('admin/rooms', { params });
 
 getFacilities() {
   return this.http.get<IFacilitiesResponse>(
@@ -28,20 +26,27 @@ getFacilities() {
   );
 }
 
-
-
-
-  // ============== Esraa Code ===================
-  //Get All Rooms
-  getRooms(): Observable<IRoomsResponse> {
-    return this.http.get<IRoomsResponse>(`admin/rooms?page=1&size=10`)
   }
-  //View Room Details
+  createRoom(data: FormData): Observable<ICreateRoomResponse> {
+    return this.http.post<ICreateRoomResponse>('admin/rooms', data);
+  }
+
+  updateRoom(id: string, data: FormData): Observable<ICreateRoomResponse> {
+    return this.http.put<ICreateRoomResponse>(
+      `admin/rooms/${id}`,
+      data
+    );
+  }
+
+
   getRoomDetails(id: string): Observable<IRoomDetailResponse> {
     return this.http.get<IRoomDetailResponse>(`admin/rooms/${id}`)
   }
   //Delete Room
   deleteRoom(id: string): Observable<IDeleteResponse> {
-    return this.http.delete<IDeleteResponse>(`admin/rlooms/${id}`)
+    return this.http.delete<IDeleteResponse>(`admin/rooms/${id}`)
+  }
+  getAllFacilities(): Observable<IFacilitiesResponse> {
+    return this.http.get<IFacilitiesResponse>('admin/room-facilities');
   }
 }

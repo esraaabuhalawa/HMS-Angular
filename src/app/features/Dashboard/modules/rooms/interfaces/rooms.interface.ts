@@ -1,3 +1,10 @@
+export interface RoomParams {
+  page: number;
+  size: number;
+  search?: string;
+  capacity?: number;
+  facility?: string;
+}
 export interface IRoomsResponse {
   success: boolean;
   message: string;
@@ -47,7 +54,6 @@ export interface Facility {
   _id: string;
   name: string;
 }
-
 export interface IFacilitiesResponse {
   success: boolean;
   message: string;
@@ -57,6 +63,8 @@ export interface IFacilitiesResponse {
   };
 }
 
+  }
+}
 export interface ICreateRoomResponse {
   success: boolean;
   message: string;
