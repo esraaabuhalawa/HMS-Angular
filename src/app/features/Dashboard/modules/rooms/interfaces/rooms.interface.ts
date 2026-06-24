@@ -59,6 +59,10 @@ export interface IFacilitiesResponse {
   message: string;
   data: {
     facilities: Facility[];
+    totalCount: number;
+  };
+}
+
   }
 }
 export interface ICreateRoomResponse {

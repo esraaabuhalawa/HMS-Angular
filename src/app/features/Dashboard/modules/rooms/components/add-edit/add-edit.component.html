@@ -45,14 +45,14 @@
       styleClass="w-full">
     </p-inputNumber>
 
-    <p-select
-      [options]="facilities"
-      optionLabel="name"
-      optionValue="id"
-      placeholder="Select Facility"
-      formControlName="facility"
-      class="w-full">
-    </p-select>
+ <p-multiselect
+  [options]="facilities"
+  optionLabel="name"
+  optionValue="_id"
+  formControlName="facilities"
+  placeholder="Select Facilities"
+  class="w-full">
+</p-multiselect>
 
   </div>
 

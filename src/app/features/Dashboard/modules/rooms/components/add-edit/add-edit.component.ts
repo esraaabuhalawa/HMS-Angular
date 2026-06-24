@@ -7,7 +7,8 @@ import { SelectModule } from 'primeng/select';
 import { RoomsService } from '../../services/rooms.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-
+import { MultiSelectModule } from 'primeng/multiselect';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { ActivatedRoute } from '@angular/router';
   SelectModule,
   FileUploadModule,
     CommonModule,
+    MultiSelectModule
 ],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss',
@@ -27,6 +29,7 @@ export class AddEditComponent implements OnInit{
   private fb = inject(FormBuilder);
   private roomsService = inject(RoomsService);
   private activatedRoute = inject(ActivatedRoute);
+  private messageService = inject(MessageService);
 
 
   roomId: string | null = null;
@@ -43,19 +46,15 @@ roomForm = this.fb.group({
   price: [null as number | null],
 capacity: [null as number | null],
 discount: [null as number | null],
-  facility: [null as number | null]
+  facilities: [[] as string[]]
 });
 
-facilities = [
-  { id: 1, name: 'WiFi' },
-  { id: 2, name: 'TV' },
-  { id: 3, name: 'AC' }
-];
+facilities: any[] = [];
 
 selectedFiles: File[] = [];
 
 onSelectFiles(event: any) {
-  console.log(event);
+
 
   const files = event.currentFiles || event.files;
 
@@ -67,7 +66,19 @@ onSelectFiles(event: any) {
 }
 
 
+loadFacilities() {
+  this.roomsService.getFacilities().subscribe({
+    next: (res) => {
+      this.facilities = res.data.facilities;
+
+
+    }
+  });
+}
+
+
  save() {
+
   this.loading = true;
 
   const formData = new FormData();
@@ -76,7 +87,11 @@ onSelectFiles(event: any) {
   formData.append('price', String(this.roomForm.value.price ?? ''));
   formData.append('capacity', String(this.roomForm.value.capacity ?? ''));
   formData.append('discount', String(this.roomForm.value.discount ?? ''));
-  formData.append('facilities', String(this.roomForm.value.facility));
+const facilities = this.roomForm.value.facilities || [];
+
+facilities.forEach((facilityId: string) => {
+  formData.append('facilities', facilityId);
+});
 
   this.selectedFiles.forEach(file => {
     formData.append('imgs', file);
@@ -85,14 +100,34 @@ onSelectFiles(event: any) {
   const request$ = this.roomId? this.roomsService.updateRoom(this.roomId, formData): this.roomsService.createRoom(formData);
 
   request$.subscribe({
-    next: () => {
-      this.loading = false;
-    },
-    error: () => {
-      this.loading = false;
-    }
-  });
+  next: (res) => {
+    this.loading = false;
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: res.message
+    });
+  },
+  error: (err) => {
+    this.loading = false;
+
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: err.error?.message || 'Something went wrong'
+    });
+  }
+});
 }
+
+
+
+
+
+ ngOnInit() {
+
+  this.loadFacilities();
 
   ngOnInit() {
   this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -108,17 +143,18 @@ onSelectFiles(event: any) {
     next: (res) => {
       const room = res.data.room;
 
+
       console.log(room.facilities);
 
       this.existingImages = room.images;
 
       this.roomForm.patchValue({
-        roomNumber: room.roomNumber,
-        price: room.price,
-        capacity: room.capacity,
-        discount: room.discount,
-
-      });
+  roomNumber: room.roomNumber,
+  price: room.price,
+  capacity: room.capacity,
+  discount: room.discount,
+  facilities: room.facilities.map(f => f._id)
+});
     }
 
   });

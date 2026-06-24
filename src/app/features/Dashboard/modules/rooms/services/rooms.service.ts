@@ -1,13 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  Facility,
-  IFacilitiesResponse,
-  IRoomsResponse,
-  RoomParams,
-} from '../interfaces/rooms.interface';
-import { IDeleteResponse, IRoomDetailResponse, ICreateRoomResponse } from '../interfaces/rooms.interface';
+import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomResponse ,IFacilitiesResponse} from '../interfaces/rooms.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +19,12 @@ export class RoomsService {
     if (paramsData.facility) params = params.set('facility', paramsData.facility);
 
     return this.http.get<IRoomsResponse>('admin/rooms', { params });
+
+getFacilities() {
+  return this.http.get<IFacilitiesResponse>(
+    'admin/room-facilities'
+  );
+}
 
   }
   createRoom(data: FormData): Observable<ICreateRoomResponse> {
