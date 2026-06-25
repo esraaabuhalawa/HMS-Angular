@@ -30,6 +30,14 @@ export interface IDeleteResponse {
   message: string;
   data: null;
 }
+export interface ICreateRoomResponse {
+  success: boolean;
+  message: string;
+  data: {
+    room: IRoom;
+  };
+}
+
 
 //General
 export interface IRoom {
@@ -64,10 +72,3 @@ export interface IFacilitiesResponse {
 }
 
 
-export interface ICreateRoomResponse {
-  success: boolean;
-  message: string;
-  data: {
-    room: IRoom;
-  };
-}

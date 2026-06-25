@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header/page-header.component';
+import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
 import { RoomsService } from '../../services/rooms.service';
 import { TableModule } from 'primeng/table';
 import { Facility, IRoom, RoomParams } from '../../interfaces/rooms.interface';
@@ -32,7 +32,7 @@ import { AlertDeleteService } from '../../../../../../shared/services/alert-dele
 })
 export class RoomListComponent {
   private roomsService = inject(RoomsService);
-
+  private alertService = inject(AlertDeleteService);
   rooms = signal<IRoom[]>([]);
   allRooms: IRoom[] = [];
   isLoading = signal<boolean>(true);
@@ -109,8 +109,7 @@ export class RoomListComponent {
     selectedRoom.showActions = !selectedRoom.showActions;
   }
 
-    //Delete Room
-  private alertService = inject(AlertDeleteService);
+  //Delete Room
   deleteRoom(room: IRoom) {
     this.alertService.delete({
       entity: 'ROOMS.ROOM',
