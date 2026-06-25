@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse ,ICreateRoomResponse ,IFacilitiesResponse, RoomParams} from '../interfaces/rooms.interface';
+import { IDeleteResponse, IRoomDetailResponse, IRoomsResponse, ICreateRoomResponse, IFacilitiesResponse, RoomParams } from '../interfaces/rooms.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,11 +20,10 @@ export class RoomsService {
 
     return this.http.get<IRoomsResponse>('admin/rooms', { params });
   }
-getFacilities() {
-  return this.http.get<IFacilitiesResponse>(
-    'admin/room-facilities'
-  );
-}
+
+  getRoomDetails(id: string): Observable<IRoomDetailResponse> {
+    return this.http.get<IRoomDetailResponse>(`admin/rooms/${id}`)
+  }
 
   createRoom(data: FormData): Observable<ICreateRoomResponse> {
     return this.http.post<ICreateRoomResponse>('admin/rooms', data);
@@ -37,14 +36,11 @@ getFacilities() {
     );
   }
 
-
-  getRoomDetails(id: string): Observable<IRoomDetailResponse> {
-    return this.http.get<IRoomDetailResponse>(`admin/rooms/${id}`)
-  }
-  //Delete Room
   deleteRoom(id: string): Observable<IDeleteResponse> {
     return this.http.delete<IDeleteResponse>(`admin/rooms/${id}`)
   }
+
+  // GEt FAcilities Data
   getAllFacilities(): Observable<IFacilitiesResponse> {
     return this.http.get<IFacilitiesResponse>('admin/room-facilities');
   }

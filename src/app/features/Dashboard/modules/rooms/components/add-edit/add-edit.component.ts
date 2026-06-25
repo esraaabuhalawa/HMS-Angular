@@ -57,7 +57,7 @@ export class AddEditComponent implements OnInit {
 
 
   loadFacilities() {
-    this.roomsService.getFacilities().subscribe({
+    this.roomsService.getAllFacilities().subscribe({
       next: (res) => {
         this.facilities = res.data.facilities;
       }

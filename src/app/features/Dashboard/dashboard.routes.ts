@@ -19,4 +19,8 @@ export const DASHBOARD_ROUTES: Routes = [
       import('./modules/booking/booking.routes')
         .then(r => r.BOOKING_ROUTES),
   },
+  {
+    path: 'ads',
+    loadComponent: () => import('./modules/Ads/components/ads-list/ads-list.component').then(c => c.AdsListComponent),
+  },
 ];

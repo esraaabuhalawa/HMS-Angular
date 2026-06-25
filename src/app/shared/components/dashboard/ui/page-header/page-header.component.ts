@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -11,6 +11,11 @@ export class PageHeaderComponent {
   @Input() title: string = '';
   @Input() description: string = 'You can check all details';
   @Input() buttonLabel: string = 'Add New';
-  @Input() linkUrl: string = '/'
+  @Input() linkUrl: string = ''
+  @Input() linkLabel:string = '';
+  @Output() buttonClick = new EventEmitter<void>();
 
+  onButtonClick() {
+    this.buttonClick.emit();
+  }
 }
