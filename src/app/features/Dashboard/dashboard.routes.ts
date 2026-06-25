@@ -13,4 +13,10 @@ export const DASHBOARD_ROUTES: Routes = [
       import('./modules/rooms/rooms.routes')
         .then(r => r.ROOMS_ROUTES),
   },
+  {
+    path: 'bookings',
+    loadChildren: () =>
+      import('./modules/booking/booking.routes')
+        .then(r => r.BOOKING_ROUTES),
+  },
 ];
