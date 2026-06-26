@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
@@ -45,7 +45,7 @@ export class AddEditComponent implements OnInit {
     facilities: [[] as string[]]
   });
 
-  facilities: any[] = [];
+  facilities = signal<any[]>([]);
   selectedFiles: File[] = [];
   onSelectFiles(event: any) {
     const files = event.currentFiles || event.files;
@@ -59,7 +59,8 @@ export class AddEditComponent implements OnInit {
   loadFacilities() {
     this.roomsService.getAllFacilities().subscribe({
       next: (res) => {
-        this.facilities = res.data.facilities;
+        this.facilities.set(res.data.facilities);
+        //this.facilities = res.data.facilities;
       }
     });
   }

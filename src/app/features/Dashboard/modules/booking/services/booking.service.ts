@@ -7,12 +7,9 @@ import { BookingParams, IBookingDetailsResponse, IBookingsResponse, IDeleteBooki
   providedIn: 'root',
 })
 export class BookingService {
-
   private http = inject(HttpClient);
-
-
   //list booking
-   getAllBookings(paramsData: BookingParams): Observable<IBookingsResponse> {
+  getAllBookings(paramsData: BookingParams): Observable<IBookingsResponse> {
     const params = new HttpParams()
       .set('page', paramsData.page.toString())
       .set('size', paramsData.size.toString());
@@ -21,13 +18,12 @@ export class BookingService {
   }
 
   //view booking
-    getBookingDetails(id: string): Observable<IBookingDetailsResponse> {
+  getBookingDetails(id: string): Observable<IBookingDetailsResponse> {
     return this.http.get<IBookingDetailsResponse>(`admin/booking/${id}`);
   }
 
   //delete booking
   deleteBooking(id: string): Observable<IDeleteBookingResponse> {
-  return this.http.delete<IDeleteBookingResponse>(`admin/booking/${id}`);
-}
-
+    return this.http.delete<IDeleteBookingResponse>(`admin/booking/${id}`);
+  }
 }

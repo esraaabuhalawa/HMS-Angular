@@ -7,14 +7,15 @@ import { Paginator, PaginatorState } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
 import { EmptyStateComponent } from '../../../../../../shared/components/general/empty-state/empty-state.component';
-import { IAd, IAdsResponse } from '../../interfaces/ads.interface';
+import { IAd, IAdsResponse, ICreateAdData, IUpdateAdData } from '../../interfaces/ads.interface';
 import { AdsService } from '../../services/ads.service';
 import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
 import { ViewAdComponent } from "../view-ad/view-ad.component";
-import { AddEditComponent } from "../add-edit/add-edit.component";
+import { AddEditAdsComponent } from "../add-edit-ads/add-edit-ads.component";
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-ads-list',
@@ -31,7 +32,7 @@ import { AddEditComponent } from "../add-edit/add-edit.component";
     TableSkeletonComponent,
     ViewAdComponent,
     CurrencyPipe,
-    AddEditComponent
+    AddEditAdsComponent
   ],
   templateUrl: './ads-list.component.html',
   styleUrl: './ads-list.component.scss',
@@ -39,7 +40,7 @@ import { AddEditComponent } from "../add-edit/add-edit.component";
 export class AdsListComponent {
   private adsService = inject(AdsService);
   private alertService = inject(AlertDeleteService);
-
+  private readonly messageService = inject(MessageService);
   adsList = signal<IAd[]>([]);
   isLoading = signal<boolean>(true);
   currentPage: number = 1;
@@ -50,6 +51,7 @@ export class AdsListComponent {
   visible = signal(false);
   menuItems: MenuItem[] = [];
   showDialog = false;
+  addEditLoad = signal(false);
 
   openMenu(event: Event, ad: any, menu: any) {
     this.menuItems = [
@@ -61,7 +63,7 @@ export class AdsListComponent {
       {
         label: 'Edit',
         icon: 'pi pi-pencil',
-        command: () => this.editAd(ad)
+        command: () => this.openEditDialog(ad)
       },
       {
         label: 'Delete',
@@ -105,10 +107,45 @@ export class AdsListComponent {
     });
   }
 
-  editAd(ad: any): void {
-    console.log('edit Clicked', ad);
+  openEditDialog(ad: IAd): void {
     this.selectedAd.set(ad)
     this.showDialog = true;
+  }
+
+  openAddDialog() {
+    this.selectedAd.set(null)
+    this.showDialog = true;
+  }
+
+  //Emit Add And Edit requests to Dialog
+  saveAd(data: ICreateAdData | IUpdateAdData) {
+    this.addEditLoad.set(true);
+    const isEdit = !!this.selectedAd();
+    const request$ = isEdit
+      ? this.adsService.updateAd(this.selectedAd()!._id, data as IUpdateAdData)
+      : this.adsService.createAd(data as ICreateAdData);
+
+    request$.pipe(
+      finalize(() => this.addEditLoad.set(false))
+    ).subscribe({
+      next: () => {
+        this.showDialog = false;
+        this.loadAdsData();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: `The ad was ${isEdit ? 'updated' : 'created'} successfully!`,
+        });
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.message || 'Something went Wrong, Please Try Again Later',
+        });
+        console.error(err);
+      }
+    });
   }
 
   //Delete Room
@@ -120,28 +157,6 @@ export class AdsListComponent {
       request: () => this.adsService.deleteAd(ad._id),
       onSuccess: () => this.loadAdsData(),
     });
-  }
-   openAddDialog() {
-    this.selectedAd.set(null)
-    this.showDialog = true;
-  }
-
-  saveAd(data: any) {
-    const ad = this.selectedAd();
-    if (ad) {
-      this.adsService.updateAd(ad._id, data)
-        .subscribe(() => {
-          this.showDialog = false;
-          this.loadAdsData();
-        });
-    }
-    else {
-      this.adsService.createAd(data)
-        .subscribe(() => {
-          this.showDialog = false;
-          this.loadAdsData();
-        });
-    }
   }
 
   //Helper Functions

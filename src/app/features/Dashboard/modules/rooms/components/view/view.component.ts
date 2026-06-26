@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RoomsService } from '../../services/rooms.service';
-import { IRoom } from '../../interfaces/rooms.interface';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
@@ -9,6 +8,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { DividerModule } from 'primeng/divider';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
+import { IRoom } from '../../../../../../shared/interfaces/general.interface';
 
 @Component({
   selector: 'app-view',
@@ -37,7 +37,7 @@ export class ViewComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.roomId.set(params['id']);
       this.getRoomDetails();
-      console.log(this.roomId);
+      //console.log(this.roomId);
     });
   }
 

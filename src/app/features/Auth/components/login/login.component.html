@@ -45,7 +45,7 @@
       </div>
 
       <div class="mt-[50px]">
-        <p-button type="submit" [label]="'LOGIN.BUTTON_LOGIN' | translate" [loading]="isLoading" styleClass="w-full">
+        <p-button type="submit" [disabled]="isLoading" [label]="'LOGIN.BUTTON_LOGIN' | translate" [loading]="isLoading" styleClass="w-full">
         </p-button>
       </div>
     </form>

@@ -1,27 +1,33 @@
 import { inject, Injectable } from '@angular/core';
-import { AdParams, IAdDetailsResponse, IAdsResponse, ICreateAddData, IDeleteAdResponse, IUpdateAdData } from '../interfaces/ads.interface';
+import {
+  AdParams, IAdDetailsResponse,
+  IAdsResponse, ICreateAdData, IDeleteAdResponse, IUpdateAdData
+} from '../interfaces/ads.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class AdsService {
-   private http = inject(HttpClient);
+  private http = inject(HttpClient);
 
   getAllAds(paramsData: AdParams): Observable<IAdsResponse> {
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set('page', paramsData.page.toString())
       .set('size', paramsData.size.toString());
 
-    return this.http.get<IAdsResponse>('admin/ads', { params });
+    return this.http.get<IAdsResponse>('admin/ads', {
+      params,
+    });
   }
 
   getAdDetails(id: string): Observable<IAdDetailsResponse> {
     return this.http.get<IAdDetailsResponse>(`admin/ads/${id}`)
   }
 
-  createAd(data: ICreateAddData): Observable<IAdDetailsResponse> {
+  createAd(data: ICreateAdData): Observable<IAdDetailsResponse> {
     return this.http.post<IAdDetailsResponse>('admin/ads', data);
   }
 

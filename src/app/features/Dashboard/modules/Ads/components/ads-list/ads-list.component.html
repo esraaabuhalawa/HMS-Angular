@@ -89,6 +89,4 @@
   </app-view-ad>
 </div>
 
-<app-add-edit [(visible)]="showDialog"
-  [ad]="selectedAd()"
-  (submitForm)="saveAd($event)"></app-add-edit>
+<app-add-edit-ads [(visible)]="showDialog" [loading]="addEditLoad()" [ad]="selectedAd()" (submitForm)="saveAd($event)"></app-add-edit-ads>

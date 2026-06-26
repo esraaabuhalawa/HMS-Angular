@@ -1,12 +1,6 @@
-import { CreatedBy } from '../../rooms/interfaces/rooms.interface';
+import { CreatedBy, IApiResponse } from "../../../../../shared/interfaces/general.interface";
 
 //list booking
-export interface IBookingsResponse {
-  success: boolean;
-  message: string;
-  data: IBookingsData;
-}
-
 interface IBookingsData {
   booking: IBooking[];
   totalCount: number;
@@ -25,7 +19,6 @@ export interface IBooking {
   room: IRoom;
 }
 
-
 interface IRoom {
   _id: string;
   roomNumber: string;
@@ -36,28 +29,12 @@ export interface BookingParams {
   size: number;
 }
 
-
 //view booking
-export interface IBookingDetailsResponse {
-  success: boolean;
-  message: string;
-  data: IBookingDetailsData;
-}
-
 interface IBookingDetailsData {
   booking: IBooking;
 }
 
-
-
-
 //delete booking
-export interface IDeleteBookingResponse {
-  success: boolean;
-  message: string;
-  data: IDeleteBookingData;
-}
-
 interface IDeleteBookingData {
   room: IDeleteResult;
 }
@@ -66,3 +43,8 @@ interface IDeleteResult {
   acknowledged: boolean;
   deletedCount: number;
 }
+
+// ---- Final response types ----
+export type IBookingsResponse = IApiResponse<IBookingsData>;
+export type IBookingDetailsResponse = IApiResponse<IBookingDetailsData>;
+export type IDeleteBookingResponse = IApiResponse<IDeleteBookingData>;
