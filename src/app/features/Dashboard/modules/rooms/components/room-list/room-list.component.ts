@@ -12,7 +12,8 @@ import { Select } from 'primeng/select';
 import { Paginator, PaginatorState } from 'primeng/paginator';
 import { DividerModule } from 'primeng/divider';
 import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
-
+import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
+import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-room-list',
   imports: [
@@ -26,6 +27,8 @@ import { AlertDeleteService } from '../../../../../../shared/services/alert-dele
     EmptyStateComponent,
     Select,
     Paginator,
+    TableSkeletonComponent,
+    CurrencyPipe,
   ],
   templateUrl: './room-list.component.html',
   styleUrl: './room-list.component.scss',
