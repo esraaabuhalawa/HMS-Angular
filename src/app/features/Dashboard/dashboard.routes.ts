@@ -27,4 +27,11 @@ export const DASHBOARD_ROUTES: Routes = [
         (c) => c.FacilityListComponent,
       ),
   },
+  {
+    path: 'users',
+    loadComponent: () =>
+      import('./modules/users/components/user-list/user-list.component').then(
+        (c) => c.UserListComponent,
+      ),
+  },
 ];
