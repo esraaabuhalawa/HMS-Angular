@@ -1,21 +1,12 @@
-import { CreatedBy, IRoom } from "../../rooms/interfaces/rooms.interface";
-//Get All Ads Interfaces
+import { CreatedBy, IApiResponse, IRoom } from "../../../../../shared/interfaces/general.interface";
+
+// ---- Params ----
 export interface AdParams {
   page: number;
   size: number;
 }
 
-export interface IAdsResponse {
-  success: boolean;
-  message: string;
-  data: AdsData;
-}
-
-interface AdsData {
-  ads: IAd[];
-  totalCount: number;
-}
-
+// ---- General entity ----
 export interface IAd {
   _id: string;
   isActive: boolean;
@@ -25,42 +16,36 @@ export interface IAd {
   updatedAt: string;
 }
 
-// Ad Details Interfaces
-export interface IAdDetailsResponse  {
-  success: boolean;
-  message: string;
-  data: Data;
+// ---- Response payload shapes ----
+export interface IAdsListData {
+  ads: IAd[];
+  totalCount: number;
 }
 
-interface Data {
+export interface IAdDetailData {
   ads: IAd;
 }
 
-//Add Ad Interfaces
-export interface ICreateAddData {
+export interface IDeleteAdData {
+  ads: {
+    acknowledged: boolean;
+    deletedCount: number;
+  };
+}
+
+// ---- Final response types ----
+export type IAdsResponse = IApiResponse<IAdsListData>;
+export type IAdDetailsResponse = IApiResponse<IAdDetailData>;
+export type IDeleteAdResponse = IApiResponse<IDeleteAdData>;
+
+// ---- Create / Update payloads ----
+export interface ICreateAdData {
   room: string;
   discount: number;
   isActive: boolean;
 }
 
-// Update Ad Interfaces
 export interface IUpdateAdData {
   isActive: boolean;
   discount: number;
-}
-
-//Delete Ad Interface
-export interface IDeleteAdResponse {
-  success: boolean;
-  message: string;
-  data: IDeleteData;
-}
-
-interface IDeleteData {
-  ads: IDeleteAds;
-}
-
-interface IDeleteAds {
-  acknowledged: boolean;
-  deletedCount: number;
 }

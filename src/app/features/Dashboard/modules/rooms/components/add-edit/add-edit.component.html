@@ -32,7 +32,7 @@
     <p-inputNumber formControlName="discount" placeholder="Discount" styleClass="w-full">
     </p-inputNumber>
 
-    <p-multiselect [options]="facilities" optionLabel="name" optionValue="_id" formControlName="facilities"
+    <p-multiselect [options]="facilities()" optionLabel="name" optionValue="_id" formControlName="facilities"
       placeholder="Select Facilities" class="w-full">
     </p-multiselect>
 
