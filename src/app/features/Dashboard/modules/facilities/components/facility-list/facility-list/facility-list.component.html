@@ -4,6 +4,7 @@
     <app-page-header
       title="Facilities Table Details"
       buttonLabel="Add New Facility"
+      (buttonClick)="selectedFacilityForEdit.set(null); showDialog.set(true)"
     ></app-page-header>
   </div>
 
@@ -96,27 +97,33 @@
         </ng-template>
       </p-table>
     </div>
-    <div class="flex items-center mt-7 justify-center">
-      <!-- Paginator -->
-      <p-paginator
-        [first]="(currentPage - 1) * pageSize"
-        [rows]="pageSize"
-        [totalRecords]="totalRecords"
-        [rowsPerPageOptions]="[10, 20, 30]"
-        [showCurrentPageReport]="true"
-        currentPageReportTemplate="{first} - {last} of {totalRecords}"
-        (onPageChange)="onPageChange($event)"
-      >
-      </p-paginator>
-    </div>
   }
-  <!-- 
-  <app-view-ad [selectedFacility]="selectedFacility()" [visible]="visible()" [loading]="facilityLoading()"
-    (visibleChange)="visible.set($event)">
-  </app-view-ad>
-</div> -->
 
-  <!-- <app-add-edit [(visible)]="showDialog"
-  [ad]="selectedAd()"
-  (submitForm)="saveAd($event)"></app-add-edit> -->
+  <app-view-facility
+    [selectedFacility]="selectedFacility()"
+    [visible]="visible()"
+    [loading]="facilityLoading()"
+    (visibleChange)="visible.set($event)"
+  >
+  </app-view-facility>
+</div>
+
+<app-add-edit-facility
+  [(visible)]="showDialog"
+  [selectedFacility]="selectedFacilityForEdit()"
+  (facilityAdded)="loadFacilityData()"
+></app-add-edit-facility>
+
+<!-- Paginator -->
+<div class="flex items-center mt-7 justify-center">
+  <p-paginator
+    [first]="(currentPage - 1) * pageSize"
+    [rows]="pageSize"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[10, 20, 30]"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} - {last} of {totalRecords}"
+    (onPageChange)="onPageChange($event)"
+  >
+  </p-paginator>
 </div>

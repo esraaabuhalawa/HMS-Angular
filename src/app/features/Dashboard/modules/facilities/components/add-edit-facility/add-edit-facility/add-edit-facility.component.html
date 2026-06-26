@@ -1,0 +1,27 @@
+<p-dialog
+  [header]="isEditMode ? 'Update Facility' : 'Add Facility'"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '450px' }"
+  (onHide)="onHide()"
+>
+  <ng-template pTemplate="header">
+    <div class="flex items-center gap-2">
+      <i class="pi pi-plus text-gray-400"></i>
+      <span class="font-semibold text-base">{{
+        isEditMode ? 'Edit Facility' : 'Add Facility'
+      }}</span>
+    </div>
+  </ng-template>
+
+  <div class="flex flex-col gap-4 p-1">
+    <div class="flex flex-col gap-2">
+      <label class="text-sm text-gray-600">Name</label>
+      <input pInputText [(ngModel)]="facilityName" placeholder="Facility name" class="w-full" />
+    </div>
+
+    <div class="flex justify-end gap-2 pt-2">
+      <p-button [label]="isEditMode ? 'Update' : 'Save'" [loading]="loading" (click)="save()" />
+    </div>
+  </div>
+</p-dialog>

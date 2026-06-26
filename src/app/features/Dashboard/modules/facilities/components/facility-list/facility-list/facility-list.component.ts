@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FacilitiesService } from '../../../services/facilities.service';
 import { PageHeaderComponent } from '../../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
 import { TableSkeletonComponent } from '../../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
@@ -11,6 +11,8 @@ import { IFacility, IFacilityResponse } from '../../../interfaces/facilities.int
 import { AlertDeleteService } from '../../../../../../../shared/services/alert-delete.service';
 import { MenuItem } from 'primeng/api';
 import { DatePipe } from '@angular/common';
+import { ViewFacilityComponent } from '../../view-facility/view-facility.component';
+import { AddEditComponent } from '../../add-edit-facility/add-edit-facility/add-edit-facility.component';
 
 @Component({
   selector: 'app-facility-list',
@@ -23,11 +25,13 @@ import { DatePipe } from '@angular/common';
     Button,
     Paginator,
     DatePipe,
+    ViewFacilityComponent,
+    AddEditComponent,
   ],
   templateUrl: './facility-list.component.html',
   styleUrl: './facility-list.component.scss',
 })
-export class FacilityListComponent {
+export class FacilityListComponent implements OnInit {
   private facilitiesService = inject(FacilitiesService);
   private alertService = inject(AlertDeleteService);
 
@@ -38,26 +42,27 @@ export class FacilityListComponent {
   totalRecords: number = 0;
   menuItems: MenuItem[] = [];
   selectedFacility = signal<IFacility | null>(null);
+  selectedFacilityForEdit = signal<IFacility | null>(null);
   facilityLoading = signal(false);
   visible = signal(false);
-  showDialog = false;
+  showDialog = signal(false);
 
-  openMenu(event: Event, facility: any, menu: any) {
+  openMenu(event: Event, facility: IFacility, menu: any) {
     this.menuItems = [
       {
         label: 'View',
         icon: 'pi pi-eye',
-        //command: () => this.viewFacility(facility)
+        command: () => this.viewFacility(facility),
       },
       {
         label: 'Edit',
         icon: 'pi pi-pencil',
-        //    command: () => this.editFacility(facility)
+        command: () => this.updateFacility(facility),
       },
       {
         label: 'Delete',
         icon: 'pi pi-trash',
-        //   command: () => this.deleteFacility(facility)
+        command: () => this.deleteFacility(facility),
       },
     ];
     menu.toggle(event);
@@ -69,14 +74,16 @@ export class FacilityListComponent {
 
   loadFacilityData() {
     this.isLoading.set(true);
-    this.facilitiesService.getAllFacilities().subscribe({
-      next: (res: IFacilityResponse) => {
-        this.facilityList.set(res.data.facilities);
-        this.totalRecords = res.data.totalCount;
-        this.isLoading.set(false);
-      },
-      error: () => this.isLoading.set(false),
-    });
+    this.facilitiesService
+      .getAllFacilities({ page: this.currentPage, size: this.pageSize })
+      .subscribe({
+        next: (res: IFacilityResponse) => {
+          this.facilityList.set(res.data.facilities);
+          this.totalRecords = res.data.totalCount;
+          this.isLoading.set(false);
+        },
+        error: () => this.isLoading.set(false),
+      });
   }
 
   viewFacility(facility: IFacility) {
@@ -86,7 +93,7 @@ export class FacilityListComponent {
 
     this.facilitiesService.getFacilityDetails(facility._id).subscribe({
       next: (res) => {
-        this.selectedFacility.set(res.data.facilities);
+        this.selectedFacility.set(res.data.facility);
         this.facilityLoading.set(false);
       },
       error: () => {
@@ -96,6 +103,18 @@ export class FacilityListComponent {
     });
   }
 
+  deleteFacility(facility: IFacility) {
+    this.alertService.delete({
+      entity: 'facility for Room',
+      label: facility.name,
+      request: () => this.facilitiesService.deleteFaciliy(facility._id),
+      onSuccess: () => this.loadFacilityData(),
+    });
+  }
+  updateFacility(facility: IFacility) {
+    this.selectedFacilityForEdit.set(facility);
+    this.showDialog.set(true);
+  }
   onPageChange(event: PaginatorState) {
     this.currentPage = (event.page ?? 0) + 1;
     this.pageSize = event.rows ?? 10;
