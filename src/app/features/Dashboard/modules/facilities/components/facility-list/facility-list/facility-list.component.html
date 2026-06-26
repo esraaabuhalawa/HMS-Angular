@@ -1,0 +1,122 @@
+<div class="w-full min-h-screen p-6">
+  <!-- Page Header -->
+  <div class="mb-6">
+    <app-page-header
+      title="Facilities Table Details"
+      buttonLabel="Add New Facility"
+    ></app-page-header>
+  </div>
+
+  @if (isLoading()) {
+    <app-table-skeleton
+      [rows]="10"
+      [columns]="[
+        { header: 'Name' },
+        { header: 'Created by' },
+        { header: 'Created at' },
+        { header: 'Updated at' },
+        {
+          header: 'Active',
+          shape: 'rectangle',
+          width: '3rem',
+          height: '1.25rem',
+          borderRadius: '10px',
+        },
+        { header: '' },
+      ]"
+    >
+    </app-table-skeleton>
+  } @else if (facilityList().length === 0) {
+    <div class="w-full py-12 flex flex-col justify-center items-center bg-white">
+      <app-empty-state [elementName]="'Facilities'"></app-empty-state>
+    </div>
+  } @else {
+    <!-- facility List -->
+    <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+      <p-table
+        [value]="facilityList()"
+        [tableStyle]="{ 'min-width': '60rem' }"
+        styleClass="p-datatable-custom"
+      >
+        <ng-template pTemplate="header">
+          <tr class="!bg-[#e9ecef]/50 border-b border-gray-100">
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              Name
+            </th>
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              Created by
+            </th>
+
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              Created at
+            </th>
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              Updated at
+            </th>
+            <th class="!bg-transparent !py-4 !px-6 w-16"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-facility>
+          <tr class="border-b border-gray-100/70 hover:bg-slate-50/50 transition-colors">
+            <td class="py-4 px-6 text-sm font-medium text-gray-700">{{ facility.name }}</td>
+            <td class="py-4 px-6 text-sm text-gray-600">{{ facility.createdBy.userName }}</td>
+            <td class="py-4 px-6 text-sm text-gray-500">
+              {{ facility.createdAt | date: 'dd MMM yyyy' }}
+            </td>
+            <td class="py-4 px-6 text-sm text-gray-500">
+              {{ facility.updatedAt | date: 'dd MMM yyyy' }}
+            </td>
+
+            <td class="py-4 px-6 text-center">
+              <p-menu
+                #menu
+                [popup]="true"
+                [model]="menuItems"
+                styleClass="ad-actions-menu"
+                [appendTo]="'body'"
+              ></p-menu>
+              <p-button
+                icon="pi pi-ellipsis-h"
+                [text]="true"
+                [rounded]="true"
+                (click)="openMenu($event, facility, menu)"
+              >
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="flex items-center mt-7 justify-center">
+      <!-- Paginator -->
+      <p-paginator
+        [first]="(currentPage - 1) * pageSize"
+        [rows]="pageSize"
+        [totalRecords]="totalRecords"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="{first} - {last} of {totalRecords}"
+        (onPageChange)="onPageChange($event)"
+      >
+      </p-paginator>
+    </div>
+  }
+  <!-- 
+  <app-view-ad [selectedFacility]="selectedFacility()" [visible]="visible()" [loading]="facilityLoading()"
+    (visibleChange)="visible.set($event)">
+  </app-view-ad>
+</div> -->
+
+  <!-- <app-add-edit [(visible)]="showDialog"
+  [ad]="selectedAd()"
+  (submitForm)="saveAd($event)"></app-add-edit> -->
+</div>
