@@ -13,6 +13,7 @@ export class PageHeaderComponent {
   @Input() buttonLabel: string = 'Add New';
   @Input() linkUrl: string = ''
   @Input() linkLabel:string = '';
+  @Input() showButton: boolean = true;
   @Output() buttonClick = new EventEmitter<void>();
 
   onButtonClick() {

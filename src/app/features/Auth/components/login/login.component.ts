@@ -51,7 +51,6 @@ export class LoginComponent implements OnDestroy {
     this.formInit();
   }
 
-
   ngOnInit(): void {
     // Subscribe to auth state changes
     this.authSub = this.socialAuthService.authState.subscribe((user: SocialUser) => {

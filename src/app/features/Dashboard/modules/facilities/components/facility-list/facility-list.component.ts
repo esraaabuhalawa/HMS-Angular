@@ -1,18 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FacilitiesService } from '../../../services/facilities.service';
-import { PageHeaderComponent } from '../../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
-import { TableSkeletonComponent } from '../../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
-import { EmptyStateComponent } from '../../../../../../../shared/components/general/empty-state/empty-state.component';
+import { FacilitiesService } from '../../services/facilities.service';
+import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
+import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
+import { EmptyStateComponent } from '../../../../../../shared/components/general/empty-state/empty-state.component';
 import { TableModule } from 'primeng/table';
 import { Menu } from 'primeng/menu';
 import { Button } from 'primeng/button';
 import { Paginator, PaginatorState } from 'primeng/paginator';
-import { IFacility, IFacilityResponse } from '../../../interfaces/facilities.interface';
-import { AlertDeleteService } from '../../../../../../../shared/services/alert-delete.service';
+import { IFacility, IFacilityResponse } from '../../interfaces/facilities.interface';
+import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
 import { MenuItem } from 'primeng/api';
 import { DatePipe } from '@angular/common';
-import { ViewFacilityComponent } from '../../view-facility/view-facility.component';
-import { AddEditComponent } from '../../add-edit-facility/add-edit-facility/add-edit-facility.component';
+import { ViewFacilityComponent } from '../view-facility/view-facility.component';
+import { AddEditComponent } from '../add-edit-facility/add-edit-facility/add-edit-facility.component';
 
 @Component({
   selector: 'app-facility-list',

@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
 import { RoomsService } from '../../services/rooms.service';
 import { TableModule } from 'primeng/table';
-import { Facility, IRoom, RoomParams } from '../../interfaces/rooms.interface';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
@@ -16,6 +15,7 @@ import { TableSkeletonComponent } from '../../../../../../shared/components/dash
 import { CurrencyPipe } from '@angular/common';
 import { HostListener } from '@angular/core';
 
+import { Facility, IRoom } from '../../../../../../shared/interfaces/general.interface';
 @Component({
   selector: 'app-room-list',
   imports: [

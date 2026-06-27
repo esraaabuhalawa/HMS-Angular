@@ -4,15 +4,15 @@
     <p class="text-sm text-slate-500 mt-1">{{ description }}</p>
   </div>
 
-  @if(linkUrl){
+  @if(linkUrl && showButton){
   <button [routerLink]="linkUrl"
-    class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition-all text-sm shadow-sm">
+    class="bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer font-medium px-6 py-2.5 rounded-lg transition-all text-sm shadow-sm">
     {{ linkLabel }}
   </button>
   }
-  @else {
+  @else if(showButton) {
   <button (click)="onButtonClick()"
-    class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition-all text-sm shadow-sm">
+    class="bg-indigo-600 hover:bg-indigo-500 cursor-pointer text-white font-medium px-6 py-2.5 rounded-lg transition-all text-sm shadow-sm">
     {{ buttonLabel }}
   </button>
   }

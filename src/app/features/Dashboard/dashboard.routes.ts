@@ -23,8 +23,15 @@ export const DASHBOARD_ROUTES: Routes = [
   {
     path: 'facilities',
     loadComponent: () =>
-      import('./modules/facilities/components/facility-list/facility-list/facility-list.component').then(
+      import('./modules/facilities/components/facility-list/facility-list.component').then(
         (c) => c.FacilityListComponent,
+      ),
+  },
+  {
+    path: 'users',
+    loadComponent: () =>
+      import('./modules/users/components/user-list/user-list.component').then(
+        (c) => c.UserListComponent,
       ),
   },
 ];
