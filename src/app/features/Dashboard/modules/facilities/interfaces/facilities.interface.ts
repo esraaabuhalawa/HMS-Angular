@@ -1,7 +1,4 @@
-export interface FacilityParams {
-  page: number;
-  size: number;
-}
+import { CreatedBy, IApiResponse } from '../../../../../shared/interfaces/general.interface';
 
 export interface IFacility {
   _id: string;
@@ -11,49 +8,30 @@ export interface IFacility {
   updatedAt: string;
 }
 
-export interface CreatedBy {
-  _id: string;
-  userName: string;
-}
-
-export interface IFacilityResponse {
-  success: boolean;
-  message: string;
-  data: FacilityData;
-}
-
-export interface FacilityData {
-  facilities: IFacility[];
-  totalCount: number;
-}
-
-export interface IFacilityDetailsResponse {
-  success: boolean;
-  message: string;
-  data: {
-    facility: IFacility;
-  };
-}
-export interface Data {
-  facilities: IFacility;
-}
-
-export interface IDeleteFacilityResponse {
-  success: boolean;
-  message: string;
-  data: Data;
+// --- Request payloads ---
+export interface FacilityParams {
+  page: number;
+  size: number;
 }
 
 export interface ICreateFacility {
   name: string;
 }
+
 export interface IUpdateFacility {
   name: string;
 }
-export interface IUpdateFacilityResponse {
-  success: boolean;
-  message: string;
-  data: {
-    room: IFacility;
-  };
+
+// --- Response payloads ---
+export interface FacilityListData {
+  facilities: IFacility[];
+  totalCount: number;
 }
+
+export type IFacilityResponse = IApiResponse<FacilityListData>;
+
+export type IFacilityDetailsResponse = IApiResponse<{ facility: IFacility }>;
+
+export type IUpdateFacilityResponse = IApiResponse<{ facility: IFacility }>;
+
+export type IDeleteFacilityResponse = IApiResponse<{ facility: IFacility }>;
