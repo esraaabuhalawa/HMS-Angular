@@ -5,9 +5,10 @@ import { ToastModule, Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Data } from '../../interfaces/iadmin.interface';
 import { UserChartComponent } from '../../../../shared/components/dashboard/ui/user-chart/user-chart.component';
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-home',
-  imports: [StaticsCardComponent, Toast, UserChartComponent],
+  imports: [StaticsCardComponent, Toast, UserChartComponent, SkeletonModule],
   providers: [MessageService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

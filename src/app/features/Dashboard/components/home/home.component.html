@@ -1,23 +1,49 @@
 <p-toast />
-<div class="admin-dashboard">
-  <div class="min-h-screen p-4 md:p-6">
-    <!-- Stat Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px] mb-6">
-      @if (mainData(); as data) {
-        <app-statics-card [entityValue]="data.rooms" [entityName]="'Rooms'"> </app-statics-card>
-        <app-statics-card [entityValue]="data.facilities" [entityName]="'Facilities'">
-        </app-statics-card>
-        <app-statics-card [entityValue]="data.ads" [entityName]="'Ads'"> </app-statics-card>
-      }
-    </div>
-
-    <!-- Charts Row -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-      <!-- Booking Status Donut -->
-      @if (mainData(); as data) {
-        <app-user-chart [bookings]="data.bookings" />
-      }
-      <app-user-chart></app-user-chart>
+@if (isLoading()) {
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px] mb-6">
+    <p-skeleton height="4rem" />
+    <p-skeleton height="4rem" />
+    <p-skeleton height="4rem" />
+    <div class="flex mb-4">
+      <p-skeleton shape="circle" size="4rem" class="mr-2" />
+      <div>
+        <p-skeleton width="10rem" class="mb-2" />
+        <p-skeleton width="5rem" class="mb-2" />
+        <p-skeleton height=".5rem" />
+      </div>
     </div>
   </div>
-</div>
+} @else {
+  <div class="admin-dashboard">
+    @if (mainData(); as data) {
+      <div class="admin-dashboard_wrapper min-h-screen p-4 md:p-6">
+        <!-- Stat Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px] mb-6">
+          <app-statics-card [entityValue]="data.rooms" [entityName]="'Rooms'"> </app-statics-card>
+          <app-statics-card [entityValue]="data.facilities" [entityName]="'Facilities'">
+          </app-statics-card>
+          <app-statics-card [entityValue]="data.ads" [entityName]="'Ads'"> </app-statics-card>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mt-[20px]">
+          <!-- Booking Status Donut -->
+          <app-user-chart
+            [data]="[
+              { label: 'Pending', value: data.bookings.pending },
+              { label: 'Completed', value: data.bookings.completed },
+            ]"
+          />
+          <div class="card">
+            <app-user-chart
+              [data]="[
+                { label: 'Users', value: data.users.user },
+                { label: 'Admins', value: data.users.admin },
+              ]"
+            />
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
