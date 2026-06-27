@@ -3,8 +3,8 @@ import { Dialog } from 'primeng/dialog';
 import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
-import { FacilitiesService } from '../../../services/facilities.service';
-import { ICreateFacility, IFacility } from '../../../interfaces/facilities.interface';
+import { FacilitiesService } from '../../services/facilities.service';
+import { ICreateFacility, IFacility } from '../../interfaces/facilities.interface';
 
 @Component({
   selector: 'app-add-edit-facility',

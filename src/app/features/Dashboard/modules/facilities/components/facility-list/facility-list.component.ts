@@ -12,7 +12,7 @@ import { AlertDeleteService } from '../../../../../../shared/services/alert-dele
 import { MenuItem } from 'primeng/api';
 import { DatePipe } from '@angular/common';
 import { ViewFacilityComponent } from '../view-facility/view-facility.component';
-import { AddEditComponent } from '../add-edit-facility/add-edit-facility/add-edit-facility.component';
+import { AddEditComponent } from '../add-edit-facility/add-edit-facility.component';
 
 @Component({
   selector: 'app-facility-list',

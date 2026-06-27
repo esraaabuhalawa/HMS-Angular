@@ -10,10 +10,6 @@ export const DASHBOARD_ROUTES: Routes = [
     loadChildren: () => import('./modules/rooms/rooms.routes').then((r) => r.ROOMS_ROUTES),
   },
   {
-    path: 'bookings',
-    loadChildren: () => import('./modules/booking/booking.routes').then((r) => r.BOOKING_ROUTES),
-  },
-  {
     path: 'ads',
     loadComponent: () =>
       import('./modules/Ads/components/ads-list/ads-list.component').then(
@@ -33,5 +29,11 @@ export const DASHBOARD_ROUTES: Routes = [
       import('./modules/users/components/user-list/user-list.component').then(
         (c) => c.UserListComponent,
       ),
+  },
+  {
+    path: 'bookings',
+    loadComponent: () =>
+      import('./modules/booking/components/list-booking/list-booking.component')
+        .then(c => c.ListBookingComponent),
   },
 ];
