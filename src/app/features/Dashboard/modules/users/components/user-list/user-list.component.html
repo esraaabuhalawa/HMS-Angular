@@ -1,17 +1,24 @@
 <div class="w-full min-h-screen">
   <!-- Page Header -->
   <div class="mb-6">
-    <app-page-header title="List Users Table " buttonLabel="Add New User"></app-page-header>
+    <app-page-header
+      title="List Users Table "
+      buttonLabel="Add New User"
+      (buttonClick)="openNewAddUserDialog()"
+    ></app-page-header>
   </div>
   @if (isLoading()) {
     <app-table-skeleton
       [rows]="5"
       [columns]="[
-        { header: 'room Number' },
-        { header: 'Price' },
-        { header: 'Start Date' },
-        { header: 'End Date' },
-        { header: 'User' },
+        { header: 'Name' },
+        { header: 'email' },
+        { header: 'role' },
+        { header: 'country' },
+        { header: 'stauts' },
+        { header: 'created Date' },
+        { header: ' updated Date' },
+        { header: ' ' },
       ]"
     >
     </app-table-skeleton>
@@ -120,3 +127,9 @@
     [loading]="userLoading()"
   ></app-user-view>
 </div>
+<app-user-add
+  [(visible)]="showDialog"
+  [(loading)]="showLoading"
+  (submitForm)="submitNewUser($event)"
+></app-user-add>
+x

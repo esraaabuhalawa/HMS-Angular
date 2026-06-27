@@ -1,0 +1,98 @@
+/* Center the whole component */
+:host ::ng-deep .profile-upload {
+  display: flex;
+  justify-content: center;
+}
+
+/* Remove default container look */
+:host ::ng-deep .p-fileupload-buttonbar {
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+:host ::ng-deep {
+  .p-fileupload-content {
+    padding: 0;
+  }
+
+  .p-fileupload-file-info {
+    display: none;
+  }
+
+  .p-badge {
+    display: none;
+  }
+
+  .p-fileupload-file {
+    position: absolute;
+    top: 7px;
+    left: 16px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+  }
+
+  .p-button-text.p-button-danger {
+    position: absolute;
+    top: -10px;
+    right: -11px;
+    width: 30px;
+    height: 30px;
+    background: #eceaea;
+    border-color: transparent;
+  }
+
+  .p-fileupload-advanced {
+    position: relative;
+  }
+
+  .p-fileupload-file-list {
+    position: absolute;
+    top: 10px;
+  }
+}
+
+/* Make upload button circular */
+:host ::ng-deep .profile-upload .p-button.p-fileupload-choose-button {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  font-size: 0;
+  position: relative;
+  overflow: hidden;
+  background: #f3f4f6;
+  border: 2px dashed #cbd5e1;
+  transition: 0.3s ease;
+}
+
+/* Hover effect */
+:host ::ng-deep .profile-upload .p-button:hover {
+  border-color: #3b82f6;
+  background: #eef2ff;
+}
+
+/* Upload icon centered */
+:host ::ng-deep .profile-upload .p-button .p-button-icon {
+  font-size: 1.5rem;
+  color: #64748b;
+}
+
+/* Remove text label completely */
+:host ::ng-deep .profile-upload .p-button-label {
+  display: none;
+}
+
+/* Optional: loading state styling */
+:host ::ng-deep .p-fileupload.p-fileupload-basic.p-fileupload-choose {
+  position: relative;
+}

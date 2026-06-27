@@ -1,60 +1,70 @@
-import { Component, inject, OnInit } from '@angular/core';
 import {
-  AbstractControl,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import {
   FormBuilder,
   FormGroup,
-  ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { PasswordModule } from 'primeng/password';
-import { ButtonModule } from 'primeng/button';
-import { Router, RouterModule } from '@angular/router';
-import { InputTextModule } from 'primeng/inputtext';
-import { AuthService } from '../../services/auth.service';
-import { ICurrentUserResponse } from '../../interfaces/auth';
 import { MessageService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
-import { BadgeModule } from 'primeng/badge';
-import { ProgressBarModule } from 'primeng/progressbar';
-import { AuthHeaderComponent } from '../../../../shared/components/auth/auth-header/auth-header.component';
-import { AuthImageSectionComponent } from '../../../../shared/components/auth/auth-image-section/auth-image-section.component';
-import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
+import { AuthService } from '../../../../../Auth/services/auth.service';
+import { Button } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { SelectModule } from 'primeng/select';
+import { RoleEnum } from '../../../../../../core/enums/role.enum';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-user-add',
   imports: [
-    AuthLayoutComponent,
-    ReactiveFormsModule,
-    PasswordModule,
-    ButtonModule,
-    RouterModule,
-    InputTextModule,
+    DialogModule,
     FileUploadModule,
-    ToastModule,
-    BadgeModule,
-    ProgressBarModule,
-    AuthHeaderComponent,
-    AuthImageSectionComponent,
+    Button,
+    PasswordModule,
+    SelectModule,
+    InputTextModule,
+    ReactiveFormsModule,
   ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+  templateUrl: './user-add.component.html',
+  styleUrl: './user-add.component.scss',
 })
-export class RegisterComponent implements OnInit {
+export class UserAddComponent implements OnChanges {
   private readonly fb = inject(FormBuilder);
   private readonly authservice = inject(AuthService);
-  private readonly router = inject(Router);
   private readonly messageService = inject(MessageService);
+  @Output() visibleChange = new EventEmitter<boolean>();
+  @Output() loadingChange = new EventEmitter<boolean>();
+  @Output() submitForm = new EventEmitter<any>();
+  @Input() loading = false;
 
+  @Input({ required: true }) visible = false;
   registerForm!: FormGroup;
-  isLoading: boolean = false;
   files: any[] = [];
+  rolesOption = [
+    {
+      label: 'Admin',
+      value: RoleEnum.Admin,
+    },
+    {
+      label: 'User',
+      value: RoleEnum.User,
+    },
+  ];
   constructor() {
     this.formInit();
   }
-  ngOnInit(): void {}
   formInit() {
     this.registerForm = this.fb.group(
       {
@@ -77,51 +87,13 @@ export class RegisterComponent implements OnInit {
             Validators.pattern(/^[a-zA-Z\u0600-\u06FF\s]+$/),
           ],
         ],
+        role: [null, Validators.required],
         profileImage: [null, [Validators.required]],
       },
       {
         validators: this.passwordMatchValidator('password', 'confirmPassword'),
       },
     );
-  }
-  onRegister() {
-    this.registerForm.markAllAsTouched();
-
-    if (this.registerForm.invalid) {
-      return;
-    }
-
-    this.isLoading = true;
-    let createdUser = new FormData();
-    Object.entries(this.registerForm.controls).forEach(([key, control]) => {
-      if (key !== 'profileImage') createdUser.append(key, control.value);
-    });
-
-    createdUser.append('role', 'user');
-    createdUser.append('profileImage', this.files[0]);
-
-    for (const pair of createdUser.entries()) {
-      console.log(pair[0], pair[1]);
-    }
-    this.authservice.register(createdUser).subscribe({
-      next: (res: ICurrentUserResponse) => {
-        this.isLoading = false;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Account Created',
-          detail: 'Your account has been created successfully!',
-        });
-        this.router.navigate(['/auth/login']);
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err.error.message,
-        });
-        this.isLoading = false;
-      },
-    });
   }
   passwordMatchValidator(pass: string, confirmPass: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -154,5 +126,32 @@ export class RegisterComponent implements OnInit {
     this.files = [];
     this.registerForm.get('profileImage')?.setValue(null);
     this.registerForm.get('profileImage')?.markAsTouched();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['visible'] && !this.visible) {
+      this.registerForm.reset();
+      this.files = [];
+    }
+  }
+  save() {
+    this.registerForm.markAllAsTouched();
+    if (this.registerForm.invalid) return;
+    let createdUser = new FormData();
+    Object.entries(this.registerForm.controls).forEach(([key, control]) => {
+      if (key !== 'profileImage') {
+        createdUser.append(key, control.value);
+      }
+    });
+    createdUser.append('profileImage', this.files[0]);
+    console.log(createdUser);
+
+    this.loadingChange.emit(true);
+    this.submitForm.emit(createdUser);
+  }
+  onHide() {
+    this.visibleChange.emit(false);
+  }
+  close() {
+    this.visibleChange.emit(false);
   }
 }
