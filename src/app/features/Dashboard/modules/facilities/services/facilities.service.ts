@@ -1,8 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IFacilitiesResponse } from '../../rooms/interfaces/rooms.interface';
 import { Observable } from 'rxjs';
-import { IFacilityDetailsResponse, IFacilityResponse } from '../interfaces/facilities.interface';
+import {
+  FacilityParams,
+  ICreateFacility,
+  IDeleteFacilityResponse,
+  IFacilityDetailsResponse,
+  IFacilityResponse,
+  IUpdateFacility,
+  IUpdateFacilityResponse,
+} from '../interfaces/facilities.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,23 +17,26 @@ import { IFacilityDetailsResponse, IFacilityResponse } from '../interfaces/facil
 export class FacilitiesService {
   private readonly http = inject(HttpClient);
 
-  getAllFacilities(): Observable<IFacilityResponse> {
-    return this.http.get<IFacilityResponse>('admin/room-facilities');
+  getAllFacilities(paramsData: FacilityParams): Observable<IFacilityResponse> {
+    let params = new HttpParams()
+      .set('page', paramsData.page.toString())
+      .set('size', paramsData.size.toString());
+    return this.http.get<IFacilityResponse>('admin/room-facilities', { params });
   }
 
   getFacilityDetails(id: string): Observable<IFacilityDetailsResponse> {
     return this.http.get<IFacilityDetailsResponse>(`admin/room-facilities/${id}`);
   }
 
-  // createAd(data: ICreateAddData): Observable<IAdDetailsResponse> {
-  //   return this.http.post<IAdDetailsResponse>('admin/ads', data);
-  // }
+  createFacility(data: ICreateFacility): Observable<IFacilityDetailsResponse> {
+    return this.http.post<IFacilityDetailsResponse>('admin/room-facilities', data);
+  }
 
-  // updateAd(id: string, data: IUpdateAdData): Observable<IAdDetailsResponse> {
-  //   return this.http.put<IAdDetailsResponse>(`admin/ads/${id}`, data);
-  // }
+  updateFacility(id: string, data: IUpdateFacility): Observable<IUpdateFacilityResponse> {
+    return this.http.put<IUpdateFacilityResponse>(`admin/room-facilities/${id}`, data);
+  }
 
-  // deleteAd(id: string): Observable<IDeleteAdResponse> {
-  //   return this.http.delete<IDeleteAdResponse>(`admin/ads/${id}`)
-  // }
+  deleteFaciliy(id: string): Observable<IDeleteFacilityResponse> {
+    return this.http.delete<IDeleteFacilityResponse>(`admin/room-facilities/${id}`);
+  }
 }

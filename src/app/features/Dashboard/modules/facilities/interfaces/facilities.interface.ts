@@ -1,3 +1,8 @@
+export interface FacilityParams {
+  page: number;
+  size: number;
+}
+
 export interface IFacility {
   _id: string;
   name: string;
@@ -25,9 +30,30 @@ export interface FacilityData {
 export interface IFacilityDetailsResponse {
   success: boolean;
   message: string;
+  data: {
+    facility: IFacility;
+  };
+}
+export interface Data {
+  facilities: IFacility;
+}
+
+export interface IDeleteFacilityResponse {
+  success: boolean;
+  message: string;
   data: Data;
 }
 
-interface Data {
-  facilities: IFacility;
+export interface ICreateFacility {
+  name: string;
+}
+export interface IUpdateFacility {
+  name: string;
+}
+export interface IUpdateFacilityResponse {
+  success: boolean;
+  message: string;
+  data: {
+    room: IFacility;
+  };
 }

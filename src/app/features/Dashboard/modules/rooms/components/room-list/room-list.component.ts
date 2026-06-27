@@ -13,6 +13,8 @@ import { DividerModule } from 'primeng/divider';
 import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
 import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
 import { CurrencyPipe } from '@angular/common';
+import { HostListener } from '@angular/core';
+
 import { Facility, IRoom } from '../../../../../../shared/interfaces/general.interface';
 @Component({
   selector: 'app-room-list',
@@ -107,10 +109,18 @@ export class RoomListComponent {
 
   toggleRoomActions(selectedRoom: any): void {
     this.rooms().forEach((room) => {
-      if (room !== selectedRoom) (room as any).showActions = false;
+      (room as any).showActions = false;
     });
-    selectedRoom.showActions = !selectedRoom.showActions;
+    if (selectedRoom) {
+      selectedRoom.showActions = !selectedRoom.showActions;
+    }
   }
+  // toggleRoomActions(selectedRoom: any): void {
+  //   this.rooms().forEach((room) => {
+  //     if (room !== selectedRoom) (room as any).showActions = false;
+  //   });
+  //   selectedRoom.showActions = !selectedRoom.showActions;
+  // }
 
   //Delete Room
   deleteRoom(room: IRoom) {
