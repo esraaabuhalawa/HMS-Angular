@@ -104,12 +104,9 @@ export class AuthService {
       });
   }
 
-
-
-
   forgotPassword(email: string): Observable<any> {
-  return this.http.post('portal/users/forgot-password', { email });
-}
+    return this.http.post('portal/users/forgot-password', { email });
+  }
 
   // loginWithFacebook(accessToken: string, userID: string): void {
   //   if (!accessToken || !userID) {
@@ -138,6 +135,6 @@ export class AuthService {
   // }
 
   register(data: FormData): Observable<ICurrentUserResponse> {
-    return this.http.post<ICurrentUserResponse>('portal/users', data);
+    return this.http.post<ICurrentUserResponse>('admin/users', data);
   }
 }

@@ -9,6 +9,11 @@ import { Menu } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { UserViewComponent } from '../user-view/user-view.component';
+import { UserAddComponent } from '../user-add/user-add.component';
+
+import { AuthService } from '../../../../../Auth/services/auth.service';
+import { ICurrentUserResponse } from '../../../../../Auth/interfaces/auth';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-list',
@@ -20,17 +25,22 @@ import { UserViewComponent } from '../user-view/user-view.component';
     ButtonModule,
     PaginatorModule,
     UserViewComponent,
+    UserAddComponent,
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss',
 })
 export class UserListComponent implements OnInit {
   private _UserService = inject(UserService);
+  private _AuthService = inject(AuthService);
+  private messageService = inject(MessageService);
   userList = signal<IUser[]>([]);
   sendUser = signal<IUser | null>(null);
   isLoading = signal<boolean>(true);
   visible = signal(false);
   userLoading = signal(false);
+  showLoading = false;
+  showDialog = false;
   currentPage: number = 1;
   pageSize: number = 10;
   totalRecords: number = 0;
@@ -63,6 +73,35 @@ export class UserListComponent implements OnInit {
       error: (error) => {
         this.userLoading.set(false);
         this.visible.set(false);
+      },
+    });
+  }
+
+  openNewAddUserDialog() {
+    this.showDialog = true;
+  }
+  submitNewUser(createdUser: FormData) {
+    this._AuthService.register(createdUser).subscribe({
+      next: (res: ICurrentUserResponse) => {
+        this.showLoading = false;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Account Created',
+          detail: 'Your account has been created successfully!',
+        });
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error.message,
+        });
+        this.showLoading = false;
+      },
+      complete: () => {
+        this.loadUserListData();
+        this.visible.set(false);
+        this.showDialog = false;
       },
     });
   }

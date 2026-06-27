@@ -20,11 +20,7 @@ import { IUser } from '../../interfaces/user.interface';
   templateUrl: './user-view.component.html',
   styleUrl: './user-view.component.scss',
 })
-export class UserViewComponent implements OnChanges {
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.userInfo);
-    console.log(this.loading);
-  }
+export class UserViewComponent {
   @Input() userInfo: IUser | null = null;
   @Input({ required: true }) visible = false;
   @Input({ required: true }) loading = false;
@@ -32,11 +28,5 @@ export class UserViewComponent implements OnChanges {
 
   onHide() {
     this.visibleChange.emit(false);
-  }
-  ngOnInit(): void {
-    console.log(this.userInfo);
-  }
-  ngAfterViewInit(): void {
-    console.log(this.userInfo);
   }
 }
