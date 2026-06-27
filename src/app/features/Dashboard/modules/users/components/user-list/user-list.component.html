@@ -125,6 +125,7 @@
     [userInfo]="sendUser()"
     [visible]="visible()"
     [loading]="userLoading()"
+    (visibleChange)="visible.set($event)"
   ></app-user-view>
 </div>
 <app-user-add
@@ -132,4 +133,3 @@
   [(loading)]="showLoading"
   (submitForm)="submitNewUser($event)"
 ></app-user-add>
-x
