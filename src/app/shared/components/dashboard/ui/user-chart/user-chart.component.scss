@@ -1,0 +1,28 @@
+.chart-wrapper {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  position: relative;
+
+  .chart-center-label {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    pointer-events: none;
+    // white-space: nowrap;
+  }
+  //   .chart-center-value-admin {
+  //     position: absolute;
+  //     bottom: 10px;
+  //     right: -50%;
+  //   }
+  //   .chart-center-value-user {
+  //     position: absolute;
+  //     bottom: 10px;
+  //     left: -50%;
+  //   }
+}
