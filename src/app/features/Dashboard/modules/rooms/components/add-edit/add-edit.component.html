@@ -1,79 +1,85 @@
 
-<div class="max-w-4xl mx-auto p-6 flex justify-end mb-6">
-  <button
-    type="submit"
-    form="roomForm"
-    class="bg-blue-700 text-white px-12 py-3 rounded-xl text-lg font-semibold ">
-    {{ roomId ? 'Update Room' : 'Add New Room' }}
-  </button>
-</div>
+<form
+  id="roomForm"
+  [formGroup]="roomForm"
+  class="max-w-4xl mx-auto pt-8 p-6"
+  (ngSubmit)="save()"
+>
 
-<form id="roomForm" [formGroup]="roomForm" class="max-w-4xl pt-[80px] mx-auto p-6" (ngSubmit)="save()">
+<!-- add-edit button -->
+ <div class="flex justify-end mb-8">
+    <p-button
+      type="submit"
+      [label]="roomId ? 'Update Room' : 'Add New Room'"
+      [loading]="loading"
+      [disabled]="loading">
+    </p-button>
+  </div>
+
 
   <!-- Room Number -->
   <div class="mb-5">
-    <input pInputText formControlName="roomNumber" placeholder="Room Number" class="w-full">
+    <input pInputText formControlName="roomNumber" placeholder="Room Number" class="w-full" />
   </div>
 
   <!-- Price & Capacity -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-
-    <p-inputNumber formControlName="price" placeholder="Price" styleClass="w-full">
-    </p-inputNumber>
+    <p-inputNumber formControlName="price" placeholder="Price" styleClass="w-full"> </p-inputNumber>
 
     <p-inputNumber formControlName="capacity" placeholder="Capacity" styleClass="w-full">
     </p-inputNumber>
-
   </div>
 
   <!-- Discount & Facilities -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-
     <p-inputNumber formControlName="discount" placeholder="Discount" styleClass="w-full">
     </p-inputNumber>
 
-    <p-multiselect [options]="facilities()" optionLabel="name" optionValue="_id" formControlName="facilities"
-      placeholder="Select Facilities" class="w-full">
+    <p-multiselect
+      [options]="facilities()"
+      optionLabel="name"
+      optionValue="_id"
+      formControlName="facilities"
+      placeholder="Select Facilities"
+      class="w-full"
+    >
     </p-multiselect>
-
   </div>
 
   <!-- Upload -->
-  <p-fileUpload #fileUpload mode="advanced" [multiple]="true" [showUploadButton]="false" [showCancelButton]="false"
-    (onSelect)="onSelectFiles($event)">
-
+  <p-fileUpload
+    #fileUpload
+    mode="advanced"
+    [multiple]="true"
+    [showUploadButton]="false"
+    [showCancelButton]="false"
+    (onSelect)="onSelectFiles($event)"
+  >
     <ng-template pTemplate="content">
       <div class="upload-area" (click)="fileUpload.choose()">
-
         <i class="pi pi-upload text-4xl mb-4"></i>
 
         <p>
           Drag & Drop or
-          <span class="text-green-600 font-medium">
-            Choose a Room Images
-          </span>
+          <span class="text-green-600 font-medium"> Choose a Room Images </span>
           to Upload
         </p>
-
       </div>
     </ng-template>
-
   </p-fileUpload>
-
-
 
   <div class="flex gap-3 mt-3 flex-wrap">
     @for (img of previewUrls; track img) {
-    <img [src]="img" class="w-20 h-20 object-cover rounded" />
+      <img [src]="img" class="w-20 h-20 object-cover rounded" />
     }
   </div>
 
   @if (existingImages.length) {
-  <div class="flex gap-3 mt-3 flex-wrap">
-    @for (img of existingImages; track img) {
-    <img [src]="img" class="w-20 h-20 object-cover rounded border" />
-    }
-  </div>
+    <div class="flex gap-3 mt-3 flex-wrap">
+      @for (img of existingImages; track img) {
+        <img [src]="img" class="w-20 h-20 object-cover rounded border" />
+      }
+    </div>
   }
 
 

@@ -13,20 +13,20 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-add-edit',
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     InputTextModule,
     InputNumberModule,
     SelectModule,
     ButtonModule,
     FileUploadModule,
     CommonModule,
-    MultiSelectModule
+    MultiSelectModule,
   ],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss',
 })
 export class AddEditComponent implements OnInit {
-
   private fb = inject(FormBuilder);
   private roomsService = inject(RoomsService);
   private activatedRoute = inject(ActivatedRoute);
@@ -42,7 +42,7 @@ export class AddEditComponent implements OnInit {
     price: [null as number | null],
     capacity: [null as number | null],
     discount: [null as number | null],
-    facilities: [[] as string[]]
+    facilities: [[] as string[]],
   });
 
   facilities = signal<any[]>([]);
@@ -50,21 +50,17 @@ export class AddEditComponent implements OnInit {
   onSelectFiles(event: any) {
     const files = event.currentFiles || event.files;
     this.selectedFiles = files;
-    this.previewUrls = files.map((file: File) =>
-      URL.createObjectURL(file)
-    );
+    this.previewUrls = files.map((file: File) => URL.createObjectURL(file));
   }
-
 
   loadFacilities() {
     this.roomsService.getAllFacilities().subscribe({
       next: (res) => {
         this.facilities.set(res.data.facilities);
         //this.facilities = res.data.facilities;
-      }
+      },
     });
   }
-
 
   save() {
     this.loading = true;
@@ -78,67 +74,65 @@ export class AddEditComponent implements OnInit {
     const facilities = this.roomForm.value.facilities || [];
 
     facilities.forEach((facilityId: string) => {
-      formData.append('facilities', facilityId);
+      formData.append('facilities[]', facilityId);
     });
 
-    this.selectedFiles.forEach(file => {
+    this.selectedFiles.forEach((file) => {
       formData.append('imgs', file);
     });
 
-    const request$ = this.roomId ? this.roomsService.updateRoom(this.roomId, formData) : this.roomsService.createRoom(formData);
+    const request$ = this.roomId
+      ? this.roomsService.updateRoom(this.roomId, formData)
+      : this.roomsService.createRoom(formData);
 
     request$.subscribe({
       next: (res) => {
-        this.loading = false;
-
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
-          detail: res.message || "Room Is added Successfully"
+          detail: res.message || 'Room added successfully',
         });
       },
       error: (err) => {
-        this.loading = false;
-
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: err.error?.message || 'Something went wrong'
+          detail: err.error?.message || 'Something went wrong',
         });
-      }
+        this.loading = false;
+      },
+      complete: () => {
+        this.loading = false;
+      },
     });
   }
 
-    ngOnInit() {
-      this.loadFacilities();
-      this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
+  ngOnInit() {
+    this.loadFacilities();
+    this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
 
-      if (this.roomId) {
-        this.getRoomData(this.roomId);
-      }
+    if (this.roomId) {
+      this.getRoomData(this.roomId);
     }
+  }
 
-    getRoomData(id: string) {
-      this.roomsService.getRoomDetails(id).subscribe({
-        next: (res) => {
-          const room = res.data.room;
+  getRoomData(id: string) {
+    this.roomsService.getRoomDetails(id).subscribe({
+      next: (res) => {
+        const room = res.data.room;
 
+        console.log(room.facilities);
 
-          console.log(room.facilities);
+        this.existingImages = room.images;
 
-          this.existingImages = room.images;
-
-          this.roomForm.patchValue({
-            roomNumber: room.roomNumber,
-            price: room.price,
-            capacity: room.capacity,
-            discount: room.discount,
-            facilities: room.facilities.map(f => f._id)
-          });
-        }
-
-      });
-    }
-
+        this.roomForm.patchValue({
+          roomNumber: room.roomNumber,
+          price: room.price,
+          capacity: room.capacity,
+          discount: room.discount,
+          facilities: room.facilities.map((f) => f._id),
+        });
+      },
+    });
+  }
 }
-
