@@ -1,1 +1,20 @@
-<p>Website home works!</p>
+<section>
+  <app-hero-section></app-hero-section>
+  <section class="rooms-section">
+    <section class="ad-section">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      @for (room of roomList(); track room._id) {
+      <app-room-card [room]="room"></app-room-card>
+      }
+    </div>
+  </section>
+  </section>
+  <section class="ad-section">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      @for (ad of adsList(); track ad._id) {
+      <app-ad-card [ad]="ad"  /> 
+      }
+    </div>
+  </section>
+  <app-customers-section></app-customers-section>
+</section>

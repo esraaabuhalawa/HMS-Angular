@@ -1,9 +1,9 @@
-<p-dialog header="Ad Details" [modal]="true" [(visible)]="visible" [style]="{ width: '550px' }" (onHide)="onHide()">
+<p-dialog [header]="'ADS.DETAILS.TITLE' | translate" [modal]="true" [(visible)]="visible" [style]="{ width: '550px' }" (onHide)="onHide()">
 
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
       <i class="pi pi-eye text-gray-400"></i>
-      <span class="font-md">Ad Details</span>
+      <span class="font-md">{{ 'ADS.DETAILS.TITLE' | translate }}</span>
     </div>
   </ng-template>
 
@@ -66,27 +66,30 @@
 
         <div>
           <div class="mb-1 text-md text-gray-600">
-            Room #{{ selectedAd.room.roomNumber }}
+            {{'ROOMS.ROOM' | translate}} #{{ selectedAd.room.roomNumber }}
           </div>
         </div>
       </div>
 
-      <p-tag [value]="selectedAd.isActive ? 'Active' : 'Inactive'"
-        [severity]="selectedAd.isActive ? 'success' : 'danger'"
-        [icon]="selectedAd.isActive ? 'pi pi-check-circle' : 'pi pi-times-circle'">
-      </p-tag>
+       <p-tag
+    [value]="selectedAd.isActive ? ('COMMON.ACTIVE' | translate) : ('COMMON.INACTIVE' | translate)"
+    [severity]="selectedAd.isActive ? 'success' : 'danger'"
+    [icon]="selectedAd.isActive ? 'pi pi-check-circle' : 'pi pi-times-circle'"
+  >
+  </p-tag>
     </div>
 
     <!-- Metric cards -->
     <div>
-      <div class="text-xs font-medium text-color-secondary mb-3 uppercase" style="letter-spacing: 0.06em">Room details
+      <div class="text-xs font-medium text-color-secondary mb-3 uppercase" style="letter-spacing: 0.06em">
+         {{ 'ADS.DETAILS.ROOM_DETAILS' | translate }}
       </div>
       <div class="grid grid-cols-2 gap-4">
 
         <div class="rounded-lg p-3 bg-gray-100">
           <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
             <i class="pi pi-dollar text-[11px]"></i>
-            Price
+           {{ 'ADS.TABLE.PRICE' | translate }}
           </div>
           <div class="font-medium text-lg">
             {{ selectedAd.room.price | currency }}
@@ -96,12 +99,12 @@
         <div class="rounded-lg p-3 bg-gray-100">
           <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
             <i class="pi pi-users text-[11px]"></i>
-            Capacity
+            {{ 'ADS.TABLE.CAPACITY' | translate }}
           </div>
           <div class="font-medium text-lg">
             {{ selectedAd.room.capacity }}
             <span class="text-sm font-normal text-gray-500">
-              persons
+              {{ 'ADS.DETAILS.PERSONS' | translate }}
             </span>
           </div>
         </div>
@@ -109,7 +112,7 @@
         <div class="rounded-lg p-3 bg-gray-100">
           <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
             <i class="pi pi-tag text-[11px]"></i>
-            Discount
+            {{ 'ADS.TABLE.DISCOUNT' | translate }}
           </div>
           <div class="font-medium text-lg text-green-500">
             {{ selectedAd.room.discount }}%
@@ -119,7 +122,7 @@
         <div class="rounded-lg p-3 bg-gray-100">
           <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
             <i class="pi pi-hashtag text-[11px]"></i>
-            Room Number
+            {{ 'ADS.TABLE.ROOM_NUMBER' | translate }}
           </div>
           <div class="font-medium text-lg">
             {{ selectedAd.room.roomNumber }}
@@ -134,13 +137,13 @@
     <!-- Audit -->
     <div>
       <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
-        Audit Information
+        {{ 'ADS.DETAILS.AUDIT_INFORMATION' | translate }}
       </div>
 
       <div class="flex items-center justify-between py-2">
         <span class="flex items-center gap-2 text-sm text-gray-500">
           <i class="pi pi-calendar-plus"></i>
-          Created at
+          {{ 'ADS.DETAILS.CREATED_AT' | translate }}
         </span>
 
         <span class="text-sm">
@@ -153,7 +156,7 @@
       <div class="flex items-center justify-between py-2">
         <span class="flex items-center gap-2 text-sm text-gray-500">
           <i class="pi pi-calendar"></i>
-          Updated at
+          {{ 'ADS.DETAILS.UPDATED_AT' | translate }}
         </span>
 
         <span class="text-sm">

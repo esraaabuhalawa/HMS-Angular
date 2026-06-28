@@ -4,9 +4,8 @@ import { Facility, IApiResponse, IRoom } from "../../../../../shared/interfaces/
 export interface RoomParams {
   page: number;
   size: number;
-  search?: string;
-  capacity?: number;
-  facility?: string;
+  startDate?: string;
+  endDate?: number;
 }
 
 // ---- Paginated list shape ----

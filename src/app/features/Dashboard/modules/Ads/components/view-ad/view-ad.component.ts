@@ -7,10 +7,11 @@ import { Divider } from 'primeng/divider';
 import { Tag } from 'primeng/tag';
 import { Skeleton } from 'primeng/skeleton';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-view-ad',
-  imports: [DialogModule, InputTextModule, ButtonModule,
+  imports: [DialogModule, InputTextModule, ButtonModule, TranslatePipe,
     Divider,Tag,Skeleton, CurrencyPipe, DatePipe
   ],
   templateUrl: './view-ad.component.html',

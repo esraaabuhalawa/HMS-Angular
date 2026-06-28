@@ -1,58 +1,100 @@
-<p-dialog [header]="isEditMode ? 'Edit Ad' : 'Add Ad'" [modal]="true" [(visible)]="visible"
-  [style]="{ width: '50rem', maxWidth: '95vw', height: '25rem' }" [breakpoints]="{
+<p-dialog
+  [header]="isEditMode ? ('ADS.EDIT_AD' | translate) : ('ADS.ADD_AD' | translate)"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '50rem', maxWidth: '95vw', height: '25rem' }"
+  [breakpoints]="{
     '1280px': '70vw',
     '1024px': '80vw',
     '768px': '90vw',
-    '640px': '95vw',
-  }" (onHide)="close()">
+    '640px': '95vw'
+  }"
+  (onHide)="close()"
+>
   <form [formGroup]="form" class="flex flex-col gap-6 mt-4">
-    <!-- Room ID -->
+    <!-- Room -->
     <div>
-      <p-select [readonly]="isEditMode" [class.readonly-select]="isEditMode" appendTo="body" [options]="allRooms()"
-        formControlName="room" class="w-full" optionLabel="roomNumber" optionValue="_id" [filter]="true"
-        filterBy="roomNumber" [virtualScroll]="true" [virtualScrollItemSize]="40" [loading]="loadingRooms"
-        placeholder="Room Name">
+      <p-select
+        [readonly]="isEditMode"
+        [class.readonly-select]="isEditMode"
+        appendTo="body"
+        [options]="allRooms()"
+        formControlName="room"
+        class="w-full"
+        optionLabel="roomNumber"
+        optionValue="_id"
+        [filter]="true"
+        filterBy="roomNumber"
+        [virtualScroll]="true"
+        [virtualScrollItemSize]="40"
+        [loading]="loadingRooms"
+        [placeholder]="'ADS.ROOM_NAME' | translate"
+      >
       </p-select>
 
-      @if (form.get('room')?.invalid && (form.get('room')?.dirty || form.get('room')?.touched)) {
-      <small class="text-red-500"> Room is required </small>
+      @if (form.get('room')?.invalid && (form.get('room')?.dirty ||
+      form.get('room')?.touched)) {
+      <small class="text-red-500">
+        {{ 'ADS.VALIDATION.ROOM_REQUIRED' | translate }}
+      </small>
       }
     </div>
 
-    <!-- discount-->
+    <!-- Discount -->
     <div>
-      <p-inputnumber class="w-full" formControlName="discount" placeholder="Discount" inputId="minmax" mode="decimal"
-        [min]="0" [max]="100" />
-      @if (
-      form.get('discount')?.hasError('required') &&
-      (form.get('discount')?.dirty || form.get('discount')?.touched)
-      ) {
-      <small class="text-red-500"> Discount is required. </small>
+      <p-inputnumber
+        class="w-full"
+        formControlName="discount"
+        [placeholder]="'ADS.DISCOUNT' | translate"
+        inputId="minmax"
+        mode="decimal"
+        [min]="0"
+        [max]="100"
+      />
+
+      @if (form.get('discount')?.hasError('required') &&
+      (form.get('discount')?.dirty || form.get('discount')?.touched)) {
+      <small class="text-red-500">
+        {{ 'ADS.VALIDATION.DISCOUNT_REQUIRED' | translate }}
+      </small>
       }
 
-      @if (
-      (form.get('discount')?.hasError('min') || form.get('discount')?.hasError('max')) &&
-      (form.get('discount')?.dirty || form.get('discount')?.touched)
-      ) {
-      <small class="text-red-500"> Discount must be between 1 and 100. </small>
+      @if ((form.get('discount')?.hasError('min') ||
+      form.get('discount')?.hasError('max')) &&
+      (form.get('discount')?.dirty || form.get('discount')?.touched)) {
+      <small class="text-red-500">
+        {{ 'ADS.VALIDATION.DISCOUNT_RANGE' | translate }}
+      </small>
       }
     </div>
 
     <!-- Active -->
-    <div class="">
-      <p-select appendTo="body" id="status" formControlName="isActive" [options]="statusOptions" optionLabel="label"
-        optionValue="value" placeholder="Select Status" class="w-full">
+    <div>
+      <p-select
+        appendTo="body"
+        id="status"
+        formControlName="isActive"
+        [options]="statusOptions"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'ADS.SELECT_STATUS' | translate"
+        class="w-full"
+      >
         <ng-template let-option #item>
-          <span class="px-2 py-1 rounded-full text-xs font-medium"
-            [class]="option.value ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'">
+          <span
+            class="px-2 py-1 rounded-full text-xs font-medium"
+            [class]="option.value ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
+          >
             {{ option.label }}
           </span>
         </ng-template>
 
         <ng-template let-selected #selectedItem>
           @if (selected) {
-          <span class="px-2 py-1 rounded-full text-xs font-medium"
-            [class]="selected.value ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'">
+          <span
+            class="px-2 py-1 rounded-full text-xs font-medium"
+            [class]="selected.value ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
+          >
             {{ selected.label }}
           </span>
           }
@@ -63,9 +105,12 @@
 
   <ng-template pTemplate="footer">
     <div class="flex justify-end gap-2">
-      <!-- <p-button label="Cancel" severity="danger" (click)="close()"> </p-button> -->
-
-      <p-button [label]="isEditMode ? 'Update' : 'Create'" [disabled]="loading" [loading]="loading" (click)="save()">
+      <p-button
+        [label]="isEditMode ? ('COMMON.UPDATE' | translate) : ('COMMON.CREATE' | translate)"
+        [disabled]="loading"
+        [loading]="loading"
+        (click)="save()"
+      >
       </p-button>
     </div>
   </ng-template>

@@ -1,0 +1,19 @@
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-8">
+
+  <p-breadcrumb
+    [model]="breadcrumbs"
+    [home]="home"
+    styleClass="!border-none !bg-transparent !p-0 mb-4">
+  </p-breadcrumb>
+
+  <h1 class="text-3xl font-bold text-slate-800">
+    {{ title }}
+  </h1>
+
+  @if (description) {
+    <p class="mt-2 text-gray-500 max-w-2xl">
+      {{ description }}
+    </p>
+  }
+
+</div>

@@ -17,6 +17,7 @@ import { Select } from 'primeng/select';
 import { RoomsService } from '../../../rooms/services/rooms.service';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { IRoom } from '../../../../../../shared/interfaces/general.interface';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-ads',
@@ -28,6 +29,7 @@ import { IRoom } from '../../../../../../shared/interfaces/general.interface';
     ButtonModule,
     FormsModule,
     ToggleSwitchModule,
+    TranslatePipe
   ],
   templateUrl: './add-edit-ads.component.html',
   styleUrl: './add-edit-ads.component.scss',
@@ -35,7 +37,7 @@ import { IRoom } from '../../../../../../shared/interfaces/general.interface';
 export class AddEditAdsComponent implements OnChanges {
   private fb = inject(FormBuilder);
   private roomsService = inject(RoomsService);
-
+  private translate = inject(TranslateService)
   @Input() visible = false;
   @Input() ad: IAd | null = null;
   @Input() loading = false;
@@ -51,14 +53,8 @@ export class AddEditAdsComponent implements OnChanges {
   search = '';
 
   statusOptions = [
-    {
-      label: 'Active',
-      value: true,
-    },
-    {
-      label: 'Inactive',
-      value: false,
-    },
+    { label: this.translate.instant('COMMON.ACTIVE'), value: true },
+    { label: this.translate.instant('COMMON.INACTIVE'), value: false },
   ];
 
   constructor() {

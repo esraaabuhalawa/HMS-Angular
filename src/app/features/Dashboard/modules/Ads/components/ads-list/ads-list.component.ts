@@ -16,6 +16,7 @@ import { TableSkeletonComponent } from '../../../../../../shared/components/dash
 import { ViewAdComponent } from "../view-ad/view-ad.component";
 import { AddEditAdsComponent } from "../add-edit-ads/add-edit-ads.component";
 import { finalize } from 'rxjs';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ads-list',
@@ -32,7 +33,8 @@ import { finalize } from 'rxjs';
     TableSkeletonComponent,
     ViewAdComponent,
     CurrencyPipe,
-    AddEditAdsComponent
+    AddEditAdsComponent,
+    TranslatePipe
   ],
   templateUrl: './ads-list.component.html',
   styleUrl: './ads-list.component.scss',
@@ -41,6 +43,8 @@ export class AdsListComponent {
   private adsService = inject(AdsService);
   private alertService = inject(AlertDeleteService);
   private readonly messageService = inject(MessageService);
+  private translate = inject(TranslateService);
+
   adsList = signal<IAd[]>([]);
   isLoading = signal<boolean>(true);
   currentPage: number = 1;
@@ -75,10 +79,10 @@ export class AdsListComponent {
   }
 
   ngOnInit(): void {
-    this.loadAdsData();
+    this.fetchAdsData();
   }
 
-  loadAdsData() {
+  fetchAdsData() {
     this.isLoading.set(true);
     this.adsService.getAllAds({ page: this.currentPage, size: this.pageSize }).subscribe({
       next: (res: IAdsResponse) => {
@@ -86,7 +90,15 @@ export class AdsListComponent {
         this.totalRecords = res.data.totalCount;
         this.isLoading.set(false);
       },
-      error: () => this.isLoading.set(false),
+      error: (err) => {
+        this.isLoading.set(false)
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.message || this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
+        });
+        console.log(err)
+      }
     });
   }
 
@@ -130,18 +142,18 @@ export class AdsListComponent {
     ).subscribe({
       next: () => {
         this.showDialog = false;
-        this.loadAdsData();
+        this.fetchAdsData();
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: `The ad was ${isEdit ? 'updated' : 'created'} successfully!`,
+          summary: this.translate.instant('COMMON.SUCCESS'),
+          detail: this.translate.instant(isEdit ? 'ADS.UPDATE_SUCCESS' : 'ADS.CREATE_SUCCESS'),
         });
       },
       error: (err) => {
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: err.message || 'Something went Wrong, Please Try Again Later',
+          summary: this.translate.instant('COMMON.ERROR'),
+          detail: err.message || this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
         });
         console.error(err);
       }
@@ -150,12 +162,11 @@ export class AdsListComponent {
 
   //Delete Room
   deleteAd(ad: IAd) {
-    console.log('Delete Clicked', ad);
     this.alertService.delete({
-      entity: 'ad for Room',
+      entity: 'ADS.TITLE',
       label: ad.room.roomNumber,
       request: () => this.adsService.deleteAd(ad._id),
-      onSuccess: () => this.loadAdsData(),
+      onSuccess: () => this.fetchAdsData(),
     });
   }
 
@@ -163,6 +174,6 @@ export class AdsListComponent {
   onPageChange(event: PaginatorState) {
     this.currentPage = (event.page ?? 0) + 1;
     this.pageSize = event.rows ?? 10;
-    this.loadAdsData()
+    this.fetchAdsData()
   }
 }
