@@ -1,0 +1,67 @@
+<div [routerLink]="`rooms/${room._id}`"
+  class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+  <!-- Room Image -->
+  <img [src]="room.images[0]" [alt]="'Room ' + room.roomNumber" class="w-full h-60 object-cover" />
+
+  <!-- Content -->
+  <div class="p-5">
+
+    <!-- Room Number + Status -->
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xl font-semibold text-slate-800">
+        Room #{{ room.roomNumber }}
+      </h3>
+
+      <!-- <p-tag
+        [value]="room.isActive ? 'Available' : 'Unavailable'"
+        [severity]="room.isActive ? 'success' : 'danger'"
+      /> -->
+    </div>
+
+    <!-- Description -->
+    <p class="text-sm text-gray-500 line-clamp-2 mb-5">
+      {{ room.facilities }}
+    </p>
+
+    <!-- Room Info -->
+    <div class="grid grid-cols-3 gap-4 mb-5">
+
+      <div class="flex flex-col items-center rounded-xl bg-gray-50 p-3">
+        <i class="pi pi-dollar text-blue-600 text-lg mb-2"></i>
+        <span class="text-xs text-gray-500">Price</span>
+        <span class="font-semibold">
+          {{ room.price | currency }}
+        </span>
+      </div>
+
+      <div class="flex flex-col items-center rounded-xl bg-gray-50 p-3">
+        <i class="pi pi-users text-green-600 text-lg mb-2"></i>
+        <span class="text-xs text-gray-500">Capacity</span>
+        <span class="font-semibold">
+          {{ room.capacity }}
+        </span>
+      </div>
+
+      <div class="flex flex-col items-center rounded-xl bg-gray-50 p-3">
+        <i class="pi pi-tag text-orange-500 text-lg mb-2"></i>
+        <span class="text-xs text-gray-500">Discount</span>
+        <span class="font-semibold text-green-600">
+          {{ room.discount }}%
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="flex justify-between items-center pt-4 border-t">
+
+      <!-- <div class="text-xs text-gray-400">
+        {{ room.createdAt | date }}
+      </div> -->
+
+      <button pButton pRipple  label="View Details" icon="pi pi-arrow-right" iconPos="right"></button>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div
+  class="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+>
+  <!-- Image -->
+  <div class="relative h-64 overflow-hidden">
+    <img
+      [src]="ad.room.images[0]"
+      [alt]="ad.room.roomNumber"
+      class="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+    />
+       <p-tag   [severity]="ad.isActive ? 'success' : 'danger'"
+      />
+    <!-- Overlay -->
+    <div
+      class="absolute inset-0 bg-black/50 opacity-0 transition duration-300 group-hover:opacity-100"
+    ></div>
+
+    <!-- Hover Buttons -->
+    <div
+      class="absolute inset-0 flex items-center justify-center gap-4 opacity-0 transition duration-300 group-hover:opacity-100"
+    >
+      <button
+        pButton
+        pRipple
+        rounded
+        severity="contrast"
+        icon="pi pi-eye"
+        [routerLink]="'/'"
+      ></button>
+
+      <button
+        pButton
+        pRipple
+        rounded
+        severity="danger"
+        icon="pi pi-heart"
+        (click)="onFavorite()"
+      ></button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="space-y-2 p-5">
+    <h3 class="line-clamp-1 text-lg font-semibold text-slate-800">
+      {{ ad.room.roomNumber }}
+    </h3>
+  </div>
+</div>

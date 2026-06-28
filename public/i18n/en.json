@@ -37,6 +37,7 @@
   },
   "ROOM_DETAILS": {
     "ROOM": "Room",
+    "BACK_TO_ROOMS":"Back to rooms",
     "ADDED_BY": "Added by",
     "PER_NIGHT": "/ night",
     "UP_TO": "Up to",
@@ -52,7 +53,7 @@
     "DELETE_MESSAGE": "Are you sure you want to delete?",
     "DELETE_WARNING": "This action cannot be undone!",
     "DELETE_CONFIRM": "Yes, delete it!",
-    "DELETE_SUCCESSFULLY": "deleted successfully",
+    "DELETE_SUCCESSFULLY": "Deleted successfully",
     "DELETE_CANCEL": "Cancel",
     "CLOSE": "Close",
     "DELETE_FAILED": "Delete failed",
@@ -71,6 +72,48 @@
     "BOOKINGS": "Bookings",
     "FACILITIES": "Facilities"
   },
+  "ADS": {
+    "TITLE": "Ad",
+    "PAGE_TITLE": "Ads Table Details",
+    "ADD_NEW": "Add New Ad",
+    "CREATE_SUCCESS": "The ad was created successfully!",
+    "UPDATE_SUCCESS": "The ad was updated successfully!",
+    "ADD_AD": "Add Ad",
+    "EDIT_AD": "Edit Ad",
+    "ROOM_NAME": "Room Name",
+    "DISCOUNT": "Discount",
+    "SELECT_STATUS": "Select Status",
+    "VALIDATION": {
+      "ROOM_REQUIRED": "Room is required.",
+      "DISCOUNT_REQUIRED": "Discount is required.",
+      "DISCOUNT_RANGE": "Discount must be between 1 and 100."
+    },
+    "DETAILS": {
+      "TITLE": "Ad Details",
+      "ROOM_DETAILS": "Room Details",
+      "AUDIT_INFORMATION": "Audit Information",
+      "CREATED_AT": "Created at",
+      "UPDATED_AT": "Updated at",
+      "PERSONS": "persons"
+    },
+    "TABLE": {
+      "ROOM_NUMBER": "Room No.",
+      "PRICE": "Price",
+      "DISCOUNT": "Discount",
+      "CAPACITY": "Capacity",
+      "ACTIVE": "Active"
+    }
+  },
+  "COMMON": {
+    "CHECK_ALL_DETAILS": "You can check all details",
+    "ADD_NEW": "Add New",
+    "SUCCESS": "Success",
+    "ERROR": "Error",
+    "SOMETHING_WENT_WRONG": "Something went wrong. Please try again later.",
+    "CREATE": "Create",
+    "UPDATE": "Update",
+    "ACTIVE": "Active",
+    "INACTIVE": "Not Active"
+  },
   "SEARCH_PLACEHOLDER": "Search here..."
-
 }

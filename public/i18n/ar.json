@@ -10,22 +10,17 @@
     "DESCRIPTION": "إذا لم يكن لديك حساب قم بالتسجيل.",
     "SUB_TEXT": "يمكنك",
     "REGISTER": "إنشاء حساب جديد!",
-
     "EMAIL_LABEL": "البريد الإلكتروني",
     "EMAIL_PLACEHOLDER": "البريد الإلكتروني",
     "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
     "EMAIL_INVALID": "صيغة البريد غير صحيحة",
-
     "PASSWORD_LABEL": "كلمة المرور",
     "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
     "PASSWORD_PATTERN": "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورمز خاص ولا تقل عن 6 أحرف",
-
     "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
     "BUTTON_LOGIN": "تسجيل الدخول",
-
     "OR_CONTINUE": "أو المتابعة باستخدام",
     "GOOGLE_SIGNIN": "تسجيل الدخول بجوجل",
-
     "HEADER_TITLE": "تسجيل الدخول",
     "HEADER_DESC": "منازل فريدة مثل أصحابها."
   },
@@ -41,6 +36,7 @@
     "ROOM": "غرفه"
   },
   "ROOM_DETAILS": {
+    "BACK_TO_ROOMS":"العودة إلي الغرف",
     "ROOM": "غرفة",
     "ADDED_BY": "تمت الإضافة بواسطة",
     "PER_NIGHT": "/ ليلة",
@@ -76,5 +72,48 @@
     "BOOKINGS": "الحجوزات",
     "FACILITIES": "المرافق"
   },
-   "SEARCH_PLACEHOLDER": "ابحث هنا..."
+  "ADS": {
+    "TITLE": "اعلان",
+    "PAGE_TITLE": "تفاصيل جدول الإعلانات",
+    "ADD_NEW": "إضافة إعلان جديد",
+    "CREATE_SUCCESS": "تم إنشاء الإعلان بنجاح!",
+    "UPDATE_SUCCESS": "تم تحديث الإعلان بنجاح!",
+    "ADD_AD": "إضافة إعلان",
+    "EDIT_AD": "تعديل إعلان",
+    "ROOM_NAME": "اسم الغرفة",
+    "DISCOUNT": "الخصم",
+    "SELECT_STATUS": "اختر الحالة",
+    "VALIDATION": {
+      "ROOM_REQUIRED": "الغرفة مطلوبة.",
+      "DISCOUNT_REQUIRED": "الخصم مطلوب.",
+      "DISCOUNT_RANGE": "يجب أن تكون قيمة الخصم بين 1 و100."
+    },
+    "DETAILS": {
+      "TITLE": "تفاصيل الإعلان",
+      "ROOM_DETAILS": "تفاصيل الغرفة",
+      "AUDIT_INFORMATION": "معلومات السجل",
+      "CREATED_AT": "تاريخ الإنشاء",
+      "UPDATED_AT": "تاريخ التحديث",
+      "PERSONS": "أشخاص"
+    },
+    "TABLE": {
+      "ROOM_NUMBER": "رقم الغرفة",
+      "PRICE": "السعر",
+      "DISCOUNT": "الخصم",
+      "CAPACITY": "السعة",
+      "ACTIVE": "نشط"
+    }
+  },
+  "COMMON": {
+    "CHECK_ALL_DETAILS": "يمكنك الاطلاع على جميع التفاصيل",
+    "ADD_NEW": "إضافة جديد",
+    "SUCCESS": "نجاح",
+    "ERROR": "خطأ",
+    "SOMETHING_WENT_WRONG": "حدث خطأ، يرجى المحاولة مرة أخرى لاحقًا.",
+    "CREATE": "إنشاء",
+    "UPDATE": "تحديث",
+    "ACTIVE": "نشط",
+    "INACTIVE": "غير نشط"
+  },
+  "SEARCH_PLACEHOLDER": "ابحث هنا..."
 }

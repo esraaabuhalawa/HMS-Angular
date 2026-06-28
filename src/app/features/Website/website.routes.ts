@@ -23,12 +23,12 @@ export const WEBSITE_ROUTES: Routes = [
   //       .then(c => c.RoomsComponent),
   // },
 
-  // {
-  //   path: 'rooms/:id',
-  //   loadComponent: () =>
-  //     import('./room-details/room-details.component')
-  //       .then(c => c.RoomDetailsComponent),
-  // },
+  {
+    path: 'rooms/:id',
+    loadComponent: () =>
+      import('./modules/rooms/components/room-details/room-details.component')
+        .then(c => c.RoomDetailsComponent),
+  },
 
   // {
   //   path: 'offers',

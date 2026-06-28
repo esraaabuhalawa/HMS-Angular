@@ -1,19 +1,19 @@
 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-4 w-full px-6">
   <div>
-    <h1 class="text-xl font-bold text-slate-800">{{ title }}</h1>
-    <p class="text-sm text-slate-500 mt-1">{{ description }}</p>
+    <h1 class="text-xl font-bold text-slate-800">{{ title | translate}}</h1>
+    <p class="text-sm text-slate-500 mt-1">{{ description | translate}}</p>
   </div>
 
   @if(linkUrl && showButton){
   <button [routerLink]="linkUrl"
     class="bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer font-medium px-6 py-2.5 rounded-lg transition-all text-sm shadow-sm">
-    {{ linkLabel }}
+    {{ linkLabel | translate}}
   </button>
   }
   @else if(showButton) {
   <button (click)="onButtonClick()"
     class="bg-indigo-600 hover:bg-indigo-500 cursor-pointer text-white font-medium px-6 py-2.5 rounded-lg transition-all text-sm shadow-sm">
-    {{ buttonLabel }}
+     {{ buttonLabel | translate }}
   </button>
   }
 
