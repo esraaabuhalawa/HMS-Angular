@@ -1,9 +1,29 @@
 {
   "NAV": {
     "HOME": "الرئيسية",
-    "ABOUT": "عن الشركة",
-    "SERVICES": "الخدمات",
-    "CONTACT": "تواصل معنا"
+    "EXPLORE": "استكشف",
+    "REVIEWS": "التقييمات",
+    "FAVORITES": "المفضلة",
+    "LOGIN": "تسجيل دخول",
+    "REGISTER": "تسجيل حساب"
+  },
+  "HOME": {
+    "HERO": {
+      "TITLE_LINE_1": "انسَ ضغوط العمل،",
+      "TITLE_LINE_2": "وابدأ عطلتك القادمة",
+      "DESCRIPTION": "نوفر لك كل ما تحتاجه للاستمتاع بإجازتك مع العائلة وصنع لحظات لا تُنسى.",
+      "START_BOOKING": "ابدأ الحجز",
+      "PICK_DATE": "اختر التاريخ",
+      "DATE_PLACEHOLDER": "اختر تاريخ الوصول والمغادرة",
+      "CAPACITY": "عدد الأشخاص",
+      "EXPLORE": "استكشف"
+    },
+    "SECTIONS": {
+      "MOST_POPULAR": "الإعلانات الأكثر شيوعًا",
+      "HOUSES_WITH_GYM": "منازل تحتوي على صالة رياضية",
+      "HOUSES_WITH_BACKYARD": "منازل بحديقة جميلة",
+      "ADS": "الإعلانات"
+    }
   },
   "LOGIN": {
     "TITLE": "تسجيل الدخول",
@@ -33,10 +53,11 @@
     "HEADER_SUBTITLE": "منازل فريدة مثل أصحابها."
   },
   "ROOMS": {
-    "ROOM": "غرفه"
+    "ROOM": "غرفه",
+    "NO_ROOMS_MATCH": "لا توجد غرف تطابق بحثك."
   },
   "ROOM_DETAILS": {
-    "BACK_TO_ROOMS":"العودة إلي الغرف",
+    "BACK_TO_ROOMS": "العودة إلي الغرف",
     "ROOM": "غرفة",
     "ADDED_BY": "تمت الإضافة بواسطة",
     "PER_NIGHT": "/ ليلة",
@@ -104,6 +125,11 @@
       "ACTIVE": "نشط"
     }
   },
+  "ROOM_CARD": {
+    "VIEW_DETAILS": "عرض التفاصيل",
+    "ADD_TO_WISHLIST": "إضافة إلى المفضلة",
+    "Add to Wishlist":"حذف من المفضلة"
+  },
   "COMMON": {
     "CHECK_ALL_DETAILS": "يمكنك الاطلاع على جميع التفاصيل",
     "ADD_NEW": "إضافة جديد",
@@ -113,7 +139,11 @@
     "CREATE": "إنشاء",
     "UPDATE": "تحديث",
     "ACTIVE": "نشط",
-    "INACTIVE": "غير نشط"
+    "INACTIVE": "غير نشط",
+    "NO_RESULTS": "لا توجد نتائج",
+    "ADDED_TO_FAVORITES": "تمت إضافة الغرفة إلى المفضلة بنجاح.",
+    "PLEASE_LOG_IN_FIRST": "من فضلك، قم بتسجيل الدخول أولا",
+    "REMOVED_FROM_FAVORITES": "تمت إزالة الغرفة من المفضلة بنجاح"
   },
   "SEARCH_PLACEHOLDER": "ابحث هنا..."
 }

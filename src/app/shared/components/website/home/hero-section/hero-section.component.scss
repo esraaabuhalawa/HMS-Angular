@@ -1,0 +1,53 @@
+.img-container {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+
+    width: 92%;
+    height: 96%;
+
+    inset-block-start: 11%;
+    inset-inline-start: 13%;
+
+    border: 2px solid #E5E5E5;
+    border-radius: 15px;
+
+    z-index: -1;
+  }
+}
+.date-icon {
+  height: 45px;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+:host ::ng-deep {
+  .p-inputnumber-horizontal .p-inputnumber-decrement-button {
+    background-color: #E74C3C !important;
+    width: 70px !important;
+  }
+
+  .p-inputnumber-horizontal .p-inputnumber-decrement-button {
+    background-color: #E74C3C !important;
+    border-color: #E74C3C !important;
+    color: white !important;
+  }
+
+  .p-inputnumber-horizontal .p-inputnumber-increment-button {
+    background-color: #1ABC9C !important;
+    width: 70px !important;
+  }
+
+  .p-inputnumber-horizontal .p-inputnumber-increment-button {
+    background-color: #1ABC9C !important;
+    border-color: #1ABC9C !important;
+    color: white !important;
+  }
+}
