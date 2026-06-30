@@ -12,9 +12,12 @@ export class RoomsService {
   getAllRooms(paramsData: RoomParams): Observable<IRoomsResponse> {
     let params = new HttpParams().set('page', paramsData.page.toString()).set('size', paramsData.size.toString());
 
-    if (paramsData.endDate) params = params.set('search', paramsData.endDate);
-    if (paramsData.startDate) params = params.set('capacity', paramsData.startDate.toString());
-
+    if (paramsData.startDate) {
+      params = params.set('startDate', paramsData.startDate);
+    }
+    if (paramsData.endDate) {
+      params = params.set('endDate', paramsData.endDate);
+    }
     return this.http.get<IRoomsResponse>('portal/rooms/available', { params });
   }
 

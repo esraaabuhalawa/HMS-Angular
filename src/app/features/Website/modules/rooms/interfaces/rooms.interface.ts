@@ -5,7 +5,7 @@ export interface RoomParams {
   page: number;
   size: number;
   startDate?: string;
-  endDate?: number;
+  endDate?: string;
 }
 
 // ---- Paginated list shape ----

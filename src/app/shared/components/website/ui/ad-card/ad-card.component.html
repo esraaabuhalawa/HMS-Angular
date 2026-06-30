@@ -1,48 +1,32 @@
-<div
-  class="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
->
-  <!-- Image -->
-  <div class="relative h-64 overflow-hidden">
-    <img
-      [src]="ad.room.images[0]"
-      [alt]="ad.room.roomNumber"
-      class="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-    />
-       <p-tag   [severity]="ad.isActive ? 'success' : 'danger'"
-      />
-    <!-- Overlay -->
-    <div
-      class="absolute inset-0 bg-black/50 opacity-0 transition duration-300 group-hover:opacity-100"
-    ></div>
+<div [routerLink]="`/rooms/${ad.room._id}`"
+  class="group relative  rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer h-72">
 
-    <!-- Hover Buttons -->
-    <div
-      class="absolute inset-0 flex items-center justify-center gap-4 opacity-0 transition duration-300 group-hover:opacity-100"
-    >
-      <button
-        pButton
-        pRipple
-        rounded
-        severity="contrast"
-        icon="pi pi-eye"
-        [routerLink]="'/'"
-      ></button>
+  <!-- Image (fills entire card) -->
+  <img [src]="ad.room.images[0]" [alt]="ad.room.roomNumber"
+    class="relative inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
 
-      <button
-        pButton
-        pRipple
-        rounded
-        severity="danger"
-        icon="pi pi-heart"
-        (click)="onFavorite()"
-      ></button>
+  <!-- Status Badge -->
+  <p-tag [value]="ad.isActive ? 'Available' : 'Unavailable'" [severity]="ad.isActive ? 'success' : 'danger'"
+    class="absolute top-3 start-3 z-10" />
+
+  <!-- Title (bottom of image) -->
+  <!-- Content -->
+  <div class="p-5">
+    <!-- Room Number -->
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="text-[20px] font-regular text-primary">
+        Room #{{ ad.room.roomNumber }}
+      </h3>
+    </div>
+
+    <!-- Description -->
+    <div class="flex flex-wrap gap-2 mb-2">
+      @for (facility of ad.room.facilities; track facility) {
+      <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">
+        {{ facility.name }}
+      </span>
+      }
     </div>
   </div>
 
-  <!-- Content -->
-  <div class="space-y-2 p-5">
-    <h3 class="line-clamp-1 text-lg font-semibold text-slate-800">
-      {{ ad.room.roomNumber }}
-    </h3>
-  </div>
 </div>

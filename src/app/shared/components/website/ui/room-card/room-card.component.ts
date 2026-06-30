@@ -5,10 +5,14 @@ import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-room-card',
-  imports: [CurrencyPipe, RouterLink],
+  imports: [ RouterLink],
   templateUrl: './room-card.component.html',
   styleUrl: './room-card.component.scss',
 })
 export class RoomCardComponent {
-    @Input() room!: IRoom;
+  @Input() room!: IRoom;
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = '/images/placeholder-img.jpg';
+  }
 }

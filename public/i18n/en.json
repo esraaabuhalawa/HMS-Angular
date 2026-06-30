@@ -1,9 +1,29 @@
 {
   "NAV": {
     "HOME": "Home",
-    "ABOUT": "About",
-    "SERVICES": "Services",
-    "CONTACT": "Contact"
+    "EXPLORE": "Explore",
+    "REVIEWS": "Reviews",
+    "FAVORITES": "Favorites",
+    "LOGIN": "Login",
+    "REGISTER": "Register"
+  },
+  "HOME": {
+    "HERO": {
+      "TITLE_LINE_1": "Forget Busy Work,",
+      "TITLE_LINE_2": "Start Next Vacation",
+      "DESCRIPTION": "We provide what you need to enjoy your holiday with family. Time to make another memorable moments.",
+      "START_BOOKING": "Start Booking",
+      "PICK_DATE": "Pick a Date",
+      "DATE_PLACEHOLDER": "Select start & end date",
+      "CAPACITY": "Capacity",
+      "EXPLORE": "Explore"
+    },
+    "SECTIONS": {
+      "MOST_POPULAR": "Most Popular Ads",
+      "HOUSES_WITH_GYM": "Houses with Gym",
+      "HOUSES_WITH_BACKYARD": "Houses with Beautiful Backyard",
+      "ADS": "Ads"
+    }
   },
   "LOGIN": {
     "TITLE": "Sign in",
@@ -33,11 +53,12 @@
     "HEADER_SUBTITLE": "Homes as unique as you."
   },
   "ROOMS": {
-    "ROOM": "Room"
+    "ROOM": "Room",
+    "NO_ROOMS_MATCH": "No rooms match your search."
   },
   "ROOM_DETAILS": {
     "ROOM": "Room",
-    "BACK_TO_ROOMS":"Back to rooms",
+    "BACK_TO_ROOMS": "Back to rooms",
     "ADDED_BY": "Added by",
     "PER_NIGHT": "/ night",
     "UP_TO": "Up to",
@@ -104,6 +125,11 @@
       "ACTIVE": "Active"
     }
   },
+  "ROOM_CARD": {
+    "VIEW_DETAILS": "View Details",
+    "ADD_TO_WISHLIST": "Add to Wishlist",
+    "REMOVE_FROM_WISHLIST":"Remove From Wishlist"
+  },
   "COMMON": {
     "CHECK_ALL_DETAILS": "You can check all details",
     "ADD_NEW": "Add New",
@@ -113,7 +139,11 @@
     "CREATE": "Create",
     "UPDATE": "Update",
     "ACTIVE": "Active",
-    "INACTIVE": "Not Active"
+    "INACTIVE": "Not Active",
+    "NO_RESULTS": "No results",
+    "ADDED_TO_FAVORITES": "Room added to favorites successfully.",
+    "PLEASE_LOG_IN_FIRST": "Please,Log In first",
+    "REMOVED_FROM_FAVORITES": "Room removed from favorites successfully"
   },
   "SEARCH_PLACEHOLDER": "Search here..."
 }

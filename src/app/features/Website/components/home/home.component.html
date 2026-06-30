@@ -1,20 +1,111 @@
 <section>
-  <app-hero-section></app-hero-section>
-  <section class="rooms-section">
-    <section class="ad-section">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      @for (room of roomList(); track room._id) {
-      <app-room-card [room]="room"></app-room-card>
+  <!-- Hero search bar: emits date range + capacity, used to filter the "Most Popular" room list below -->
+  <app-hero-section (search)="onSearch($event)" [loadingSearch]="loadingSearch()"></app-hero-section>
+
+  <!-- ===================== SECTION 1: Most Popular Rooms ===================== -->
+  <section class="rooms-section mb-[70px]">
+    <h2 class="text-primary font-semibold mb-[41px] text-2xl">
+      {{ 'HOME.SECTIONS.MOST_POPULAR' | translate }}
+    </h2>
+
+    @if (isLoadingRooms()) {
+      <!-- Loading state: show 3 skeleton placeholders while rooms are being fetched -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        @for (i of [0,1,2]; track i) {
+          <app-card-skelton></app-card-skelton>
+        }
+      </div>
+    } @else {
+      <!-- Loaded state: render actual room cards -->
+      <!-- auto-rows-[280px] gives every grid row a fixed height so row-span-2 (featured card) works correctly -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
+        @for (room of roomList(); track room._id; let i = $index) {
+          <!-- First card (i === 0) is featured: spans 2 rows for visual emphasis -->
+          <div [class.row-span-2]="i === 0" class="h-full w-full">
+            <app-room-info-card [room]="room"></app-room-info-card>
+          </div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- ===================== SECTION 2: Houses with Gym ===================== -->
+  <!-- Only rendered if there's at least one matching room, to avoid showing an empty section -->
+  @if (housesWithGym().length > 0) {
+    <section class="rooms-section mb-[70px]">
+      <h2 class="text-primary font-semibold mb-[41px] text-2xl">
+        {{ 'HOME.SECTIONS.HOUSES_WITH_GYM' | translate }}
+      </h2>
+
+      @if (isLoadingRooms()) {
+        <!-- Loading state shares the same isLoadingRooms() flag as the main room fetch -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          @for (i of [0,1,2]; track i) {
+            <app-card-skelton></app-card-skelton>
+          }
+        </div>
+      } @else {
+        <!-- Loaded state: simple uniform grid, no featured/spanning card here -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
+          @for (room of housesWithGym(); track room._id; let i = $index) {
+            <app-room-card [room]="room"></app-room-card>
+          }
+        </div>
       }
-    </div>
-  </section>
-  </section>
-  <section class="ad-section">
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      @for (ad of adsList(); track ad._id) {
-      <app-ad-card [ad]="ad"  /> 
+    </section>
+  }
+
+  <!-- ===================== SECTION 3: Houses with Backyard ===================== -->
+  <!-- Same pattern as the gym section above, just a different filtered list -->
+  @if (housesWithPackyard().length > 0) {
+    <section class="rooms-section mb-[70px]">
+      <h2 class="text-primary font-semibold mb-[41px] text-2xl">
+        {{ 'HOME.SECTIONS.HOUSES_WITH_BACKYARD' | translate }}
+      </h2>
+
+      @if (isLoadingRooms()) {
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          @for (i of [0,1,2]; track i) {
+            <app-card-skelton></app-card-skelton>
+          }
+        </div>
+      } @else {
+        <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
+          @for (room of housesWithPackyard(); track room._id; let i = $index) {
+            <app-room-card [room]="room"></app-room-card>
+          }
+        </div>
       }
-    </div>
-  </section>
+    </section>
+  }
+
+  <!-- ===================== SECTION 4: Ads ===================== -->
+  <!-- Renders sponsored/promoted listings (ads), each wrapping a room reference (ad.room) -->
+  @if (adsList().length > 0) {
+    <section class="ad-section mb-[70px]">
+      <h2 class="text-primary font-semibold mb-[41px] text-2xl">
+        {{ 'HOME.SECTIONS.ADS' | translate }}
+      </h2>
+
+      @if (isLoading()) {
+        <!-- Note: this section uses its own isLoading() flag, separate from isLoadingRooms() -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          @for (i of [0,1,2]; track i) {
+            <app-card-skelton></app-card-skelton>
+          }
+        </div>
+      } @else {
+        <!-- Responsive grid: 2 cols on small screens, up to 4 on extra-large -->
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          @for (ad of adsList(); track ad._id) {
+            <!-- Each ad displays the room it's promoting, not the ad object itself -->
+            <app-room-card [room]="ad.room"></app-room-card>
+          }
+        </div>
+      }
+    </section>
+  }
+
+  <!-- Static section: customer testimonials/reviews, not tied to any loading state -->
   <app-customers-section></app-customers-section>
 </section>
