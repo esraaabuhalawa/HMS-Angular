@@ -1,1 +1,79 @@
-<p>footer works!</p>
+<footer class="border-t border-gray-200 mt-20">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="flex flex-col lg:flex-row justify-between gap-16">
+
+      <!-- Logo Section -->
+      <div class="max-w-xs">
+        <a routerLink="/">
+          <img
+            src="images/logo.svg"
+            alt="Staycation Logo"
+            class="mb-6"
+          />
+        </a>
+
+        <p class="text-text-secondary leading-7">
+          We kaboom your beauty holiday instantly and memorable.
+        </p>
+      </div>
+
+      <!-- Links Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-10">
+
+        <!-- For Beginners -->
+        <div>
+          <h3 class="text-[18px] font-medium leading-none text-primary mb-5 ">For Beginners</h3>
+
+          <ul class="space-y-3 text-text-secondary  ">
+            <li>
+              <a routerLink="/auth/register" class="hover:text-primary  ">
+                New Account
+              </a>
+            </li>
+            <li>
+              <a routerLink="/auth/login" class="hover:text-primary">
+                Start Booking a Room
+              </a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-primary">
+                Use Payments
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Explore Us -->
+        <div>
+          <h3 class="text-[18px] font-medium leading-none text-primary mb-5">Explore Us</h3>
+
+          <ul class="space-y-3 text-text-secondary">
+            <li><a href="#">Our Careers</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Connect Us -->
+        <div>
+          <h3 class="text-[18px] font-medium leading-none text-primary mb-5">Connect Us</h3>
+
+          <ul class="space-y-3 text-text-secondary">
+            <li>support@staycation.id</li>
+            <li>021 - 2208 - 1996</li>
+            <li>Staycation, Kemang, Jakarta</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class=" mt-12 pt-6 text-center text-text-secondary">
+      Copyright 2019 • All rights reserved • Staycation
+    </div>
+
+  </div>
+</footer>
