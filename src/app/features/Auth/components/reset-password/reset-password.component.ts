@@ -11,10 +11,13 @@ import { MessageService } from 'primeng/api';
 import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
 import { AuthHeaderComponent } from '../../../../shared/components/auth/auth-header/auth-header.component';
 import { AuthImageSectionComponent } from '../../../../shared/components/auth/auth-image-section/auth-image-section.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+
 @Component({
   standalone: true,
   selector: 'app-reset-password',
   imports: [
+    TranslatePipe,
     ReactiveFormsModule,
     CommonModule,
     InputTextModule,
@@ -32,6 +35,7 @@ export class ResetPasswordComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
   private readonly messageService = inject(MessageService);
+  private translate = inject(TranslateService);
 
   userEmail: string | null = localStorage.getItem('userEmail');
 
@@ -70,7 +74,7 @@ export class ResetPasswordComponent implements OnInit {
         this.loading.set(false);
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
+          summary: this.translate.instant('COMMON.SUCCESS'),
           detail: res.message,
         });
       },
@@ -78,8 +82,8 @@ export class ResetPasswordComponent implements OnInit {
         this.loading.set(false);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: err.error?.message,
+          summary: this.translate.instant('COMMON.ERROR'),
+          detail: err.error?.message ?? this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
         });
       },
       complete: () => {
