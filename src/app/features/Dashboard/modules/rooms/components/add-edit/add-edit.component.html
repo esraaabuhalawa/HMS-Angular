@@ -1,21 +1,14 @@
-
-<form
-  id="roomForm"
-  [formGroup]="roomForm"
-  class="max-w-4xl mx-auto pt-8 p-6"
-  (ngSubmit)="save()"
->
-
-<!-- add-edit button -->
- <div class="flex justify-end mb-8">
+<form id="roomForm" [formGroup]="roomForm" class="max-w-4xl mx-auto pt-8 p-6" (ngSubmit)="save()">
+  <!-- add-edit button -->
+  <div class="flex justify-end mb-8">
     <p-button
       type="submit"
       [label]="roomId ? 'Update Room' : 'Add New Room'"
       [loading]="loading"
-      [disabled]="loading">
+      [disabled]="loading"
+    >
     </p-button>
   </div>
-
 
   <!-- Room Number -->
   <div class="mb-5">
@@ -69,18 +62,36 @@
   </p-fileUpload>
 
   <div class="flex gap-3 mt-3 flex-wrap">
-    @for (img of previewUrls; track img) {
-      <img [src]="img" class="w-20 h-20 object-cover rounded" />
+    <!-- new imgs -->
+    @for (img of previewUrls; track img; let i = $index) {
+      <div class="relative">
+        <img [src]="img" class="w-20 h-20 object-cover rounded border" />
+
+        <button
+          type="button"
+          class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+          (click)="removeSelectedImage(i)"
+        >
+          <i class="pi pi-times"></i>
+        </button>
+      </div>
+    }
+
+    <!-- old imgs -->
+    @if (existingImages.length) {
+      @for (img of existingImages; track img; let i = $index) {
+        <div class="relative">
+          <img [src]="img" class="w-20 h-20 object-cover rounded border" />
+
+          <button
+            type="button"
+            class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+            (click)="removeExistingImage(i)"
+          >
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+      }
     }
   </div>
-
-  @if (existingImages.length) {
-    <div class="flex gap-3 mt-3 flex-wrap">
-      @for (img of existingImages; track img) {
-        <img [src]="img" class="w-20 h-20 object-cover rounded border" />
-      }
-    </div>
-  }
-
-
 </form>
