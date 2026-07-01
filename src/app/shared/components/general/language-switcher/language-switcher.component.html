@@ -1,6 +1,6 @@
 <p-select [options]="languages()" [ngModel]="selectedLanguage()"
   (onChange)="changeLanguage($event.value)"
-  optionLabel="label" [showClear]="false" styleClass="lang-switcher">
+  optionLabel="label" [showClear]="false" class="lang-switcher">
 
   <!-- Currently selected display -->
   <ng-template #selectedItem let-selectedOption>

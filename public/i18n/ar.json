@@ -1,9 +1,29 @@
 {
   "NAV": {
     "HOME": "الرئيسية",
-    "ABOUT": "عن الشركة",
-    "SERVICES": "الخدمات",
-    "CONTACT": "تواصل معنا"
+    "EXPLORE": "استكشف",
+    "REVIEWS": "التقييمات",
+    "FAVORITES": "المفضلة",
+    "LOGIN": "تسجيل دخول",
+    "REGISTER": "تسجيل حساب"
+  },
+  "HOME": {
+    "HERO": {
+      "TITLE_LINE_1": "انسَ ضغوط العمل،",
+      "TITLE_LINE_2": "وابدأ عطلتك القادمة",
+      "DESCRIPTION": "نوفر لك كل ما تحتاجه للاستمتاع بإجازتك مع العائلة وصنع لحظات لا تُنسى.",
+      "START_BOOKING": "ابدأ الحجز",
+      "PICK_DATE": "اختر التاريخ",
+      "DATE_PLACEHOLDER": "اختر تاريخ الوصول والمغادرة",
+      "CAPACITY": "عدد الأشخاص",
+      "EXPLORE": "استكشف"
+    },
+    "SECTIONS": {
+      "MOST_POPULAR": "الإعلانات الأكثر شيوعًا",
+      "HOUSES_WITH_GYM": "منازل تحتوي على صالة رياضية",
+      "HOUSES_WITH_BACKYARD": "منازل بحديقة جميلة",
+      "ADS": "الإعلانات"
+    }
   },
   "LOGIN": {
     "TITLE": "تسجيل الدخول",
@@ -32,11 +52,31 @@
     "HEADER_TITLE": "نسيت كلمة المرور",
     "HEADER_SUBTITLE": "منازل فريدة مثل أصحابها."
   },
+  "RESET": {
+  "TITLE": "إعادة تعيين كلمة المرور",
+  "DESCRIPTION": "لقد أرسلنا رمز تحقق إلى بريدك الإلكتروني. من فضلك تحقق من بريدك الوارد وأدخل الرمز للمتابعة.",
+  "SIGN_IN": "تسجيل الدخول",
+  "EMAIL_LABEL": "البريد الإلكتروني",
+  "EMAIL_PLACEHOLDER": "اكتب هنا...",
+  "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
+  "EMAIL_INVALID": "صيغة البريد الإلكتروني غير صحيحة",
+  "OTP_LABEL": "رمز التحقق",
+  "OTP_REQUIRED": "رمز التحقق مطلوب",
+  "PASSWORD_LABEL": "كلمة المرور",
+  "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
+  "PASSWORD_PATTERN": "يجب أن تحتوي كلمة المرور على حرف كبير وحرف صغير ورمز خاص وألا تقل عن 6 أحرف",
+  "CONFIRM_PASSWORD_LABEL": "تأكيد كلمة المرور",
+  "CONFIRM_PASSWORD_REQUIRED": "تأكيد كلمة المرور مطلوب",
+  "PASSWORDS_DO_NOT_MATCH": "كلمتا المرور غير متطابقتين",
+  "RESET_BUTTON": "إعادة التعيين",
+  "IMAGE_ALT": "إعادة تعيين كلمة المرور"
+},
   "ROOMS": {
-    "ROOM": "غرفه"
+    "ROOM": "غرفه",
+    "NO_ROOMS_MATCH": "لا توجد غرف تطابق بحثك."
   },
   "ROOM_DETAILS": {
-    "BACK_TO_ROOMS":"العودة إلي الغرف",
+    "BACK_TO_ROOMS": "العودة إلي الغرف",
     "ROOM": "غرفة",
     "ADDED_BY": "تمت الإضافة بواسطة",
     "PER_NIGHT": "/ ليلة",
@@ -48,6 +88,36 @@
     "CREATED": "تاريخ الإنشاء",
     "LAST_UPDATED": "آخر تحديث"
   },
+  "REVIEWS": {
+  "YOUR_RATING": "أضف تقييمك",
+  "MESSAGE": "رسالتك",
+  "MESSAGE_PLACEHOLDER": "اكتب رسالتك هنا ...",
+  "RATE_BUTTON": "تقييم",
+  "REVIEWS_COUNT": "التقييمات ({{count}})",
+  "GUEST_USER": "ضيف",
+  "SUBMIT_SUCCESS": "تم إرسال تقييمك بنجاح",
+  "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى"
+},
+"COMMENTS": {
+  "ADD_COMMENT": "أضف تعليقك",
+  "COMMENT":"تعليقك",
+  "EDIT_COMMENT": "تعديل تعليقك",
+  "SUBTITLE": "شارك رأيك عن هذه الغرفة مع الضيوف الآخرين",
+  "COMMENT_PLACEHOLDER": "اكتب تعليقك هنا ...",
+  "SEND_BUTTON": "إرسال",
+  "UPDATE_BUTTON": "تحديث",
+  "CANCEL_BUTTON": "إلغاء",
+  "COMMENTS_COUNT": "التعليقات ({{count}})",
+  "GUEST_USER": "ضيف",
+  "SUBMIT_SUCCESS": "تم إضافة تعليقك بنجاح",
+  "UPDATE_SUCCESS": "تم تحديث تعليقك بنجاح",
+  "DELETE_SUCCESS": "تم حذف التعليق بنجاح",
+  "DELETE_ERROR": "فشل حذف التعليق",
+  "UPDATE_ERROR": "فشل تحديث التعليق",
+  "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى",
+  "DELETE_CONFIRM_TITLE": "تأكيد الحذف",
+  "DELETE_CONFIRM_MESSAGE": "هل أنت متأكدة من حذف هذا التعليق؟"
+},
   "ALERTS": {
     "DELETE_TITLE": "حذف {{entity}}؟",
     "DELETE_MESSAGE": "هل أنت متأكد من حذف ؟",
@@ -104,6 +174,11 @@
       "ACTIVE": "نشط"
     }
   },
+  "ROOM_CARD": {
+    "VIEW_DETAILS": "عرض التفاصيل",
+    "ADD_TO_WISHLIST": "إضافة إلى المفضلة",
+    "Add to Wishlist":"حذف من المفضلة"
+  },
   "COMMON": {
     "CHECK_ALL_DETAILS": "يمكنك الاطلاع على جميع التفاصيل",
     "ADD_NEW": "إضافة جديد",
@@ -113,7 +188,11 @@
     "CREATE": "إنشاء",
     "UPDATE": "تحديث",
     "ACTIVE": "نشط",
-    "INACTIVE": "غير نشط"
+    "INACTIVE": "غير نشط",
+    "NO_RESULTS": "لا توجد نتائج",
+    "ADDED_TO_FAVORITES": "تمت إضافة الغرفة إلى المفضلة بنجاح.",
+    "PLEASE_LOG_IN_FIRST": "من فضلك، قم بتسجيل الدخول أولا",
+    "REMOVED_FROM_FAVORITES": "تمت إزالة الغرفة من المفضلة بنجاح"
   },
   "SEARCH_PLACEHOLDER": "ابحث هنا..."
 }
