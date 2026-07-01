@@ -1,6 +1,8 @@
 <div class="flex flex-col gap-4 w-full p-5 rounded-xl border border-gray-200 bg-white shadow-sm">
   <div class="flex flex-col gap-8">
-    <span class="text-[#152463] font-semibold text-lg uppercase tracking-wide">Your Rating</span>
+    <span class="text-[#152463] font-semibold text-lg uppercase tracking-wide">{{
+      'REVIEWS.YOUR_RATING' | translate
+    }}</span>
     <div class="flex items-center gap-2">
       <div class="flex gap-1">
         @for (star of stars; track star) {
@@ -17,12 +19,14 @@
   </div>
 
   <div class="flex flex-col gap-3">
-    <span class="text-[#152463] font-semibold text-sm uppercase tracking-wide">Message</span>
+    <span class="text-[#152463] font-semibold text-sm uppercase tracking-wide">{{
+      'REVIEWS.MESSAGE' | translate
+    }}</span>
     <textarea
       pTextarea
       [(ngModel)]="message"
       rows="4"
-      placeholder="Write Your Message here ..."
+      [placeholder]="'REVIEWS.MESSAGE_PLACEHOLDER' | translate"
       class="w-full resize-none"
     ></textarea>
   </div>
@@ -30,7 +34,7 @@
   <button
     pButton
     type="button"
-    label="Rate"
+    [label]="'REVIEWS.RATE_BUTTON' | translate"
     [loading]="isSubmitting()"
     (click)="submitRate()"
     class="!rounded-md !text-sm w-full"
@@ -42,7 +46,7 @@
       (click)="toggleReviews()"
       class="flex items-center justify-between text-sm font-medium text-[#152463] pt-3 border-t border-gray-100 cursor-pointer"
     >
-      <span>Reviews ({{ reviews().length }})</span>
+      <span>{{ 'REVIEWS.REVIEWS_COUNT' | translate: { count: reviews().length } }}</span>
       <i
         class="pi"
         [class.pi-chevron-down]="!showReviews()"

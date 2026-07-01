@@ -1,17 +1,19 @@
 <div class="flex flex-col gap-6 w-full p-7 rounded-xl border border-gray-200 bg-white shadow-sm">
   <div class="flex flex-col gap-2.5">
     <span class="text-[#152463] font-semibold text-lg uppercase tracking-wide">
-      {{ isEditing() ? 'Edit Your Comment' : 'Add Your Comment' }}
+      {{ (isEditing() ? 'COMMENTS.EDIT_COMMENT' : 'COMMENTS.ADD_COMMENT') | translate }}
     </span>
-    <span class="text-sm text-gray-400">Share your thoughts about this room with other guests</span>
-    <span class="text-[#152463] font-semibold text-sm uppercase tracking-wide">Comment</span>
+    <span class="text-sm text-gray-400">{{ 'COMMENTS.SUBTITLE' | translate }}</span>
+    <span class="text-[#152463] font-semibold text-sm uppercase tracking-wide">{{
+      'COMMENTS.COMMENT' | translate
+    }}</span>
 
     <textarea
       pTextarea
       [ngModel]="commentText()"
       (ngModelChange)="commentText.set($event)"
       rows="4"
-      placeholder="Write Your Comment here ..."
+      [placeholder]="'COMMENTS.COMMENT_PLACEHOLDER' | translate"
       class="w-full resize-none border p-2 rounded-md focus:outline-none focus:border-[#152463]"
     ></textarea>
   </div>
@@ -20,7 +22,7 @@
     <button
       pButton
       type="button"
-      [label]="isEditing() ? 'Update' : 'Send'"
+      [label]="(isEditing() ? 'COMMENTS.UPDATE_BUTTON' : 'COMMENTS.SEND_BUTTON') | translate"
       [loading]="isSubmitting()"
       (click)="handleCommentSubmit()"
       class="!rounded-md !text-sm flex-1"
@@ -30,7 +32,7 @@
       <button
         pButton
         type="button"
-        label="Cancel"
+        label="'COMMENTS.CANCEL_BUTTON' | translate"
         (click)="cancelEdit()"
         class="!rounded-md !text-sm p-button-secondary bg-gray-200 !text-gray-700 hover:bg-gray-300"
       ></button>
@@ -43,7 +45,7 @@
       (click)="toggleComments()"
       class="flex items-center justify-between text-sm font-medium text-[#152463] pt-3 border-t border-gray-100 cursor-pointer"
     >
-      <span>Comments ({{ comments().length }})</span>
+      <span>{{ 'COMMENTS.COMMENTS_COUNT' | translate: { count: comments().length } }}</span>
       <i
         class="pi"
         [class.pi-chevron-down]="!showComments()"
@@ -82,7 +84,7 @@
                 >
                   <button
                     (click)="editComment(item)"
-                    title="Edit Comment"
+                    title="'COMMENTS.EDIT_COMMENT' | translate"
                     class="text-blue-600 hover:text-blue-800 cursor-pointer p-1 rounded hover:bg-blue-50 transition-colors"
                   >
                     <i class="pi pi-pencil text-base md:text-lg"></i>
@@ -92,7 +94,7 @@
 
                   <button
                     (click)="deleteComment(item._id)"
-                    title="Delete Comment"
+                    title="'COMMENTS.DELETE_CONFIRM_TITLE' | translate"
                     class="text-red-500 hover:text-red-700 cursor-pointer p-1 rounded hover:bg-red-50 transition-colors"
                   >
                     <i class="pi pi-trash text-base md:text-lg"></i>

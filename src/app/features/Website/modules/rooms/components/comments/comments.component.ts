@@ -8,9 +8,11 @@ import { RoomsService } from '../../services/rooms.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RoomComment } from '../../interfaces/rooms.interface';
 import { AuthService } from '../../../../../Auth/services/auth.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-comments',
-  imports: [FormsModule, ButtonModule, TextareaModule, ConfirmDialogModule],
+  imports: [FormsModule, ButtonModule, TextareaModule, ConfirmDialogModule, TranslatePipe],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.scss',
   providers: [ConfirmationService],
@@ -20,7 +22,7 @@ export class CommentsComponent implements OnInit {
   private confirmationService = inject(ConfirmationService);
   private readonly roomsService = inject(RoomsService);
   private readonly authService = inject(AuthService);
-
+  private translate = inject(TranslateService);
   roomId = input.required<string>();
   showComments = signal<boolean>(false);
   commentText = signal<string>('');
@@ -84,16 +86,16 @@ export class CommentsComponent implements OnInit {
 
           this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: 'Your comment has been added successfully',
+            summary: this.translate.instant('COMMON.SUCCESS'),
+            detail: this.translate.instant('COMMENTS.SUBMIT_SUCCESS'),
           });
         },
         error: (err: HttpErrorResponse) => {
           this.isSubmitting.set(false);
           this.messageService.add({
             severity: 'error',
-            summary: 'Error',
-            detail: err.error?.message ?? 'Something went wrong, please try again',
+            summary: this.translate.instant('COMMON.ERROR'),
+            detail: err.error?.message ?? this.translate.instant('COMMENTS.SUBMIT_ERROR'),
           });
         },
       });
@@ -150,8 +152,8 @@ export class CommentsComponent implements OnInit {
         this.cancelEdit();
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'Your comment has been updated successfully',
+          summary: this.translate.instant('COMMON.SUCCESS'),
+          detail: this.translate.instant('COMMENTS.UPDATE_SUCCESS'),
         });
       },
       error: (err: HttpErrorResponse) => {
@@ -160,8 +162,8 @@ export class CommentsComponent implements OnInit {
         this.isSubmitting.set(false);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: err.error?.message ?? 'Failed to update comment',
+          summary: this.translate.instant('COMMON.ERROR'),
+          detail: err.error?.message ?? this.translate.instant('COMMENTS.UPDATE_ERROR'),
         });
       },
     });
@@ -174,8 +176,8 @@ export class CommentsComponent implements OnInit {
 
   deleteComment(commentId: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete this comment?',
-      header: 'Delete Confirmation',
+      message: this.translate.instant('COMMENTS.DELETE_CONFIRM_MESSAGE'),
+      header: this.translate.instant('COMMENTS.DELETE_CONFIRM_TITLE'),
       icon: 'pi pi-exclamation-triangle',
       acceptIcon: 'none',
       rejectIcon: 'none',
@@ -192,15 +194,15 @@ export class CommentsComponent implements OnInit {
 
             this.messageService.add({
               severity: 'success',
-              summary: 'Confirmed',
-              detail: 'Comment deleted successfully',
+              summary: this.translate.instant('COMMON.SUCCESS'),
+              detail: this.translate.instant('COMMENTS.DELETE_SUCCESS'),
             });
           },
           error: () => {
             this.messageService.add({
               severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to delete comment',
+              summary: this.translate.instant('COMMON.ERROR'),
+              detail: this.translate.instant('COMMENTS.DELETE_ERROR'),
             });
           },
         });

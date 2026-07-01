@@ -6,14 +6,20 @@ import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RoomsService } from '../../services/rooms.service';
 import { RoomReview } from '../../interfaces/rooms.interface';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [FormsModule, ButtonModule, TextareaModule],
+  imports: [FormsModule, ButtonModule, TextareaModule, TranslatePipe],
   templateUrl: './reviews.component.html',
 })
 export class ReviewsComponent implements OnInit {
+  private roomsService = inject(RoomsService);
+  private messageService = inject(MessageService);
+
+  private translate = inject(TranslateService);
+
   roomId = input.required<string>();
 
   stars = [1, 2, 3, 4, 5];
@@ -24,9 +30,6 @@ export class ReviewsComponent implements OnInit {
   reviews = signal<RoomReview[]>([]);
   isLoadingReviews = signal<boolean>(false);
   showReviews = signal<boolean>(false);
-
-  private roomsService = inject(RoomsService);
-  private messageService = inject(MessageService);
 
   ngOnInit() {
     this.loadReviews();
@@ -82,16 +85,16 @@ export class ReviewsComponent implements OnInit {
           this.reviews.update((list) => [res.data, ...list]);
           this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: 'Your review has been submitted successfully',
+            summary: this.translate.instant('COMMON.SUCCESS'),
+            detail: this.translate.instant('REVIEWS.SUBMIT_SUCCESS'),
           });
         },
         error: (err: HttpErrorResponse) => {
           this.isSubmitting.set(false);
           this.messageService.add({
             severity: 'error',
-            summary: 'Error',
-            detail: err.error?.message ?? 'Something went wrong, please try again',
+            summary: this.translate.instant('COMMON.ERROR'),
+            detail: err.error?.message ?? this.translate.instant('REVIEWS.SUBMIT_ERROR'),
           });
         },
       });
