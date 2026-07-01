@@ -42,6 +42,17 @@ export class AuthService {
     return this.http.put<any>('Users', data);
   }
 
+  getCurrentUserId(): string | null {
+    const token = localStorage.getItem('HMSToken');
+    if (!token) return null;
+
+    try {
+      const decoded = jwtDecode<IDecodedToken>(token);
+      return decoded._id;
+    } catch {
+      return null;
+    }
+  }
   //====== get logged person Data ======
   getCurrentUserProfile(id: string): Observable<ICurrentUserResponse> {
     return this.http.get<ICurrentUserResponse>(`portal/users/${id}`);
