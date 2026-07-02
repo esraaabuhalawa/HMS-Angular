@@ -40,24 +40,27 @@
 
   <!-- Menu -->
   <div class="p-2 flex flex-col gap-1">
-
-    <a routerLink="/" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
+    <a routerLink="/profile" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
       <i class="pi pi-user"></i>
-      Profile
+      {{ 'ACCOUNT.PROFILE' | translate }}
     </a>
 
-    @if(isAdmin){
+    @if (isAdmin) {
     <a routerLink="/dashboard" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
-      <i class="pi pi-user"></i>
-      Dashboard
+      <i class="pi pi-th-large"></i>
+      {{ 'ACCOUNT.DASHBOARD' | translate }}
     </a>
     }
 
-    <button routerLink="auth/forgot-password"
-      class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm w-full text-left">
+    <a routerLink="/wishlist" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
+      <i class="pi pi-heart"></i>
+      {{ 'ACCOUNT.WISHLIST' | translate }}
+    </a>
+
+    <a routerLink="/auth/change-password" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
       <i class="pi pi-key"></i>
-      Change Password
-    </button>
+      {{ 'ACCOUNT.CHANGE_PASSWORD' | translate }}
+    </a>
 
     <hr class="my-2" />
 

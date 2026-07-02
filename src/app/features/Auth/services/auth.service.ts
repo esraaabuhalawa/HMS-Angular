@@ -11,6 +11,8 @@ import {
   ICurrentUserResponse,
   IResetResponse,
   IReset,
+  IChangePassword,
+  IChangePasswordResponse,
 } from '../interfaces/auth';
 
 @Injectable({
@@ -24,10 +26,6 @@ export class AuthService {
 
   onLogin(data: ILogin): Observable<ILoginResponse> {
     return this.http.post<ILoginResponse>('portal/users/Login', data);
-  }
-
-  onResetPass(data: IReset): Observable<IResetResponse> {
-    return this.http.post<IResetResponse>('portal/users/reset-password', data);
   }
 
   getProfile() {
@@ -115,37 +113,20 @@ export class AuthService {
       });
   }
 
+  onResetPass(data: IReset): Observable<IResetResponse> {
+    return this.http.post<IResetResponse>('portal/users/reset-password', data);
+  }
+
   forgotPassword(email: string): Observable<any> {
     return this.http.post('portal/users/forgot-password', { email });
   }
 
-  // loginWithFacebook(accessToken: string, userID: string): void {
-  //   if (!accessToken || !userID) {
-  //     console.error('Missing accessToken or userID');
-  //     return;
-  //   }
-
-  //   this.http
-  //     .post<ILoginResponse>(`portal/users/auth/facebook`, {
-  //       accessToken: accessToken,
-  //       userID: userID,
-  //     })
-  //     .subscribe({
-  //       next: (res: ILoginResponse) => {
-  //         console.log('Facebook login successful', res);
-  //         if (res.data && res.data.token) {
-  //           localStorage.setItem('HMSToken', res.data.token);
-  //           this.getProfile();
-  //           this.router.navigate(['/dashboard/home']);
-  //         }
-  //       },
-  //       error: (err) => {
-  //         console.error('Facebook login error:', err.error);
-  //       },
-  //     });
-  // }
+  changePassword(data:IChangePassword): Observable<IChangePasswordResponse> {
+    return this.http.post<IChangePasswordResponse>('portal/users/change-password',data);
+  }
 
   register(data: FormData): Observable<ICurrentUserResponse> {
     return this.http.post<ICurrentUserResponse>('admin/users', data);
   }
+
 }

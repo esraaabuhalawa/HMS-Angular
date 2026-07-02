@@ -1,4 +1,5 @@
 import { JwtPayload } from 'jwt-decode';
+import { IApiResponse } from '../../../shared/interfaces/general.interface';
 
 export interface IDecodedToken extends JwtPayload {
   _id: string;
@@ -25,21 +26,13 @@ export interface ICurrentUser {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IChangePassword {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
 // ======Response Interfaces=======
-export interface ICurrentUserResponse {
-  success: boolean;
-  message: string;
-  data: {
-    user: ICurrentUser;
-  };
-}
-
-export interface ILoginResponse {
-  success: boolean;
-  message: string;
-  data: ILoginData;
-}
-
 export interface ILoginData {
   user: IUser;
   token: string;
@@ -57,6 +50,11 @@ export interface IReset {
   confirmPassword: string;
   seed: string;
 }
-export interface IResetResponse {
-  message: string;
-}
+
+export type ILoginResponse = IApiResponse<ILoginData>;
+
+export type ICurrentUserResponse = IApiResponse<{ user: ICurrentUser }>;
+
+export type IResetResponse = IApiResponse<null>;
+
+export type IChangePasswordResponse = IApiResponse<null>;

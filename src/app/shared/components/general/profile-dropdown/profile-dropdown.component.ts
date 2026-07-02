@@ -6,9 +6,10 @@ import { Popover } from 'primeng/popover';
 import { RoleEnum } from '../../../../core/enums/role.enum';
 import { ICurrentUser } from '../../../../features/Auth/interfaces/auth';
 import { AuthService } from '../../../../features/Auth/services/auth.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-profile-dropdown',
-  imports: [AsyncPipe, RouterLink, Popover, Skeleton,],
+  imports: [AsyncPipe, RouterLink, Popover, Skeleton,TranslatePipe],
   templateUrl: './profile-dropdown.component.html',
   styleUrl: './profile-dropdown.component.scss',
 })

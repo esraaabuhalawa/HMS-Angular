@@ -8,6 +8,7 @@ import { RoomsService } from '../../services/rooms.service';
 import { RoomReview } from '../../interfaces/rooms.interface';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../../../../Auth/services/auth.service';
+import { RoleEnum } from '../../../../../../core/enums/role.enum';
 
 @Component({
   selector: 'app-reviews',
@@ -33,7 +34,7 @@ export class ReviewsComponent implements OnInit {
   showReviews = signal<boolean>(false);
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
       this.loadReviews();
     }
   }
