@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RoomComment } from '../../interfaces/rooms.interface';
 import { AuthService } from '../../../../../Auth/services/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { RoleEnum } from '../../../../../../core/enums/role.enum';
 
 @Component({
   selector: 'app-comments',
@@ -34,7 +35,7 @@ export class CommentsComponent implements OnInit {
   editingCommentId = signal<string | null>(null);
 
   ngOnInit() {
-    if( this.authService.isLoggedIn()){
+    if( this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
       this.loadComments();
     }
   }

@@ -53,24 +53,33 @@
     "HEADER_SUBTITLE": "منازل فريدة مثل أصحابها."
   },
   "RESET": {
-  "TITLE": "إعادة تعيين كلمة المرور",
-  "DESCRIPTION": "لقد أرسلنا رمز تحقق إلى بريدك الإلكتروني. من فضلك تحقق من بريدك الوارد وأدخل الرمز للمتابعة.",
-  "SIGN_IN": "تسجيل الدخول",
-  "EMAIL_LABEL": "البريد الإلكتروني",
-  "EMAIL_PLACEHOLDER": "اكتب هنا...",
-  "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
-  "EMAIL_INVALID": "صيغة البريد الإلكتروني غير صحيحة",
-  "OTP_LABEL": "رمز التحقق",
-  "OTP_REQUIRED": "رمز التحقق مطلوب",
-  "PASSWORD_LABEL": "كلمة المرور",
-  "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
-  "PASSWORD_PATTERN": "يجب أن تحتوي كلمة المرور على حرف كبير وحرف صغير ورمز خاص وألا تقل عن 6 أحرف",
-  "CONFIRM_PASSWORD_LABEL": "تأكيد كلمة المرور",
-  "CONFIRM_PASSWORD_REQUIRED": "تأكيد كلمة المرور مطلوب",
-  "PASSWORDS_DO_NOT_MATCH": "كلمتا المرور غير متطابقتين",
-  "RESET_BUTTON": "إعادة التعيين",
-  "IMAGE_ALT": "إعادة تعيين كلمة المرور"
-},
+    "TITLE": "إعادة تعيين كلمة المرور",
+    "DESCRIPTION": "لقد أرسلنا رمز تحقق إلى بريدك الإلكتروني. من فضلك تحقق من بريدك الوارد وأدخل الرمز للمتابعة.",
+    "SIGN_IN": "تسجيل الدخول",
+    "EMAIL_LABEL": "البريد الإلكتروني",
+    "EMAIL_PLACEHOLDER": "اكتب هنا...",
+    "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
+    "EMAIL_INVALID": "صيغة البريد الإلكتروني غير صحيحة",
+    "OTP_LABEL": "رمز التحقق",
+    "OTP_REQUIRED": "رمز التحقق مطلوب",
+    "PASSWORD_LABEL": "كلمة المرور",
+    "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
+    "PASSWORD_PATTERN": "يجب أن تحتوي كلمة المرور على حرف كبير وحرف صغير ورمز خاص وألا تقل عن 6 أحرف",
+    "CONFIRM_PASSWORD_LABEL": "تأكيد كلمة المرور",
+    "CONFIRM_PASSWORD_REQUIRED": "تأكيد كلمة المرور مطلوب",
+    "PASSWORDS_DO_NOT_MATCH": "كلمتا المرور غير متطابقتين",
+    "RESET_BUTTON": "إعادة التعيين",
+    "IMAGE_ALT": "إعادة تعيين كلمة المرور",
+    "OLD_PASSWORD_LABEL": "كلمة المرور القديمة",
+    "NEW_PASSWORD_LABEL": "كلمة المرور الجديدة"
+  },
+  "ACCOUNT": {
+    "PROFILE": "الملف الشخصي",
+    "DASHBOARD": "لوحة التحكم",
+    "WISHLIST": "المفضلة",
+    "CHANGE_PASSWORD": "تغيير كلمة المرور",
+    "LOGOUT": "تسجيل الخروج"
+  },
   "ROOMS": {
     "ROOM": "غرفه",
     "NO_ROOMS_MATCH": "لا توجد غرف تطابق بحثك."
@@ -89,35 +98,35 @@
     "LAST_UPDATED": "آخر تحديث"
   },
   "REVIEWS": {
-  "YOUR_RATING": "أضف تقييمك",
-  "MESSAGE": "رسالتك",
-  "MESSAGE_PLACEHOLDER": "اكتب رسالتك هنا ...",
-  "RATE_BUTTON": "تقييم",
-  "REVIEWS_COUNT": "التقييمات ({{count}})",
-  "GUEST_USER": "ضيف",
-  "SUBMIT_SUCCESS": "تم إرسال تقييمك بنجاح",
-  "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى"
-},
-"COMMENTS": {
-  "ADD_COMMENT": "أضف تعليقك",
-  "COMMENT":"تعليقك",
-  "EDIT_COMMENT": "تعديل تعليقك",
-  "SUBTITLE": "شارك رأيك عن هذه الغرفة مع الضيوف الآخرين",
-  "COMMENT_PLACEHOLDER": "اكتب تعليقك هنا ...",
-  "SEND_BUTTON": "إرسال",
-  "UPDATE_BUTTON": "تحديث",
-  "CANCEL_BUTTON": "إلغاء",
-  "COMMENTS_COUNT": "التعليقات ({{count}})",
-  "GUEST_USER": "ضيف",
-  "SUBMIT_SUCCESS": "تم إضافة تعليقك بنجاح",
-  "UPDATE_SUCCESS": "تم تحديث تعليقك بنجاح",
-  "DELETE_SUCCESS": "تم حذف التعليق بنجاح",
-  "DELETE_ERROR": "فشل حذف التعليق",
-  "UPDATE_ERROR": "فشل تحديث التعليق",
-  "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى",
-  "DELETE_CONFIRM_TITLE": "تأكيد الحذف",
-  "DELETE_CONFIRM_MESSAGE": "هل أنت متأكدة من حذف هذا التعليق؟"
-},
+    "YOUR_RATING": "أضف تقييمك",
+    "MESSAGE": "رسالتك",
+    "MESSAGE_PLACEHOLDER": "اكتب رسالتك هنا ...",
+    "RATE_BUTTON": "تقييم",
+    "REVIEWS_COUNT": "التقييمات ({{count}})",
+    "GUEST_USER": "ضيف",
+    "SUBMIT_SUCCESS": "تم إرسال تقييمك بنجاح",
+    "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى"
+  },
+  "COMMENTS": {
+    "ADD_COMMENT": "أضف تعليقك",
+    "COMMENT": "تعليقك",
+    "EDIT_COMMENT": "تعديل تعليقك",
+    "SUBTITLE": "شارك رأيك عن هذه الغرفة مع الضيوف الآخرين",
+    "COMMENT_PLACEHOLDER": "اكتب تعليقك هنا ...",
+    "SEND_BUTTON": "إرسال",
+    "UPDATE_BUTTON": "تحديث",
+    "CANCEL_BUTTON": "إلغاء",
+    "COMMENTS_COUNT": "التعليقات ({{count}})",
+    "GUEST_USER": "ضيف",
+    "SUBMIT_SUCCESS": "تم إضافة تعليقك بنجاح",
+    "UPDATE_SUCCESS": "تم تحديث تعليقك بنجاح",
+    "DELETE_SUCCESS": "تم حذف التعليق بنجاح",
+    "DELETE_ERROR": "فشل حذف التعليق",
+    "UPDATE_ERROR": "فشل تحديث التعليق",
+    "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى",
+    "DELETE_CONFIRM_TITLE": "تأكيد الحذف",
+    "DELETE_CONFIRM_MESSAGE": "هل أنت متأكدة من حذف هذا التعليق؟"
+  },
   "ALERTS": {
     "DELETE_TITLE": "حذف {{entity}}؟",
     "DELETE_MESSAGE": "هل أنت متأكد من حذف ؟",
@@ -177,7 +186,7 @@
   "ROOM_CARD": {
     "VIEW_DETAILS": "عرض التفاصيل",
     "ADD_TO_WISHLIST": "إضافة إلى المفضلة",
-    "Add to Wishlist":"حذف من المفضلة"
+    "Add to Wishlist": "حذف من المفضلة"
   },
   "COMMON": {
     "CHECK_ALL_DETAILS": "يمكنك الاطلاع على جميع التفاصيل",
@@ -194,5 +203,10 @@
     "PLEASE_LOG_IN_FIRST": "من فضلك، قم بتسجيل الدخول أولا",
     "REMOVED_FROM_FAVORITES": "تمت إزالة الغرفة من المفضلة بنجاح"
   },
-  "SEARCH_PLACEHOLDER": "ابحث هنا..."
+  "SEARCH_PLACEHOLDER": "ابحث هنا...",
+  "CHANGE_PASSWORD": {
+    "TITLE": "تغيير كلمة المرور",
+    "DESCRIPTION": "قم بتحديث كلمة المرور للحفاظ على أمان حسابك. أدخل كلمة المرور الحالية واختر كلمة مرور جديدة.",
+    "CHANGE_BUTTON": "يتغير"
+  }
 }

@@ -4,6 +4,7 @@ import { Toast } from 'primeng/toast';
 import { AuthService } from './features/Auth/services/auth.service';
 import { LanguageService } from './core/services/language.service';
 import { FavoritesService } from './features/Website/modules/favorites/services/favorites.service';
+import { RoleEnum } from './core/enums/role.enum';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class App {
   ngOnInit() {
     this.languageService.initializeLanguage();
     this.authService.loadCurrentUser();
-    if(this.authService.isLoggedIn()){
+    if(this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
       this.favoritesService.loadFavorites();
     }
   }
