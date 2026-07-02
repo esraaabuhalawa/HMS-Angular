@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { RoomsService } from '../../services/rooms.service';
 import { RoomReview } from '../../interfaces/rooms.interface';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../../../../Auth/services/auth.service';
 
 @Component({
   selector: 'app-reviews',
@@ -17,7 +18,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 export class ReviewsComponent implements OnInit {
   private roomsService = inject(RoomsService);
   private messageService = inject(MessageService);
-
+  private authService = inject(AuthService);
   private translate = inject(TranslateService);
 
   roomId = input.required<string>();
@@ -32,7 +33,9 @@ export class ReviewsComponent implements OnInit {
   showReviews = signal<boolean>(false);
 
   ngOnInit() {
-    this.loadReviews();
+    if (this.authService.isLoggedIn()) {
+      this.loadReviews();
+    }
   }
 
   loadReviews() {
