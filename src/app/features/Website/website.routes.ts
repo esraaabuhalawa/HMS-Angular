@@ -9,6 +9,12 @@ export const WEBSITE_ROUTES: Routes = [
         .then(c => c.HomeComponent),
   },
 
+   {
+    path: 'rooms/:id',
+    loadComponent: () =>
+      import('./modules/rooms/components/room-details/room-details.component')
+        .then(c => c.RoomDetailsComponent),
+  },
   // {
   //   path: 'about',
   //   loadComponent: () =>
@@ -22,13 +28,6 @@ export const WEBSITE_ROUTES: Routes = [
   //     import('./rooms/rooms.component')
   //       .then(c => c.RoomsComponent),
   // },
-
-  {
-    path: 'rooms/:id',
-    loadComponent: () =>
-      import('./modules/rooms/components/room-details/room-details.component')
-        .then(c => c.RoomDetailsComponent),
-  },
 
   // {
   //   path: 'offers',

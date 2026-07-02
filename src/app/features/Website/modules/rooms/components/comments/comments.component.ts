@@ -34,7 +34,9 @@ export class CommentsComponent implements OnInit {
   editingCommentId = signal<string | null>(null);
 
   ngOnInit() {
-    this.loadComments();
+    if( this.authService.isLoggedIn()){
+      this.loadComments();
+    }
   }
 
   loadComments() {

@@ -1,6 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { HeroSectionComponent } from '../../../../shared/components/website/home/hero-section/hero-section.component';
-import { RoomCardComponent } from "../../../../shared/components/website/ui/room-card/room-card.component";
 import { CustomersSectionComponent } from '../../../../shared/components/website/home/customers-section/customers-section.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
@@ -11,11 +10,14 @@ import { RoomsService } from '../../modules/rooms/services/rooms.service';
 import { IRoomsResponse } from '../../modules/rooms/interfaces/rooms.interface';
 import { RoomInfoCardComponent } from '../../../../shared/components/website/ui/room-info-card/room-info-card.component';
 import { CardSkeltonComponent } from "../../../../shared/components/website/ui/card-skelton/card-skelton.component";
+import { FacilityEnum } from '../../../../core/enums/facility.enum';
+import { finalize } from 'rxjs';
+import { HomeCommonCardComponent } from "../../../../shared/components/website/ui/home-common-card/home-common-card.component";
 
 @Component({
   selector: 'app-home',
   imports: [HeroSectionComponent, RoomInfoCardComponent,
-    CustomersSectionComponent, CardSkeltonComponent, RoomCardComponent, TranslatePipe],
+    CustomersSectionComponent, CardSkeltonComponent,  TranslatePipe, HomeCommonCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -28,111 +30,84 @@ export class HomeComponent {
   loadingSearch = signal<boolean>(false);
   isLoadingRooms = signal<boolean>(false);
   currentPage: number = 1;
-  pageSize: number = 10;
   totalRecords: number = 0;
+  totalRoomsRecords: number = 0;
   adsList = signal<IAd[]>([]);
-  roomList = signal<IRoom[]>([]);
-
+  allRoomsList = signal<IRoom[]>([]);
   ngOnInit(): void {
     this.fetchAdsData();
-    this.fetchRooms()
+    this.fetchAllRooms();
   }
 
   fetchAdsData() {
     this.isLoading.set(true);
-    this.adsService.getAllAds({ page: this.currentPage, size: 4 }).subscribe({
+    this.adsService.getAllAds({ page: this.currentPage, size: 4 })
+    .pipe(finalize(() => this.isLoading.set(false))).subscribe({
       next: (res: IAdsResponse) => {
         this.adsList.set(res.data.ads);
-        this.totalRecords = res.data.totalCount;
-        this.isLoading.set(false);
       },
-      error: (err) => {
-        this.isLoading.set(false)
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err.message || this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
-        });
-        console.log(err)
-      }
+      error: (err) => { this.showError(err); }
     });
   }
 
-  fetchRooms() {
+  fetchAllRooms() {
     this.isLoadingRooms.set(true);
-    this.roomsService.getAllRooms({
-      page: 1,
-      size: 5,
-    }).subscribe({
+    this.roomsService.getAllRoomsLocally().pipe(
+      finalize(() => this.isLoadingRooms.set(false))).subscribe({
       next: (res: IRoomsResponse) => {
-        this.roomList.set(res.data.rooms);
+        this.allRoomsList.set(res.data.rooms);
         this.totalRecords = res.data.totalCount;
-        this.isLoadingRooms.set(false);
       },
-      error: (err) => {
-        this.isLoadingRooms.set(false);
-        this.messageService.add({
-          severity: 'error',
-          summary: this.translate.instant('COMMON.ERROR'),
-          detail: err?.message || this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
-        });
-      }
+      error: (err) => { this.showError(err); }
     });
   }
 
   onSearch(payload: {
     startDate: string;
     endDate: string;
-    capacity: number;
-  }) {
+    capacity: number;}) {
     this.loadingSearch.set(true);
-    this.roomsService.getAllRooms({
-      page: 1,
-      size: this.totalRecords,
+    this.roomsService.getAllRooms({page: 1,size: this.totalRecords,
       startDate: payload.startDate,
       endDate: payload.endDate,
-    }).subscribe({
+    }).pipe(finalize(() =>
+      this.loadingSearch.set(false))
+    ).subscribe({
       next: (res: IRoomsResponse) => {
         const filtered = res.data.rooms.filter(
           room => !payload.capacity || room.capacity >= payload.capacity
         );
-        this.roomList.set(filtered);
-        this.loadingSearch.set(false);
+        this.allRoomsList.set(filtered);
 
         if (filtered.length === 0) {
           this.messageService.add({
             severity: 'info',
             summary: this.translate.instant('COMMON.NO_RESULTS'),
-            detail: this.translate.instant('ROOMS.NO_ROOMS_MATCH') ,
+            detail: this.translate.instant('ROOMS.NO_ROOMS_MATCH'),
           });
         }
       },
-      error: (err) => {
-        this.loadingSearch.set(false);
-        this.messageService.add({
-          severity: 'error',
-          summary: this.translate.instant('COMMON.ERROR') || 'Error',
-          detail: err?.message || this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
-        });
-      }
+      error: (err) => { this.showError(err); }
     });
   }
 
-  //Get Rooms With Facilities
+  private showError(err: any) {
+    this.messageService.add({
+      severity: 'error',
+      summary: this.translate.instant('COMMON.ERROR'),
+      detail: err?.message || this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
+    });
+  }
+
   housesWithGym = computed(() =>
-    this.roomList().filter(room =>
-      room.facilities.some(
-        facility => facility._id === '6a3fa9b445ec37997cfad11c'
-      )
+    this.allRoomsList().filter(room =>
+      room.facilities.some(facility => facility.name.toLowerCase() === FacilityEnum.Gym)
     )
   );
 
   housesWithPackyard = computed(() =>
-    this.roomList().filter(room =>
-      room.facilities.some(
-        facility => facility._id === '6a3ebb17766e99759771a16a'
-      )
+    this.allRoomsList().filter(room =>
+      room.facilities.some(facility => facility.name.toLowerCase() === FacilityEnum.Backyard)
     )
   );
-
 }
