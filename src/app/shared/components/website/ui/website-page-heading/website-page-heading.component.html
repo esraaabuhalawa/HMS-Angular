@@ -1,19 +1,26 @@
-<div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-8">
+<div
+  class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-8 grid grid-cols-3 items-center gap-4"
+>
+  <div>
+    <p-breadcrumb
+      [model]="breadcrumbs"
+      [home]="home"
+      styleClass="!border-none !bg-transparent !p-0 mb-10"
+    >
+    </p-breadcrumb>
+  </div>
 
-  <p-breadcrumb
-    [model]="breadcrumbs"
-    [home]="home"
-    styleClass="!border-none !bg-transparent !p-0 mb-4">
-  </p-breadcrumb>
+  <div class="text-center mt-4">
+    <h1 class="text-3xl font-bold text-primary">
+      {{ title }}
+    </h1>
 
-  <h1 class="text-3xl font-bold text-slate-800">
-    {{ title }}
-  </h1>
+    @if (description) {
+      <p class="mt-1 text-gray-400">
+        {{ description }}
+      </p>
+    }
+  </div>
 
-  @if (description) {
-    <p class="mt-2 text-gray-500 max-w-2xl">
-      {{ description }}
-    </p>
-  }
-
+  <div></div>
 </div>

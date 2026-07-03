@@ -10,7 +10,8 @@ import { RoomComment } from '../../interfaces/rooms.interface';
 import { AuthService } from '../../../../../Auth/services/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RoleEnum } from '../../../../../../core/enums/role.enum';
-
+import { Router } from '@angular/router';
+import { ConfirmEventType } from 'primeng/api';
 @Component({
   selector: 'app-comments',
   imports: [FormsModule, ButtonModule, TextareaModule, ConfirmDialogModule, TranslatePipe],
@@ -24,6 +25,8 @@ export class CommentsComponent implements OnInit {
   private readonly roomsService = inject(RoomsService);
   private readonly authService = inject(AuthService);
   private translate = inject(TranslateService);
+  private router = inject(Router);
+
   roomId = input.required<string>();
   showComments = signal<boolean>(false);
   commentText = signal<string>('');
@@ -35,7 +38,7 @@ export class CommentsComponent implements OnInit {
   editingCommentId = signal<string | null>(null);
 
   ngOnInit() {
-    if( this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
+    if (this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
       this.loadComments();
     }
   }
@@ -54,6 +57,11 @@ export class CommentsComponent implements OnInit {
   }
 
   handleCommentSubmit() {
+    if (!this.authService.isLoggedIn()) {
+      this.showLoginRequiredDialog();
+      return;
+    }
+
     if (!this.commentText().trim()) return;
 
     if (this.isEditing() && this.editingCommentId()) {
@@ -61,6 +69,32 @@ export class CommentsComponent implements OnInit {
     } else {
       this.submitComment();
     }
+  }
+
+  showLoginRequiredDialog() {
+    this.confirmationService.confirm({
+      message: this.translate.instant('COMMENTS.LOGIN_REQUIRED_MESSAGE'),
+      header: this.translate.instant('COMMENTS.LOGIN_REQUIRED_TITLE'),
+      icon: 'pi pi-user',
+      acceptLabel: this.translate.instant('COMMENTS.LOGIN_BUTTON'),
+      rejectLabel: this.translate.instant('COMMENTS.REGISTER_BUTTON'),
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      acceptButtonStyleClass: 'p-button-primary',
+      rejectButtonStyleClass: 'p-button-outlined',
+      accept: () => {
+        this.router.navigate(['/auth/login']);
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.router.navigate(['/auth/register']);
+            break;
+          case ConfirmEventType.CANCEL:
+            break;
+        }
+      },
+    });
   }
 
   submitComment() {
@@ -109,37 +143,6 @@ export class CommentsComponent implements OnInit {
     this.commentText.set(item.comment);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
-  // updateComment() {
-  //   const id = this.editingCommentId();
-  //   if (!id) return;
-
-  //   this.isSubmitting.set(true);
-  //   this.roomsService.updateComment(id, this.commentText()).subscribe({
-  //     next: (res) => {
-  //       this.isSubmitting.set(false);
-
-  //       this.comments.update((list) =>
-  //         list.map((c) => (c._id === id ? { ...c, comment: this.commentText() } : c)),
-  //       );
-
-  //       this.cancelEdit();
-  //       this.messageService.add({
-  //         severity: 'success',
-  //         summary: 'Success',
-  //         detail: 'Your comment has been updated successfully',
-  //       });
-  //     },
-  //     error: (err: HttpErrorResponse) => {
-  //       this.isSubmitting.set(false);
-  //       this.messageService.add({
-  //         severity: 'error',
-  //         summary: 'Error',
-  //         detail: err.error?.message ?? 'Failed to update comment',
-  //       });
-  //     },
-  //   });
-  // }
 
   updateComment() {
     const id = this.editingCommentId();
