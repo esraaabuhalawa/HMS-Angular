@@ -34,6 +34,7 @@ export class HomeComponent {
   totalRoomsRecords: number = 0;
   adsList = signal<IAd[]>([]);
   allRoomsList = signal<IRoom[]>([]);
+  showAllRooms = signal(false);
   ngOnInit(): void {
     this.fetchAdsData();
     this.fetchAllRooms();
@@ -52,6 +53,7 @@ export class HomeComponent {
 
   fetchAllRooms() {
     this.isLoadingRooms.set(true);
+    this.showAllRooms.set(false);
     this.roomsService.getAllRoomsLocally().pipe(
       finalize(() => this.isLoadingRooms.set(false))).subscribe({
       next: (res: IRoomsResponse) => {
@@ -78,7 +80,7 @@ export class HomeComponent {
           room => !payload.capacity || room.capacity >= payload.capacity
         );
         this.allRoomsList.set(filtered);
-
+        this.showAllRooms.set(true);
         if (filtered.length === 0) {
           this.messageService.add({
             severity: 'info',

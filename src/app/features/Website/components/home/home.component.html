@@ -18,7 +18,8 @@
     } @else {
     <!-- Loaded state: render actual room cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
-      @for (room of allRoomsList().slice(0,5); track room._id; let i = $index) {
+    @for (room of (showAllRooms()? allRoomsList(): allRoomsList().slice(0, 5));track room._id;
+    let i = $index) {
       <!-- First card (i === 0) is featured: spans 2 rows for visual emphasis -->
       <div [class.row-span-2]="i === 0" class="h-full w-full">
         <app-room-info-card [room]="room"></app-room-info-card>
