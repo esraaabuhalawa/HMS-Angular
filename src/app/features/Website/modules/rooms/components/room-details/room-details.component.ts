@@ -17,6 +17,7 @@ export class RoomDetailsComponent {
   private route = inject(ActivatedRoute);
   private roomService = inject(RoomsService);
   private translate = inject(TranslateService);
+  //id
   roomId = this.route.snapshot.paramMap.get('id') ?? '';
   breadcrumbs: MenuItem[] = [
     {
