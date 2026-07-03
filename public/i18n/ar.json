@@ -105,7 +105,11 @@
     "REVIEWS_COUNT": "التقييمات ({{count}})",
     "GUEST_USER": "ضيف",
     "SUBMIT_SUCCESS": "تم إرسال تقييمك بنجاح",
-    "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى"
+    "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى",
+    "LOGIN_REQUIRED_TITLE": "تسجيل الدخول مطلوب",
+"LOGIN_REQUIRED_MESSAGE": "يجب تسجيل الدخول لإضافة تقييم.",
+"LOGIN_BUTTON": "تسجيل الدخول",
+"REGISTER_BUTTON": "إنشاء حساب"
   },
   "COMMENTS": {
     "ADD_COMMENT": "أضف تعليقك",
@@ -125,7 +129,11 @@
     "UPDATE_ERROR": "فشل تحديث التعليق",
     "SUBMIT_ERROR": "حدث خطأ، حاولي مرة أخرى",
     "DELETE_CONFIRM_TITLE": "تأكيد الحذف",
-    "DELETE_CONFIRM_MESSAGE": "هل أنت متأكدة من حذف هذا التعليق؟"
+    "DELETE_CONFIRM_MESSAGE": "هل أنت متأكدة من حذف هذا التعليق؟",
+    "LOGIN_REQUIRED_TITLE": "تسجيل الدخول مطلوب",
+"LOGIN_REQUIRED_MESSAGE": "يجب تسجيل الدخول لإضافة تعليق.",
+"LOGIN_BUTTON": "تسجيل الدخول",
+"REGISTER_BUTTON": "إنشاء حساب"
   },
   "ALERTS": {
     "DELETE_TITLE": "حذف {{entity}}؟",

@@ -105,7 +105,11 @@
     "REVIEWS_COUNT": "Reviews ({{count}})",
     "GUEST_USER": "Guest User",
     "SUBMIT_SUCCESS": "Your review has been submitted successfully",
-    "SUBMIT_ERROR": "Something went wrong, please try again"
+    "SUBMIT_ERROR": "Something went wrong, please try again",
+    "LOGIN_REQUIRED_TITLE": "Login Required",
+"LOGIN_REQUIRED_MESSAGE": "You need to be logged in to add a review.",
+"LOGIN_BUTTON": "Login",
+"REGISTER_BUTTON": "Register"
   },
   "COMMENTS": {
     "ADD_COMMENT": "Add Your Comment",
@@ -125,7 +129,11 @@
     "UPDATE_ERROR": "Failed to update comment",
     "SUBMIT_ERROR": "Something went wrong, please try again",
     "DELETE_CONFIRM_TITLE": "Delete Confirmation",
-    "DELETE_CONFIRM_MESSAGE": "Are you sure you want to delete this comment?"
+    "DELETE_CONFIRM_MESSAGE": "Are you sure you want to delete this comment?",
+    "LOGIN_REQUIRED_TITLE": "Login Required",
+"LOGIN_REQUIRED_MESSAGE": "You need to be logged in to add a comment.",
+"LOGIN_BUTTON": "Login",
+"REGISTER_BUTTON": "Register"
   },
   "ALERTS": {
     "DELETE_TITLE": "Delete {{entity}}?",

@@ -1,5 +1,8 @@
-<app-website-page-heading title="Room Details"
-  description="Browse available rooms and choose the perfect one for your stay." [breadcrumbs]="breadcrumbs">
+<app-website-page-heading
+  [title]="'Room ' + roomDetails()!.data.room.roomNumber"
+  [description]="roomDetails()!.data.room.capacity + ' Guests'"
+  [breadcrumbs]="breadcrumbs"
+>
 </app-website-page-heading>
 
 <!-- Review & Comment -->
