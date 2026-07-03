@@ -95,7 +95,10 @@
     "FACILITIES": "Facilities",
     "NO_FACILITIES": "No facilities listed.",
     "CREATED": "Created",
-    "LAST_UPDATED": "Last updated"
+    "LAST_UPDATED": "Last updated",
+    "TITLE": "Room {{number}}",
+    "GUESTS_COUNT": "{{count}} Guests",
+    "ROOM_DETAILS_TITLE":"Room Details"
   },
   "REVIEWS": {
     "YOUR_RATING": "Your Rating",
@@ -135,6 +138,7 @@
 "LOGIN_BUTTON": "Login",
 "REGISTER_BUTTON": "Register"
   },
+ 
   "ALERTS": {
     "DELETE_TITLE": "Delete {{entity}}?",
     "DELETE_MESSAGE": "Are you sure you want to delete?",
