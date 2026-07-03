@@ -208,5 +208,26 @@
     "TITLE": "Change Password",
     "DESCRIPTION": "Update your password to keep your account secure. Enter your current password and choose a new one.",
     "CHANGE_BUTTON": "Change"
-  }
+  },
+  "HAPPY_CUSTOMERS": {
+  "TITLE": "Happy Family",
+  "REVIEW": "What a great trip with my family and I should try again next time soon",
+  "AUTHOR": "Angga, Product Designer"
+},
+  "FOOTER": {
+  "DESCRIPTION": "We kaboom your beauty holiday instantly and memorable.",
+  "FOR_BEGINNERS": "For Beginners",
+  "NEW_ACCOUNT": "New Account",
+  "START_BOOKING": "Start Booking a Room",
+  "USE_PAYMENTS": "Use Payments",
+  "EXPLORE_US": "Explore Us",
+  "CAREERS": "Our Careers",
+  "PRIVACY": "Privacy",
+  "TERMS": "Terms & Conditions",
+  "CONNECT_US": "Connect Us",
+  "EMAIL": "support@staycation.id",
+  "PHONE": "021 - 2208 - 1996",
+  "ADDRESS": "Staycation, Kemang, Jakarta",
+  "COPYRIGHT": "Copyright 2019 • All rights reserved • Staycation"
+}
 }
