@@ -14,7 +14,7 @@
         </a>
 
         <p class="text-text-secondary leading-7">
-          We kaboom your beauty holiday instantly and memorable.
+          {{ 'FOOTER.DESCRIPTION' | translate }}
         </p>
       </div>
 
@@ -23,22 +23,22 @@
 
         <!-- For Beginners -->
         <div>
-          <h3 class="text-[18px] font-medium leading-none text-primary mb-5 ">For Beginners</h3>
+          <h3 class="text-[18px] font-medium leading-none text-primary mb-5 ">{{ 'FOOTER.FOR_BEGINNERS' | translate }}</h3>
 
           <ul class="space-y-3 text-text-secondary  ">
             <li>
               <a routerLink="/auth/register" class="hover:text-primary  ">
-                New Account
+                {{ 'FOOTER.NEW_ACCOUNT' | translate }}
               </a>
             </li>
             <li>
               <a routerLink="/auth/login" class="hover:text-primary">
-                Start Booking a Room
+                {{ 'FOOTER.START_BOOKING' | translate }}
               </a>
             </li>
             <li>
               <a href="#" class="hover:text-primary">
-                Use Payments
+                {{ 'FOOTER.USE_PAYMENTS' | translate }}
               </a>
             </li>
           </ul>
@@ -46,18 +46,18 @@
 
         <!-- Explore Us -->
         <div>
-          <h3 class="text-[18px] font-medium leading-none text-primary mb-5">Explore Us</h3>
+          <h3 class="text-[18px] font-medium leading-none text-primary mb-5">{{ 'FOOTER.EXPLORE_US' | translate }}</h3>
 
           <ul class="space-y-3 text-text-secondary">
-            <li><a href="#">Our Careers</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">{{ 'FOOTER.CAREERS' | translate }}</a></li>
+            <li><a href="#">{{ 'FOOTER.PRIVACY' | translate }}</a></li>
+            <li><a href="#">{{ 'FOOTER.TERMS' | translate }}</a></li>
           </ul>
         </div>
 
         <!-- Connect Us -->
         <div>
-          <h3 class="text-[18px] font-medium leading-none text-primary mb-5">Connect Us</h3>
+          <h3 class="text-[18px] font-medium leading-none text-primary mb-5">{{ 'FOOTER.CONNECT_US' | translate }}</h3>
 
           <ul class="space-y-3 text-text-secondary">
             <li>support@staycation.id</li>
@@ -72,7 +72,7 @@
 
     <!-- Copyright -->
     <div class=" mt-12 pt-6 text-center text-text-secondary">
-      Copyright 2019 • All rights reserved • Staycation
+      {{ 'FOOTER.COPYRIGHT' | translate }}
     </div>
 
   </div>

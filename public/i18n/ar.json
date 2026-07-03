@@ -208,5 +208,26 @@
     "TITLE": "تغيير كلمة المرور",
     "DESCRIPTION": "قم بتحديث كلمة المرور للحفاظ على أمان حسابك. أدخل كلمة المرور الحالية واختر كلمة مرور جديدة.",
     "CHANGE_BUTTON": "يتغير"
-  }
+  },
+  "HAPPY_CUSTOMERS": {
+  "TITLE": "عائلة سعيدة",
+  "REVIEW": "كانت رحلة رائعة مع عائلتي، وأتطلع لتكرارها مرة أخرى قريبًا...",
+  "AUTHOR": "Angga, مصمم منتجات"
+},
+ "FOOTER": {
+  "DESCRIPTION": "نوفر لك تجربة إقامة مميزة تجعل عطلتك أكثر جمالًا ولا تُنسى.",
+  "FOR_BEGINNERS": "للمبتدئين",
+  "NEW_ACCOUNT": "إنشاء حساب",
+  "START_BOOKING": "ابدأ حجز غرفة",
+  "USE_PAYMENTS": "طرق الدفع",
+  "EXPLORE_US": "استكشف",
+  "CAREERS": "الوظائف",
+  "PRIVACY": "سياسة الخصوصية",
+  "TERMS": "الشروط والأحكام",
+  "CONNECT_US": "تواصل معنا",
+  "EMAIL": "support@staycation.id",
+  "PHONE": "021 - 2208 - 1996",
+  "ADDRESS": "Staycation, Kemang, Jakarta",
+  "COPYRIGHT": "جميع الحقوق محفوظة © 2019 .Staycation"
+}
 }

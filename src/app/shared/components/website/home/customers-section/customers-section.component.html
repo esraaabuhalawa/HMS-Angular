@@ -15,7 +15,7 @@
 
     <!-- Content -->
     <div>
-      <h2 class="text-[24px] font-medium text-primary mb-10">Happy Family</h2>
+      <h2 class="text-[24px] font-medium text-primary mb-10">{{ 'HAPPY_CUSTOMERS.TITLE' | translate }}</h2>
 
       <!-- Stars -->
       <div class="flex gap-1 mb-5">
@@ -27,24 +27,25 @@
       </div>
 
       <p class="text-[32px] leading-[48px] text-primary font-light mb-3">
-        What a great trip with my family and I should try again next time soon ...
+        {{ 'HAPPY_CUSTOMERS.REVIEW' | translate }}
       </p>
 
-      <p class="text-text-secondary mb-10">Angga, Product Designer</p>
+      <p class="text-text-secondary mb-10">{{ 'HAPPY_CUSTOMERS.AUTHOR' | translate }}</p>
 
       <!-- Navigation -->
-      <div>
-        <div class="flex gap-14">
+      <div >
+        <div class="flex  gap-14 " >
           <button type="button" class="cursor-pointer">
             <img
               src="images/icons/icon _ Arrow Circle Left_.svg"
               alt="Previous"
-              class="w-12 h-12"
+              class="w-12 h-12 "
+              style="transform: scaleX(-1);"
             />
           </button>
 
           <button type="button" class="cursor-pointer">
-            <img src="images/icons/icon _ Arrow Circle right_.svg" alt="Next" class="w-12 h-12" />
+            <img src="images/icons/icon _ Arrow Circle right_.svg" alt="Next" class="w-12 h-12" style="transform: scaleX(-1);"  />
           </button>
         </div>
       </div>
