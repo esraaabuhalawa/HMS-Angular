@@ -209,6 +209,15 @@
     "DESCRIPTION": "Update your password to keep your account secure. Enter your current password and choose a new one.",
     "CHANGE_BUTTON": "Change"
   },
+  "BOOKING_DETAILS": {
+    "TITLE": "Booking Table Details",
+    "ROOM_NO": "Room NO.",
+    "PRICE": "Price",
+    "START_DATE": "Start Date",
+    "END_DATE": "End Date",
+    "USER": "User",
+    "ROOMS": "Rooms"
+  },
   "HAPPY_CUSTOMERS": {
   "TITLE": "Happy Family",
   "REVIEW": "What a great trip with my family and I should try again next time soon",

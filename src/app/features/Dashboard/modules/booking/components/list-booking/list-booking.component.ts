@@ -11,6 +11,7 @@ import { EmptyStateComponent } from "../../../../../../shared/components/general
 import { TableModule } from "primeng/table";
 import { ViewBookingComponent } from "../view-booking/view-booking.component";
 import { CurrencyPipe ,DatePipe  } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-booking',
@@ -27,6 +28,7 @@ import { CurrencyPipe ,DatePipe  } from '@angular/common';
     ViewBookingComponent,
     CurrencyPipe,
     DatePipe,
+    TranslatePipe
 
   ],
   templateUrl: './list-booking.component.html',
