@@ -27,5 +27,5 @@ export interface IRoom {
   images: string[];
   createdAt: string;
   updatedAt: string;
+  description: string;
 }
-
