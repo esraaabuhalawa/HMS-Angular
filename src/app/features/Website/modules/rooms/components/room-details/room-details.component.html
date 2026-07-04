@@ -1,6 +1,8 @@
 <app-website-page-heading
-  [title]="'Room ' + roomDetails()!.data.room.roomNumber"
-  [description]="roomDetails()!.data.room.capacity + ' Guests'"
+  [title]="'ROOM_DETAILS.TITLE' | translate: { number: roomDetails()?.data?.room?.roomNumber }"
+  [description]="
+    'ROOM_DETAILS.GUESTS_COUNT' | translate: { count: roomDetails()?.data?.room?.capacity }
+  "
   [breadcrumbs]="breadcrumbs"
 >
 </app-website-page-heading>
