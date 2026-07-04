@@ -29,10 +29,14 @@ import { Skeleton } from 'primeng/skeleton';
 export class RoomDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private roomService = inject(RoomsService);
-
+  private translate = inject(TranslateService);
+  //id
   roomId = this.route.snapshot.paramMap.get('id') ?? '';
-  breadcrumbs: MenuItem[] = [{ label: 'Room Details' }];
-  isLoading = signal(false);
+  breadcrumbs: MenuItem[] = [
+    {
+      label: this.translate.instant('ROOM_DETAILS.ROOM_DETAILS_TITLE'),
+    },
+  ];
 
   dateRange: Date[] | null = null;
   roomDetails: IRoom | null = null;

@@ -95,7 +95,10 @@
     "FACILITIES": "المرافق",
     "NO_FACILITIES": "لا توجد مرافق متاحة.",
     "CREATED": "تاريخ الإنشاء",
-    "LAST_UPDATED": "آخر تحديث"
+    "LAST_UPDATED": "آخر تحديث",
+     "TITLE": "غرفة {{number}}",
+   "GUESTS_COUNT": "{{count}} ضيوف",
+   "ROOM_DETAILS_TITLE":"تفاصيل الغرفة"
   },
   "REVIEWS": {
     "YOUR_RATING": "أضف تقييمك",
