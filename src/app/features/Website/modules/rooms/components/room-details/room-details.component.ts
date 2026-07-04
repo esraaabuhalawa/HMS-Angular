@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommentsComponent } from '../comments/comments.component';
 import { RoomsService } from '../../services/rooms.service';
 import { DatePicker } from 'primeng/datepicker';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { IRoom } from '../../../../../../shared/interfaces/general.interface';
 import { Skeleton } from 'primeng/skeleton';
@@ -40,6 +40,7 @@ export class RoomDetailsComponent implements OnInit {
 
   dateRange: Date[] | null = null;
   roomDetails: IRoom | null = null;
+  isLoading = signal<boolean>(false);
   ngOnInit(): void {
     this.getRoomDetails();
   }
