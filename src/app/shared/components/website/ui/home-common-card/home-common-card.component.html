@@ -11,7 +11,7 @@
 
     <!-- Status Badge (ad only) -->
     @if (variant === 'ad' && isActive !== undefined) {
-    <p-tag [value]="isActive ? 'Available' : 'Unavailable'" [severity]="isActive ? 'success' : 'danger'"
+    <p-tag [value]="(isActive ? 'COMMON.AVAILABLE' : 'COMMON.UNAVAILABLE') | translate" [severity]="isActive ? 'success' : 'danger'"
       class="absolute top-3 start-3 z-10" />
     }
 
@@ -20,9 +20,11 @@
     @if (variant === 'ad') {
     <p-tag [value]="'-' + room.discount + '%'" severity="warn" class="absolute top-3 end-3 z-10" />
     } @else {
-    <span class="absolute top-0 end-0 flex items-center justify-center bg-[#FF498B] text-white
+    <span class="absolute top-0 end-0 rtl:start-0 rtl:end-auto  flex items-center justify-center bg-[#FF498B] text-white
            px-3 py-1.5 text-base font-medium leading-[170%] room-discount">
-      {{ room.discount }}% <span class="mx-2 inline-block" style="font-weight: 200;">OFF</span>
+      {{ room.discount }}% <span class="mx-2 inline-block" style="font-weight: 200;">
+        {{ 'ROOM_DETAILS.OFF' | translate }}
+      </span>
     </span>
     }
     }
@@ -84,7 +86,7 @@
     @if (variant === 'ad') {
     <div class="flex items-center gap-1 text-sm text-gray-500">
       <i class="pi pi-user text-xs"></i>
-      <span>{{ room.capacity }} guests</span>
+      <span>{{ room.capacity }} {{ 'ROOM_DETAILS.GUESTS' | translate }}</span>
     </div>
     }
   </div>

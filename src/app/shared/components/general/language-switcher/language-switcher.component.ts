@@ -6,6 +6,7 @@ interface Language {
   label: string;
   value: string;
   flag: string;
+  font: string;
 }
 @Component({
   selector: 'app-language-switcher',
@@ -20,12 +21,14 @@ export class LanguageSwitcherComponent {
     {
       label: 'English',
       value: 'en',
-      flag: '/images/flags/united-states.png'
+      flag: '/images/flags/united-states.png',
+      font: 'var(--font-en)'
     },
     {
       label: 'العربية',
       value: 'ar',
-      flag: '/images/flags/egypt.png'
+      flag: '/images/flags/egypt.png',
+      font: 'var(--font-ar)'
     }
   ]);
 

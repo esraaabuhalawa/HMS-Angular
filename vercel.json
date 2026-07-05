@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build -- --configuration=production",
+  "outputDirectory": "dist/hms-angular",
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": null,
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

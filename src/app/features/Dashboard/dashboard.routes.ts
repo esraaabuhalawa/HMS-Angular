@@ -11,6 +11,7 @@ export const DASHBOARD_ROUTES: Routes = [
   },
   {
     path: 'ads',
+    title: 'Ads',
     loadComponent: () =>
       import('./modules/Ads/components/ads-list/ads-list.component').then(
         (c) => c.AdsListComponent,
@@ -18,6 +19,7 @@ export const DASHBOARD_ROUTES: Routes = [
   },
   {
     path: 'facilities',
+    title: 'Facilities',
     loadComponent: () =>
       import('./modules/facilities/components/facility-list/facility-list.component').then(
         (c) => c.FacilityListComponent,
@@ -25,6 +27,7 @@ export const DASHBOARD_ROUTES: Routes = [
   },
   {
     path: 'users',
+    title: 'Users',
     loadComponent: () =>
       import('./modules/users/components/user-list/user-list.component').then(
         (c) => c.UserListComponent,
@@ -32,6 +35,7 @@ export const DASHBOARD_ROUTES: Routes = [
   },
   {
     path: 'bookings',
+    title: 'Bookings',
     loadComponent: () =>
       import('./modules/booking/components/list-booking/list-booking.component')
         .then(c => c.ListBookingComponent),

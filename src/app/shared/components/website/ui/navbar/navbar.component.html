@@ -16,19 +16,19 @@
         </li>
 
         <li>
-          <a routerLink="/explore" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
+          <a routerLink="/rooms" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
             {{ 'NAV.EXPLORE' | translate }}
           </a>
         </li>
         @if (isloggedIn) {
-        <li>
+        <!-- <li>
           <a routerLink="/reviews" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
             {{ 'NAV.REVIEWS' | translate }}
           </a>
-        </li>
+        </li> -->
 
         <li>
-          <a routerLink="/favorites" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
+          <a routerLink="/wishlist" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
             {{ 'NAV.FAVORITES' | translate }}
           </a>
         </li>
@@ -101,15 +101,15 @@
       </a>
     </li>
     @if (isloggedIn) {
-    <li>
+    <!-- <li>
       <a routerLink="/reviews" routerLinkActive="active" (click)="isSidebarOpen = false"
         class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
         {{ 'NAV.REVIEWS' | translate }}
       </a>
-    </li>
+    </li> -->
 
     <li>
-      <a routerLink="/favorites" routerLinkActive="active" (click)="isSidebarOpen = false"
+      <a routerLink="/wishlist" routerLinkActive="active" (click)="isSidebarOpen = false"
         class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
         {{ 'NAV.FAVORITES' | translate }}
       </a>

@@ -36,7 +36,7 @@
   <!-- Title (bottom of image) -->
   <div class="absolute bottom-[-10px] inset-x-0 z-10 p-3">
     <h3 class="line-clamp-1 text-[20px] font-regular text-white">
-      Room #{{room.roomNumber }}
+      {{ 'ROOMS.ROOM' | translate }} #{{room.roomNumber }}
     </h3>
     <div class="flex flex-wrap gap-2 mb-5">
       @for (facility of room.facilities; track facility._id; let last = $last) {

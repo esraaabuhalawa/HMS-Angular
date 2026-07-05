@@ -5,6 +5,7 @@ import { AuthService } from '../../../../../features/Auth/services/auth.service'
 import { ProfileDropdownComponent } from '../../../general/profile-dropdown/profile-dropdown.component';
 import { LanguageSwitcherComponent } from "../../../general/language-switcher/language-switcher.component";
 import { TranslatePipe } from '@ngx-translate/core';
+import { RoleEnum } from '../../../../../core/enums/role.enum';
 
 @Component({
   selector: 'app-navbar',
