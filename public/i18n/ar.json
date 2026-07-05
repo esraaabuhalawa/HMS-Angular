@@ -80,10 +80,30 @@
     "CHANGE_PASSWORD": "تغيير كلمة المرور",
     "LOGOUT": "تسجيل الخروج"
   },
+ 
+  
   "ROOMS": {
-    "ROOM": "غرفه",
-    "NO_ROOMS_MATCH": "لا توجد غرف تطابق بحثك."
+     "ROOM": "غرفه",
+    "NO_ROOMS_MATCH": "لا توجد غرف تطابق بحثك.",
+    "TITLE": "تفاصيل جدول الغرف",
+    "ADD_NEW": "إضافة غرفة جديدة",
+    "SEARCH_PLACEHOLDER": "بحث برقم الغرفة...",
+    "TAG_PLACEHOLDER": "السعة",
+    "FACILITY_PLACEHOLDER": "المرافق",
+    "ROOM_NUMBER": "رقم الغرفة",
+    "IMAGE": "الصورة",
+    "PRICE": "السعر",
+    "DISCOUNT": "الخصم",
+    "CAPACITY": "السعة",
+    "FACILITY": "المرفق",
+    "EMPTY_STATE": "الغرف",
+    "PAGE_REPORT": "{first} - {last} من {totalRecords}",
+    "VIEW": "عرض",
+    "EDIT": "تعديل",
+    "DELETE": "حذف"
+    
   },
+
   "ROOM_DETAILS": {
     "BACK_TO_ROOMS": "العودة إلي الغرف",
     "ROOM": "غرفة",
@@ -162,6 +182,44 @@
     "BOOKINGS": "الحجوزات",
     "FACILITIES": "المرافق"
   },
+  
+  "FACILITIES": {
+    "TITLE": "تفاصيل جدول المرافق",
+    "ADD_NEW": "إضافة مرفق جديد",
+    "NAME": "الاسم",
+    "CREATED_BY": "أنشئ بواسطة",
+    "CREATED_AT": "تاريخ الإنشاء",
+    "UPDATED_AT": "تاريخ التحديث",
+    "EMPTY_STATE": "المرافق",
+    "PAGE_REPORT": "{first} - {last} من {totalRecords}",
+    "MENU": {
+      "VIEW": "عرض",
+      "EDIT": "تعديل",
+      "DELETE": "حذف"
+    },
+    "DELETE_ENTITY": "مرفق للغرفة"
+  },
+  
+  "FACILITY_DETAILS": {
+    "TITLE": "تفاصيل المرفق",
+    "NAME": "اسم المرفق",
+    "CREATED_BY": "أنشئ بواسطة",
+    "AUDIT_INFO": "معلومات المراجعة",
+    "CREATED_AT": "تاريخ الإنشاء",
+    "UPDATED_AT": "تاريخ التحديث"
+  },
+
+  "FACILITY_FORM": {
+    "ADD_TITLE": "إضافة مرفق",
+    "EDIT_TITLE": "تحديث المرفق",
+    "EDIT_HEADER": "تعديل المرفق",
+    "NAME_LABEL": "الاسم",
+    "NAME_PLACEHOLDER": "اسم المرفق",
+    "SAVE": "حفظ",
+    "UPDATE": "تحديث"
+  },
+
+
   "ADS": {
     "TITLE": "اعلان",
     "PAGE_TITLE": "تفاصيل جدول الإعلانات",

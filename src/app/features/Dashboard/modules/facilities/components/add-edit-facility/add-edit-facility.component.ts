@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
 import { FacilitiesService } from '../../services/facilities.service';
 import { ICreateFacility, IFacility } from '../../interfaces/facilities.interface';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-facility',
-  imports: [Dialog, Button, FormsModule, InputText],
+  imports: [Dialog, Button, FormsModule, InputText, TranslatePipe],
   templateUrl: './add-edit-facility.component.html',
   styleUrl: './add-edit-facility.component.scss',
 })
