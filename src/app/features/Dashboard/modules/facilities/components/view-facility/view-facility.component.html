@@ -8,7 +8,7 @@
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
       <i class="pi pi-eye text-gray-400"></i>
-      <span class="font-md">Facility Details</span>
+      <span class="font-md">{{ 'FACILITY_DETAILS.TITLE' | translate }}</span>
     </div>
   </ng-template>
 
@@ -47,7 +47,7 @@
           <div class="rounded-lg p-3 bg-gray-100">
             <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
               <i class="pi pi-building text-[11px]"></i>
-              Facility Name
+              {{ 'FACILITY_DETAILS.NAME' | translate }}
             </div>
             <div class="font-medium text-lg">
               {{ selectedFacility.name }}
@@ -57,7 +57,7 @@
             <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
               <i class="pi pi-user text-[11px]"></i>
 
-              Created by
+              {{ 'FACILITY_DETAILS.CREATED_BY' | translate }}
             </div>
             <div class="font-medium text-lg">
               {{ selectedFacility.createdBy.userName }}
@@ -71,13 +71,13 @@
       <!-- Audit -->
       <div>
         <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
-          Audit Information
+          {{ 'FACILITY_DETAILS.AUDIT_INFO' | translate }}
         </div>
 
         <div class="flex items-center justify-between py-2">
           <span class="flex items-center gap-2 text-sm text-gray-500">
             <i class="pi pi-calendar-plus"></i>
-            Created at
+            {{ 'FACILITY_DETAILS.CREATED_AT' | translate }}
           </span>
 
           <span class="text-sm">
@@ -90,7 +90,7 @@
         <div class="flex items-center justify-between py-2">
           <span class="flex items-center gap-2 text-sm text-gray-500">
             <i class="pi pi-calendar"></i>
-            Updated at
+            {{ 'FACILITY_DETAILS.UPDATED_AT' | translate }}
           </span>
 
           <span class="text-sm">

@@ -13,12 +13,13 @@ import { DividerModule } from 'primeng/divider';
 import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
 import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
 import { CurrencyPipe } from '@angular/common';
-import { HostListener } from '@angular/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { Facility, IRoom } from '../../../../../../shared/interfaces/general.interface';
 @Component({
   selector: 'app-room-list',
   imports: [
+    TranslatePipe,
     DividerModule,
     PageHeaderComponent,
     TableModule,
@@ -38,6 +39,8 @@ import { Facility, IRoom } from '../../../../../../shared/interfaces/general.int
 export class RoomListComponent {
   private roomsService = inject(RoomsService);
   private alertService = inject(AlertDeleteService);
+  private translate = inject(TranslateService);
+
   rooms = signal<IRoom[]>([]);
   allRooms: IRoom[] = [];
   isLoading = signal<boolean>(true);
@@ -115,17 +118,11 @@ export class RoomListComponent {
       selectedRoom.showActions = !selectedRoom.showActions;
     }
   }
-  // toggleRoomActions(selectedRoom: any): void {
-  //   this.rooms().forEach((room) => {
-  //     if (room !== selectedRoom) (room as any).showActions = false;
-  //   });
-  //   selectedRoom.showActions = !selectedRoom.showActions;
-  // }
 
   //Delete Room
   deleteRoom(room: IRoom) {
     this.alertService.delete({
-      entity: 'ROOMS.ROOM',
+      entity: this.translate.instant('ROOMS.ROOM'),
       label: room.roomNumber,
       request: () => this.roomsService.deleteRoom(room._id),
       onSuccess: () => this.loadRooms(),

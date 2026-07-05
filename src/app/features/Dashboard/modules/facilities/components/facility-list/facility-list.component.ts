@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, computed, OnInit, signal } from '@angular/core';
 import { FacilitiesService } from '../../services/facilities.service';
 import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
 import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
@@ -13,6 +13,8 @@ import { MenuItem } from 'primeng/api';
 import { DatePipe } from '@angular/common';
 import { ViewFacilityComponent } from '../view-facility/view-facility.component';
 import { AddEditComponent } from '../add-edit-facility/add-edit-facility.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { SkeletonColumn } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
 
 @Component({
   selector: 'app-facility-list',
@@ -27,6 +29,7 @@ import { AddEditComponent } from '../add-edit-facility/add-edit-facility.compone
     DatePipe,
     ViewFacilityComponent,
     AddEditComponent,
+    TranslatePipe,
   ],
   templateUrl: './facility-list.component.html',
   styleUrl: './facility-list.component.scss',
@@ -34,6 +37,7 @@ import { AddEditComponent } from '../add-edit-facility/add-edit-facility.compone
 export class FacilityListComponent implements OnInit {
   private facilitiesService = inject(FacilitiesService);
   private alertService = inject(AlertDeleteService);
+  private translate = inject(TranslateService);
 
   facilityList = signal<IFacility[]>([]);
   isLoading = signal<boolean>(true);
@@ -47,20 +51,33 @@ export class FacilityListComponent implements OnInit {
   visible = signal(false);
   showDialog = signal(false);
 
+  skeletonColumns = computed<SkeletonColumn[]>(() => [
+    { header: this.translate.instant('FACILITIES.NAME') },
+    { header: this.translate.instant('FACILITIES.CREATED_BY') },
+    { header: this.translate.instant('FACILITIES.CREATED_AT') },
+    { header: this.translate.instant('FACILITIES.UPDATED_AT') },
+    {
+      header: '',
+      shape: 'circle',
+      width: '1.25rem',
+      height: '1.25rem',
+      borderRadius: '10px',
+    },
+  ]);
   openMenu(event: Event, facility: IFacility, menu: any) {
     this.menuItems = [
       {
-        label: 'View',
+        label: this.translate.instant('FACILITIES.MENU.VIEW'),
         icon: 'pi pi-eye',
         command: () => this.viewFacility(facility),
       },
       {
-        label: 'Edit',
+        label: this.translate.instant('FACILITIES.MENU.EDIT'),
         icon: 'pi pi-pencil',
         command: () => this.updateFacility(facility),
       },
       {
-        label: 'Delete',
+        label: this.translate.instant('FACILITIES.MENU.DELETE'),
         icon: 'pi pi-trash',
         command: () => this.deleteFacility(facility),
       },
@@ -105,7 +122,7 @@ export class FacilityListComponent implements OnInit {
 
   deleteFacility(facility: IFacility) {
     this.alertService.delete({
-      entity: 'facility for Room',
+      entity: this.translate.instant('FACILITIES.DELETE_ENTITY'),
       label: facility.name,
       request: () => this.facilitiesService.deleteFaciliy(facility._id),
       onSuccess: () => this.loadFacilityData(),
