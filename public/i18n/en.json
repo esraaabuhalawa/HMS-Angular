@@ -80,10 +80,30 @@
     "CHANGE_PASSWORD": "Change Password",
     "LOGOUT": "Logout"
   },
+ 
+  
   "ROOMS": {
-    "ROOM": "Room",
-    "NO_ROOMS_MATCH": "No rooms match your search."
+     "ROOM": "Room",
+    "NO_ROOMS_MATCH": "No rooms match your search.",
+    "TITLE": "Rooms Table Details",
+    "ADD_NEW": "Add New Room",
+    "SEARCH_PLACEHOLDER": "Search by number...",
+    "TAG_PLACEHOLDER": "Tag",
+    "FACILITY_PLACEHOLDER": "Facilities",
+    "ROOM_NUMBER": "Room Number",
+    "IMAGE": "Image",
+    "PRICE": "Price",
+    "DISCOUNT": "Discount",
+    "CAPACITY": "Capacity",
+    "FACILITY": "Facility",
+    "EMPTY_STATE": "Rooms",
+    "PAGE_REPORT": "{first} - {last} of {totalRecords}",
+    "VIEW": "View",
+    "EDIT": "Edit",
+    "DELETE": "Delete"
+    
   },
+
   "ROOM_DETAILS": {
     "ROOM": "Room",
     "BACK_TO_ROOMS": "Back to rooms",
@@ -163,6 +183,44 @@
     "BOOKINGS": "Bookings",
     "FACILITIES": "Facilities"
   },
+  
+  "FACILITIES": {
+    "TITLE": "Facilities Table Details",
+    "ADD_NEW": "Add New Facility",
+    "NAME": "Name",
+    "CREATED_BY": "Created by",
+    "CREATED_AT": "Created at",
+    "UPDATED_AT": "Updated at",
+    "EMPTY_STATE": "Facilities",
+    "PAGE_REPORT": "{first} - {last} of {totalRecords}",
+    "MENU": {
+      "VIEW": "View",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
+    },
+    "DELETE_ENTITY": "facility for Room"
+  },
+  
+  "FACILITY_DETAILS": {
+    "TITLE": "Facility Details",
+    "NAME": "Facility Name",
+    "CREATED_BY": "Created by",
+    "AUDIT_INFO": "Audit Information",
+    "CREATED_AT": "Created at",
+    "UPDATED_AT": "Updated at"
+  },
+  
+  "FACILITY_FORM": {
+    "ADD_TITLE": "Add Facility",
+    "EDIT_TITLE": "Update Facility",
+    "EDIT_HEADER": "Edit Facility",
+    "NAME_LABEL": "Name",
+    "NAME_PLACEHOLDER": "Facility name",
+    "SAVE": "Save",
+    "UPDATE": "Update"
+  },
+     
+
   "ADS": {
     "TITLE": "Ad",
     "PAGE_TITLE": "Ads Table Details",

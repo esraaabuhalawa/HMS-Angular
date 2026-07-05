@@ -1,8 +1,11 @@
 <div class="w-full min-h-screen p-6">
   <!-- Page Header -->
   <div class="mb-6">
-    <app-page-header title="Rooms Table Details" linkLabel="Add New Room"
-      [linkUrl]="'/dashboard/rooms/add'"></app-page-header>
+    <app-page-header
+      [title]="'ROOMS.TITLE' | translate"
+      [linkLabel]="'ROOMS.ADD_NEW' | translate"
+      [linkUrl]="'/dashboard/rooms/add'"
+    ></app-page-header>
   </div>
 
   <!-- Search & Filters -->
@@ -10,128 +13,184 @@
     <div class="flex-1 min-w-[280px]">
       <div class="relative w-full flex items-center">
         <i class="pi pi-search text-gray-400 absolute left-3 z-10"></i>
-        <input type="text" pInputText placeholder="Search by number..." [(ngModel)]="searchTerm" (input)="filterRooms()"
-          class="w-full !pl-10 !py-3 !rounded-xl !border-gray-200 !text-sm focus:!border-indigo-500 focus:!ring-1 focus:!ring-indigo-500 !bg-white shadow-sm" />
+        <input
+          type="text"
+          pInputText
+          [placeholder]="'ROOMS.SEARCH_PLACEHOLDER' | translate"
+          [(ngModel)]="searchTerm"
+          (input)="filterRooms()"
+          class="w-full !pl-10 !py-3 !rounded-xl !border-gray-200 !text-sm focus:!border-indigo-500 focus:!ring-1 focus:!ring-indigo-500 !bg-white shadow-sm"
+        />
       </div>
     </div>
 
     <div class="w-[160px]">
-      <p-select [options]="tags()" optionLabel="label" optionValue="value" placeholder="Tag" [(ngModel)]="selectedTag"
-        (onChange)="filterRooms()" class="w-full"
+      <p-select
+        [options]="tags()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'ROOMS.TAG_PLACEHOLDER' | translate"
+        [(ngModel)]="selectedTag"
+        (onChange)="filterRooms()"
+        class="w-full"
         styleClass="w-full !bg-white !border !border-gray-200 !rounded-xl !text-sm !text-gray-400 shadow-sm"
-        inputStyleClass="!py-3 !px-4 !text-sm"></p-select>
+        inputStyleClass="!py-3 !px-4 !text-sm"
+      ></p-select>
     </div>
 
     <div class="w-[160px]">
-      <p-select [options]="facilities()" optionLabel="name" optionValue="_id" placeholder="Facilities"
-        [(ngModel)]="selectedFacility" (onChange)="filterRooms()" class="w-full"
+      <p-select
+        [options]="facilities()"
+        optionLabel="name"
+        optionValue="_id"
+        [placeholder]="'ROOMS.FACILITY_PLACEHOLDER' | translate"
+        [(ngModel)]="selectedFacility"
+        (onChange)="filterRooms()"
+        class="w-full"
         styleClass="w-full !bg-white !border !border-gray-200 !rounded-xl !text-sm !text-gray-400 shadow-sm"
-        inputStyleClass="!py-3 !px-4 !text-sm"></p-select>
+        inputStyleClass="!py-3 !px-4 !text-sm"
+      ></p-select>
     </div>
   </div>
 
   @if (isLoading()) {
-  <app-table-skeleton [rows]="10" [columns]="[
-        { header: 'Room Number' },
-        { header: 'Image' },
-        { header: 'Price' },
-        { header: 'Discount' },
-        { header: 'Capacity' },
-        { header: 'Facility' },
-       { header: '',
-           shape: 'circle',
-          width: '1.25rem',
-          height: '1.25rem',
-          borderRadius: '10px',
-          },
-      ]">
-  </app-table-skeleton>
-  }
-  @else if (!isLoading() && filteredRooms.length === 0) {
-  <div class="w-full py-12 flex flex-col justify-center items-center bg-white">
-    <app-empty-state [elementName]="'Rooms'"></app-empty-state>
-  </div>
-  }
-  @else{
-  <!-- Room List -->
-  <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
-    (click)="toggleRoomActions(null)">
-    <p-table [value]="filteredRooms" [tableStyle]="{ 'min-width': '60rem' }" styleClass="p-datatable-custom">
-      <ng-template pTemplate="header">
-        <tr class="!bg-[#e9ecef]/50 border-b border-gray-100">
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            Room Number
-          </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            Image
-          </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            Price
-          </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            Discount
-          </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            Capacity
-          </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            Facility
-          </th>
-          <th class="!bg-transparent !py-4 !px-6 w-16"></th>
-        </tr>
-      </ng-template>
+    <app-table-skeleton
+      [rows]="10"
+      [columns]="[
+        { header: 'ROOMS.ROOM_NUMBER' | translate },
+        { header: 'ROOMS.IMAGE' | translate },
+        { header: 'ROOMS.PRICE' | translate },
+        { header: 'ROOMS.DISCOUNT' | translate },
+        { header: 'ROOMS.CAPACITY' | translate },
+        { header: 'ROOMS.FACILITY' | translate },
+        { header: '', shape: 'circle', width: '1.25rem', height: '1.25rem', borderRadius: '10px' },
+      ]"
+    >
+    </app-table-skeleton>
+  } @else if (!isLoading() && filteredRooms.length === 0) {
+    <div class="w-full py-12 flex flex-col justify-center items-center bg-white">
+      <app-empty-state [elementName]="'ROOMS.EMPTY_STATE' | translate"></app-empty-state>
+    </div>
+  } @else {
+    <!-- Room List -->
+    <div
+      class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+      (click)="toggleRoomActions(null)"
+    >
+      <p-table
+        [value]="filteredRooms"
+        [tableStyle]="{ 'min-width': '60rem' }"
+        styleClass="p-datatable-custom"
+      >
+        <ng-template pTemplate="header">
+          <tr class="!bg-[#e9ecef]/50 border-b border-gray-100">
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              {{ 'ROOMS.ROOM_NUMBER' | translate }}
+            </th>
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              {{ 'ROOMS.IMAGE' | translate }}
+            </th>
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              {{ 'ROOMS.PRICE' | translate }}
+            </th>
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              {{ 'ROOMS.DISCOUNT' | translate }}
+            </th>
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              {{ 'ROOMS.CAPACITY' | translate }}
+            </th>
+            <th
+              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+            >
+              {{ 'ROOMS.FACILITY' | translate }}
+            </th>
+            <th class="!bg-transparent !py-4 !px-6 w-16"></th>
+          </tr>
+        </ng-template>
 
-      <ng-template pTemplate="body" let-room>
-        <tr class="border-b border-gray-100/70 hover:bg-slate-50/50 transition-colors">
-          <td class="py-4 px-6 text-sm font-medium text-gray-700">{{ room.roomNumber }}</td>
-          <td class="py-4 px-6">
-            @if (room.images && room.images.length > 0) {
-            <img [src]="room.images[0]" class="w-12 h-12 rounded-xl object-cover border border-gray-100" alt="room" />
-            } @else {
-            <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
-              <i class="pi pi-image text-lg"></i>
-            </div>
-            }
-          </td>
-          <td class="py-4 px-6 text-sm text-gray-600">{{ room.price | currency }}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">{{ room.discount }}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">{{ room.capacity }}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">
-            {{ room.facilities.map((f) => f.name).join(', ') }}
-          </td>
-          <td class="py-4 px-6 text-center">
-            <div class="relative inline-block text-left">
-              <button (click)="toggleRoomActions(room); $event.stopPropagation()"
-                class="text-gray-400 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition-all">
-                <i class="pi pi-ellipsis-h text-lg"></i>
-              </button>
-              @if (room.showActions) {
-              <div class="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-1">
-                <button [routerLink]="[`/dashboard/rooms/view/${room._id}`]"
-                  class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
-                  <i class="pi pi-eye text-blue-500"></i> View
-                </button>
-                <button [routerLink]="[`/dashboard/rooms/edit/${room._id}`]"
-                  class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
-                  <i class="pi pi-pencil text-amber-500"></i> Edit
-                </button>
-                <button (click)="deleteRoom(room)"
-                  class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2">
-                  <i class="pi pi-trash"></i> Delete
-                </button>
-              </div>
+        <ng-template pTemplate="body" let-room>
+          <tr class="border-b border-gray-100/70 hover:bg-slate-50/50 transition-colors">
+            <td class="py-4 px-6 text-sm font-medium text-gray-700">{{ room.roomNumber }}</td>
+            <td class="py-4 px-6">
+              @if (room.images && room.images.length > 0) {
+                <img
+                  [src]="room.images[0]"
+                  class="w-12 h-12 rounded-xl object-cover border border-gray-100"
+                  alt="room"
+                />
+              } @else {
+                <div
+                  class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400"
+                >
+                  <i class="pi pi-image text-lg"></i>
+                </div>
               }
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
+            </td>
+            <td class="py-4 px-6 text-sm text-gray-600">{{ room.price | currency }}</td>
+            <td class="py-4 px-6 text-sm text-gray-500">{{ room.discount }}</td>
+            <td class="py-4 px-6 text-sm text-gray-500">{{ room.capacity }}</td>
+            <td class="py-4 px-6 text-sm text-gray-500">
+              {{ room.facilities.map((f) => f.name).join(', ') }}
+            </td>
+            <td class="py-4 px-6 text-center">
+              <div class="relative inline-block text-left">
+                <button
+                  (click)="toggleRoomActions(room); $event.stopPropagation()"
+                  class="text-gray-400 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition-all"
+                >
+                  <i class="pi pi-ellipsis-h text-lg"></i>
+                </button>
+                @if (room.showActions) {
+                  <div
+                    class="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-1"
+                  >
+                    <button
+                      [routerLink]="[`/dashboard/rooms/view/${room._id}`]"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <i class="pi pi-eye text-blue-500"></i>{{ 'ROOMS.VIEW' | translate }}
+                    </button>
+                    <button
+                      [routerLink]="[`/dashboard/rooms/edit/${room._id}`]"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <i class="pi pi-pencil text-amber-500"></i> {{ 'ROOMS.EDIT' | translate }}
+                    </button>
+                    <button
+                      (click)="deleteRoom(room)"
+                      class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                    >
+                      <i class="pi pi-trash"></i> {{ 'ROOMS.DELETE' | translate }}
+                    </button>
+                  </div>
+                }
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
 
-  <!-- Paginator -->
-  <p-paginator [first]="(currentPage - 1) * pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
-    [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
-    currentPageReportTemplate="{first} - {last} of {totalRecords}" (onPageChange)="onPageChange($event)">
-  </p-paginator>
+    <!-- Paginator -->
+    <p-paginator
+      [first]="(currentPage - 1) * pageSize"
+      [rows]="pageSize"
+      [totalRecords]="totalRecords"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [showCurrentPageReport]="true"
+      [currentPageReportTemplate]="'ROOMS.PAGE_REPORT' | translate"
+      (onPageChange)="onPageChange($event)"
+    >
+    </p-paginator>
   }
 </div>

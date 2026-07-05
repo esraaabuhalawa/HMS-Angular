@@ -1,5 +1,5 @@
 <p-dialog
-  [header]="isEditMode ? 'Update Facility' : 'Add Facility'"
+  [header]="(isEditMode ? 'FACILITY_FORM.EDIT_TITLE' : 'FACILITY_FORM.ADD_TITLE') | translate"
   [modal]="true"
   [(visible)]="visible"
   [style]="{ width: '450px' }"
@@ -8,20 +8,29 @@
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
       <i class="pi pi-plus text-gray-400"></i>
-      <span class="font-semibold text-base">{{
-        isEditMode ? 'Edit Facility' : 'Add Facility'
-      }}</span>
+      <span class="font-semibold text-base"
+        >{{ (isEditMode ? 'FACILITY_FORM.EDIT_HEADER' : 'FACILITY_FORM.ADD_TITLE') | translate }}
+      </span>
     </div>
   </ng-template>
 
   <div class="flex flex-col gap-4 p-1">
     <div class="flex flex-col gap-2">
-      <label class="text-sm text-gray-600">Name</label>
-      <input pInputText [(ngModel)]="facilityName" placeholder="Facility name" class="w-full" />
+      <label class="text-sm text-gray-600">{{ 'FACILITY_FORM.NAME_LABEL' | translate }}</label>
+      <input
+        pInputText
+        [(ngModel)]="facilityName"
+        [placeholder]="'FACILITY_FORM.NAME_PLACEHOLDER' | translate"
+        class="w-full"
+      />
     </div>
 
     <div class="flex justify-end gap-2 pt-2">
-      <p-button [label]="isEditMode ? 'Update' : 'Save'" [loading]="loading" (click)="save()" />
+      <p-button
+        [label]="(isEditMode ? 'FACILITY_FORM.UPDATE' : 'FACILITY_FORM.SAVE') | translate"
+        [loading]="loading"
+        (click)="save()"
+      />
     </div>
   </div>
 </p-dialog>
