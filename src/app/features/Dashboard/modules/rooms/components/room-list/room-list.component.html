@@ -19,7 +19,7 @@
           [placeholder]="'ROOMS.SEARCH_PLACEHOLDER' | translate"
           [(ngModel)]="searchTerm"
           (input)="filterRooms()"
-          class="w-full !pl-10 !py-3 !rounded-xl !border-gray-200 !text-sm focus:!border-indigo-500 focus:!ring-1 focus:!ring-indigo-500 !bg-white shadow-sm"
+          class="w-full !pl-10 !py-2.5 !rounded-xl !border-gray-200 !text-sm focus:!border-indigo-500 focus:!ring-1 focus:!ring-indigo-500 !bg-white shadow-sm"
         />
       </div>
     </div>
@@ -73,10 +73,7 @@
     </div>
   } @else {
     <!-- Room List -->
-    <div
-      class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
-      (click)="toggleRoomActions(null)"
-    >
+    <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
       <p-table
         [value]="filteredRooms"
         [tableStyle]="{ 'min-width': '60rem' }"
@@ -142,39 +139,22 @@
             <td class="py-4 px-6 text-sm text-gray-500">
               {{ room.facilities.map((f) => f.name).join(', ') }}
             </td>
+
             <td class="py-4 px-6 text-center">
-              <div class="relative inline-block text-left">
-                <button
-                  (click)="toggleRoomActions(room); $event.stopPropagation()"
-                  class="text-gray-400 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition-all"
-                >
-                  <i class="pi pi-ellipsis-h text-lg"></i>
-                </button>
-                @if (room.showActions) {
-                  <div
-                    class="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-xl border border-gray-100 z-50 py-1"
-                  >
-                    <button
-                      [routerLink]="[`/dashboard/rooms/view/${room._id}`]"
-                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
-                    >
-                      <i class="pi pi-eye text-blue-500"></i>{{ 'ROOMS.VIEW' | translate }}
-                    </button>
-                    <button
-                      [routerLink]="[`/dashboard/rooms/edit/${room._id}`]"
-                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
-                    >
-                      <i class="pi pi-pencil text-amber-500"></i> {{ 'ROOMS.EDIT' | translate }}
-                    </button>
-                    <button
-                      (click)="deleteRoom(room)"
-                      class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
-                    >
-                      <i class="pi pi-trash"></i> {{ 'ROOMS.DELETE' | translate }}
-                    </button>
-                  </div>
-                }
-              </div>
+              <p-menu
+                #menu
+                [popup]="true"
+                [model]="menuItems"
+                styleClass="ad-actions-menu"
+                [appendTo]="'body'"
+              ></p-menu>
+              <p-button
+                icon="pi pi-ellipsis-h"
+                [text]="true"
+                [rounded]="true"
+                (click)="openMenu($event, room, menu)"
+              >
+              </p-button>
             </td>
           </tr>
         </ng-template>
@@ -182,15 +162,17 @@
     </div>
 
     <!-- Paginator -->
-    <p-paginator
-      [first]="(currentPage - 1) * pageSize"
-      [rows]="pageSize"
-      [totalRecords]="totalRecords"
-      [rowsPerPageOptions]="[10, 20, 30]"
-      [showCurrentPageReport]="true"
-      [currentPageReportTemplate]="'ROOMS.PAGE_REPORT' | translate"
-      (onPageChange)="onPageChange($event)"
-    >
-    </p-paginator>
+    <div class="flex items-center mt-7 justify-center">
+      <p-paginator
+        [first]="(currentPage - 1) * pageSize"
+        [rows]="pageSize"
+        [totalRecords]="totalRecords"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [showCurrentPageReport]="true"
+        [currentPageReportTemplate]="'ROOMS.PAGE_REPORT' | translate"
+        (onPageChange)="onPageChange($event)"
+      >
+      </p-paginator>
+    </div>
   }
 </div>
