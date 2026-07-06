@@ -2,9 +2,9 @@ import { Component, inject, signal } from '@angular/core';
 import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
 import { RoomsService } from '../../services/rooms.service';
 import { TableModule } from 'primeng/table';
-import { MenuModule } from 'primeng/menu';
+import { MenuModule, Menu } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { EmptyStateComponent } from '../../../../../../shared/components/general/empty-state/empty-state.component';
 import { FormsModule } from '@angular/forms';
 import { Select } from 'primeng/select';
@@ -14,6 +14,7 @@ import { AlertDeleteService } from '../../../../../../shared/services/alert-dele
 import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MenuItem } from 'primeng/api';
 
 import { Facility, IRoom } from '../../../../../../shared/interfaces/general.interface';
 @Component({
@@ -26,7 +27,6 @@ import { Facility, IRoom } from '../../../../../../shared/interfaces/general.int
     ButtonModule,
     MenuModule,
     FormsModule,
-    RouterLink,
     EmptyStateComponent,
     Select,
     Paginator,
@@ -40,6 +40,7 @@ export class RoomListComponent {
   private roomsService = inject(RoomsService);
   private alertService = inject(AlertDeleteService);
   private translate = inject(TranslateService);
+  private router = inject(Router);
 
   rooms = signal<IRoom[]>([]);
   allRooms: IRoom[] = [];
@@ -53,6 +54,9 @@ export class RoomListComponent {
   currentPage: number = 1;
   pageSize: number = 10;
   totalRecords: number = 0;
+
+  menuItems: MenuItem[] = [];
+  selectedRoom: IRoom | null = null;
 
   ngOnInit(): void {
     this.loadRooms();
@@ -110,13 +114,26 @@ export class RoomListComponent {
     this.applyFilter();
   }
 
-  toggleRoomActions(selectedRoom: any): void {
-    this.rooms().forEach((room) => {
-      (room as any).showActions = false;
-    });
-    if (selectedRoom) {
-      selectedRoom.showActions = !selectedRoom.showActions;
-    }
+  openMenu(event: Event, room: IRoom, menu: Menu): void {
+    this.selectedRoom = room;
+    this.menuItems = [
+      {
+        label: this.translate.instant('ROOMS.VIEW'),
+        icon: 'pi pi-eye',
+        command: () => this.router.navigate([`/dashboard/rooms/view/${room._id}`]),
+      },
+      {
+        label: this.translate.instant('ROOMS.EDIT'),
+        icon: 'pi pi-pencil',
+        command: () => this.router.navigate([`/dashboard/rooms/edit/${room._id}`]),
+      },
+      {
+        label: this.translate.instant('ROOMS.DELETE'),
+        icon: 'pi pi-trash',
+        command: () => this.deleteRoom(room),
+      },
+    ];
+    menu.toggle(event);
   }
 
   //Delete Room
