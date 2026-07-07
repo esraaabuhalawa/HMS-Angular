@@ -283,7 +283,9 @@
     "AVAILABLE": "متاح",
     "UNAVAILABLE": "غير متاح",
     "VIEW": "عرض",
-    "DELETE": "حذف"
+    "DELETE": "حذف",
+    "HOME": "الرئيسية",
+    "Explore": "استكشف"
   },
   "SEARCH_PLACEHOLDER": "ابحث هنا...",
   "CHANGE_PASSWORD": {
@@ -333,5 +335,9 @@
     "PHONE": "021 - 2208 - 1996",
     "ADDRESS": "Staycation, Kemang, Jakarta",
     "COPYRIGHT": "جميع الحقوق محفوظة © 2019 .Staycation"
-  }
+  },
+  "EXPLORE_ROOMS": {
+  "TITLE": "استكشف جميع الغرف",
+  "PAGE_REPORT": "{first} - {last} من {totalRecords}"
+}
 }

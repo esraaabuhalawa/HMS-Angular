@@ -1,0 +1,4 @@
+//to change direction icon (>) in arabic to (<)
+:host-context([dir='rtl']) ::ng-deep .p-breadcrumb-separator .p-icon {
+  transform: rotate(180deg);
+}
