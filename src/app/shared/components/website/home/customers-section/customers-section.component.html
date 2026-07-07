@@ -8,14 +8,17 @@
         <img
           src="/images/customerRev-img.png"
           alt="Happy Family"
-          class="w-full h-auto object-cover"
+          class="w-full h-auto object-cover rtl:transform rtl:scale-x-[-1]"
+
         />
       </div>
     </div>
 
     <!-- Content -->
     <div>
-      <h2 class="text-[24px] font-medium text-primary mb-10">{{ 'HAPPY_CUSTOMERS.TITLE' | translate }}</h2>
+      <h2 class="text-[24px] font-medium text-primary mb-10">
+        {{ 'HAPPY_CUSTOMERS.TITLE' | translate }}
+      </h2>
 
       <!-- Stars -->
       <div class="flex gap-1 mb-5">
@@ -33,19 +36,24 @@
       <p class="text-text-secondary mb-10">{{ 'HAPPY_CUSTOMERS.AUTHOR' | translate }}</p>
 
       <!-- Navigation -->
-      <div >
-        <div class="flex  gap-14 " >
+      <div dir="ltr">
+        <div class="flex gap-14" [class.flex-row-reverse]="isArabic">
           <button type="button" class="cursor-pointer">
             <img
               src="images/icons/icon _ Arrow Circle Left_.svg"
               alt="Previous"
-              class="w-12 h-12 "
-              style="transform: scaleX(-1);"
+              class="w-12 h-12"
+              [style.transform]="isArabic ? 'scaleX(-1)' : 'none'"
             />
           </button>
 
           <button type="button" class="cursor-pointer">
-            <img src="images/icons/icon _ Arrow Circle right_.svg" alt="Next" class="w-12 h-12" style="transform: scaleX(-1);"  />
+            <img
+              src="images/icons/icon _ Arrow Circle right_.svg"
+              alt="Next"
+              class="w-12 h-12"
+              [style.transform]="isArabic ? 'scaleX(-1)' : 'none'"
+            />
           </button>
         </div>
       </div>

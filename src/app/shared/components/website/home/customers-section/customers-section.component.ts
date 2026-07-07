@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
+import { Component, inject } from '@angular/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 
 
@@ -9,4 +9,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './customers-section.component.html',
   styleUrl: './customers-section.component.scss',
 })
-export class CustomersSectionComponent {}
+export class CustomersSectionComponent {
+  translate = inject(TranslateService);
+
+ get isArabic() {
+    return this.translate.currentLang() === 'ar';
+  }
+
+}
