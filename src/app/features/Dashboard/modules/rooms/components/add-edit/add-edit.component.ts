@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit',
@@ -22,6 +23,7 @@ import { ButtonModule } from 'primeng/button';
     FileUploadModule,
     CommonModule,
     MultiSelectModule,
+    TranslatePipe
   ],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss',
@@ -62,7 +64,7 @@ export class AddEditComponent implements OnInit {
     this.roomsService.getAllFacilities().subscribe({
       next: (res) => {
         this.facilities.set(res.data.facilities);
-        
+
       },
     });
   }

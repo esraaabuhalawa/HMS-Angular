@@ -122,6 +122,18 @@
     "ROOM_DETAILS_TITLE": "Room Details",
     "OFF": "OFF"
   },
+  "ROOM_FORM": {
+  "ADD_ROOM": "Add New Room",
+  "UPDATE_ROOM": "Update Room",
+  "ROOM_NUMBER": "Room Number",
+  "PRICE": "Price",
+  "CAPACITY": "Capacity",
+  "DISCOUNT": "Discount",
+  "SELECT_FACILITIES": "Select Facilities",
+  "UPLOAD_TEXT": "Drag & Drop or",
+  "CHOOSE_IMAGES": "Choose Room Images",
+  "UPLOAD_SUFFIX": "to Upload"
+},
   "REVIEWS": {
     "YOUR_RATING": "Your Rating",
     "MESSAGE": "Message",
@@ -269,7 +281,9 @@
     "PLEASE_LOG_IN_FIRST": "Please,Log In first",
     "REMOVED_FROM_FAVORITES": "Room removed from favorites successfully",
     "AVAILABLE": "Available",
-    "UNAVAILABLE": "Unavailable"
+    "UNAVAILABLE": "Unavailable",
+    "VIEW": "View",
+    "DELETE": "Delete"
   },
   "SEARCH_PLACEHOLDER": "Search here...",
   "CHANGE_PASSWORD": {
@@ -284,8 +298,21 @@
     "START_DATE": "Start Date",
     "END_DATE": "End Date",
     "USER": "User",
-    "ROOMS": "Rooms"
+    "ROOMS": "Rooms",
+    "PAGE_REPORT": "{first} - {last} of {totalRecords}"
   },
+  "BOOKING_VIEW": {
+  "TITLE": "Booking Details",
+  "BOOKING_INFORMATION": "Booking Information",
+  "TOTAL_PRICE": "Total Price",
+  "ROOM_NUMBER": "Room Number",
+  "START_DATE": "Start Date",
+  "END_DATE": "End Date",
+  "AUDIT_INFORMATION": "Audit Information",
+  "CREATED_AT": "Created At",
+  "UPDATED_AT": "Updated At",
+  "ROOM": "Room"
+},
   "HAPPY_CUSTOMERS": {
     "TITLE": "Happy Family",
     "REVIEW": "What a great trip with my family and I should try again next time soon",

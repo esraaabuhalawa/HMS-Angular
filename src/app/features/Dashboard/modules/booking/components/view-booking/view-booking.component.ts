@@ -5,6 +5,7 @@ import { Skeleton } from "primeng/skeleton";
 import { Tag } from "primeng/tag";
 import { Divider } from "primeng/divider";
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-view-booking',
@@ -14,7 +15,8 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
     Tag,
     Divider,
     CurrencyPipe,
-    DatePipe
+    DatePipe,
+    TranslatePipe
   ],
   templateUrl: './view-booking.component.html',
   styleUrl: './view-booking.component.scss',
