@@ -8,7 +8,7 @@
           {{ 'HOME.HERO.TITLE_LINE_1' | translate }} <br> <span>{{ 'HOME.HERO.TITLE_LINE_2' | translate }}</span>
         </h1>
         <p class="text-gray-400 text-base md:text-lg leading-relaxed">
-              {{ 'HOME.HERO.DESCRIPTION' | translate }}
+          {{ 'HOME.HERO.DESCRIPTION' | translate }}
         </p>
       </div>
 
@@ -23,19 +23,22 @@
             <img src="/images/ic_calendar.png" alt="icon">
           </label>
 
-          <p-datepicker [(ngModel)]="dateRange" selectionMode="range" dateFormat="dd/mm/yy"
-            [placeholder]="'HOME.HERO.DATE_PLACEHOLDER' | translate" [readonlyInput]="true" class="w-full">
+          <p-datepicker [showClear]="true" [(ngModel)]="dateRange" selectionMode="range" dateFormat="dd/mm/yy"
+            (onClear)="onDateClear()" [placeholder]="'HOME.HERO.DATE_PLACEHOLDER' | translate" [readonlyInput]="true"
+            class="w-full">
           </p-datepicker>
         </div>
-
+        <!-- @if(dateError){
+          <small class="text-red-500"> {{ 'COMMON.DATE_ERROR' | translate }} </small>
+          } -->
         <!-- Capacity (horizontal) -->
         <div class="pt-2 mt-4 border-t border-gray-100 mb-[2rem]">
-          <span class="font-regular text-primary block mb-2">  {{ 'HOME.HERO.CAPACITY' | translate }} </span>
+          <span class="font-regular text-primary block mb-2"> {{ 'HOME.HERO.CAPACITY' | translate }} </span>
 
           <p-inputnumber [(ngModel)]="value1" [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal"
             inputId="horizontal" decrementButtonClass="p-button-outlined p-button-sm"
             incrementButtonClass="p-button-outlined p-button-sm" class="w-full"
-            [inputStyle]="{ width: '3rem', 'text-align': 'center' }">
+            [inputStyle]="{ width: '3rem', 'text-align': 'center' }" [min]="1">
             <ng-template #incrementbuttonicon>
               <span class="pi pi-plus"></span>
             </ng-template>
@@ -46,7 +49,8 @@
         </div>
 
         <!-- CTA -->
-        <p-button  [label]="'HOME.HERO.EXPLORE' | translate" [loading]="loadingSearch" (onClick)="filterByDate()" styleClass="px-5 w-50 mt-1">
+        <p-button [label]="'HOME.HERO.EXPLORE' | translate" [loading]="loadingSearch" (onClick)="filterByDate()"
+          styleClass="px-5 w-50 mt-1">
         </p-button>
       </div>
     </div>
@@ -54,7 +58,8 @@
     <!-- Image column -->
     <div class="w-full flex justify-center md:justify-end">
       <div class="img-container w-full max-w-md md:max-w-full">
-        <img src="/images/hero.png" alt="hero" class="w-full h-auto object-contain rounded-2xl rtl:transform rtl:scale-x-[-1]" />
+        <img src="/images/hero.png" alt="hero"
+          class="w-full h-auto object-contain rounded-2xl rtl:transform rtl:scale-x-[-1]" />
       </div>
     </div>
   </div>

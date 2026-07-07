@@ -7,11 +7,11 @@ import { CardSkeltonComponent } from '../../../../../../shared/components/websit
 import { RoomInfoCardComponent } from '../../../../../../shared/components/website/ui/room-info-card/room-info-card.component';
 import { finalize } from 'rxjs';
 import { PaginatorState, Paginator } from 'primeng/paginator';
-import { TranslatePipe ,TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-rooms-list',
-  imports: [WebsitePageHeadingComponent, CardSkeltonComponent, RoomInfoCardComponent, Paginator ,TranslatePipe],
+  imports: [WebsitePageHeadingComponent, CardSkeltonComponent, RoomInfoCardComponent, Paginator, TranslatePipe],
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.scss',
 })
@@ -20,7 +20,7 @@ export class RoomsListComponent {
   private translate = inject(TranslateService);
 
   home!: MenuItem;
-breadcrumbs!: MenuItem[];
+  breadcrumbs!: MenuItem[];
 
   roomsList = signal<IRoom[]>([]);
   isLoading = signal(false);
@@ -29,20 +29,18 @@ breadcrumbs!: MenuItem[];
   pageSize = 10;
   totalRecords = 0;
 
-
-
   buildBreadcrumbs() {
-  this.home = {
-    label: this.translate.instant('COMMON.HOME'),
-    routerLink: '/',
-  };
+    this.home = {
+      label: this.translate.instant('COMMON.HOME'),
+      routerLink: '/',
+    };
 
-  this.breadcrumbs = [
-    {
-      label: this.translate.instant('COMMON.Explore'),
-    },
-  ];
-}
+    this.breadcrumbs = [
+      {
+        label: this.translate.instant('COMMON.Explore'),
+      },
+    ];
+  }
   fetchRooms() {
     this.isLoading.set(true);
 
@@ -65,11 +63,11 @@ breadcrumbs!: MenuItem[];
 
   ngOnInit(): void {
     this.buildBreadcrumbs();
-  this.fetchRooms();
+    this.fetchRooms();
 
-  this.translate.onLangChange.subscribe(() => {
-    this.buildBreadcrumbs();
-  });
+    this.translate.onLangChange.subscribe(() => {
+      this.buildBreadcrumbs();
+    });
   }
 
   onPageChange(event: PaginatorState) {

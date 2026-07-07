@@ -47,9 +47,12 @@ export class AdsListComponent {
 
   adsList = signal<IAd[]>([]);
   isLoading = signal<boolean>(true);
-  currentPage: number = 1;
-  pageSize: number = 10;
-  totalRecords: number = 0;
+  // currentPage: number = 1;
+  // pageSize: number = 10;
+  // totalRecords: number = 0;
+  currentPage = signal<number>(1);
+  pageSize = signal<number>(10);
+  totalRecords= signal<number>(0);
   selectedAd = signal<IAd | null>(null);
   adLoading = signal(false);
   visible = signal(false);
@@ -60,17 +63,17 @@ export class AdsListComponent {
   openMenu(event: Event, ad: any, menu: any) {
     this.menuItems = [
       {
-        label: 'View',
+        label: this.translate.instant('ROOMS.VIEW'),
         icon: 'pi pi-eye',
         command: () => this.viewAd(ad)
       },
       {
-        label: 'Edit',
+        label: this.translate.instant('ROOMS.EDIT'),
         icon: 'pi pi-pencil',
         command: () => this.openEditDialog(ad)
       },
       {
-        label: 'Delete',
+        label: this.translate.instant('ROOMS.DELETE'),
         icon: 'pi pi-trash',
         command: () => this.deleteAd(ad)
       }
@@ -84,10 +87,10 @@ export class AdsListComponent {
 
   fetchAdsData() {
     this.isLoading.set(true);
-    this.adsService.getAllAds({ page: this.currentPage, size: this.pageSize }).subscribe({
+    this.adsService.getAllAds({ page: this.currentPage(), size: this.pageSize() }).subscribe({
       next: (res: IAdsResponse) => {
         this.adsList.set(res.data.ads);
-        this.totalRecords = res.data.totalCount;
+        this.totalRecords.set(res.data.totalCount);
         this.isLoading.set(false);
       },
       error: (err) => {
@@ -172,8 +175,8 @@ export class AdsListComponent {
 
   //Helper Functions
   onPageChange(event: PaginatorState) {
-    this.currentPage = (event.page ?? 0) + 1;
-    this.pageSize = event.rows ?? 10;
+    this.currentPage.set((event.page ?? 0) + 1);
+    this.pageSize.set(event.rows ?? 10);
     this.fetchAdsData()
   }
 }

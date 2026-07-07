@@ -1,0 +1,43 @@
+<app-website-page-heading [title]="'COMMON.FAVORITES' | translate" [breadcrumbs]="breadcrumbs" [home]="home">
+</app-website-page-heading>
+
+<div>
+  @if (isUpdating()) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (item of [1, 2, 3]; track item) {
+        <app-card-skelton />
+      }
+    </div>
+  } @else if (isEmpty()) {
+    <div class="flex flex-col items-center justify-center py-20 text-center gap-4">
+      <img src="/images/wish-list.png" alt="" class="w-40 h-40 opacity-80" />
+      <h3 class="text-lg font-semibold text-gray-700">
+        {{ 'FAVORITES.EMPTY_TITLE' | translate }}
+      </h3>
+      <p class="text-gray-500 max-w-md">
+        {{ 'FAVORITES.EMPTY_DESCRIPTION' | translate }}
+      </p>
+      <button routerLink="/rooms"
+        class="px-6 py-3 rounded-xl hover:cursor-pointer bg-[#3252df] text-white font-medium hover:bg-[#1f3fc9] transition-all duration-200">
+        {{ 'FAVORITES.EXPLORE_ROOMS' | translate }}
+      </button>
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
+      @for (room of paginatedFavorites(); track room._id) {
+        <app-room-info-card [room]="room" [showDetailsIcon]="false"></app-room-info-card>
+      }
+    </div>
+
+    <div class="flex items-center mt-15 justify-center">
+      <p-paginator
+        [first]="(currentPage() - 1) * pageSize()"
+        [rows]="pageSize()"
+        [totalRecords]="totalRecords()"
+        [showCurrentPageReport]="true"
+        [currentPageReportTemplate]="'EXPLORE_ROOMS.PAGE_REPORT' | translate"
+        (onPageChange)="onPageChange($event)">
+      </p-paginator>
+    </div>
+  }
+</div>
