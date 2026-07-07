@@ -17,6 +17,7 @@
     z-index: -1;
   }
 }
+
 .date-icon {
   height: 45px;
 
@@ -49,5 +50,13 @@
     background-color: #1ABC9C !important;
     border-color: #1ABC9C !important;
     color: white !important;
+  }
+
+  .p-datepicker-prev-button:dir(rtl) {
+    transform: rotate(180deg);
+  }
+
+  .p-datepicker-next-button:dir(rtl){
+    transform: rotate(180deg);
   }
 }

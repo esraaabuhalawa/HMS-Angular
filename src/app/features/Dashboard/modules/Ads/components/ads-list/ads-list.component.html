@@ -65,7 +65,7 @@
           <td class="py-4 px-6 text-sm text-gray-500">
             <span class="px-2 py-1 rounded-full text-xs font-medium"
               [class]="ad.isActive ? 'bg-green-50 text-green-600' : 'bg-red-100 text-red-500'">
-              {{ ad.isActive ? 'Active' : 'Not Active' }}
+              {{ ad.isActive ? ('COMMON.ACTIVE' | translate) : ('COMMON.INACTIVE' | translate) }}
             </span>
           </td>
           <td class="py-4 px-6 text-center">
@@ -79,9 +79,9 @@
   </div>
   <div class="flex items-center mt-7 justify-center">
     <!-- Paginator -->
-    <p-paginator [first]="(currentPage - 1) * pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
+    <p-paginator [first]="(currentPage() - 1) * pageSize()" [rows]="pageSize()" [totalRecords]="totalRecords()"
       [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
-      currentPageReportTemplate="{first} - {last} of {totalRecords}" (onPageChange)="onPageChange($event)">
+      [currentPageReportTemplate]="'EXPLORE_ROOMS.PAGE_REPORT' | translate" (onPageChange)="onPageChange($event)">
     </p-paginator>
   </div>
   }

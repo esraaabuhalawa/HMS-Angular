@@ -52,7 +52,7 @@
     </a>
     }
 
-    <a routerLink="/wishlist" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
+    <a routerLink="/favorites" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
       <i class="pi pi-heart"></i>
       {{ 'ACCOUNT.WISHLIST' | translate }}
     </a>
@@ -65,7 +65,7 @@
     <hr class="my-2" />
 
     <button (click)="logout()"
-      class="flex items-center gap-2 p-2 rounded hover:bg-red-50 text-red-600 text-sm w-full text-left">
+      class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-red-50 text-red-600 text-sm w-full text-left">
       <i class="pi pi-sign-out"></i>
       {{ 'ACCOUNT.LOGOUT' | translate }}
     </button>

@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { HeroSectionComponent } from '../../../../shared/components/website/home/hero-section/hero-section.component';
 import { CustomersSectionComponent } from '../../../../shared/components/website/home/customers-section/customers-section.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -13,15 +13,19 @@ import { CardSkeltonComponent } from "../../../../shared/components/website/ui/c
 import { FacilityEnum } from '../../../../core/enums/facility.enum';
 import { finalize } from 'rxjs';
 import { HomeCommonCardComponent } from "../../../../shared/components/website/ui/home-common-card/home-common-card.component";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   imports: [HeroSectionComponent, RoomInfoCardComponent,
-    CustomersSectionComponent, CardSkeltonComponent,  TranslatePipe, HomeCommonCardComponent],
+    CustomersSectionComponent, CardSkeltonComponent, DatePipe,
+    TranslatePipe, HomeCommonCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  @ViewChild('resultsSection') resultsSection?: ElementRef<HTMLElement>;
+
   private adsService = inject(AdsService);
   private roomsService = inject(RoomsService);
   private readonly messageService = inject(MessageService);
@@ -32,9 +36,13 @@ export class HomeComponent {
   currentPage: number = 1;
   totalRecords: number = 0;
   totalRoomsRecords: number = 0;
+
   adsList = signal<IAd[]>([]);
   allRoomsList = signal<IRoom[]>([]);
-  showAllRooms = signal(false);
+  searchResults = signal<IRoom[]>([]);
+  hasSearched = signal(false);
+  dateRange = signal<Date[] | null>(null);
+
   ngOnInit(): void {
     this.fetchAdsData();
     this.fetchAllRooms();
@@ -53,7 +61,6 @@ export class HomeComponent {
 
   fetchAllRooms() {
     this.isLoadingRooms.set(true);
-    this.showAllRooms.set(false);
     this.roomsService.getAllRoomsLocally().pipe(
       finalize(() => this.isLoadingRooms.set(false))).subscribe({
       next: (res: IRoomsResponse) => {
@@ -64,11 +71,22 @@ export class HomeComponent {
     });
   }
 
+    private scrollToResults() {
+    setTimeout(() => {
+      this.resultsSection?.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  }
   onSearch(payload: {
     startDate: string;
     endDate: string;
     capacity: number;}) {
     this.loadingSearch.set(true);
+    this.hasSearched.set(true);
+    this.dateRange.set([new Date(payload.startDate), new Date(payload.endDate)]);
+
     this.roomsService.getAllRooms({page: 1,size: this.totalRecords,
       startDate: payload.startDate,
       endDate: payload.endDate,
@@ -79,8 +97,7 @@ export class HomeComponent {
         const filtered = res.data.rooms.filter(
           room => !payload.capacity || room.capacity >= payload.capacity
         );
-        this.allRoomsList.set(filtered);
-        this.showAllRooms.set(true);
+        this.searchResults.set(filtered);
         if (filtered.length === 0) {
           this.messageService.add({
             severity: 'info',
@@ -88,10 +105,17 @@ export class HomeComponent {
             detail: this.translate.instant('ROOMS.NO_ROOMS_MATCH'),
           });
         }
+        this.scrollToResults();
       },
       error: (err) => { this.showError(err); }
     });
   }
+
+  onSearchClear() {
+  this.hasSearched.set(false);
+  this.searchResults.set([]);
+  this.dateRange.set(null);
+}
 
   private showError(err: any) {
     this.messageService.add({

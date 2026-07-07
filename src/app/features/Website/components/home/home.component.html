@@ -1,8 +1,64 @@
 <section>
   <!-- Hero search bar: emits date range + capacity, used to filter the "Most Popular" room list below -->
-  <app-hero-section (search)="onSearch($event)" [loadingSearch]="loadingSearch()"></app-hero-section>
+  <app-hero-section (clear)="onSearchClear()" (search)="onSearch($event)"
+    [loadingSearch]="loadingSearch()"></app-hero-section>
 
-  <!-- ===================== SECTION 1: Most Popular Rooms ===================== -->
+  <!-- ===================== SECTION 1: Filtered Rooms  ===================== -->
+  @if (loadingSearch() || hasSearched()) {
+  <section #resultsSection class="rooms-section rooms-results mb-[70px]">
+
+    <div class="flex items-center justify-between mb-[41px]">
+      <h2 class="text-primary font-semibold text-2xl">
+        {{
+        'ROOMS.AVAILABLE_FROM_TO' | translate:{
+        start: (dateRange()?.[0] | date:'dd/MM/yyyy'),
+        end: (dateRange()?.[1] | date:'dd/MM/yyyy')
+        }
+        }}
+      </h2>
+
+      @if (!loadingSearch() && searchResults().length > 0) {
+      <span class="text-sm text-gray-500">
+        {{ 'ROOMS.RESULTS_COUNT' | translate:{ count: searchResults().length } }}
+      </span>
+      }
+    </div>
+
+    @if (loadingSearch()) {
+    <!-- Loading state -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      @for (i of [0, 1, 2]; track i) {
+      <app-card-skelton></app-card-skelton>
+      }
+    </div>
+    } @else if (searchResults().length === 0) {
+    <!-- Empty state: search ran but nothing matched -->
+    <div class="flex flex-col items-center justify-center py-16 text-center gap-4 bg-gray-50 rounded-xl">
+      <img src="/assets/images/no-rooms-found.svg" alt="" class="w-32 h-32 opacity-80" />
+      <h3 class="text-lg font-semibold text-gray-700">
+        {{ 'ROOMS.NO_ROOMS_TITLE' | translate }}
+      </h3>
+      <p class="text-gray-500 max-w-sm">
+        {{ 'ROOMS.NO_ROOMS_MATCH_SEARCH' | translate }}
+      </p>
+      <button class="btn btn-secondary mt-2" (click)="onSearchClear()">
+        {{ 'ROOMS.RESET_SEARCH' | translate }}
+      </button>
+    </div>
+    } @else {
+    <!-- Loaded state -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
+      @for (room of searchResults(); track room._id; let i = $index) {
+      <div [class.md:row-span-2]="i === 0">
+        <app-room-info-card [room]="room"></app-room-info-card>
+      </div>
+      }
+    </div>
+    }
+  </section>
+  }
+
+  <!-- ===================== SECTION 2: Most Popular Rooms ===================== -->
   <section class="rooms-section mb-[70px]">
     <h2 class="text-primary font-semibold mb-[41px] text-2xl">
       {{ 'HOME.SECTIONS.MOST_POPULAR' | translate }}
@@ -18,8 +74,8 @@
     } @else {
     <!-- Loaded state: render actual room cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
-    @for (room of (showAllRooms()? allRoomsList(): allRoomsList().slice(0, 5));track room._id;
-    let i = $index) {
+      @for (room of (allRoomsList().slice(0, 5));track room._id;
+      let i = $index) {
       <!-- First card (i === 0) is featured: spans 2 rows for visual emphasis -->
       <div [class.row-span-2]="i === 0" class="h-full w-full">
         <app-room-info-card [room]="room"></app-room-info-card>
@@ -29,7 +85,7 @@
     }
   </section>
 
-  <!-- ===================== SECTION 2: Houses with Gym ===================== -->
+  <!-- ===================== SECTION 3: Houses with Gym ===================== -->
   <!-- Only rendered if there's at least one matching room, to avoid showing an empty section -->
   @if (isLoadingRooms() || housesWithGym().length) {
   <section class="rooms-section mb-[70px]">
@@ -52,7 +108,7 @@
     }
   </section>
   }
-  <!-- ===================== SECTION 3: Houses with Backyard ===================== -->
+  <!-- ===================== SECTION 4: Houses with Backyard ===================== -->
   @if (isLoadingRooms() || housesWithPackyard().length) {
   <section class="rooms-section mb-[70px]">
     <h2 class="text-primary font-semibold mb-[41px] text-2xl">
@@ -76,7 +132,7 @@
   </section>
   }
 
-  <!-- ===================== SECTION 4: Ads ===================== -->
+  <!-- ===================== SECTION 5: Ads ===================== -->
   @if (isLoading() || adsList().length > 0) {
   <section class="ad-section mb-[70px]">
     <h2 class="text-primary font-semibold mb-[41px] text-2xl">
@@ -92,7 +148,7 @@
     } @else {
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       @for (ad of adsList(); track ad._id) {
-       <app-home-common-card [room]="ad.room" variant="ad" [isActive]="ad.isActive" />
+      <app-home-common-card [room]="ad.room" variant="ad" [isActive]="ad.isActive" />
       }
     </div>
     }

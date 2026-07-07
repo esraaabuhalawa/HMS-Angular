@@ -9,7 +9,6 @@ import { RippleModule } from 'primeng/ripple';
 import { IRoom } from '../../../../interfaces/general.interface';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
-import { IAddFavoriteResponse, IAllFavoriteResponse } from '../../../../../features/Website/modules/favorites/interfaces/favorites.interface';
 import { AuthService } from '../../../../../features/Auth/services/auth.service';
 
 @Component({
@@ -27,6 +26,8 @@ import { AuthService } from '../../../../../features/Auth/services/auth.service'
 })
 export class RoomInfoCardComponent {
   @Input({ required: true }) room!: IRoom;
+  @Input({required: false}) showDetailsIcon : boolean = true;
+
   favoritesService = inject(FavoritesService)
   private readonly authService = inject(AuthService);
   private readonly messageService = inject(MessageService);
@@ -34,7 +35,7 @@ export class RoomInfoCardComponent {
 
   onToggleFavorite() {
     if (this.authService.isLoggedIn()) {
-      this.favoritesService.toggleFavorite(this.room._id);
+      this.favoritesService.toggleFavorite(this.room);
     } else {
       this.messageService.add({
         severity: 'error',
