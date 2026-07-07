@@ -7,15 +7,20 @@ import { CardSkeltonComponent } from '../../../../../../shared/components/websit
 import { RoomInfoCardComponent } from '../../../../../../shared/components/website/ui/room-info-card/room-info-card.component';
 import { finalize } from 'rxjs';
 import { PaginatorState, Paginator } from 'primeng/paginator';
+import { TranslatePipe ,TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-rooms-list',
-  imports: [WebsitePageHeadingComponent, CardSkeltonComponent, RoomInfoCardComponent, Paginator],
+  imports: [WebsitePageHeadingComponent, CardSkeltonComponent, RoomInfoCardComponent, Paginator ,TranslatePipe],
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.scss',
 })
 export class RoomsListComponent {
   private roomsService = inject(RoomsService);
+  private translate = inject(TranslateService);
+
+  home!: MenuItem;
+breadcrumbs!: MenuItem[];
 
   roomsList = signal<IRoom[]>([]);
   isLoading = signal(false);
@@ -24,17 +29,20 @@ export class RoomsListComponent {
   pageSize = 10;
   totalRecords = 0;
 
-  home: MenuItem = {
-    label: 'Home',
+
+
+  buildBreadcrumbs() {
+  this.home = {
+    label: this.translate.instant('COMMON.HOME'),
     routerLink: '/',
   };
 
-  breadcrumbs: MenuItem[] = [
+  this.breadcrumbs = [
     {
-      label: 'Explore',
+      label: this.translate.instant('COMMON.Explore'),
     },
   ];
-
+}
   fetchRooms() {
     this.isLoading.set(true);
 
@@ -56,7 +64,12 @@ export class RoomsListComponent {
   }
 
   ngOnInit(): void {
-    this.fetchRooms();
+    this.buildBreadcrumbs();
+  this.fetchRooms();
+
+  this.translate.onLangChange.subscribe(() => {
+    this.buildBreadcrumbs();
+  });
   }
 
   onPageChange(event: PaginatorState) {

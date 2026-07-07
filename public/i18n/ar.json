@@ -122,6 +122,18 @@
     "ROOM_DETAILS_TITLE": "تفاصيل الغرفة",
     "OFF": "خصم"
   },
+  "ROOM_FORM": {
+  "ADD_ROOM": "إضافة غرفة جديدة",
+  "UPDATE_ROOM": "تحديث الغرفة",
+  "ROOM_NUMBER": "رقم الغرفة",
+  "PRICE": "السعر",
+  "CAPACITY": "السعة",
+  "DISCOUNT": "الخصم",
+  "SELECT_FACILITIES": "اختر المرافق",
+  "UPLOAD_TEXT": "اسحب وأفلت أو",
+  "CHOOSE_IMAGES": "اختر صور الغرفة",
+  "UPLOAD_SUFFIX": "للرفع"
+},
   "REVIEWS": {
     "YOUR_RATING": "أضف تقييمك",
     "MESSAGE": "رسالتك",
@@ -269,7 +281,11 @@
     "PLEASE_LOG_IN_FIRST": "من فضلك، قم بتسجيل الدخول أولا",
     "REMOVED_FROM_FAVORITES": "تمت إزالة الغرفة من المفضلة بنجاح",
     "AVAILABLE": "متاح",
-    "UNAVAILABLE": "غير متاح"
+    "UNAVAILABLE": "غير متاح",
+    "VIEW": "عرض",
+    "DELETE": "حذف",
+    "HOME": "الرئيسية",
+    "Explore": "استكشف"
   },
   "SEARCH_PLACEHOLDER": "ابحث هنا...",
   "CHANGE_PASSWORD": {
@@ -284,8 +300,21 @@
     "START_DATE": "تاريخ البداية",
     "END_DATE": "تاريخ النهاية",
     "USER": "المستخدم",
-    "ROOMS": "الغرف"
+    "ROOMS": "الغرف",
+    "PAGE_REPORT": "{first} - {last} من {totalRecords}"
   },
+  "BOOKING_VIEW": {
+  "TITLE": "تفاصيل الحجز",
+  "BOOKING_INFORMATION": "معلومات الحجز",
+  "TOTAL_PRICE": "السعر الإجمالي",
+  "ROOM_NUMBER": "رقم الغرفة",
+  "START_DATE": "تاريخ البداية",
+  "END_DATE": "تاريخ النهاية",
+  "AUDIT_INFORMATION": "معلومات المراجعة",
+  "CREATED_AT": "تاريخ الإنشاء",
+  "UPDATED_AT": "تاريخ التحديث",
+  "ROOM": "الغرفة"
+},
   "HAPPY_CUSTOMERS": {
     "TITLE": "عائلة سعيدة",
     "REVIEW": "كانت رحلة رائعة مع عائلتي، وأتطلع لتكرارها مرة أخرى قريبًا...",
@@ -306,5 +335,9 @@
     "PHONE": "021 - 2208 - 1996",
     "ADDRESS": "Staycation, Kemang, Jakarta",
     "COPYRIGHT": "جميع الحقوق محفوظة © 2019 .Staycation"
-  }
+  },
+  "EXPLORE_ROOMS": {
+  "TITLE": "استكشف جميع الغرف",
+  "PAGE_REPORT": "{first} - {last} من {totalRecords}"
+}
 }

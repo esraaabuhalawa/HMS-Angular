@@ -1,176 +1,167 @@
-<p-dialog header="Booking Details" [modal]="true" [(visible)]="visible" [style]="{ width: '550px' }" (onHide)="onHide()">
-
+<p-dialog
+  header="Booking Details"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '550px' }"
+  (onHide)="onHide()"
+>
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
       <i class="pi pi-eye text-gray-400"></i>
-      <span class="font-md">Booking Details</span>
+      <span class="font-md">{{ 'BOOKING_VIEW.TITLE' | translate }}</span>
     </div>
   </ng-template>
 
   @if (loading) {
-  <div class="flex flex-col gap-4 p-1">
-    <!-- Header Card -->
-    <div class="rounded-xl border border-gray-200 p-4">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <p-skeleton shape="circle" size="42px" />
-          <div class="flex flex-col gap-2">
-            <p-skeleton width="5rem" height="0.75rem" />
+    <div class="flex flex-col gap-4 p-1">
+      <!-- Header Card -->
+      <div class="rounded-xl border border-gray-200 p-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <p-skeleton shape="circle" size="42px" />
+            <div class="flex flex-col gap-2">
+              <p-skeleton width="5rem" height="0.75rem" />
+            </div>
           </div>
+
+          <p-skeleton width="5rem" height="1.75rem" borderRadius="999px" />
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-2 gap-4">
+        <p-skeleton height="5.5rem" borderRadius="12px" />
+        <p-skeleton height="5.5rem" borderRadius="12px" />
+        <p-skeleton height="5.5rem" borderRadius="12px" />
+        <p-skeleton height="5.5rem" borderRadius="12px" />
+      </div>
+
+      <!-- Audit Information Card -->
+      <div class="rounded-xl border border-gray-200 p-4">
+        <div class="mb-4">
+          <p-skeleton width="7rem" height="0.75rem" />
         </div>
 
-        <p-skeleton width="5rem" height="1.75rem" borderRadius="999px" />
-      </div>
-    </div>
-
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-2 gap-4">
-      <p-skeleton height="5.5rem" borderRadius="12px" />
-      <p-skeleton height="5.5rem" borderRadius="12px" />
-      <p-skeleton height="5.5rem" borderRadius="12px" />
-      <p-skeleton height="5.5rem" borderRadius="12px" />
-    </div>
-
-    <!-- Audit Information Card -->
-    <div class="rounded-xl border border-gray-200 p-4">
-
-      <div class="mb-4">
-        <p-skeleton width="7rem" height="0.75rem" />
-      </div>
-
-      <div class="flex items-center justify-between py-2">
-        <p-skeleton width="6rem" height="1rem" />
-        <p-skeleton width="10rem" height="1rem" />
-      </div>
-
-      <div class="my-3 border-t border-gray-200"></div>
-
-      <div class="flex items-center justify-between py-2">
-        <p-skeleton width="6rem" height="1rem" />
-        <p-skeleton width="10rem" height="1rem" />
-      </div>
-    </div>
-  </div>
-  }
-
-  @else if (selectedBooking) {
-  <div class="flex flex-col gap-4 p-1">
-
-    <!-- Hero banner -->
-    <div class="flex items-center justify-between rounded-lg bg-gray-100 p-3">
-
-      <div class="flex items-center gap-3">
-        <div class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-blue-50">
-          <i class="pi pi-home text-xl text-blue-800"></i>
+        <div class="flex items-center justify-between py-2">
+          <p-skeleton width="6rem" height="1rem" />
+          <p-skeleton width="10rem" height="1rem" />
         </div>
 
-        <div>
+        <div class="my-3 border-t border-gray-200"></div>
 
+        <div class="flex items-center justify-between py-2">
+          <p-skeleton width="6rem" height="1rem" />
+          <p-skeleton width="10rem" height="1rem" />
+        </div>
+      </div>
+    </div>
+
+  } @else if (selectedBooking) {
+    <div class="flex flex-col gap-4 p-1">
+      <!-- Hero banner -->
+      <div class="flex items-center justify-between rounded-lg bg-gray-100 p-3">
+        <div class="flex items-center gap-3">
+          <div class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-blue-50">
+            <i class="pi pi-home text-xl text-blue-800"></i>
+          </div>
+
+          <div>
             <div class="text-md font-medium">
-              Room #{{ selectedBooking.room.roomNumber }}
+              {{ 'BOOKING_VIEW.ROOM' | translate }} #{{ selectedBooking.room.roomNumber }}
             </div>
 
             <div class="text-sm text-gray-500">
               {{ selectedBooking.user.userName }}
             </div>
-
           </div>
-      </div>
+        </div>
 
-      <p-tag [value]="selectedBooking.status"
-        [severity]="selectedBooking.status === 'completed' ? 'success' : 'danger'"
+        <p-tag
+          [value]="selectedBooking.status"
+          [severity]="selectedBooking.status === 'completed' ? 'success' : 'danger'"
         >
-      </p-tag>
-    </div>
-
-    <!-- Metric cards -->
-    <div>
-      <div class="text-xs font-medium text-color-secondary mb-3 uppercase" style="letter-spacing: 0.06em">Booking Information
+        </p-tag>
       </div>
-      <div class="grid grid-cols-2 gap-4">
 
-        <div class="rounded-lg p-3 bg-gray-100">
-          <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
-            <i class="pi pi-dollar text-[11px]"></i>
-            Total Price
-          </div>
-          <div class="font-medium text-lg">
-            {{ selectedBooking.totalPrice | currency }}
-          </div>
+      <!-- Metric cards -->
+      <div>
+        <div
+          class="text-xs font-medium text-color-secondary mb-3 uppercase"
+          style="letter-spacing: 0.06em"
+        >
+          {{ 'BOOKING_VIEW.BOOKING_INFORMATION' | translate }}
         </div>
-
-        <div class="rounded-lg p-3 bg-gray-100">
-          <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
-            <i class="pi pi-users text-[11px]"></i>
-            Room Number
-          </div>
-          <div class="font-medium text-lg">
-            {{ selectedBooking.room.roomNumber }}
-
-          </div>
-        </div>
-
-         <div class="rounded-lg bg-gray-100 p-3">
-
-            <div class="text-xs text-gray-500 mb-2">
-              Start Date
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-lg p-3 bg-gray-100">
+            <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
+              <i class="pi pi-dollar text-[11px]"></i>
+              {{ 'BOOKING_VIEW.TOTAL_PRICE' | translate }}
             </div>
-
-            <div class="font-medium">
-              {{ selectedBooking.startDate | date:'mediumDate' }}
+            <div class="font-medium text-lg">
+              {{ selectedBooking.totalPrice | currency }}
             </div>
           </div>
 
+          <div class="rounded-lg p-3 bg-gray-100">
+            <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
+              <i class="pi pi-users text-[11px]"></i>
+              {{ 'BOOKING_VIEW.ROOM_NUMBER' | translate }}
+            </div>
+            <div class="font-medium text-lg">
+              {{ selectedBooking.room.roomNumber }}
+            </div>
+          </div>
 
           <div class="rounded-lg bg-gray-100 p-3">
-
-            <div class="text-xs text-gray-500 mb-2">
-              End Date
-            </div>
+            <div class="text-xs text-gray-500 mb-2">{{ 'BOOKING_VIEW.START_DATE' | translate }}</div>
 
             <div class="font-medium">
-              {{ selectedBooking.endDate | date:'mediumDate' }}
+              {{ selectedBooking.startDate | date: 'mediumDate' }}
             </div>
-
           </div>
 
+          <div class="rounded-lg bg-gray-100 p-3">
+            <div class="text-xs text-gray-500 mb-2">{{ 'BOOKING_VIEW.END_DATE' | translate }}</div>
 
+            <div class="font-medium">
+              {{ selectedBooking.endDate | date: 'mediumDate' }}
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <p-divider class="my-0" />
+
+      <!-- Audit -->
+      <div>
+        <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
+          {{ 'BOOKING_VIEW.AUDIT_INFORMATION' | translate }}
+        </div>
+
+        <div class="flex items-center justify-between py-2">
+          <span class="flex items-center gap-2 text-sm text-gray-500">
+            <i class="pi pi-calendar-plus"></i>
+            {{ 'BOOKING_VIEW.CREATED_AT' | translate }}
+          </span>
+
+          <span class="text-sm">
+            {{ selectedBooking.createdAt | date: 'medium' }}
+          </span>
+        </div>
+
+        <div class="my-1 border-t border-gray-200"></div>
+
+        <div class="flex items-center justify-between py-2">
+          <span class="flex items-center gap-2 text-sm text-gray-500">
+            <i class="pi pi-calendar"></i>
+            {{ 'BOOKING_VIEW.UPDATED_AT' | translate }}
+          </span>
+
+          <span class="text-sm">
+            {{ selectedBooking.updatedAt | date: 'medium' }}
+          </span>
+        </div>
       </div>
     </div>
-
-    <p-divider class="my-0" />
-
-    <!-- Audit -->
-    <div>
-      <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
-        Audit Information
-      </div>
-
-      <div class="flex items-center justify-between py-2">
-        <span class="flex items-center gap-2 text-sm text-gray-500">
-          <i class="pi pi-calendar-plus"></i>
-          Created at
-        </span>
-
-        <span class="text-sm">
-          {{ selectedBooking.createdAt | date:'medium' }}
-        </span>
-      </div>
-
-      <div class="my-1 border-t border-gray-200"></div>
-
-      <div class="flex items-center justify-between py-2">
-        <span class="flex items-center gap-2 text-sm text-gray-500">
-          <i class="pi pi-calendar"></i>
-          Updated at
-        </span>
-
-        <span class="text-sm">
-          {{ selectedBooking.updatedAt | date:'medium' }}
-        </span>
-      </div>
-    </div>
-  </div>
   }
 </p-dialog>

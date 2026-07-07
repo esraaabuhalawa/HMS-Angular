@@ -1,4 +1,4 @@
-<app-website-page-heading title="Explore All Rooms" [breadcrumbs]="breadcrumbs" [home]="home">
+<app-website-page-heading [title]="'EXPLORE_ROOMS.TITLE' | translate" [breadcrumbs]="breadcrumbs" [home]="home">
 </app-website-page-heading>
 
 <div>
@@ -25,7 +25,7 @@
     [totalRecords]="totalRecords"
     [rowsPerPageOptions]="[10, 20, 30]"
     [showCurrentPageReport]="true"
-    currentPageReportTemplate="{first} - {last} of {totalRecords}"
+    [currentPageReportTemplate]="'EXPLORE_ROOMS.PAGE_REPORT' | translate"
     (onPageChange)="onPageChange($event)"
   >
   </p-paginator>

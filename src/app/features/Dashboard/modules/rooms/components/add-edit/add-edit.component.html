@@ -3,7 +3,7 @@
   <div class="flex justify-end mb-8">
     <p-button
       type="submit"
-      [label]="roomId ? 'Update Room' : 'Add New Room'"
+      [label]="roomId ? ('ROOM_FORM.UPDATE_ROOM' | translate) : ('ROOM_FORM.ADD_ROOM' | translate)"
       [loading]="loading"
       [disabled]="loading"
     >
@@ -12,20 +12,38 @@
 
   <!-- Room Number -->
   <div class="mb-5">
-    <input pInputText formControlName="roomNumber" placeholder="Room Number" class="w-full" />
+    <input
+      pInputText
+      formControlName="roomNumber"
+      [placeholder]="'ROOM_FORM.ROOM_NUMBER' | translate"
+      class="w-full"
+    />
   </div>
 
   <!-- Price & Capacity -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-    <p-inputNumber formControlName="price" placeholder="Price" styleClass="w-full"> </p-inputNumber>
+    <p-inputNumber
+      formControlName="price"
+      [placeholder]="'ROOM_FORM.PRICE' | translate"
+      styleClass="w-full"
+    >
+    </p-inputNumber>
 
-    <p-inputNumber formControlName="capacity" placeholder="Capacity" styleClass="w-full">
+    <p-inputNumber
+      formControlName="capacity"
+      [placeholder]="'ROOM_FORM.CAPACITY' | translate"
+      styleClass="w-full"
+    >
     </p-inputNumber>
   </div>
 
   <!-- Discount & Facilities -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-    <p-inputNumber formControlName="discount" placeholder="Discount" styleClass="w-full">
+    <p-inputNumber
+      formControlName="discount"
+      [placeholder]="'ROOM_FORM.DISCOUNT' | translate"
+      styleClass="w-full"
+    >
     </p-inputNumber>
 
     <p-multiselect
@@ -33,7 +51,7 @@
       optionLabel="name"
       optionValue="_id"
       formControlName="facilities"
-      placeholder="Select Facilities"
+      [placeholder]="'ROOM_FORM.SELECT_FACILITIES' | translate"
       class="w-full"
     >
     </p-multiselect>
@@ -53,9 +71,11 @@
         <i class="pi pi-upload text-4xl mb-4"></i>
 
         <p>
-          Drag & Drop or
-          <span class="text-green-600 font-medium"> Choose a Room Images </span>
-          to Upload
+          {{ 'ROOM_FORM.UPLOAD_TEXT' | translate }}
+          <span class="text-green-600 font-medium">
+            {{ 'ROOM_FORM.CHOOSE_IMAGES' | translate }}
+          </span>
+          {{ 'ROOM_FORM.UPLOAD_SUFFIX' | translate }}
         </p>
       </div>
     </ng-template>
