@@ -1,7 +1,7 @@
 import { Component, inject, computed, OnInit, signal } from '@angular/core';
 import { FacilitiesService } from '../../services/facilities.service';
 import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
-import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
+import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/ui/table-skeleton/table-skeleton.component';
 import { EmptyStateComponent } from '../../../../../../shared/components/general/empty-state/empty-state.component';
 import { TableModule } from 'primeng/table';
 import { Menu } from 'primeng/menu';
@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 import { ViewFacilityComponent } from '../view-facility/view-facility.component';
 import { AddEditComponent } from '../add-edit-facility/add-edit-facility.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { SkeletonColumn } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
+import { SkeletonColumn } from '../../../../../../shared/components/dashboard/ui/table-skeleton/table-skeleton.component';
 
 @Component({
   selector: 'app-facility-list',

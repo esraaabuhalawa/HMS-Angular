@@ -12,7 +12,7 @@ import { AdsService } from '../../services/ads.service';
 import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
 import { MenuItem, MessageService } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
-import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
+import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/ui/table-skeleton/table-skeleton.component';
 import { ViewAdComponent } from "../view-ad/view-ad.component";
 import { AddEditAdsComponent } from "../add-edit-ads/add-edit-ads.component";
 import { finalize } from 'rxjs';
@@ -52,7 +52,7 @@ export class AdsListComponent {
   // totalRecords: number = 0;
   currentPage = signal<number>(1);
   pageSize = signal<number>(10);
-  totalRecords= signal<number>(0);
+  totalRecords = signal<number>(0);
   selectedAd = signal<IAd | null>(null);
   adLoading = signal(false);
   visible = signal(false);

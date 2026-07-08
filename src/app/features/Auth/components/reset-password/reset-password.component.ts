@@ -4,7 +4,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { matchPasswordValidator } from '../../../../shared/confirm-password-validator';
+import { matchPasswordValidator } from '../../../../shared/validators/confirm-password-validator';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';

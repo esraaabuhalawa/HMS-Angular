@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { PageHeaderComponent } from '../../../../../../shared/components/dashboard/ui/page-header/page-header.component';
 import { UserService } from '../../services/user.service';
 import { IUser, IUserDetailsResponse, IUserResponse } from '../../interfaces/user.interface';
-import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
+import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/ui/table-skeleton/table-skeleton.component';
 import { EmptyStateComponent } from '../../../../../../shared/components/general/empty-state/empty-state.component';
 import { TableModule } from 'primeng/table';
 import { Menu } from 'primeng/menu';

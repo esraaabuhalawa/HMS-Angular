@@ -11,7 +11,7 @@ import { Select } from 'primeng/select';
 import { Paginator, PaginatorState } from 'primeng/paginator';
 import { DividerModule } from 'primeng/divider';
 import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
-import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component';
+import { TableSkeletonComponent } from '../../../../../../shared/components/dashboard/ui/table-skeleton/table-skeleton.component';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';

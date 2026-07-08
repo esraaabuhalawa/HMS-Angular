@@ -1,11 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
@@ -22,6 +19,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { AuthHeaderComponent } from '../../../../shared/components/auth/auth-header/auth-header.component';
 import { AuthImageSectionComponent } from '../../../../shared/components/auth/auth-image-section/auth-image-section.component';
 import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
+import { matchPasswordValidator } from '../../../../shared/validators/confirm-password-validator';
 
 @Component({
   selector: 'app-register',
@@ -79,9 +77,7 @@ export class RegisterComponent implements OnInit {
         ],
         profileImage: [null, [Validators.required]],
       },
-      {
-        validators: this.passwordMatchValidator('password', 'confirmPassword'),
-      },
+      { validators: matchPasswordValidator('password', 'confirmPassword') },
     );
   }
   onRegister() {
@@ -123,14 +119,15 @@ export class RegisterComponent implements OnInit {
       },
     });
   }
-  passwordMatchValidator(pass: string, confirmPass: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const password = control.get(pass)?.value;
-      const confirmPassword = control.get(confirmPass)?.value;
 
-      return password === confirmPassword ? null : { passwordMismatch: true };
-    };
-  }
+  // passwordMatchValidator(pass: string, confirmPass: string): ValidatorFn {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     const password = control.get(pass)?.value;
+  //     const confirmPassword = control.get(confirmPass)?.value;
+
+  //     return password === confirmPassword ? null : { passwordMismatch: true };
+  //   };
+  // }
   get f() {
     return this.registerForm.controls;
   }

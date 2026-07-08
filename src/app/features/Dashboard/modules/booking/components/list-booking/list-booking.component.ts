@@ -1,17 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { PageHeaderComponent } from "../../../../../../shared/components/dashboard/ui/page-header/page-header.component";
 import { Menu } from 'primeng/menu';
-import { Button} from 'primeng/button';
+import { Button } from 'primeng/button';
 import { Paginator, PaginatorState } from 'primeng/paginator';
 import { IBooking, IBookingsResponse } from '../../interfaces/booking.interface';
 import { BookingService } from '../../services/booking.service';
 import { AlertDeleteService } from '../../../../../../shared/services/alert-delete.service';
-import { TableSkeletonComponent } from "../../../../../../shared/components/dashboard/table-skeleton/table-skeleton.component";
+import { TableSkeletonComponent } from "../../../../../../shared/components/dashboard/ui/table-skeleton/table-skeleton.component";
 import { EmptyStateComponent } from "../../../../../../shared/components/general/empty-state/empty-state.component";
 import { TableModule } from "primeng/table";
 import { ViewBookingComponent } from "../view-booking/view-booking.component";
-import { CurrencyPipe ,DatePipe  } from '@angular/common';
-import { TranslatePipe , TranslateService} from '@ngx-translate/core';
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -49,7 +49,7 @@ export class ListBookingComponent {
   totalRecords = 0;
 
 
-openMenu(event: Event, booking: IBooking, menu: any) {
+  openMenu(event: Event, booking: IBooking, menu: any) {
     this.menuItems = [
       {
         label: this.translate.instant('COMMON.VIEW'),
@@ -68,64 +68,64 @@ openMenu(event: Event, booking: IBooking, menu: any) {
 
 
   viewBooking(booking: IBooking) {
-      this.selectedBooking.set(null);
-      this.bookingLoading.set(true);
-      this.visible.set(true);
+    this.selectedBooking.set(null);
+    this.bookingLoading.set(true);
+    this.visible.set(true);
 
-      this.bookingService.getBookingDetails(booking._id).subscribe({
-        next: (res) => {
-          this.selectedBooking.set(res.data.booking);
-          this.bookingLoading.set(false);
-        },
-        error: () => {
-          this.bookingLoading.set(false);
-          this.visible.set(false);
-        }
-      });
-    }
-
-
-
-    //Delete
-    deleteBooking(booking: IBooking) {
-      console.log('Delete Clicked', booking);
-      this.alertService.delete({
-        entity: 'booking',
-        label: booking.room?.roomNumber ?? '',
-        request: () => this.bookingService.deleteBooking(booking._id),
-        onSuccess: () => this.loadBookingsData(),
-      });
-    }
+    this.bookingService.getBookingDetails(booking._id).subscribe({
+      next: (res) => {
+        this.selectedBooking.set(res.data.booking);
+        this.bookingLoading.set(false);
+      },
+      error: () => {
+        this.bookingLoading.set(false);
+        this.visible.set(false);
+      }
+    });
+  }
 
 
-loadBookingsData() {
-  this.isLoading.set(true);
 
-  this.bookingService.getAllBookings({
-    page: this.currentPage,
-    size: this.pageSize
-  }).subscribe({
-    next: (res: IBookingsResponse) => {
-      this.bookingList.set(res.data.booking);
-      this.totalRecords = res.data.totalCount;
-      this.isLoading.set(false);
-    },
-    error: () => {
-      this.isLoading.set(false);
-    }
-  });
-}
+  //Delete
+  deleteBooking(booking: IBooking) {
+    console.log('Delete Clicked', booking);
+    this.alertService.delete({
+      entity: 'booking',
+      label: booking.room?.roomNumber ?? '',
+      request: () => this.bookingService.deleteBooking(booking._id),
+      onSuccess: () => this.loadBookingsData(),
+    });
+  }
 
- ngOnInit(): void {
+
+  loadBookingsData() {
+    this.isLoading.set(true);
+
+    this.bookingService.getAllBookings({
+      page: this.currentPage,
+      size: this.pageSize
+    }).subscribe({
+      next: (res: IBookingsResponse) => {
+        this.bookingList.set(res.data.booking);
+        this.totalRecords = res.data.totalCount;
+        this.isLoading.set(false);
+      },
+      error: () => {
+        this.isLoading.set(false);
+      }
+    });
+  }
+
+  ngOnInit(): void {
     this.loadBookingsData();
   }
 
- onPageChange(event: PaginatorState) {
-  this.currentPage = (event.page ?? 0) + 1;
-  this.pageSize = event.rows ?? 10;
+  onPageChange(event: PaginatorState) {
+    this.currentPage = (event.page ?? 0) + 1;
+    this.pageSize = event.rows ?? 10;
 
-  this.loadBookingsData();
-}
+    this.loadBookingsData();
+  }
 
 }
 
