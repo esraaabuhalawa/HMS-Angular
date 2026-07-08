@@ -377,8 +377,10 @@
         "backToHome": "الرجوع للرئيسية"
       },
       "errors": {
+        "requiredTitle": "بيانات مطلوبة",
         "senderNameRequired": "من فضلك أدخل اسم المُرسِل",
         "cardErrorPrefix": "خطأ في البطاقة",
+        "paymentFailedTitle": "فشلت عملية الدفع",
         "sorryTitle": "آسفين !",
         "ok": "حسنًا",
         "paymentErrorTitle": "خطأ في الدفع",

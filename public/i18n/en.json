@@ -344,7 +344,7 @@
     "ADDRESS": "Staycation, Kemang, Jakarta",
     "COPYRIGHT": "Copyright 2019 • All rights reserved • Staycation"
   },
-  "payment": {
+    "payment": {
       "title": "Payment",
       "subtitle": "Kindly follow the instructions below",
       "transferLabel": "Payment Transfer:",
@@ -377,8 +377,10 @@
         "backToHome": "Back to Home"
       },
       "errors": {
+        "requiredTitle": "Required Field",
         "senderNameRequired": "Please enter the sender name (Sender Name)",
         "cardErrorPrefix": "Card Error",
+        "paymentFailedTitle": "Payment Failed",
         "sorryTitle": "Sorry !",
         "ok": "OK",
         "paymentErrorTitle": "Payment Error",
