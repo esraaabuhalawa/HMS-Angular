@@ -344,6 +344,47 @@
     "ADDRESS": "Staycation, Kemang, Jakarta",
     "COPYRIGHT": "Copyright 2019 • All rights reserved • Staycation"
   },
+  "payment": {
+      "title": "Payment",
+      "subtitle": "Kindly follow the instructions below",
+      "transferLabel": "Payment Transfer:",
+      "tax": "Tax",
+      "subTotal": "Sub total",
+      "total": "Total",
+      "currency": "USD",
+      "bank": {
+        "bca": {
+          "name": "Bank Central Asia",
+          "alt": "BCA Bank"
+        },
+        "mandiri": {
+          "name": "Bank Mandiri",
+          "alt": "Mandiri Bank"
+        }
+      },
+      "cardDetails": "Card Details (Stripe)",
+      "originBank": "Origin Bank",
+      "senderName": "Sender Name",
+      "placeholder": "Please type here ...",
+      "processing": "Processing...",
+      "continueToBook": "Continue to Book",
+      "cancel": "Cancel",
+      "completed": {
+        "title": "Yay! Completed",
+        "imageAlt": "complete process",
+        "line1": "We will inform you via email later",
+        "line2": "once the transaction has been accepted",
+        "backToHome": "Back to Home"
+      },
+      "errors": {
+        "senderNameRequired": "Please enter the sender name (Sender Name)",
+        "cardErrorPrefix": "Card Error",
+        "sorryTitle": "Sorry !",
+        "ok": "OK",
+        "paymentErrorTitle": "Payment Error",
+        "stripeNotInitialized": "Stripe has not initialized correctly. Please refresh the page or try again later."
+      }
+    },
   "FAVORITES": {
     "EMPTY_TITLE": "Your wishlist is empty",
     "EMPTY_DESCRIPTION": "You haven't added any rooms to your wishlist yet. Explore our rooms and save your favorites for quick access later.",

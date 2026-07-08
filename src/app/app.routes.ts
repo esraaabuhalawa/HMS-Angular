@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { adminGuard } from './core/guards/admin-guard';
-
+import { userGuard } from './core/guards/user-guard';
 export const routes: Routes = [
   {
     path: '',
@@ -40,12 +40,22 @@ export const routes: Routes = [
       },
     ],
   },
+
+  {
+    path: 'payment/:bookingId',
+    canActivate: [userGuard],
+    title: 'Payment',
+    loadComponent: () =>
+      import('../app/features/Website/modules/rooms/components/payment/payment.component').then(
+        (c) => c.PaymentComponent,
+      ),
+  },
   {
     path: '**',
     title: 'Page Not Found',
     loadComponent: () =>
       import('./shared/components/general/not-found/not-found.component').then(
-        m => m.NotFoundComponent
+        (m) => m.NotFoundComponent,
       ),
-  }
+  },
 ];

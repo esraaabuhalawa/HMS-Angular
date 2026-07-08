@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import {
+  ICreateBookingResponse,
   CreateCommentRequest,
   CreateCommentResponse,
   CreateReviewRequest,
@@ -8,10 +9,12 @@ import {
   GetRoomReviewsResponse,
   IRoomDetailResponse,
   IRoomsResponse,
+  IPayBookingResponse,
   RoomParams,
 } from '../interfaces/rooms.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, switchMap, of } from 'rxjs';
+import { IApiResponse } from '../../../../../shared/interfaces/general.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -77,5 +80,24 @@ export class RoomsService {
 
   updateComment(commentId: string, comment: string): Observable<CreateCommentResponse> {
     return this.http.patch<CreateCommentResponse>(`portal/room-comments/${commentId}`, { comment });
+  }
+
+  //payment
+  createBooking(payload: {
+    startDate: string;
+    endDate: string;
+    room: string;
+  }): Observable<IApiResponse<ICreateBookingResponse>> {
+    return this.http.post<IApiResponse<ICreateBookingResponse>>(`portal/booking`, payload);
+  }
+
+  payBooking(bookingId: string, token: string): Observable<IApiResponse<IPayBookingResponse>> {
+    return this.http.post<IApiResponse<IPayBookingResponse>>(`portal/booking/${bookingId}/pay`, {
+      token,
+    });
+  }
+
+  getBookingDetails(bookingId: string): Observable<IApiResponse<ICreateBookingResponse>> {
+    return this.http.get<IApiResponse<ICreateBookingResponse>>(`portal/booking/${bookingId}`);
   }
 }
