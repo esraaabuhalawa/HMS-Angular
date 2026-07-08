@@ -396,5 +396,12 @@
   "EXPLORE_ROOMS": {
     "TITLE": "استكشف جميع الغرف",
     "PAGE_REPORT": "{first} - {last} من {totalRecords}"
-  }
+  },
+"USER_PROFILE": {
+  "title": "الملف الشخصي",
+  "country": "الدولة",
+  "PhoneNumber": "رقم الهاتف",
+  "role": "الدور",
+  "status": "الحالة"
+}
 }

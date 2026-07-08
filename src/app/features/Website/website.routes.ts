@@ -15,8 +15,18 @@ export const WEBSITE_ROUTES: Routes = [
     canActivate: [userGuard],
     title: 'Favorites',
     loadComponent: () =>
-      import('./modules/favorites/components/favorites-list/favorites-list.component')
-        .then(c => c.FavoritesListComponent),
+      import('./modules/favorites/components/favorites-list/favorites-list.component').then(
+        (c) => c.FavoritesListComponent,
+      ),
+  },
+  {
+    path: 'profile',
+    canActivate: [userGuard],
+    title: 'profile',
+    loadComponent: () =>
+      import('./components/user-profile/user-profile.component').then(
+        (c) => c.UserProfileComponent,
+      ),
   },
 
   // {
