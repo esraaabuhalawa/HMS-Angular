@@ -395,5 +395,12 @@
   "EXPLORE_ROOMS": {
     "TITLE": "Explore All Rooms",
     "PAGE_REPORT": "{first} - {last} of {totalRecords}"
+  },
+   "USER_PROFILE": {
+    "title": "User Profile",
+    "country": "Country",
+    "PhoneNumber": "Phone number",
+    "role": "Role",
+    "status":"Status"
   }
 }
