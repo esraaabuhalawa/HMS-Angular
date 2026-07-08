@@ -17,16 +17,20 @@
   }
 </div>
 
+
+
 <!-- Paginator -->
-<div class="flex items-center mt-15 justify-center">
-  <p-paginator
-    [first]="(currentPage - 1) * pageSize"
-    [rows]="pageSize"
-    [totalRecords]="totalRecords"
-    [rowsPerPageOptions]="[10, 20, 30]"
-    [showCurrentPageReport]="true"
-    [currentPageReportTemplate]="'EXPLORE_ROOMS.PAGE_REPORT' | translate"
-    (onPageChange)="onPageChange($event)"
-  >
-  </p-paginator>
-</div>
+
+@if (showPaginator()) {
+  <div class="flex items-center mt-15 justify-center">
+    <p-paginator
+      [first]="(currentPage() - 1) * pageSize()"
+      [rows]="pageSize()"
+      [totalRecords]="totalRecords()"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [showCurrentPageReport]="true"
+      [currentPageReportTemplate]="'EXPLORE_ROOMS.PAGE_REPORT' | translate"
+      (onPageChange)="onPageChange($event)">
+    </p-paginator>
+  </div>
+}

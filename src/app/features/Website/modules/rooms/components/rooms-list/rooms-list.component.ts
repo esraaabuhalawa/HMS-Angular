@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, computed, signal } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { WebsitePageHeadingComponent } from '../../../../../../shared/components/website/ui/website-page-heading/website-page-heading.component';
 import { RoomsService } from '../../services/rooms.service';
@@ -11,7 +11,13 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-rooms-list',
-  imports: [WebsitePageHeadingComponent, CardSkeltonComponent, RoomInfoCardComponent, Paginator, TranslatePipe],
+  imports: [
+    WebsitePageHeadingComponent,
+    CardSkeltonComponent,
+    RoomInfoCardComponent,
+    Paginator,
+    TranslatePipe,
+  ],
   templateUrl: './rooms-list.component.html',
   styleUrl: './rooms-list.component.scss',
 })
@@ -25,9 +31,9 @@ export class RoomsListComponent {
   roomsList = signal<IRoom[]>([]);
   isLoading = signal(false);
 
-  currentPage = 1;
-  pageSize = 10;
-  totalRecords = 0;
+  currentPage = signal(1);
+  pageSize = signal(10);
+  totalRecords = signal(0);
 
   buildBreadcrumbs() {
     this.home = {
@@ -46,14 +52,14 @@ export class RoomsListComponent {
 
     this.roomsService
       .getAllRooms({
-        page: this.currentPage,
-        size: this.pageSize,
+        page: this.currentPage(),
+        size: this.pageSize(),
       })
       .pipe(finalize(() => this.isLoading.set(false)))
       .subscribe({
         next: (res) => {
           this.roomsList.set(res.data.rooms);
-          this.totalRecords = res.data.totalCount;
+          this.totalRecords.set(res.data.totalCount);
         },
         error: (err) => {
           console.error(err);
@@ -69,10 +75,11 @@ export class RoomsListComponent {
       this.buildBreadcrumbs();
     });
   }
+  showPaginator = computed(() => !this.isLoading() && this.totalRecords() > this.pageSize());
 
   onPageChange(event: PaginatorState) {
-    this.currentPage = (event.page ?? 0) + 1;
-    this.pageSize = event.rows ?? 10;
+    this.currentPage.set((event.page ?? 0) + 1);
+    this.pageSize.set(event.rows ?? 10);
 
     this.fetchRooms();
   }
