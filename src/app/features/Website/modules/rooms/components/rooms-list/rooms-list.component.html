@@ -1,1 +1,36 @@
-<p>rooms-list works!</p>
+<app-website-page-heading [title]="'EXPLORE_ROOMS.TITLE' | translate" [breadcrumbs]="breadcrumbs" [home]="home">
+</app-website-page-heading>
+
+<div>
+  @if (isLoading()) {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (item of [1, 2, 3, 4, 5, 6]; track item) {
+        <app-card-skelton />
+      }
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
+      @for (room of roomsList(); track room._id) {
+        <app-room-info-card [room]="room"></app-room-info-card>
+      }
+    </div>
+  }
+</div>
+
+
+
+<!-- Paginator -->
+
+@if (showPaginator()) {
+  <div class="flex items-center mt-15 justify-center">
+    <p-paginator
+      [first]="(currentPage() - 1) * pageSize()"
+      [rows]="pageSize()"
+      [totalRecords]="totalRecords()"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [showCurrentPageReport]="true"
+      [currentPageReportTemplate]="'EXPLORE_ROOMS.PAGE_REPORT' | translate"
+      (onPageChange)="onPageChange($event)">
+    </p-paginator>
+  </div>
+}

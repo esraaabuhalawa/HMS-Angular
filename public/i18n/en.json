@@ -10,7 +10,8 @@
   "AUTH": {
     "ACCESS_DENIED": "Access Denied",
     "LOGIN_AS_USER": "Please log in with a user account to access this page.",
-    "USER_ONLY": "This page is available only for users."
+    "USER_ONLY": "This page is available only for users.",
+    "LOGIN_SUCCESS_MESSAGE": "You have been logged in successfully!"
   },
   "HOME": {
     "HERO": {
@@ -103,7 +104,12 @@
     "PAGE_REPORT": "{first} - {last} of {totalRecords}",
     "VIEW": "View",
     "EDIT": "Edit",
-    "DELETE": "Delete"
+    "DELETE": "Delete",
+    "AVAILABLE_FROM_TO": "Available Rooms from {{start}} to {{end}}",
+    "NO_ROOMS_TITLE": "No Rooms Found",
+    "NO_ROOMS_MATCH_SEARCH": "We couldn't find any rooms matching your selected dates and capacity. Try adjusting your search criteria.",
+    "RESET_SEARCH": "Reset Search",
+    "RESULTS_COUNT": "Results Count : {{count}}"
   },
   "ROOM_DETAILS": {
     "ROOM": "Room",
@@ -121,6 +127,18 @@
     "GUESTS_COUNT": "{{count}} Guests",
     "ROOM_DETAILS_TITLE": "Room Details",
     "OFF": "OFF"
+  },
+  "ROOM_FORM": {
+    "ADD_ROOM": "Add New Room",
+    "UPDATE_ROOM": "Update Room",
+    "ROOM_NUMBER": "Room Number",
+    "PRICE": "Price",
+    "CAPACITY": "Capacity",
+    "DISCOUNT": "Discount",
+    "SELECT_FACILITIES": "Select Facilities",
+    "UPLOAD_TEXT": "Drag & Drop or",
+    "CHOOSE_IMAGES": "Choose Room Images",
+    "UPLOAD_SUFFIX": "to Upload"
   },
   "REVIEWS": {
     "YOUR_RATING": "Your Rating",
@@ -269,7 +287,13 @@
     "PLEASE_LOG_IN_FIRST": "Please,Log In first",
     "REMOVED_FROM_FAVORITES": "Room removed from favorites successfully",
     "AVAILABLE": "Available",
-    "UNAVAILABLE": "Unavailable"
+    "UNAVAILABLE": "Unavailable",
+    "VIEW": "View",
+    "DELETE": "Delete",
+    "HOME": "Home",
+    "Explore": "Explore",
+    "FAVORITES": "Your Favorites",
+    "DATE_ERROR": "End Date Must Be After Start Date"
   },
   "SEARCH_PLACEHOLDER": "Search here...",
   "CHANGE_PASSWORD": {
@@ -284,7 +308,20 @@
     "START_DATE": "Start Date",
     "END_DATE": "End Date",
     "USER": "User",
-    "ROOMS": "Rooms"
+    "ROOMS": "Rooms",
+    "PAGE_REPORT": "{first} - {last} of {totalRecords}"
+  },
+  "BOOKING_VIEW": {
+    "TITLE": "Booking Details",
+    "BOOKING_INFORMATION": "Booking Information",
+    "TOTAL_PRICE": "Total Price",
+    "ROOM_NUMBER": "Room Number",
+    "START_DATE": "Start Date",
+    "END_DATE": "End Date",
+    "AUDIT_INFORMATION": "Audit Information",
+    "CREATED_AT": "Created At",
+    "UPDATED_AT": "Updated At",
+    "ROOM": "Room"
   },
   "HAPPY_CUSTOMERS": {
     "TITLE": "Happy Family",
@@ -347,5 +384,14 @@
         "paymentErrorTitle": "Payment Error",
         "stripeNotInitialized": "Stripe has not initialized correctly. Please refresh the page or try again later."
       }
-    }
+    },
+  "FAVORITES": {
+    "EMPTY_TITLE": "Your wishlist is empty",
+    "EMPTY_DESCRIPTION": "You haven't added any rooms to your wishlist yet. Explore our rooms and save your favorites for quick access later.",
+    "EXPLORE_ROOMS": "Explore Rooms"
+  },
+  "EXPLORE_ROOMS": {
+    "TITLE": "Explore All Rooms",
+    "PAGE_REPORT": "{first} - {last} of {totalRecords}"
+  }
 }

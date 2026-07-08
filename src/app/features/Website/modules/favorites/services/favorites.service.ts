@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IAddFavoriteResponse, IAllFavoriteResponse } from '../interfaces/favorites.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
+import { IRoom } from '../../../../../shared/interfaces/general.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,15 +15,24 @@ export class FavoritesService {
   private translate = inject(TranslateService);
 
   favorites = signal<string[]>([]);
+  favoriteRooms = signal<IRoom[]>([]);
+  isUpdating = signal(false);
+
+  readonly favoriteCount = computed(() => this.favorites().length);
 
   loadFavorites() {
+    this.isUpdating.set(true);
     this.getAllFavorites().subscribe({
       next: (res) => {
-        const roomIds = res.data.favoriteRooms.flatMap(favorite =>
-          favorite.rooms.map(room => room._id)
-        );
-
-        this.favorites.set(roomIds);
+        const rooms = res.data.favoriteRooms.flatMap(favorite => favorite.rooms);
+        this.favorites.set(rooms.map(room => room._id));
+        this.favoriteRooms.set(rooms);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        this.isUpdating.set(false);
       }
     });
   }
@@ -35,11 +45,11 @@ export class FavoritesService {
     return this.http.get<IAllFavoriteResponse>('portal/favorite-rooms');
   }
 
-  addFavorite(roomId: string):void {
+  addFavorite(room: IRoom):void {
     // optimistic update
-    this.favorites.update(ids => ids.includes(roomId) ? ids : [...ids, roomId]);
-
-    this.http.post<IAddFavoriteResponse>('portal/favorite-rooms', { roomId }).subscribe({
+    this.favorites.update(ids => ids.includes(room._id) ? ids : [...ids, room._id]);
+    this.favoriteRooms.update(rooms => [...rooms, room]);
+    this.http.post<IAddFavoriteResponse>('portal/favorite-rooms', { roomId: room._id }).subscribe({
       next: () => {
         this.messageService.add({
           severity: 'success',
@@ -49,7 +59,9 @@ export class FavoritesService {
       },
       error: (err) => {
         // rollback if request fails
-        this.favorites.update(ids => ids.filter(id => id !== roomId));
+        this.favorites.update(ids => ids.filter(id => id !== room._id));
+        this.favoriteRooms.update(rooms => rooms.filter(r => r._id !== room._id));
+
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -64,9 +76,11 @@ export class FavoritesService {
     const previous = this.favorites();
     // optimistic update
     this.favorites.update(ids => ids.filter(id => id !== roomId));
-
+    this.favoriteRooms.update(rooms => rooms.filter(room => room._id !== roomId));
     this.http.delete<IAllFavoriteResponse>(`portal/favorite-rooms/${roomId}`,{ body: { roomId } }).subscribe({
       next: () => {
+        // reload, then clear loading once fresh data is in
+        this.loadFavorites();
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -86,11 +100,12 @@ export class FavoritesService {
     });
   }
 
-  toggleFavorite(roomId: string) {
-    if (this.isFavorite(roomId)) {
-      this.removeFavorite(roomId);
+  toggleFavorite(room: IRoom) {
+    if (this.isFavorite(room._id)) {
+      this.removeFavorite(room._id);
     } else {
-      this.addFavorite(roomId);
+      this.addFavorite(room);
     }
+    this.loadFavorites();
   }
 }

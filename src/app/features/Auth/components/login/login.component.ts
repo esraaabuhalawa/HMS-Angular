@@ -14,10 +14,9 @@ import {
   SocialAuthService,
   SocialUser,
 } from '@abacritt/angularx-social-login';
-import { RoleEnum } from '../../../../core/enums/role.enum';
 import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
 import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   imports: [
@@ -42,6 +41,8 @@ export class LoginComponent implements OnDestroy {
   private readonly socialAuthService = inject(SocialAuthService);
   private readonly authservice = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly translate = inject(TranslateService);
+  
   private authSub?: Subscription;
   loginForm!: FormGroup;
   isLoading: boolean = false;
@@ -54,7 +55,6 @@ export class LoginComponent implements OnDestroy {
   ngOnInit(): void {
     // Subscribe to auth state changes
     this.authSub = this.socialAuthService.authState.subscribe((user: SocialUser) => {
-      console.log('Auth state changed:', user);
       this.user = user;
       if (user.idToken) {
         this.authservice.loginWithGoogle(user.idToken);
@@ -95,8 +95,8 @@ export class LoginComponent implements OnDestroy {
 
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'You have been logged in successfully!',
+          summary: this.translate.instant('AUTH.LOGIN_SUCCESS_SUMMARY'),
+          detail: this.translate.instant('AUTH.LOGIN_SUCCESS_MESSAGE'),
         });
       },
       error: (err) => {
@@ -117,11 +117,6 @@ export class LoginComponent implements OnDestroy {
   signInWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
-
-  // // Sign out method
-  // signOut(): void {
-  //   this.socialAuthService.signOut();
-  // }
 
   // Life Cycle Hooks
   ngOnDestroy(): void {

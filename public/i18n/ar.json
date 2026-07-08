@@ -10,7 +10,8 @@
   "AUTH": {
     "ACCESS_DENIED": "تم رفض الوصول",
     "LOGIN_AS_USER": "يرجى تسجيل الدخول باستخدام حساب مستخدم للوصول إلى هذه الصفحة.",
-    "USER_ONLY": "هذه الصفحة متاحة للمستخدمين فقط."
+    "USER_ONLY": "هذه الصفحة متاحة للمستخدمين فقط.",
+    "LOGIN_SUCCESS_MESSAGE": "تم تسجيل الدخول بنجاح!"
   },
   "HOME": {
     "HERO": {
@@ -103,7 +104,12 @@
     "PAGE_REPORT": "{first} - {last} من {totalRecords}",
     "VIEW": "عرض",
     "EDIT": "تعديل",
-    "DELETE": "حذف"
+    "DELETE": "حذف",
+    "AVAILABLE_FROM_TO": "الغرف المتاحة من {{start}} إلى {{end}}",
+    "NO_ROOMS_TITLE": "لم يتم العثور على غرف",
+    "NO_ROOMS_MATCH_SEARCH": "لم نتمكن من العثور على غرف تطابق التواريخ والسعة التي اخترتها. جرّب تعديل معايير البحث.",
+    "RESET_SEARCH": "إعادة تعيين البحث",
+    "RESULTS_COUNT": " : عدد النتائج {{count}} "
   },
   "ROOM_DETAILS": {
     "BACK_TO_ROOMS": "العودة إلي الغرف",
@@ -121,6 +127,18 @@
     "GUESTS_COUNT": "{{count}} ضيوف",
     "ROOM_DETAILS_TITLE": "تفاصيل الغرفة",
     "OFF": "خصم"
+  },
+  "ROOM_FORM": {
+    "ADD_ROOM": "إضافة غرفة جديدة",
+    "UPDATE_ROOM": "تحديث الغرفة",
+    "ROOM_NUMBER": "رقم الغرفة",
+    "PRICE": "السعر",
+    "CAPACITY": "السعة",
+    "DISCOUNT": "الخصم",
+    "SELECT_FACILITIES": "اختر المرافق",
+    "UPLOAD_TEXT": "اسحب وأفلت أو",
+    "CHOOSE_IMAGES": "اختر صور الغرفة",
+    "UPLOAD_SUFFIX": "للرفع"
   },
   "REVIEWS": {
     "YOUR_RATING": "أضف تقييمك",
@@ -269,7 +287,13 @@
     "PLEASE_LOG_IN_FIRST": "من فضلك، قم بتسجيل الدخول أولا",
     "REMOVED_FROM_FAVORITES": "تمت إزالة الغرفة من المفضلة بنجاح",
     "AVAILABLE": "متاح",
-    "UNAVAILABLE": "غير متاح"
+    "UNAVAILABLE": "غير متاح",
+    "VIEW": "عرض",
+    "DELETE": "حذف",
+    "HOME": "الرئيسية",
+    "Explore": "استكشف",
+    "FAVORITES": "مفضلاتي",
+    "DATE_ERROR": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء"
   },
   "SEARCH_PLACEHOLDER": "ابحث هنا...",
   "CHANGE_PASSWORD": {
@@ -284,7 +308,20 @@
     "START_DATE": "تاريخ البداية",
     "END_DATE": "تاريخ النهاية",
     "USER": "المستخدم",
-    "ROOMS": "الغرف"
+    "ROOMS": "الغرف",
+    "PAGE_REPORT": "{first} - {last} من {totalRecords}"
+  },
+  "BOOKING_VIEW": {
+    "TITLE": "تفاصيل الحجز",
+    "BOOKING_INFORMATION": "معلومات الحجز",
+    "TOTAL_PRICE": "السعر الإجمالي",
+    "ROOM_NUMBER": "رقم الغرفة",
+    "START_DATE": "تاريخ البداية",
+    "END_DATE": "تاريخ النهاية",
+    "AUDIT_INFORMATION": "معلومات المراجعة",
+    "CREATED_AT": "تاريخ الإنشاء",
+    "UPDATED_AT": "تاريخ التحديث",
+    "ROOM": "الغرفة"
   },
   "HAPPY_CUSTOMERS": {
     "TITLE": "عائلة سعيدة",
@@ -347,6 +384,15 @@
         "paymentErrorTitle": "خطأ في الدفع",
         "stripeNotInitialized": "لم يتم تهيئة Stripe بشكل صحيح. برجاء تحديث الصفحة أو المحاولة لاحقًا."
       }
-    }
+    },
   
+  "FAVORITES": {
+    "EMPTY_TITLE": "قائمة المفضلة فارغة",
+    "EMPTY_DESCRIPTION": "لم تقم بإضافة أي غرف إلى قائمة المفضلة بعد. استكشف الغرف المتاحة وأضف المفضلة لديك للوصول إليها بسهولة لاحقًا.",
+    "EXPLORE_ROOMS": "استكشف الغرف"
+  },
+  "EXPLORE_ROOMS": {
+    "TITLE": "استكشف جميع الغرف",
+    "PAGE_REPORT": "{first} - {last} من {totalRecords}"
+  }
 }

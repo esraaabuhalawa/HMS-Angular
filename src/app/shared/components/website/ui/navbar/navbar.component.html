@@ -28,7 +28,7 @@
         </li> -->
 
         <li>
-          <a routerLink="/wishlist" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
+          <a routerLink="/favorites" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
             {{ 'NAV.FAVORITES' | translate }}
           </a>
         </li>
@@ -79,7 +79,8 @@
   <!-- Sidebar header -->
   <div class="flex items-center justify-between px-4 py-6 border-b border-gray-100">
     <img src="/images/logo.svg" alt="Website Logo" class="h-8">
-    <button type="button" class="w-[30px] h-[30px] flex justify-center items-center rounded-full text-red-500 cursor-pointer  border border-red-500 hover:bg-gray-100 transition-colors"
+    <button type="button"
+      class="w-[30px] h-[30px] flex justify-center items-center rounded-full text-red-500 cursor-pointer  border border-red-500 hover:bg-gray-100 transition-colors"
       (click)="isSidebarOpen = false" aria-label="Close menu">
       <i class="pi pi-times text-lg"></i>
     </button>
@@ -88,7 +89,8 @@
   <!-- Sidebar links -->
   <ul class="flex flex-col font-medium px-2 lg:px-4 py-4 gap-1">
     <li>
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="isSidebarOpen = false"
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        (click)="isSidebarOpen = false"
         class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
         {{ 'NAV.HOME' | translate }}
       </a>
@@ -109,7 +111,7 @@
     </li> -->
 
     <li>
-      <a routerLink="/wishlist" routerLinkActive="active" (click)="isSidebarOpen = false"
+      <a routerLink="/favorites" routerLinkActive="active" (click)="isSidebarOpen = false"
         class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
         {{ 'NAV.FAVORITES' | translate }}
       </a>

@@ -1,0 +1,51 @@
+:host ::ng-deep .p-paginator {
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f7f8f9;
+
+  --p-paginator-nav-button-width: 56px;
+  --p-paginator-nav-button-height: 56px;
+  --p-paginator-nav-button-border-radius: 0;
+  --p-paginator-padding: 0 16px;
+  --p-paginator-gap: 0;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-page,
+:host ::ng-deep .p-paginator .p-paginator-prev,
+:host ::ng-deep .p-paginator .p-paginator-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  background: #f7f8f9;
+  color: #1f2937;
+
+  border: 0;
+  border-right: 1px solid #e5e7eb;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-prev {
+  border-radius: 12px 0 0 12px;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-next {
+  border-radius: 0 12px 12px 0;
+  border-right: 0;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-page.p-paginator-page-selected,
+:host ::ng-deep .p-paginator .p-paginator-page.p-highlight {
+  background: #1e3a8a !important;
+  color: #fff !important;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-page:hover,
+:host ::ng-deep .p-paginator .p-paginator-prev:hover,
+:host ::ng-deep .p-paginator .p-paginator-next:hover {
+  background: #f8fafc;
+}

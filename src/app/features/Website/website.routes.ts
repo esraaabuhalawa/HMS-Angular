@@ -11,13 +11,12 @@ export const WEBSITE_ROUTES: Routes = [
     loadChildren: () => import('./modules/rooms/rooms.routes').then((r) => r.ROOMS_ROUTES),
   },
   {
-    path: 'wishlist',
+    path: 'favorites',
     canActivate: [userGuard],
-    title: 'Wishlist',
+    title: 'Favorites',
     loadComponent: () =>
-      import('./modules/wishlist/components/wishlist/wishlist.component').then(
-        (c) => c.WishlistComponent,
-      ),
+      import('./modules/favorites/components/favorites-list/favorites-list.component')
+        .then(c => c.FavoritesListComponent),
   },
 
   // {
@@ -25,7 +24,7 @@ export const WEBSITE_ROUTES: Routes = [
   //   canActivate: [userGuard],
   //   title: 'Checkout',
   //   loadComponent: () =>
-  //     import('./modules/wishlist/components/wishlist/wishlist.component')
+  //     import('./modules/favorites/components/favorites/favorites.component')
   //       .then(c => c.CheckoutComponent),
   // }
 ];

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
@@ -14,6 +14,7 @@ import {
   IChangePassword,
   IChangePasswordResponse,
 } from '../interfaces/auth';
+import { SKIP_AUTH_ERROR_HANDLING } from '../../../core/context/http-context-tokens';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,9 @@ export class AuthService {
   currentUser$ = this.currentUserSubject.asObservable();
 
   onLogin(data: ILogin): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>('portal/users/Login', data);
+    return this.http.post<ILoginResponse>('portal/users/Login', data , {
+      context: new HttpContext().set(SKIP_AUTH_ERROR_HANDLING, true)
+    });
   }
 
   getProfile() {

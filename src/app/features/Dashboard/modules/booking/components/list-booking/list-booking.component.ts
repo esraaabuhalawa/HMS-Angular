@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { PageHeaderComponent } from "../../../../../../shared/components/dashboard/ui/page-header/page-header.component";
-import { Menu, MenuModule } from 'primeng/menu';
-import { Button, ButtonModule } from 'primeng/button';
+import { Menu } from 'primeng/menu';
+import { Button} from 'primeng/button';
 import { Paginator, PaginatorState } from 'primeng/paginator';
 import { IBooking, IBookingsResponse } from '../../interfaces/booking.interface';
 import { BookingService } from '../../services/booking.service';
@@ -11,16 +11,15 @@ import { EmptyStateComponent } from "../../../../../../shared/components/general
 import { TableModule } from "primeng/table";
 import { ViewBookingComponent } from "../view-booking/view-booking.component";
 import { CurrencyPipe ,DatePipe  } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe , TranslateService} from '@ngx-translate/core';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-list-booking',
   imports: [
     PageHeaderComponent,
     Menu,
-    MenuModule,
     Button,
-    ButtonModule,
     Paginator,
     TableSkeletonComponent,
     EmptyStateComponent,
@@ -37,8 +36,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ListBookingComponent {
   private bookingService = inject(BookingService);
   private alertService = inject(AlertDeleteService);
+  private translate = inject(TranslateService);
 
-  menuItems: any[] = [];
+  menuItems: MenuItem[] = [];
   selectedBooking = signal<IBooking | null>(null);
   bookingLoading = signal(false);
   visible = signal(false);
@@ -52,13 +52,13 @@ export class ListBookingComponent {
 openMenu(event: Event, booking: IBooking, menu: any) {
     this.menuItems = [
       {
-        label: 'View',
+        label: this.translate.instant('COMMON.VIEW'),
         icon: 'pi pi-eye',
         command: () => this.viewBooking(booking)
       },
 
       {
-        label: 'Delete',
+        label: this.translate.instant('COMMON.DELETE'),
         icon: 'pi pi-trash',
         command: () => this.deleteBooking(booking)
       }
@@ -86,12 +86,12 @@ openMenu(event: Event, booking: IBooking, menu: any) {
 
 
 
-    //Delete Room
+    //Delete
     deleteBooking(booking: IBooking) {
       console.log('Delete Clicked', booking);
       this.alertService.delete({
         entity: 'booking',
-        label: booking.room.roomNumber,
+        label: booking.room?.roomNumber ?? '',
         request: () => this.bookingService.deleteBooking(booking._id),
         onSuccess: () => this.loadBookingsData(),
       });
