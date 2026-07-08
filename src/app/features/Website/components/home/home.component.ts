@@ -71,7 +71,7 @@ export class HomeComponent {
     });
   }
 
-    private scrollToResults() {
+  private scrollToResults() {
     setTimeout(() => {
       this.resultsSection?.nativeElement.scrollIntoView({
         behavior: 'smooth',
@@ -79,6 +79,7 @@ export class HomeComponent {
       });
     });
   }
+  
   onSearch(payload: {
     startDate: string;
     endDate: string;

@@ -7,7 +7,7 @@ import { AdParams, IAdsResponse, IAdDetailsResponse } from '../../Dashboard/modu
   providedIn: 'root',
 })
 export class AdsService {
-    private http = inject(HttpClient);
+  private http = inject(HttpClient);
 
   getAllAds(paramsData: AdParams): Observable<IAdsResponse> {
     const params = new HttpParams()

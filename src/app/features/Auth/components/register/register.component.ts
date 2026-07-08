@@ -137,7 +137,6 @@ export class RegisterComponent implements OnInit {
 
   onSelect(event: any) {
     this.files = event.currentFiles;
-    console.log(this.files);
     if (this.files.length > 0) {
       this.registerForm.get('profileImage')?.setValue(this.files[0]);
     } else {
@@ -145,9 +144,6 @@ export class RegisterComponent implements OnInit {
     }
 
     this.registerForm.get('profileImage')?.markAsTouched();
-    console.log(this.registerForm.get('profileImage')?.value);
-    console.log(this.registerForm.get('profileImage')?.touched);
-    console.log(this.registerForm.get('profileImage')?.invalid);
   }
 
   onClear() {

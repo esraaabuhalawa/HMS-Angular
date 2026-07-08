@@ -6,11 +6,9 @@ import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
 })
 export class NavbarUiService {
   private isMobile = new BehaviorSubject<boolean>(false);
-  //private isSidebarCollapsed = new BehaviorSubject<boolean>(false);
   private isMobileOpen = new BehaviorSubject<boolean>(false);
 
   isMobile$ = this.isMobile.asObservable();
-  // isSidebarCollapsed$ = this.isSidebarCollapsed.asObservable();
   isMobileOpen$ = this.isMobileOpen.asObservable();
 
   constructor() {

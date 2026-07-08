@@ -1,10 +1,6 @@
 @if (chartData()) {
   <div class="chart-wrapper">
     <div class="chart-center-label">{{ title() }}</div>
-    <!-- 
-    <div class="chart-center-value-admin">value</div>
-    <div class="chart-center-value-user">value</div> -->
-
     <div class="chart">
       <p-chart type="doughnut" [data]="chartData()" [options]="chartOptions()" class="w-full" />
     </div>

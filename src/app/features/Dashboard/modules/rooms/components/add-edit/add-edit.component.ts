@@ -51,6 +51,15 @@ export class AddEditComponent implements OnInit {
   facilities = signal<any[]>([]);
   selectedFiles: File[] = [];
 
+  ngOnInit() {
+    this.loadFacilities();
+    this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
+
+    if (this.roomId) {
+      this.getRoomData(this.roomId);
+    }
+  }
+
   onSelectFiles(event: any) {
     const files = event.currentFiles as File[];
 
@@ -64,7 +73,6 @@ export class AddEditComponent implements OnInit {
     this.roomsService.getAllFacilities().subscribe({
       next: (res) => {
         this.facilities.set(res.data.facilities);
-
       },
     });
   }
@@ -137,15 +145,6 @@ export class AddEditComponent implements OnInit {
       });
 
       console.error(err);
-    }
-  }
-
-  ngOnInit() {
-    this.loadFacilities();
-    this.roomId = this.activatedRoute.snapshot.paramMap.get('id');
-
-    if (this.roomId) {
-      this.getRoomData(this.roomId);
     }
   }
 

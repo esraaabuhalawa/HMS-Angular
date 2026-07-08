@@ -1,7 +1,7 @@
 import { AdminService } from './../../services/admin.service';
 import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { StaticsCardComponent } from '../../../../shared/components/dashboard/ui/statics-card/statics-card.component';
-import { ToastModule, Toast } from 'primeng/toast';
+import {  Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Data } from '../../interfaces/iadmin.interface';
 import { UserChartComponent } from '../../../../shared/components/dashboard/ui/user-chart/user-chart.component';

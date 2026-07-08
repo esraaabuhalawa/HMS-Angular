@@ -17,12 +17,10 @@ export const routes: Routes = [
       },
     ],
   },
-
   {
     path: 'auth',
     loadChildren: () => import('./features/Auth/auth.routes').then((r) => r.Auth_ROUTES),
   },
-
   {
     path: 'dashboard',
     canActivate: [adminGuard],
@@ -40,7 +38,6 @@ export const routes: Routes = [
       },
     ],
   },
-
   {
     path: 'payment/:bookingId',
     canActivate: [userGuard],
