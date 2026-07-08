@@ -62,7 +62,7 @@ export class PaymentComponent implements OnInit {
         icon: 'warning',
         title: this.translate.instant('payment.errors.requiredTitle'),
         text: this.translate.instant('payment.errors.senderNameRequired'),
-        confirmButtonText: 'OK',
+        confirmButtonText: this.translate.instant('payment.errors.ok'),
         confirmButtonColor: '#3085d6',
       });
       return;
@@ -80,9 +80,9 @@ export class PaymentComponent implements OnInit {
 
         Swal.fire({
           icon: 'error',
-          title: 'Payment Failed',
+          title: this.translate.instant('payment.errors.paymentFailedTitle'),
           text: `${this.translate.instant('payment.errors.cardErrorPrefix')}: ${error.message}`,
-          confirmButtonText: 'OK',
+          confirmButtonText: this.translate.instant('payment.errors.ok'),
           confirmButtonColor: '#d33',
         });
 
