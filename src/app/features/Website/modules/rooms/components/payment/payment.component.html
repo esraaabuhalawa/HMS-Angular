@@ -1,1 +1,238 @@
-<p>payment works!</p>
+<header class="border-b border-gray-100 py-5">
+  <h1 class="text-center text-[26px] font-semibold tracking-tight">
+    <span class="text-indigo-600">Stay</span><span class="text-gray-900">cation.</span>
+  </h1>
+</header>
+
+<div class="w-full bg-white py-16 font-sans">
+  <div class="flex items-center justify-center mb-12">
+    <div class="flex items-center justify-center w-9 h-9 rounded-full bg-[#1ABC9C] text-white">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="3"
+        stroke="currentColor"
+        class="w-5 h-5"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      </svg>
+    </div>
+
+    <div
+      class="w-14 h-[2px] mx-2"
+      [class]="activeStep() >= 2 ? 'bg-[#1ABC9C]' : 'bg-[#E5E5E5]'"
+    ></div>
+
+    <div
+      class="flex items-center justify-center w-9 h-9 rounded-full border-2 text-sm font-medium transition-all duration-300"
+      [class]="
+        activeStep() === 2
+          ? 'border-[#3252DF] bg-white text-[#3252DF]'
+          : activeStep() > 2
+            ? 'bg-[#1ABC9C] border-[#1ABC9C] text-white'
+            : 'border-[#E5E5E5] text-[#BFBFBF] bg-[#F5F6F8]'
+      "
+    >
+      @if (activeStep() > 2) {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="3"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+      } @else {
+        2
+      }
+    </div>
+
+    <div
+      class="w-14 h-[2px] mx-2"
+      [class]="activeStep() === 3 ? 'bg-[#1ABC9C]' : 'bg-[#E5E5E5]'"
+    ></div>
+
+    <div
+      class="flex items-center justify-center w-9 h-9 rounded-full border-2 text-sm font-medium transition-all duration-300"
+      [class]="
+        activeStep() === 3
+          ? 'bg-[#1ABC9C] border-[#1ABC9C] text-white'
+          : 'border-[#E5E5E5] text-[#BFBFBF] bg-[#F5F6F8]'
+      "
+    >
+      @if (activeStep() === 3) {
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="3"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
+      } @else {
+        3
+      }
+    </div>
+  </div>
+
+  @if (activeStep() === 2) {
+    <div class="text-center mb-16">
+      <h2 class="text-[36px] font-bold text-[#152C5B] tracking-tight leading-tight">
+        {{ 'payment.title' | translate }}
+      </h2>
+      <p class="text-[#B0B0B0] mt-2 text-[16px]">{{ 'payment.subtitle' | translate }}</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 items-start px-8">
+      <div class="pr-0 md:pr-16 pb-8 md:pb-0">
+        <p class="text-[16px] font-normal text-[#152C5B] mb-6">
+          {{ 'payment.transferLabel' | translate }}
+        </p>
+
+        <div class="space-y-2 mb-8 text-[16px]">
+          <p class="text-[#152C5B]">
+            {{ 'payment.tax' | translate }}: <span class="font-semibold">10%</span>
+          </p>
+          <p class="text-[#152C5B]">
+            {{ 'payment.subTotal' | translate }}:
+            <span class="font-semibold">${{ subTotal }} {{ 'payment.currency' | translate }}</span>
+          </p>
+          <p class="text-[#152C5B]">
+            {{ 'payment.total' | translate }}:
+            <span class="font-bold text-emerald-500"
+              >${{ subTotal + subTotal * 0.1 }} {{ 'payment.currency' | translate }}</span
+            >
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="flex items-center gap-5">
+            <div class="w-20 h-12 flex items-center justify-center bg-transparent flex-shrink-0">
+              <img
+                src="/images/image 4.png"
+                [attr.alt]="'payment.bank.bca.alt' | translate"
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <div class="text-[14px] text-[#152C5B] leading-snug">
+              <p class="font-normal">{{ 'payment.bank.bca.name' | translate }}</p>
+              <p class="text-[#B0B0B0]">2208 1996</p>
+              <p class="text-[#B0B0B0]">BuildWith Angga</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-5">
+            <div class="w-20 h-12 flex items-center justify-center bg-transparent flex-shrink-0">
+              <img
+                src="/images/image 5.png"
+                [attr.alt]="'payment.bank.mandiri.alt' | translate"
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <div class="text-[14px] text-[#152C5B] leading-snug">
+              <p class="font-normal">{{ 'payment.bank.mandiri.name' | translate }}</p>
+              <p class="text-[#B0B0B0]">2208 1996</p>
+              <p class="text-[#B0B0B0]">BuildWith Angga</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="pl-0 md:pl-16 border-t md:border-t-0 md:border-l border-[#E5E5E5] pt-8 md:pt-0 space-y-6"
+      >
+        <div>
+          <label class="block text-[16px] font-normal text-[#152C5B] mb-2">
+            {{ 'payment.cardDetails' | translate }}
+          </label>
+          <div
+            #cardInfo
+            class="w-full px-4 py-3.5 bg-[#F5F6F8] rounded-[4px] border border-transparent focus-within:border-gray-300 transition-all"
+          ></div>
+        </div>
+
+        <div>
+          <label class="block text-[16px] font-normal text-[#152C5B] mb-2">
+            {{ 'payment.originBank' | translate }}
+          </label>
+          <input
+            type="text"
+            [(ngModel)]="asalBank"
+            [placeholder]="'payment.placeholder' | translate"
+            class="w-full px-4 py-3 bg-[#F5F6F8] rounded-[4px] text-[#152C5B] text-[16px] focus:outline-none placeholder-[#B0B0B0]"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[16px] font-normal text-[#152C5B] mb-2">
+            {{ 'payment.senderName' | translate }}
+          </label>
+          <input
+            type="text"
+            [(ngModel)]="namaPengirim"
+            [placeholder]="'payment.placeholder' | translate"
+            class="w-full px-4 py-3 bg-[#F5F6F8] rounded-[4px] text-[#152C5B] text-[16px] focus:outline-none placeholder-[#B0B0B0]"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col items-center justify-center max-w-[300px] mx-auto gap-3 mt-16 w-full px-4"
+    >
+      <button
+        type="button"
+        (click)="confirmPayment()"
+        [disabled]="isProcessing()"
+        class="w-full h-[48px] bg-[#3252DF] hover:bg-[#1f3fc9] text-white font-medium rounded-[4px] text-[16px] transition-all flex items-center justify-center shadow-[0_4px_12px_rgba(50,82,223,0.15)] disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        @if (isProcessing()) {
+          <span class="pi pi-spin pi-spinner mr-2"></span> {{ 'payment.processing' | translate }}
+        } @else {
+          {{ 'payment.continueToBook' | translate }}
+        }
+      </button>
+
+      <button
+        type="button"
+        (click)="cancelPayment()"
+        [disabled]="isProcessing()"
+        class="w-full h-[48px] bg-[#e8e9eb] hover:bg-[#dcdedf] text-[#B0B0B0] rounded-[4px] text-[16px] transition-all flex items-center justify-center disabled:opacity-50"
+      >
+        {{ 'payment.cancel' | translate }}
+      </button>
+    </div>
+  } @else if (activeStep() === 3) {
+    <div class="text-center max-w-md mx-auto py-8 px-4 transition-all duration-500">
+      <h2 class="text-[36px] font-bold text-[#152C5B] mb-8">
+        {{ 'payment.completed.title' | translate }}
+      </h2>
+
+      <div class="w-full flex justify-center mb-12">
+        <div class="w-64 h-48 bg-slate-50 flex items-center justify-center rounded-2xl relative">
+          <img
+            src="/images/Group 1 1.png"
+            class="w-100"
+            [attr.alt]="'payment.completed.imageAlt' | translate"
+          />
+        </div>
+      </div>
+      <p class="text-[#B0B0B0] text-[16px] mb-12">
+        {{ 'payment.completed.line1' | translate }} <br />
+        {{ 'payment.completed.line2' | translate }}
+      </p>
+      <button
+        type="button"
+        (click)="backToHome()"
+        class="w-full max-w-[260px] h-[48px] bg-[#3252DF] hover:bg-[#1f3fc9] text-white font-medium rounded-[4px] text-[16px] transition-all shadow-[0_4px_12px_rgba(50,82,223,0.15)] mx-auto block"
+      >
+        {{ 'payment.completed.backToHome' | translate }}
+      </button>
+    </div>
+  }
+</div>

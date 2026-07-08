@@ -55,27 +55,20 @@ export interface RoomReview {
   updatedAt: string;
 }
 
-export interface GetRoomReviewsResponse {
-  success: boolean;
-  message: string;
-  data: {
-    roomReviews: RoomReview[];
-    totalCount: number;
-  };
+export interface GetRoomReviewsData {
+  roomReviews: RoomReview[];
+  totalCount: number;
 }
+export type GetRoomReviewsResponse = IApiResponse<GetRoomReviewsData>;
 
 export interface CreateReviewRequest {
   roomId: string;
   rating: number;
   review: string;
 }
+export type CreateReviewResponse = IApiResponse<RoomReview>;
 
-export interface CreateReviewResponse {
-  success: boolean;
-  message: string;
-  data: RoomReview;
-}
-// comment
+// ---- Room Comment ----
 export interface RoomCommentUser {
   _id: string;
   userName: string;
@@ -94,22 +87,43 @@ export interface RoomComment {
   updatedAt: string;
 }
 
-export interface GetCommentsResponse {
-  success: boolean;
-  message: string;
-  data: {
-    roomComments: RoomComment[];
-    totalCount: number;
-  };
+export interface GetCommentsData {
+  roomComments: RoomComment[];
+  totalCount: number;
 }
+export type GetCommentsResponse = IApiResponse<GetCommentsData>;
 
 export interface CreateCommentRequest {
   roomId: string;
   comment: string;
 }
+export type CreateCommentResponse = IApiResponse<RoomComment>;
 
-export interface CreateCommentResponse {
-  success: boolean;
-  message: string;
-  data: RoomComment;
+// ---- Booking ----
+export interface IBooking {
+  _id: string;
+  startDate: string;
+  endDate: string;
+  totalPrice: number;
+  user: string;
+  room: string;
+  status: 'pending' | 'paid' | 'cancelled';
+  createdAt: string;
+  updatedAt: string;
 }
+
+export interface ICreateBookingData {
+  booking: IBooking;
+}
+export type ICreateBookingResponse = IApiResponse<ICreateBookingData>;
+
+export interface IPayBookingData {
+  booking: IBooking;
+  payment?: {
+    id: string;
+    amount: number;
+    currency: string;
+    status: string;
+  };
+}
+export type IPayBookingResponse = IApiResponse<IPayBookingData>;

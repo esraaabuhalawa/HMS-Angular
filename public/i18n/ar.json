@@ -306,5 +306,47 @@
     "PHONE": "021 - 2208 - 1996",
     "ADDRESS": "Staycation, Kemang, Jakarta",
     "COPYRIGHT": "جميع الحقوق محفوظة © 2019 .Staycation"
-  }
+  },
+    "payment": {
+      "title": "الدفع",
+      "subtitle": "برجاء اتباع التعليمات بالأسفل",
+      "transferLabel": "تحويل الدفع:",
+      "tax": "الضريبة",
+      "subTotal": "الإجمالي الفرعي",
+      "total": "الإجمالي الكلي",
+      "currency": "دولار",
+      "bank": {
+        "bca": {
+          "name": "بنك سنترال آسيا",
+          "alt": "بنك BCA"
+        },
+        "mandiri": {
+          "name": "بنك مانديري",
+          "alt": "بنك مانديري"
+        }
+      },
+      "cardDetails": "بيانات البطاقة (Stripe)",
+      "originBank": "البنك المُحوَّل منه",
+      "senderName": "اسم المُرسِل",
+      "placeholder": "برجاء الكتابة هنا ...",
+      "processing": "جاري المعالجة...",
+      "continueToBook": "متابعة الحجز",
+      "cancel": "إلغاء",
+      "completed": {
+        "title": "تم بنجاح!",
+        "imageAlt": "اكتملت العملية",
+        "line1": "سنقوم بإبلاغك عبر البريد الإلكتروني لاحقًا",
+        "line2": "بمجرد قبول عملية التحويل",
+        "backToHome": "الرجوع للرئيسية"
+      },
+      "errors": {
+        "senderNameRequired": "من فضلك أدخل اسم المُرسِل",
+        "cardErrorPrefix": "خطأ في البطاقة",
+        "sorryTitle": "آسفين !",
+        "ok": "حسنًا",
+        "paymentErrorTitle": "خطأ في الدفع",
+        "stripeNotInitialized": "لم يتم تهيئة Stripe بشكل صحيح. برجاء تحديث الصفحة أو المحاولة لاحقًا."
+      }
+    }
+  
 }

@@ -4,9 +4,7 @@ import { userGuard } from '../../core/guards/user-guard';
 export const WEBSITE_ROUTES: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./components/home/home.component')
-        .then(c => c.HomeComponent),
+    loadComponent: () => import('./components/home/home.component').then((c) => c.HomeComponent),
   },
   {
     path: 'rooms',
@@ -17,9 +15,11 @@ export const WEBSITE_ROUTES: Routes = [
     canActivate: [userGuard],
     title: 'Wishlist',
     loadComponent: () =>
-      import('./modules/wishlist/components/wishlist/wishlist.component')
-        .then(c => c.WishlistComponent),
+      import('./modules/wishlist/components/wishlist/wishlist.component').then(
+        (c) => c.WishlistComponent,
+      ),
   },
+
   // {
   //   path: 'Checkout',
   //   canActivate: [userGuard],

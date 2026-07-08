@@ -7,10 +7,7 @@ import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular
 import { MessageService } from 'primeng/api';
 
 import { providePrimeNG } from 'primeng/config';
-import {
-  SocialAuthServiceConfig,
-  GoogleLoginProvider,
-} from '@abacritt/angularx-social-login';
+import { SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 import { routes } from './app.routes';
 import { HotelPreset } from './core/theme/hotel-preset';
@@ -19,12 +16,13 @@ import { generalInterceptor } from './core/interceptors/general-interceptor';
 import { environment } from '../environments/environment';
 import { errorInterceptor } from './core/interceptors/error-interceptor';
 
-import {  TranslateLoader,provideTranslateService } from '@ngx-translate/core';
+import { TranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { translateLoaderFactory } from './core/translation/translate-loader';
-
+import { provideNgxStripe } from 'ngx-stripe';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideNgxStripe(environment.stripePublishableKey),
     provideBrowserGlobalErrorListeners(),
     provideRouter(
       routes,
@@ -40,7 +38,7 @@ export const appConfig: ApplicationConfig = {
       loader: {
         provide: TranslateLoader,
         useFactory: translateLoaderFactory,
-        deps: [HttpClient,TransferState],
+        deps: [HttpClient, TransferState],
       },
     }),
     providePrimeNG({

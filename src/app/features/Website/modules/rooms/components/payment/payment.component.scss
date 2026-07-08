@@ -1,0 +1,41 @@
+// استهداف مباشر لتاغ الزرار نفسه لتخطي حماية البرايم إن جي
+:host ::v-deep {
+  .p-button.custom-btn {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 48px !important; // تحديد ارتفاع ثابت زي فيجما
+    border-radius: 4px !important;
+    border: none !important;
+    font-size: 16px !important;
+    padding: 0 !important;
+  }
+
+  // إجبار الزرار الأول على اللون الأزرق
+  .btn-primary {
+    background: #3252DF !important;
+    background-color: #3252DF !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    
+    &:hover {
+      background: #2442c0 !important;
+      background-color: #2442c0 !important;
+    }
+  }
+
+  // إجبار زرار الكنسل على اللون الرمادي بالكامل
+  .btn-cancel {
+    background: #F5F6F8 !important;
+    background-color: #F5F6F8 !important;
+    color: #B0B0B0 !important;
+    font-weight: 300 !important;
+
+    &:hover {
+      background: #e8e9eb !important;
+      background-color: #e8e9eb !important;
+      color: #888888 !important;
+    }
+  }
+}
