@@ -1,5 +1,5 @@
 {
-  "NAV": {
+  "NAVBAR": {
     "HOME": "Home",
     "EXPLORE": "Explore",
     "REVIEWS": "Reviews",
@@ -87,6 +87,7 @@
     "LOGOUT": "Logout"
   },
   "ROOMS": {
+    "ROOMS": "Rooms",
     "ROOM": "Room",
     "NO_ROOMS_MATCH": "No rooms match your search.",
     "TITLE": "Rooms Table Details",
@@ -126,7 +127,16 @@
     "TITLE": "Room {{number}}",
     "GUESTS_COUNT": "{{count}} Guests",
     "ROOM_DETAILS_TITLE": "Room Details",
-    "OFF": "OFF"
+    "OFF": "OFF",
+    "DESCRIPTION": "Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.\n\nMinimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.",
+    "START_BOOKING": "Start Booking",
+    "DISCOUNT": "Discount",
+    "YOU_WILL_PAY": "You will pay",
+    "FOR": "for",
+    "NIGHT": "night",
+    "NIGHTS": "nights",
+    "SELECT_DATES": "Select your dates to see the total price",
+    "CONTINUE_BOOK": "Continue Book"
   },
   "ROOM_FORM": {
     "ADD_ROOM": "Add New Room",
@@ -152,7 +162,8 @@
     "LOGIN_REQUIRED_TITLE": "Login Required",
     "LOGIN_REQUIRED_MESSAGE": "You need to be logged in to add a review.",
     "LOGIN_BUTTON": "Login",
-    "REGISTER_BUTTON": "Register"
+    "REGISTER_BUTTON": "Register",
+    "NO_REVIEWS": "No Reviews Yet , Be the first to share your review."
   },
   "COMMENTS": {
     "ADD_COMMENT": "Add Your Comment",
@@ -176,7 +187,8 @@
     "LOGIN_REQUIRED_TITLE": "Login Required",
     "LOGIN_REQUIRED_MESSAGE": "You need to be logged in to add a comment.",
     "LOGIN_BUTTON": "Login",
-    "REGISTER_BUTTON": "Register"
+    "REGISTER_BUTTON": "Register",
+    "NO_COMMENTS": "No Comments Yet , Be the first to add a comment."
   },
   "ALERTS": {
     "DELETE_TITLE": "Delete {{entity}}?",
@@ -344,49 +356,49 @@
     "ADDRESS": "Staycation, Kemang, Jakarta",
     "COPYRIGHT": "Copyright 2019 • All rights reserved • Staycation"
   },
-    "payment": {
-      "title": "Payment",
-      "subtitle": "Kindly follow the instructions below",
-      "transferLabel": "Payment Transfer:",
-      "tax": "Tax",
-      "subTotal": "Sub total",
-      "total": "Total",
-      "currency": "USD",
-      "bank": {
-        "bca": {
-          "name": "Bank Central Asia",
-          "alt": "BCA Bank"
-        },
-        "mandiri": {
-          "name": "Bank Mandiri",
-          "alt": "Mandiri Bank"
-        }
+  "payment": {
+    "title": "Payment",
+    "subtitle": "Kindly follow the instructions below",
+    "transferLabel": "Payment Transfer:",
+    "tax": "Tax",
+    "subTotal": "Sub total",
+    "total": "Total",
+    "currency": "USD",
+    "bank": {
+      "bca": {
+        "name": "Bank Central Asia",
+        "alt": "BCA Bank"
       },
-      "cardDetails": "Card Details (Stripe)",
-      "originBank": "Origin Bank",
-      "senderName": "Sender Name",
-      "placeholder": "Please type here ...",
-      "processing": "Processing...",
-      "continueToBook": "Continue to Book",
-      "cancel": "Cancel",
-      "completed": {
-        "title": "Yay! Completed",
-        "imageAlt": "complete process",
-        "line1": "We will inform you via email later",
-        "line2": "once the transaction has been accepted",
-        "backToHome": "Back to Home"
-      },
-      "errors": {
-        "requiredTitle": "Required Field",
-        "senderNameRequired": "Please enter the sender name (Sender Name)",
-        "cardErrorPrefix": "Card Error",
-        "paymentFailedTitle": "Payment Failed",
-        "sorryTitle": "Sorry !",
-        "ok": "OK",
-        "paymentErrorTitle": "Payment Error",
-        "stripeNotInitialized": "Stripe has not initialized correctly. Please refresh the page or try again later."
+      "mandiri": {
+        "name": "Bank Mandiri",
+        "alt": "Mandiri Bank"
       }
     },
+    "cardDetails": "Card Details (Stripe)",
+    "originBank": "Origin Bank",
+    "senderName": "Sender Name",
+    "placeholder": "Please type here ...",
+    "processing": "Processing...",
+    "continueToBook": "Continue to Book",
+    "cancel": "Cancel",
+    "completed": {
+      "title": "Yay! Completed",
+      "imageAlt": "complete process",
+      "line1": "We will inform you via email later",
+      "line2": "once the transaction has been accepted",
+      "backToHome": "Back to Home"
+    },
+    "errors": {
+      "requiredTitle": "Required Field",
+      "senderNameRequired": "Please enter the sender name (Sender Name)",
+      "cardErrorPrefix": "Card Error",
+      "paymentFailedTitle": "Payment Failed",
+      "sorryTitle": "Sorry !",
+      "ok": "OK",
+      "paymentErrorTitle": "Payment Error",
+      "stripeNotInitialized": "Stripe has not initialized correctly. Please refresh the page or try again later."
+    }
+  },
   "FAVORITES": {
     "EMPTY_TITLE": "Your wishlist is empty",
     "EMPTY_DESCRIPTION": "You haven't added any rooms to your wishlist yet. Explore our rooms and save your favorites for quick access later.",
@@ -396,11 +408,11 @@
     "TITLE": "Explore All Rooms",
     "PAGE_REPORT": "{first} - {last} of {totalRecords}"
   },
-   "USER_PROFILE": {
+  "USER_PROFILE": {
     "title": "User Profile",
     "country": "Country",
     "PhoneNumber": "Phone number",
     "role": "Role",
-    "status":"Status"
+    "status": "Status"
   }
 }

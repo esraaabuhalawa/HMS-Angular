@@ -73,14 +73,13 @@ export class FavoritesService {
   }
 
   removeFavorite(roomId: string):void {
-    const previous = this.favorites();
+    const previousIds = this.favorites();
+    const previousRooms = this.favoriteRooms();
     // optimistic update
     this.favorites.update(ids => ids.filter(id => id !== roomId));
     this.favoriteRooms.update(rooms => rooms.filter(room => room._id !== roomId));
     this.http.delete<IAllFavoriteResponse>(`portal/favorite-rooms/${roomId}`,{ body: { roomId } }).subscribe({
       next: () => {
-        // reload, then clear loading once fresh data is in
-        this.loadFavorites();
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -95,7 +94,8 @@ export class FavoritesService {
             this.translate.instant('COMMON.SOMETHING_WENT_WRONG'),
         });
         // rollback if request fails
-        this.favorites.set(previous);
+        this.favorites.set(previousIds);
+        this.favoriteRooms.set(previousRooms);
       }
     });
   }
@@ -106,6 +106,5 @@ export class FavoritesService {
     } else {
       this.addFavorite(room);
     }
-    this.loadFavorites();
   }
 }

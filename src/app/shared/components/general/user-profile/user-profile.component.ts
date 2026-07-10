@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SkeletonModule } from 'primeng/skeleton';
-import { AuthService } from '../../../Auth/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { AuthService } from '../../../../features/Auth/services/auth.service';
 @Component({
   selector: 'app-user-profile',
   imports: [SkeletonModule, CommonModule, TranslatePipe],

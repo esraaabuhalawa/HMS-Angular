@@ -52,6 +52,6 @@ export class RoomInfoCardComponent {
   //image Error
   onImageError(event: Event): void {
     const img = event.target as HTMLImageElement;
-    img.src = '/images/placeholder-img.jpg';
+    img.src = '/images/placeholder-img.png';
   }
 }

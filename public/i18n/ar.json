@@ -1,5 +1,5 @@
 {
-  "NAV": {
+  "NAVBAR": {
     "HOME": "الرئيسية",
     "EXPLORE": "استكشف",
     "REVIEWS": "التقييمات",
@@ -88,6 +88,7 @@
   },
   "ROOMS": {
     "ROOM": "غرفه",
+    "ROOMS": "الغرف",
     "NO_ROOMS_MATCH": "لا توجد غرف تطابق بحثك.",
     "TITLE": "تفاصيل جدول الغرف",
     "ADD_NEW": "إضافة غرفة جديدة",
@@ -126,7 +127,16 @@
     "TITLE": "غرفة {{number}}",
     "GUESTS_COUNT": "{{count}} ضيوف",
     "ROOM_DETAILS_TITLE": "تفاصيل الغرفة",
-    "OFF": "خصم"
+    "OFF": "خصم",
+    "DESCRIPTION": "يُعد التكنو البسيط (Minimal Techno) أحد الأنواع الفرعية لموسيقى التكنو، ويتميز بأسلوبه البسيط الذي يعتمد على التكرار والتطور التدريجي الهادئ. وقد ظهر هذا النوع في أوائل التسعينيات على يد منتجين من مدينة ديترويت مثل روبرت هود ودانيال بيل.\n\nيعتمد هذا الأسلوب الموسيقي على الحد الأدنى من العناصر مع التركيز على الإيقاع والتكرار، مما يمنحه طابعًا مميزًا وهادئًا مقارنةً بأنواع التكنو الأخرى.",
+    "START_BOOKING": "ابدأ الحجز",
+    "DISCOUNT": "خصم",
+    "YOU_WILL_PAY": "ستدفع",
+    "FOR": "مقابل",
+    "NIGHT": "ليلة",
+    "NIGHTS": "ليالٍ",
+    "SELECT_DATES": "اختر تاريخي الوصول والمغادرة لمعرفة السعر الإجمالي",
+    "CONTINUE_BOOK": "متابعة الحجز"
   },
   "ROOM_FORM": {
     "ADD_ROOM": "إضافة غرفة جديدة",
@@ -152,7 +162,8 @@
     "LOGIN_REQUIRED_TITLE": "تسجيل الدخول مطلوب",
     "LOGIN_REQUIRED_MESSAGE": "يجب تسجيل الدخول لإضافة تقييم.",
     "LOGIN_BUTTON": "تسجيل الدخول",
-    "REGISTER_BUTTON": "إنشاء حساب"
+    "REGISTER_BUTTON": "إنشاء حساب",
+    "NO_REVIEWS": "لا توجد تعليقات حتى الآن، كن أول من يشارك رأيك."
   },
   "COMMENTS": {
     "ADD_COMMENT": "أضف تعليقك",
@@ -176,7 +187,8 @@
     "LOGIN_REQUIRED_TITLE": "تسجيل الدخول مطلوب",
     "LOGIN_REQUIRED_MESSAGE": "يجب تسجيل الدخول لإضافة تعليق.",
     "LOGIN_BUTTON": "تسجيل الدخول",
-    "REGISTER_BUTTON": "إنشاء حساب"
+    "REGISTER_BUTTON": "إنشاء حساب",
+    "NO_COMMENTS": "لا يوجد تعليقات حتى الآن، كن أول من يضيف تعليق."
   },
   "ALERTS": {
     "DELETE_TITLE": "حذف {{entity}}؟",
@@ -344,50 +356,49 @@
     "ADDRESS": "Staycation, Kemang, Jakarta",
     "COPYRIGHT": "جميع الحقوق محفوظة © 2019 .Staycation"
   },
-    "payment": {
-      "title": "الدفع",
-      "subtitle": "برجاء اتباع التعليمات بالأسفل",
-      "transferLabel": "تحويل الدفع:",
-      "tax": "الضريبة",
-      "subTotal": "الإجمالي الفرعي",
-      "total": "الإجمالي الكلي",
-      "currency": "دولار",
-      "bank": {
-        "bca": {
-          "name": "بنك سنترال آسيا",
-          "alt": "بنك BCA"
-        },
-        "mandiri": {
-          "name": "بنك مانديري",
-          "alt": "بنك مانديري"
-        }
+  "payment": {
+    "title": "الدفع",
+    "subtitle": "برجاء اتباع التعليمات بالأسفل",
+    "transferLabel": "تحويل الدفع:",
+    "tax": "الضريبة",
+    "subTotal": "الإجمالي الفرعي",
+    "total": "الإجمالي الكلي",
+    "currency": "دولار",
+    "bank": {
+      "bca": {
+        "name": "بنك سنترال آسيا",
+        "alt": "بنك BCA"
       },
-      "cardDetails": "بيانات البطاقة (Stripe)",
-      "originBank": "البنك المُحوَّل منه",
-      "senderName": "اسم المُرسِل",
-      "placeholder": "برجاء الكتابة هنا ...",
-      "processing": "جاري المعالجة...",
-      "continueToBook": "متابعة الحجز",
-      "cancel": "إلغاء",
-      "completed": {
-        "title": "تم بنجاح!",
-        "imageAlt": "اكتملت العملية",
-        "line1": "سنقوم بإبلاغك عبر البريد الإلكتروني لاحقًا",
-        "line2": "بمجرد قبول عملية التحويل",
-        "backToHome": "الرجوع للرئيسية"
-      },
-      "errors": {
-        "requiredTitle": "بيانات مطلوبة",
-        "senderNameRequired": "من فضلك أدخل اسم المُرسِل",
-        "cardErrorPrefix": "خطأ في البطاقة",
-        "paymentFailedTitle": "فشلت عملية الدفع",
-        "sorryTitle": "آسفين !",
-        "ok": "حسنًا",
-        "paymentErrorTitle": "خطأ في الدفع",
-        "stripeNotInitialized": "لم يتم تهيئة Stripe بشكل صحيح. برجاء تحديث الصفحة أو المحاولة لاحقًا."
+      "mandiri": {
+        "name": "بنك مانديري",
+        "alt": "بنك مانديري"
       }
     },
-  
+    "cardDetails": "بيانات البطاقة (Stripe)",
+    "originBank": "البنك المُحوَّل منه",
+    "senderName": "اسم المُرسِل",
+    "placeholder": "برجاء الكتابة هنا ...",
+    "processing": "جاري المعالجة...",
+    "continueToBook": "متابعة الحجز",
+    "cancel": "إلغاء",
+    "completed": {
+      "title": "تم بنجاح!",
+      "imageAlt": "اكتملت العملية",
+      "line1": "سنقوم بإبلاغك عبر البريد الإلكتروني لاحقًا",
+      "line2": "بمجرد قبول عملية التحويل",
+      "backToHome": "الرجوع للرئيسية"
+    },
+    "errors": {
+      "requiredTitle": "بيانات مطلوبة",
+      "senderNameRequired": "من فضلك أدخل اسم المُرسِل",
+      "cardErrorPrefix": "خطأ في البطاقة",
+      "paymentFailedTitle": "فشلت عملية الدفع",
+      "sorryTitle": "آسفين !",
+      "ok": "حسنًا",
+      "paymentErrorTitle": "خطأ في الدفع",
+      "stripeNotInitialized": "لم يتم تهيئة Stripe بشكل صحيح. برجاء تحديث الصفحة أو المحاولة لاحقًا."
+    }
+  },
   "FAVORITES": {
     "EMPTY_TITLE": "قائمة المفضلة فارغة",
     "EMPTY_DESCRIPTION": "لم تقم بإضافة أي غرف إلى قائمة المفضلة بعد. استكشف الغرف المتاحة وأضف المفضلة لديك للوصول إليها بسهولة لاحقًا.",
@@ -397,11 +408,11 @@
     "TITLE": "استكشف جميع الغرف",
     "PAGE_REPORT": "{first} - {last} من {totalRecords}"
   },
-"USER_PROFILE": {
-  "title": "الملف الشخصي",
-  "country": "الدولة",
-  "PhoneNumber": "رقم الهاتف",
-  "role": "الدور",
-  "status": "الحالة"
-}
+  "USER_PROFILE": {
+    "title": "الملف الشخصي",
+    "country": "الدولة",
+    "PhoneNumber": "رقم الهاتف",
+    "role": "الدور",
+    "status": "الحالة"
+  }
 }

@@ -11,25 +11,19 @@
         <li>
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             class="hover:text-blue-400 text-primary cursor-pointer">
-            {{ 'NAV.HOME' | translate }}
+            {{ 'NAVBAR.HOME' | translate }}
           </a>
         </li>
 
         <li>
           <a routerLink="/rooms" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
-            {{ 'NAV.EXPLORE' | translate }}
+            {{ 'NAVBAR.EXPLORE' | translate }}
           </a>
         </li>
         @if (isloggedIn) {
-        <!-- <li>
-          <a routerLink="/reviews" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
-            {{ 'NAV.REVIEWS' | translate }}
-          </a>
-        </li> -->
-
         <li>
           <a routerLink="/favorites" routerLinkActive="active" class="hover:text-blue-400 text-primary cursor-pointer">
-            {{ 'NAV.FAVORITES' | translate }}
+            {{ 'NAVBAR.FAVORITES' | translate }}
           </a>
         </li>
         }
@@ -42,13 +36,13 @@
         <!-- Actions (desktop) -->
         @if (!isloggedIn) {
         <div class="hidden md:flex items-center gap-2">
-          <button pButton routerLink="/auth/login" type="button" [label]="'NAV.LOGIN' | translate"
+          <button pButton routerLink="/auth/login" type="button" [label]="'NAVBAR.LOGIN' | translate"
             class="p-button-outlined p-button-md"></button>
-          <button pButton routerLink="/auth/register" type="button" [label]="'NAV.REGISTER' | translate"
+          <button pButton routerLink="/auth/register" type="button" [label]="'NAVBAR.REGISTER' | translate"
             class=" px-[20px]"></button>
         </div>
         } @else {
-        <app-profile-dropdown class="hidden md:block"></app-profile-dropdown>
+        <app-profile-dropdown></app-profile-dropdown>
         }
 
         <!-- Hamburger toggle (md and down) -->
@@ -92,28 +86,21 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         (click)="isSidebarOpen = false"
         class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
-        {{ 'NAV.HOME' | translate }}
+        {{ 'NAVBAR.HOME' | translate }}
       </a>
     </li>
 
     <li>
       <a routerLink="/explore" routerLinkActive="active" (click)="isSidebarOpen = false"
         class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
-        {{ 'NAV.EXPLORE' | translate }}
+        {{ 'NAVBAR.EXPLORE' | translate }}
       </a>
     </li>
     @if (isloggedIn) {
-    <!-- <li>
-      <a routerLink="/reviews" routerLinkActive="active" (click)="isSidebarOpen = false"
-        class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
-        {{ 'NAV.REVIEWS' | translate }}
-      </a>
-    </li> -->
-
     <li>
       <a routerLink="/favorites" routerLinkActive="active" (click)="isSidebarOpen = false"
         class="block hover:bg-gray-50 hover:text-blue-400 text-primary cursor-pointer px-3 py-2.5 rounded-md transition-colors">
-        {{ 'NAV.FAVORITES' | translate }}
+        {{ 'NAVBAR.FAVORITES' | translate }}
       </a>
     </li>
     }
@@ -123,14 +110,10 @@
   <div class="mt-auto px-4 py-4 border-t border-gray-100">
     @if (!isloggedIn) {
     <div class="flex flex-col gap-2">
-      <button pButton routerLink="/auth/login" type="button" class="cursor-pointer" [label]="'NAV.LOGIN' | translate"
+      <button pButton routerLink="/auth/login" type="button" class="cursor-pointer" [label]="'NAVBAR.LOGIN' | translate"
         (click)="isSidebarOpen = false" class="p-button-outlined p-button-sm w-full"></button>
       <button pButton routerLink="/auth/register" type="button" class="cursor-pointer"
-        [label]="'NAV.REGISTER' | translate" (click)="isSidebarOpen = false" class="p-button-sm w-full"></button>
-    </div>
-    } @else {
-    <div (click)="isSidebarOpen = false">
-      <app-profile-dropdown></app-profile-dropdown>
+        [label]="'NAVBAR.REGISTER' | translate" (click)="isSidebarOpen = false" class="p-button-sm w-full"></button>
     </div>
     }
   </div>
