@@ -3,27 +3,188 @@
 @use "tailwindcss";
 @import "primeicons/primeicons.css";
 
+/* Make Html Color Transition smooth */
+html {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/*Set Dark Mode Styling for tailwind*/
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --font-en: "Poppins", sans-serif;
-  --font-ar: "Tajawal", "Cairo", sans-serif;
-  --color-primary: #152C5B;
-  --color-secondary: #FDFFFC;
-  --color-text-secondary: #b0b0b0;
-  --font-poppins: "Poppins", sans-serif;
-  --font-inter : "Inter", sans-serif;
-  --color-login-red: #EB5148;
+  /* Fonts */
+  --font-en: var(--font-en-family);
+  --font-ar: var(--font-ar-family);
+  --font-poppins: var(--font-poppins-family);
+  --font-inter: var(--font-inter-family);
+
+  /* Colors */
+  --color-primary: var(--primary-color);
+  --color-secondary: var(--secondary-color);
+  --color-text-secondary: var(--text-secondary-color);
+  --color-login-red: var(--login-red-color);
+  --color-white: var(--white-color);
+
+  //
+  --color-surface: var(--surface-color);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-border: var(--surface-border);
+
+  --color-text-primary: var(--text-primary-color);
+  --color-text-secondary: var(--text-secondary-color);
+
+  --color-image-overlay: var(--image-overlay);
+  --color-image-overlay-hover: var(--image-overlay-hover);
+
+  --color-price-badge: var(--price-badge);
+  --color-icon: var(--icon-color);
 }
 
+/* ========================= */
+/* Light Theme (default) */
+/* ========================= */
 :root {
-  /* English */
-  --font-en: "Poppins", sans-serif;
-  /* Arabic */
-  --font-ar: "Tajawal", "Cairo", sans-serif;
-  --primar-color: #152C5B;
-  --font-poppins: "Poppins", sans-serif;
-  --font-inter : "Inter", sans-serif;
+  /* Fonts */
+  --font-en-family: "Poppins", sans-serif;
+  --font-ar-family: "Tajawal", "Cairo", sans-serif;
+  --font-poppins-family: "Poppins", sans-serif;
+  --font-inter-family: "Inter", sans-serif;
+
+  /* Colors */
+  --primary-color: #152C5B;
+  --secondary-color: #FDFFFC;
+  --text-secondary-color: #B0B0B0;
+  --white-color: #ffffff;
+  --login-red-color: #EB5148;
+  --icon-color: #374151;
+  --input-bg-color: #ffffff;
+  --input-color: #111827;
+  --input-border-color: #d1d5db;
+  --input-placeholder-color: #6b7280;
+
+    --hero-border: #E5E5E5;
+
+  --date-icon-filter: none;
+
+  --input-bg: #FFFFFF;
+  --input-border: #D1D5DB;
+  --input-text: #152C5B;
+
+  --decrement-bg: #E74C3C;
+  --increment-bg: #1ABC9C;
 }
 
+/* ========================= */
+/* Dark Theme */
+/* ========================= */
+.dark {
+  /* Fonts (usually remain unchanged) */
+  --font-en-family: "Poppins", sans-serif;
+  --font-ar-family: "Tajawal", "Cairo", sans-serif;
+  --font-poppins-family: "Poppins", sans-serif;
+  --font-inter-family: "Inter", sans-serif;
+
+  /* Colors — aligned with HotelPreset primary scale (#3252df family) */
+  --primary-color: #8397ec;
+  --secondary-color: #10142B;
+  --login-red-color: #F2726B;
+
+  /* Surfaces */
+  --white-color: #0D1024;
+  --surface-color: #171D3A;
+  --surface-hover: #20284A;
+  --surface-border: #313A63;
+
+  /* Text */
+  --text-primary-color: #F8FAFC;
+  --text-secondary-color: #9BA3C7;
+
+  /* States */
+  --login-red-color: #F2726B;
+  --success-color: #4ADE80;
+  --warning-color: #FACC15;
+  --info-color: #60A5FA;
+
+  /* Card overlays */
+  --image-overlay: rgba(6, 10, 28, 0.45);
+  --image-overlay-hover: rgba(6, 10, 28, 0.7);
+
+  /* Badge */
+  --price-badge: #D946EF;
+  --icon-color: #E2E8F0;
+
+    --hero-border: #313A63;
+
+  /* Makes PNG icons light */
+  --date-icon-filter: brightness(0) invert(1);
+
+  --input-bg: #0D1024;
+  --input-border: #313A63;
+  --input-text: #F8FAFC;
+
+  --decrement-bg: #F2726B;
+  --increment-bg: #34D399;
+}
+
+/* DatePicker */
+.dark .p-datepicker-input,
+.dark .p-inputtext {
+  background: var(--white-color);
+  color: var(--text-primary-color);
+  border-color: var(--border-color);
+}
+
+/* Placeholder */
+.dark .p-datepicker-input::placeholder,
+.dark .p-inputtext::placeholder {
+  color: var(--text-secondary-color);
+}
+
+/* InputNumber */
+.dark .p-inputnumber-input {
+  background: var(--white-color);
+  color: var(--text-primary-color);
+  border-color: var(--border-color);
+}
+
+/* InputNumber buttons */
+.dark .p-inputnumber-button {
+  background: var(--white-color);
+  color: var(--text-primary-color);
+  border-color: var(--border-color);
+}
+
+.dark .p-inputnumber-button:hover {
+  background: var(--surface-color);
+}
+
+/* Focus */
+.dark .p-inputtext:focus,
+.dark .p-datepicker-input:focus,
+.dark .p-inputnumber-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+// input,
+// textarea,
+// select,
+// .p-inputtext,
+// .p-inputtextarea,
+// .p-dropdown .p-dropdown-label,
+// .p-inputnumber input {
+//   background-color: var(--input-bg-color);
+//   color: var(--input-color);
+//   border-color: var(--input-border-color);
+// }
+
+// input::placeholder,
+// textarea::placeholder,
+// .p-inputtext::placeholder,
+// .p-inputtextarea::placeholder {
+//   color: var(--input-placeholder-color);
+//   opacity: 1;
+// }
 
 html[lang="en"] {
   --font-base: var(--font-en);

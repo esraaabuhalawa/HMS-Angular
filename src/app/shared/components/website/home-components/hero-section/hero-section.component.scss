@@ -11,7 +11,7 @@
     inset-block-start: 11%;
     inset-inline-start: 13%;
 
-    border: 2px solid #E5E5E5;
+    border: 2px solid var(--hero-border);
     border-radius: 15px;
 
     z-index: -1;
@@ -30,33 +30,30 @@
 }
 
 :host ::ng-deep {
-  .p-inputnumber-horizontal .p-inputnumber-decrement-button {
-    background-color: #E74C3C !important;
-    width: 70px !important;
+  .p-inputtext,
+  .p-datepicker-input,
+  .p-inputnumber-input {
+    background: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--input-border);
   }
 
   .p-inputnumber-horizontal .p-inputnumber-decrement-button {
-    background-color: #E74C3C !important;
-    border-color: #E74C3C !important;
-    color: white !important;
-  }
-
-  .p-inputnumber-horizontal .p-inputnumber-increment-button {
-    background-color: #1ABC9C !important;
     width: 70px !important;
+    background: var(--decrement-bg) !important;
+    border-color: var(--decrement-bg) !important;
+    color: #fff !important;
   }
 
   .p-inputnumber-horizontal .p-inputnumber-increment-button {
-    background-color: #1ABC9C !important;
-    border-color: #1ABC9C !important;
-    color: white !important;
+    width: 70px !important;
+    background: var(--increment-bg) !important;
+    border-color: var(--increment-bg) !important;
+    color: #fff !important;
   }
 
-  .p-datepicker-prev-button:dir(rtl) {
-    transform: rotate(180deg);
-  }
-
-  .p-datepicker-next-button:dir(rtl){
+  .p-datepicker-prev-button:dir(rtl),
+  .p-datepicker-next-button:dir(rtl) {
     transform: rotate(180deg);
   }
 }

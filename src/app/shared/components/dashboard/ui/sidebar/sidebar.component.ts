@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
-import { NavbarUiService } from '../../../../../core/services/navbar-ui.service';
+import { NavbarService } from '../../../../../core/services/navbar.service';
 interface Menu {
   label: string,
   icon: string,
@@ -15,10 +15,10 @@ interface Menu {
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  readonly navbarUiService = inject(NavbarUiService);
+  readonly navbarService = inject(NavbarService);
 
-  isMobileOpen$ = this.navbarUiService.isMobileOpen$;
-  isMobile$ = this.navbarUiService.isMobile$;
+  isMobileOpen$ = this.navbarService.isMobileOpen$;
+  isMobile$ = this.navbarService.isMobile$;
 
   navMenu: Menu[] = [
     {
@@ -55,12 +55,12 @@ export class SidebarComponent {
 
 
   toggleSidebar() {
-    this.navbarUiService.toggleSidebar();
+    this.navbarService.toggleSidebar();
   }
 
   onNavItemClick(): void {
     if (window.innerWidth <= 992) {
-      this.navbarUiService.closeMobileMenu();
+      this.navbarService.closeMobileMenu();
     }
   }
 

@@ -1,7 +1,7 @@
 <!-- Mobile overlay -->
 <div class="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300" [class.opacity-100]="isMobileOpen$ | async"
   [class.visible]="isMobileOpen$ | async" [class.opacity-0]="!(isMobileOpen$ | async)"
-  [class.invisible]="!(isMobileOpen$ | async)" (click)="navbarUiService.closeMobileMenu()">
+  [class.invisible]="!(isMobileOpen$ | async)" (click)="navbarService.closeMobileMenu()">
 </div>
 
 <!-- Sidebar -->
