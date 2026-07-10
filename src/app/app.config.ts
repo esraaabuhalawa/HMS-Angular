@@ -62,14 +62,6 @@ export const appConfig: ApplicationConfig = {
               oneTapEnabled: false,
             }),
           },
-          // {
-          // id: FacebookLoginProvider.PROVIDER_ID,
-          // provider: new FacebookLoginProvider(
-          //   environment.facebookAppId,
-          //   {
-          //     version: 'v18.0',
-          //   }
-          // ),}
         ],
         onError: (err: any) => console.error(err),
       } as SocialAuthServiceConfig,

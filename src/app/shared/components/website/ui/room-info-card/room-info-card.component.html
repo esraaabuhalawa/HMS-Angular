@@ -6,13 +6,13 @@
     class=" group absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110" />
 
   <!-- Base gradient so title stays readable even without hover -->
-  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-image-overlay-hover via-image-overlay to-transparent"></div>
 
   <!-- Dark overlay on hover -->
-  <div class="absolute inset-0 bg-black/50 opacity-0 transition duration-300 group-hover:opacity-100"></div>
+  <div class="absolute inset-0 bg-image-overlay-hover opacity-0 transition duration-300 group-hover:opacity-100"></div>
 
   <!-- Status Badge -->
-  <span class="absolute top-0 end-0 flex items-center justify-center bg-[#FF498B] text-white
+  <span class="absolute top-0 end-0 flex items-center justify-center  bg-price-badge text-white
          px-3 py-1.5 text-base font-medium leading-[170%] room-discount">
     {{ room.price }}
     <span class="mx-2 inline-block" style="font-weight: 200;">
@@ -24,10 +24,10 @@
   <div
     class="absolute inset-0 z-10 flex items-center justify-center gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
     @if(showDetailsIcon){
-    <button pButton pRipple rounded icon="pi pi-eye" [routerLink]="`/rooms/${room._id}`"
+    <button pButton pRipple rounded icon="pi pi-eye" class="!text-icon" [routerLink]="`/rooms/${room._id}`"
       [pTooltip]="'ROOM_CARD.VIEW_DETAILS' | translate" tooltipPosition="top"></button>
     }
-    <button pButton pRipple icon="pi pi-heart-fill" [class.is-favorite]="isFavorite"
+    <button pButton pRipple icon="pi pi-heart-fill" class="!text-icon" [class.is-favorite]="isFavorite"
       (click)="onToggleFavorite(); $event.stopPropagation()" [pTooltip]="(isFavorite
       ? 'ROOM_CARD.REMOVE_FROM_WISHLIST'
       : 'ROOM_CARD.ADD_TO_WISHLIST') | translate" tooltipPosition="top">
@@ -36,12 +36,12 @@
 
   <!-- Title (bottom of image) -->
   <div class="absolute bottom-[-10px] inset-x-0 z-10 p-3">
-    <h3 class="line-clamp-1 text-[20px] font-regular text-white">
+    <h3 class="line-clamp-1 text-[20px] font-regular text-[#fff]">
       {{ 'ROOMS.ROOM' | translate }} #{{room.roomNumber }}
     </h3>
     <div class="flex flex-wrap gap-2 mb-5">
       @for (facility of room.facilities; track facility._id; let last = $last) {
-      <span class="py-1 text-[15px] text-white font-[200]">
+      <span class="py-1 text-[15px] text-[#fff] font-[200]">
         {{ facility.name }}@if (!last) {,}
       </span>
       }

@@ -4,7 +4,7 @@ import { BehaviorSubject, debounceTime, fromEvent } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NavbarUiService {
+export class NavbarService {
   private isMobile = new BehaviorSubject<boolean>(false);
   private isMobileOpen = new BehaviorSubject<boolean>(false);
 

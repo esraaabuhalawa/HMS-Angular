@@ -6,10 +6,11 @@ import { ProfileDropdownComponent } from '../../../general/profile-dropdown/prof
 import { LanguageSwitcherComponent } from "../../../general/language-switcher/language-switcher.component";
 import { TranslatePipe } from '@ngx-translate/core';
 import { RoleEnum } from '../../../../../core/enums/role.enum';
+import { ThemeToggleComponent } from "../../../general/theme-toggle/theme-toggle.component";
 
 @Component({
   selector: 'app-navbar',
-  imports: [ButtonModule , ProfileDropdownComponent, RouterLink, LanguageSwitcherComponent , TranslatePipe, RouterLinkActive,],
+  imports: [ButtonModule, ProfileDropdownComponent, RouterLink, LanguageSwitcherComponent, TranslatePipe, RouterLinkActive, ThemeToggleComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
