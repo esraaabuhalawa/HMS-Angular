@@ -1,15 +1,16 @@
-<p-dialog header="user Details" [modal]="true" [(visible)]="visible" [style]="{ width: '550px' }" (onHide)="onHide()">
+<p-dialog [header]="'USER_DETAILS.TITLE' | translate" [modal]="true" [(visible)]="visible" [style]="{ width: '550px' }"
+  (onHide)="onHide()">
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
-      <i class="pi pi-eye text-gray-400"></i>
-      <span class="font-md">user Details</span>
+      <i class="pi pi-eye text-gray-400 dark:text-text-secondary"></i>
+      <span class="font-md">{{ 'USER_DETAILS.TITLE' | translate }}</span>
     </div>
   </ng-template>
 
   @if (loading) {
   <div class="flex flex-col gap-4 p-1">
     <!-- Header Card -->
-    <div class="rounded-xl border border-gray-200 p-4">
+    <div class="rounded-xl border border-gray-200 dark:border-surface-border p-4">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
           <p-skeleton shape="circle" size="42px" />
@@ -28,25 +29,6 @@
       <p-skeleton height="5.5rem" borderRadius="12px" />
       <p-skeleton height="5.5rem" borderRadius="12px" />
       <p-skeleton height="5.5rem" borderRadius="12px" />
-    </div>
-
-    <!-- Audit Information Card -->
-    <div class="rounded-xl border border-gray-200 p-4">
-      <div class="mb-4">
-        <p-skeleton width="7rem" height="0.75rem" />
-      </div>
-
-      <div class="flex items-center justify-between py-2">
-        <p-skeleton width="6rem" height="1rem" />
-        <p-skeleton width="10rem" height="1rem" />
-      </div>
-
-      <div class="my-3 border-t border-gray-200"></div>
-
-      <div class="flex items-center justify-between py-2">
-        <p-skeleton width="6rem" height="1rem" />
-        <p-skeleton width="10rem" height="1rem" />
-      </div>
     </div>
   </div>
   } @else if (userInfo) {
@@ -70,21 +52,25 @@
     <div class="user-card__body">
       <div class="user-card__fields">
         <div class="user-card__field">
-          <p class="user-card__field-label">Country</p>
+          <p class="user-card__field-label">{{ 'USER_DETAILS.COUNTRY' | translate }}</p>
           <p class="user-card__field-value">{{ userInfo.country }}</p>
         </div>
         <div class="user-card__field">
-          <p class="user-card__field-label">Phone number</p>
+          <p class="user-card__field-label">{{ 'USER_DETAILS.PHONE_NUMBER' | translate }}</p>
           <p class="user-card__field-value">{{ userInfo.phoneNumber }}</p>
         </div>
         <div class="user-card__field">
-          <p class="user-card__field-label">role</p>
+          <p class="user-card__field-label"> {{ 'USER_DETAILS.ROLE' | translate }}</p>
           <p class="user-card__field-value">{{ userInfo.role }}</p>
         </div>
         <div class="user-card__field">
-          <p class="user-card__field-label">Status</p>
+          <p class="user-card__field-label">{{ 'USER_DETAILS.STATUS' | translate }}</p>
           <p class="user-card__field-value">
-            {{ userInfo.verified ? 'Active' : 'Not Active' }}
+            {{
+            userInfo.verified
+            ? ('USER_DETAILS.ACTIVE' | translate)
+            : ('USER_DETAILS.NOT_ACTIVE' | translate)
+            }}
           </p>
         </div>
       </div>

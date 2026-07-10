@@ -11,7 +11,8 @@
     "ACCESS_DENIED": "تم رفض الوصول",
     "LOGIN_AS_USER": "يرجى تسجيل الدخول باستخدام حساب مستخدم للوصول إلى هذه الصفحة.",
     "USER_ONLY": "هذه الصفحة متاحة للمستخدمين فقط.",
-    "LOGIN_SUCCESS_MESSAGE": "تم تسجيل الدخول بنجاح!"
+    "LOGIN_SUCCESS_MESSAGE": "تم تسجيل الدخول بنجاح!",
+    "LOGIN_SUCCESS_SUMMARY": "نجاح"
   },
   "HOME": {
     "HERO": {
@@ -149,6 +150,66 @@
     "UPLOAD_TEXT": "اسحب وأفلت أو",
     "CHOOSE_IMAGES": "اختر صور الغرفة",
     "UPLOAD_SUFFIX": "للرفع"
+  },
+    "USERS": {
+    "TITLE": "قائمة المستخدمين",
+    "ADD_NEW": "إضافة مستخدم جديد",
+    "TABLE": {
+      "NAME": "الاسم",
+      "EMAIL": "البريد الإلكتروني",
+      "ROLE": "الدور",
+      "COUNTRY": "الدولة",
+      "STATUS": "الحالة",
+      "CREATED_DATE": "تاريخ الإنشاء",
+      "UPDATED_DATE": "تاريخ التحديث"
+    },
+    "STATUS": {
+      "ACTIVE": "نشط",
+      "NOT_ACTIVE": "غير نشط"
+    },
+    "EMPTY": "المستخدمين"
+  },
+   "USER_DETAILS": {
+    "TITLE": "تفاصيل المستخدم",
+    "COUNTRY": "الدولة",
+    "PHONE_NUMBER": "رقم الهاتف",
+    "ROLE": "الدور",
+    "STATUS": "الحالة",
+    "ACTIVE": "نشط",
+    "NOT_ACTIVE": "غير نشط"
+  },
+  "USER_FORM": {
+    "HEADER": "إضافة مستخدم جديد",
+    "USER_NAME_LABEL": "اسم المستخدم",
+    "USER_NAME_PLACEHOLDER": "اكتب هنا ...",
+    "USER_NAME_REQUIRED": "اسم المستخدم مطلوب",
+    "USER_NAME_MINLENGTH": "يجب أن يكون اسم المستخدم طوله 3 أحرف على الأقل",
+    "USER_NAME_MAXLENGTH": "لا يمكن أن يزيد اسم المستخدم عن 20 حرفًا",
+    "PHONE_NUMBER_LABEL": "رقم الهاتف",
+    "PHONE_NUMBER_PLACEHOLDER": "اكتب هنا",
+    "PHONE_NUMBER_REQUIRED": "رقم الهاتف مطلوب",
+    "PHONE_NUMBER_PATTERN": "يجب أن يبدأ الرقم بـ 010 أو 011 أو 012 أو 015 (11 رقمًا)",
+    "COUNTRY_LABEL": "الدولة",
+    "COUNTRY_PLACEHOLDER": "اكتب هنا .",
+    "COUNTRY_REQUIRED": "الدولة مطلوبة",
+    "COUNTRY_PATTERN": "يجب أن يحتوي اسم الدولة على أحرف فقط",
+    "COUNTRY_MINLENGTH": "اسم الدولة قصير جدًا",
+    "EMAIL_LABEL": "البريد الإلكتروني",
+    "EMAIL_PLACEHOLDER": "البريد الإلكتروني",
+    "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
+    "EMAIL_INVALID": "صيغة البريد الإلكتروني غير صحيحة",
+    "PASSWORD_LABEL": "كلمة المرور",
+    "PASSWORD_PLACEHOLDER": "كلمة المرور",
+    "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
+    "PASSWORD_PATTERN": "يجب أن تحتوي كلمة المرور على حرف كبير وحرف صغير ورمز خاص وألا تقل عن 6 أحرف",
+    "CONFIRM_PASSWORD_LABEL": "تأكيد كلمة المرور",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "تأكيد كلمة المرور",
+    "CONFIRM_PASSWORD_REQUIRED": "تأكيد كلمة المرور مطلوب",
+    "PASSWORD_MISMATCH": "كلمتا المرور غير متطابقتين.",
+    "ROLE_LABEL": "إنشاء المستخدم كـ",
+    "ROLE_PLACEHOLDER": "اختر الدور",
+    "ROLE_REQUIRED": "الدور مطلوب",
+    "PROFILE_IMAGE_REQUIRED": "صورة الملف الشخصي مطلوبة"
   },
   "REVIEWS": {
     "YOUR_RATING": "أضف تقييمك",

@@ -14,6 +14,7 @@ import { UserAddComponent } from '../user-add/user-add.component';
 import { AuthService } from '../../../../../Auth/services/auth.service';
 import { ICurrentUserResponse } from '../../../../../Auth/interfaces/auth';
 import { MessageService } from 'primeng/api';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-list',
@@ -21,6 +22,7 @@ import { MessageService } from 'primeng/api';
     PageHeaderComponent,
     TableSkeletonComponent,
     EmptyStateComponent,
+    TranslatePipe,
     TableModule,
     ButtonModule,
     PaginatorModule,

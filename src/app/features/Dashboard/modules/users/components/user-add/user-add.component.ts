@@ -25,6 +25,7 @@ import { PasswordModule } from 'primeng/password';
 import { SelectModule } from 'primeng/select';
 import { RoleEnum } from '../../../../../../core/enums/role.enum';
 import { InputTextModule } from 'primeng/inputtext';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-add',
@@ -36,6 +37,7 @@ import { InputTextModule } from 'primeng/inputtext';
     SelectModule,
     InputTextModule,
     ReactiveFormsModule,
+    TranslatePipe,
   ],
   templateUrl: './user-add.component.html',
   styleUrl: './user-add.component.scss',

@@ -1,73 +1,83 @@
 <div class="w-full min-h-screen">
   <!-- Page Header -->
   <div class="mb-6">
-    <app-page-header title="List Users Table " buttonLabel="Add New User"
-      (buttonClick)="openNewAddUserDialog()"></app-page-header>
+    <app-page-header [title]="'USERS.TITLE' | translate" [buttonLabel]="'USERS.ADD_NEW' | translate"
+      (buttonClick)="openNewAddUserDialog()">
+    </app-page-header>
   </div>
   @if (isLoading()) {
   <app-table-skeleton [rows]="5" [columns]="[
-        { header: 'Name' },
-        { header: 'email' },
-        { header: 'role' },
-        { header: 'country' },
-        { header: 'stauts' },
-        { header: 'created Date' },
-        { header: ' updated Date' },
-        { header: ' ' },
-      ]">
+    { header: ('USERS.TABLE.NAME' | translate) },
+    { header: ('USERS.TABLE.EMAIL' | translate) },
+    { header: ('USERS.TABLE.ROLE' | translate) },
+    { header: ('USERS.TABLE.COUNTRY' | translate) },
+    { header: ('USERS.TABLE.STATUS' | translate) },
+    { header: ('USERS.TABLE.CREATED_DATE' | translate) },
+    { header: ('USERS.TABLE.UPDATED_DATE' | translate) },
+    { header: '' }
+  ]">
   </app-table-skeleton>
   } @else if (userList().length === 0) {
-  <div class="w-full py-12 flex flex-col justify-center items-center bg-white">
-    <app-empty-state [elementName]="'users'"></app-empty-state>
+  <div class="w-full py-12 flex flex-col justify-center items-center bg-white dark:bg-surface">
+    <app-empty-state [elementName]="'USERS.EMPTY' | translate"></app-empty-state>
   </div>
   } @else {
   <!-- users List -->
-  <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+  <div
+    class="w-full bg-white dark:bg-surface rounded-2xl shadow-sm border border-gray-100 dark:border-surface-border overflow-hidden">
     <p-table [value]="userList()" [tableStyle]="{ 'min-width': '60rem' }" styleClass="p-datatable-custom">
       <ng-template pTemplate="header">
-        <tr class="!bg-[#e9ecef]/50 border-b border-gray-100">
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            Name
+        <tr class="!bg-[#e9ecef]/50 dark:!bg-surface-hover border-b border-gray-100 dark:border-surface-border">
+          <th
+            class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
+            {{ 'USERS.TABLE.NAME' | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            email
+          <th
+            class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
+            {{ 'USERS.TABLE.EMAIL' | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            role
+          <th
+            class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
+            {{ 'USERS.TABLE.ROLE' | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            country
+          <th
+            class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
+            {{ 'USERS.TABLE.COUNTRY' | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            stauts
+          <th
+            class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
+            {{ 'USERS.TABLE.STATUS' | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            created Date
+          <th
+            class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
+            {{ 'USERS.TABLE.CREATED_DATE' | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
-            updated Date
+          <th
+            class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
+            {{ 'USERS.TABLE.UPDATED_DATE' | translate }}
           </th>
           <th class="!bg-transparent !py-4 !px-6 w-16"></th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-user>
-        <tr class="border-b border-gray-100/70 hover:bg-slate-50/50 transition-colors">
-          <td class="py-4 px-6 text-sm font-medium text-gray-700">{{ user.userName }}</td>
+        <tr
+          class="border-b border-gray-100/70 dark:border-surface-border hover:bg-slate-50/50 dark:hover:bg-surface-hover transition-colors">
+          <td class="py-4 px-6 text-sm font-medium text-gray-700 dark:text-text-primary">{{ user.userName }}</td>
 
-          <td class="py-4 px-6 text-sm text-gray-500">{{ user.email }}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ user.email }}</td>
 
-          <td class="py-4 px-6 text-sm text-gray-500">{{ user.role }}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">{{ user.country }}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ user.role }}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ user.country }}</td>
 
-          <td class="py-4 px-6 text-sm text-gray-500">
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">
             <span class="px-2 py-1 rounded-full text-xs font-medium"
-              [class]="user.verified ? 'bg-green-50 text-green-600' : 'bg-red-100 text-red-500'">
-              {{ user.verified ? 'Active' : 'Not Active' }}
+              [class]="user.verified ? 'bg-green-50 text-green-600 dark:bg-green-500/15 dark:text-green-400' : 'bg-red-100 text-red-500 dark:bg-red-500/15 dark:text-red-400'">
+              {{user.verified? ('USERS.STATUS.ACTIVE' | translate): ('USERS.STATUS.NOT_ACTIVE' | translate)}}
             </span>
           </td>
-          <td class="py-4 px-6 text-sm text-gray-500">{{ user.createdAt }}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">{{ user.updatedAt }}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ user.createdAt }}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ user.updatedAt }}</td>
           <td class="py-4 px-6 text-center">
             <p-button icon="pi pi-eye" [text]="true" [rounded]="true" (click)="onOpenViewDialog(user)">
             </p-button>
@@ -80,7 +90,7 @@
     <!-- Paginator -->
     <p-paginator [first]="(currentPage - 1) * pageSize" [rows]="pageSize" [totalRecords]="totalRecords"
       [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
-      currentPageReportTemplate="{first} - {last} of {totalRecords}" (onPageChange)="onPageChange($event)">
+      [currentPageReportTemplate]="'EXPLORE_ROOMS.PAGE_REPORT' | translate" (onPageChange)="onPageChange($event)">
     </p-paginator>
   </div>
   }

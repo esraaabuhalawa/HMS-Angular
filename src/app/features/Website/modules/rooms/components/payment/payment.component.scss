@@ -27,15 +27,15 @@
 
   // إجبار زرار الكنسل على اللون الرمادي بالكامل
   .btn-cancel {
-    background: #F5F6F8 !important;
-    background-color: #F5F6F8 !important;
-    color: #B0B0B0 !important;
+    background: var(--surface-hover) !important;
+    background-color: var(--surface-hover) !important;
+    color: var(--text-secondary-color) !important;
     font-weight: 300 !important;
 
     &:hover {
-      background: #e8e9eb !important;
-      background-color: #e8e9eb !important;
-      color: #888888 !important;
+      background: var(--surface-border) !important;
+      background-color: var(--surface-border) !important;
+      color: var(--text-primary-color) !important;
     }
   }
 }

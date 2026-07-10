@@ -1,7 +1,17 @@
-<button (click)="toggle()" class="p-2 pointer-cursor text-stone-600 hover:text-primary transition-all active:opacity-80">
+<button
+  (click)="toggle()"
+  type="button"
+  [attr.aria-label]="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+  class="group relative p-2 rounded-full cursor-pointer
+         text-[var(--color-text-secondary)]
+         hover:text-primary hover:bg-primary/10
+         active:scale-90 active:opacity-70
+         transition-all duration-300 ease-out
+         focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+>
   @if (isDark) {
-  <i class="pi pi-sun text-lg"></i>
+    <i class="pi pi-sun text-lg transition-transform duration-500 ease-out group-hover:rotate-45 group-hover:scale-110"></i>
   } @else {
-  <i class="pi pi-moon text-lg"></i>
+    <i class="pi pi-moon text-lg transition-transform duration-500 ease-out group-hover:-rotate-12 group-hover:scale-110"></i>
   }
 </button>

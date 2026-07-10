@@ -7,7 +7,7 @@
 >
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
-      <i class="pi pi-eye text-gray-400"></i>
+      <i class="pi pi-eye text-gray-400 dark:text-text-secondary"></i>
       <span class="font-md">{{ 'FACILITY_DETAILS.TITLE' | translate }}</span>
     </div>
   </ng-template>
@@ -21,7 +21,7 @@
       </div>
 
       <!-- Audit Information Card -->
-      <div class="rounded-xl border border-gray-200 p-4">
+      <div class="rounded-xl border border-gray-200 dark:border-surface-border p-4">
         <div class="mb-4">
           <p-skeleton width="7rem" height="0.75rem" />
         </div>
@@ -31,7 +31,7 @@
           <p-skeleton width="10rem" height="1rem" />
         </div>
 
-        <div class="my-3 border-t border-gray-200"></div>
+        <div class="my-3 border-t border-gray-200 dark:border-surface-border"></div>
 
         <div class="flex items-center justify-between py-2">
           <p-skeleton width="6rem" height="1rem" />
@@ -44,8 +44,8 @@
       <!-- Metric cards -->
       <div>
         <div class="grid grid-cols-2 gap-4">
-          <div class="rounded-lg p-3 bg-gray-100">
-            <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
+          <div class="rounded-lg p-3 bg-gray-100 dark:bg-surface-hover">
+            <div class="text-xs text-gray-500 dark:text-text-secondary mb-2 flex items-center gap-1">
               <i class="pi pi-building text-[11px]"></i>
               {{ 'FACILITY_DETAILS.NAME' | translate }}
             </div>
@@ -53,8 +53,8 @@
               {{ selectedFacility.name }}
             </div>
           </div>
-          <div class="rounded-lg p-3 bg-gray-100">
-            <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
+          <div class="rounded-lg p-3 bg-gray-100 dark:bg-surface-hover">
+            <div class="text-xs text-gray-500 dark:text-text-secondary mb-2 flex items-center gap-1">
               <i class="pi pi-user text-[11px]"></i>
 
               {{ 'FACILITY_DETAILS.CREATED_BY' | translate }}
@@ -70,12 +70,12 @@
 
       <!-- Audit -->
       <div>
-        <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
+        <div class="text-xs font-medium text-gray-500 dark:text-text-secondary uppercase tracking-wider mb-3">
           {{ 'FACILITY_DETAILS.AUDIT_INFO' | translate }}
         </div>
 
         <div class="flex items-center justify-between py-2">
-          <span class="flex items-center gap-2 text-sm text-gray-500">
+          <span class="flex items-center gap-2 text-sm text-gray-500 dark:text-text-secondary">
             <i class="pi pi-calendar-plus"></i>
             {{ 'FACILITY_DETAILS.CREATED_AT' | translate }}
           </span>
@@ -85,10 +85,10 @@
           </span>
         </div>
 
-        <div class="my-1 border-t border-gray-200"></div>
+        <div class="my-1 border-t border-gray-200 dark:border-surface-border"></div>
 
         <div class="flex items-center justify-between py-2">
-          <span class="flex items-center gap-2 text-sm text-gray-500">
+          <span class="flex items-center gap-2 text-sm text-gray-500 dark:text-text-secondary">
             <i class="pi pi-calendar"></i>
             {{ 'FACILITY_DETAILS.UPDATED_AT' | translate }}
           </span>

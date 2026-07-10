@@ -42,7 +42,7 @@
 
       <!-- Right: Booking card skeleton -->
       <div class="lg:col-span-1">
-        <div class="flex flex-col gap-6 border border-slate-200 rounded-2xl p-6 h-full">
+        <div class="flex flex-col gap-6 border border-slate-200 dark:border-surface-border rounded-2xl p-6 h-full">
           <div class="flex flex-col gap-3">
             <p-skeleton width="140px" height="20px"></p-skeleton>
             <p-skeleton width="100px" height="32px"></p-skeleton>
@@ -75,8 +75,8 @@
         @if (roomDetails!.images[1]; as image) {
         <img [src]="image" alt="Living room" class="w-full h-full object-cover rounded-2xl" />
         } @else {
-        <div class="w-full h-full bg-slate-100 flex items-center justify-center rounded-2xl">
-          <i class="pi pi-camera text-slate-300 text-3xl"></i>
+        <div class="w-full h-full bg-slate-100 dark:bg-surface flex items-center justify-center rounded-2xl">
+          <i class="pi pi-camera text-slate-300 dark:text-text-secondary text-3xl"></i>
         </div>
         }
       </div>
@@ -86,8 +86,8 @@
         @if (roomDetails!.images[2]; as image) {
         <img [src]="image" alt="Living room" class="w-full h-full object-cover rounded-2xl" />
         } @else {
-        <div class="w-full h-full bg-slate-100 flex items-center justify-center rounded-2xl">
-          <i class="pi pi-camera text-slate-300 text-3xl"></i>
+        <div class="w-full h-full bg-slate-100 dark:bg-surface flex items-center justify-center rounded-2xl">
+          <i class="pi pi-camera text-slate-300 dark:text-text-secondary text-3xl"></i>
         </div>
         }
       </div>
@@ -96,9 +96,9 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <!-- Left: Description -->
       <div class="lg:col-span-2">
-        <div class="space-y-5 text-slate-400 leading-relaxed text-sm sm:text-base">
+        <div class="space-y-5 text-slate-400 dark:text-text-secondary leading-relaxed text-sm sm:text-base">
           <p>
-            <span class="text-slate-300">
+            <span class="text-slate-500 dark:text-text-secondary">
               {{ 'ROOM_DETAILS.DESCRIPTION' | translate }}
             </span>
           </p>
@@ -109,7 +109,7 @@
           <div class="flex flex-col gap-3">
             <span class="text-2xl">🛋️</span>
             <span class="flex gap-2">
-              <span class="text-slate-400">{{ item.name }}</span>
+              <span class="text-slate-400 dark:text-text-secondary">{{ item.name }}</span>
             </span>
           </div>
           }
@@ -118,13 +118,13 @@
 
       <!-- Right: Booking card -->
       <div class="lg:col-span-1">
-        <div class="flex flex-col gap-6 border border-slate-200 rounded-2xl p-6 h-full">
+        <div class="flex flex-col gap-6 border border-slate-200 dark:border-surface-border rounded-2xl p-6 h-full">
           <div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-3"> {{ 'ROOM_DETAILS.START_BOOKING' | translate }}</h3>
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-text-primary mb-3"> {{ 'ROOM_DETAILS.START_BOOKING' | translate }}</h3>
 
             <div class="flex items-center gap-2 mb-1">
               <span class="text-4xl text-emerald-500">{{ roomDetails?.price }}$</span>
-              <span class="text-2xl text-slate-300">{{ 'ROOM_DETAILS.PER_NIGHT' | translate }}</span>
+              <span class="text-2xl text-slate-300 dark:text-text-secondary">{{ 'ROOM_DETAILS.PER_NIGHT' | translate }}</span>
             </div>
             <p class="text-red-500 text-sm font-medium mb-6">
               {{ 'ROOM_DETAILS.DISCOUNT' | translate }} {{ roomDetails?.discount }}% {{ 'ROOM_DETAILS.OFF' | translate
@@ -138,19 +138,19 @@
 
           <!-- Start / End Date -->
           <div class="flex justify-center align-center">
-            <label class="text-xs font-medium text-gray-500 uppercase tracking-wide date-icon block">
+            <label class="text-xs font-medium text-gray-500 dark:text-text-secondary uppercase tracking-wide date-icon block">
               <img src="/images/ic_calendar.png" alt="icon" class="d-block" />
             </label>
             <p-datepicker [(ngModel)]="dateRange" selectionMode="range" dateFormat="dd/mm/yy"
               [placeholder]="'HOME.HERO.DATE_PLACEHOLDER' | translate" [readonlyInput]="true" class="w-full">
             </p-datepicker>
           </div>
-          <p class="text-sm mb-5 text-slate-300">
+          <p class="text-sm mb-5 text-slate-300 dark:text-text-secondary">
             @if (numberOfNights > 0) {
-            {{ 'ROOM_DETAILS.YOU_WILL_PAY' | translate }} <span class="font-bold text-slate-900">${{ totalPrice }}
+            {{ 'ROOM_DETAILS.YOU_WILL_PAY' | translate }} <span class="font-bold text-slate-900 dark:text-text-primary">${{ totalPrice }}
               $</span>
             {{ 'ROOM_DETAILS.FOR' | translate }}
-            <span class="font-bold text-slate-900">
+            <span class="font-bold text-slate-900 dark:text-text-primary">
               {{ numberOfNights }}
               {{
               numberOfNights > 1
@@ -159,7 +159,7 @@
               }}
             </span>
             } @else {
-            {{ 'ROOM_DETAILS.SELECT_DATES' | translate }}
+            <p class="text-slate-500 dark:text-text-secondary">{{ 'ROOM_DETAILS.SELECT_DATES' | translate }}</p>
             }
           </p>
 
@@ -178,7 +178,7 @@
       <app-reviews [roomId]="roomId"></app-reviews>
     </div>
 
-    <div class="hidden md:block w-px bg-gray-200 mx-6"></div>
+    <div class="hidden md:block w-px bg-gray-200 dark:bg-surface-border mx-6"></div>
 
     <div class="flex-1">
       <app-comments [roomId]="roomId"></app-comments>

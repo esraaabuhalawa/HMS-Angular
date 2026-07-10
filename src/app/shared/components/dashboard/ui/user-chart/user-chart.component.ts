@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { Bookings } from '../../../../../features/Dashboard/interfaces/iadmin.interface';
+import { ThemeService } from '../../../../../core/services/theme.service';
 @Component({
   selector: 'app-user-chart',
   imports: [ChartModule],
@@ -18,11 +19,12 @@ import { Bookings } from '../../../../../features/Dashboard/interfaces/iadmin.in
   styleUrl: './user-chart.component.scss',
 })
 export class UserChartComponent {
+  private readonly themeService = inject(ThemeService);
   data = input<{ label: string; value: number; color?: string }[]>();
   title = input<string>('');
   cutout = input<string>('60%');
   chartOptions = computed(() => ({
-    cutout: this.cutout,
+    cutout: this.cutout(),
     radius: '90%',
 
     plugins: {
@@ -30,7 +32,7 @@ export class UserChartComponent {
         display: true,
         position: 'bottom',
         labels: {
-          color: '#555',
+          color: this.themeService.theme() === 'dark' ? '#9BA3C7' : '#555',
           font: { size: 13 },
           padding: 16,
           usePointStyle: true,
@@ -52,7 +54,6 @@ export class UserChartComponent {
   chartData = computed(() => {
     const items = this.data();
     if (!items?.length) return null;
-    console.log(items);
 
     return {
       labels: items.map((i) => i.label),

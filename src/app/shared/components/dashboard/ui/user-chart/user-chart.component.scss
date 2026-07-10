@@ -11,7 +11,7 @@
     transform: translate(-50%, -50%);
     font-size: 1rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary-color);
     pointer-events: none;
     // white-space: nowrap;
   }

@@ -27,41 +27,41 @@
     >
     </app-table-skeleton>
   } @else if (bookingList().length === 0) {
-    <div class="w-full py-12 flex flex-col justify-center items-center bg-white">
+    <div class="w-full py-12 flex flex-col justify-center items-center bg-white dark:bg-surface">
       <app-empty-state [elementName]="'Rooms'"></app-empty-state>
     </div>
   } @else {
     <!-- Ads List -->
-    <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="w-full bg-white dark:bg-surface rounded-2xl shadow-sm border border-gray-100 dark:border-surface-border overflow-hidden">
       <p-table
         [value]="bookingList()"
         [tableStyle]="{ 'min-width': '60rem' }"
         styleClass="p-datatable-custom"
       >
         <ng-template pTemplate="header">
-          <tr class="!bg-[#e9ecef]/50 border-b border-gray-100">
+          <tr class="!bg-[#e9ecef]/50 dark:!bg-surface-hover border-b border-gray-100 dark:border-surface-border">
             <th
-              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+              class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left"
             >
               {{ 'BOOKING_DETAILS.ROOM_NO' | translate }}
             </th>
             <th
-              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+              class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left"
             >
               {{ 'BOOKING_DETAILS.PRICE' | translate }}
             </th>
             <th
-              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+              class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left"
             >
               {{ 'BOOKING_DETAILS.START_DATE' | translate }}
             </th>
             <th
-              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+              class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left"
             >
               {{ 'BOOKING_DETAILS.END_DATE' | translate }}
             </th>
             <th
-              class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left"
+              class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left"
             >
               {{ 'BOOKING_DETAILS.USER' | translate }}
             </th>
@@ -70,18 +70,18 @@
         </ng-template>
 
         <ng-template pTemplate="body" let-booking>
-          <tr class="border-b border-gray-100/70 hover:bg-slate-50/50 transition-colors">
-            <td class="py-4 px-6 text-sm font-medium text-gray-700">
+          <tr class="border-b border-gray-100/70 dark:border-surface-border hover:bg-slate-50/50 dark:hover:bg-surface-hover transition-colors">
+            <td class="py-4 px-6 text-sm font-medium text-gray-700 dark:text-text-primary">
               {{ booking.room?.roomNumber }}
             </td>
-            <td class="py-4 px-6 text-sm text-gray-600">{{ booking.totalPrice | currency }}</td>
-            <td class="py-4 px-6 text-sm text-gray-500">
+            <td class="py-4 px-6 text-sm text-gray-600 dark:text-text-secondary">{{ booking.totalPrice | currency }}</td>
+            <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">
               {{ booking.startDate | date: 'dd-MM-yyyy' }}
             </td>
-            <td class="py-4 px-6 text-sm text-gray-500">
+            <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">
               {{ booking.endDate | date: 'dd-MM-yyyy' }}
             </td>
-            <td class="py-4 px-6 text-sm text-gray-500">{{ booking.user?.userName }}</td>
+            <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ booking.user?.userName }}</td>
             <td class="py-4 px-6 text-center">
               <p-menu
                 #menu

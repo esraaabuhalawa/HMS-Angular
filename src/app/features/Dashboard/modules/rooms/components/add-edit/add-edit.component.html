@@ -72,7 +72,7 @@
 
         <p>
           {{ 'ROOM_FORM.UPLOAD_TEXT' | translate }}
-          <span class="text-green-600 font-medium">
+          <span class="text-green-600 dark:text-green-400 font-medium">
             {{ 'ROOM_FORM.CHOOSE_IMAGES' | translate }}
           </span>
           {{ 'ROOM_FORM.UPLOAD_SUFFIX' | translate }}
@@ -85,7 +85,7 @@
     <!-- new imgs -->
     @for (img of previewUrls; track img; let i = $index) {
       <div class="relative">
-        <img [src]="img" class="w-20 h-20 object-cover rounded border" />
+        <img [src]="img" class="w-20 h-20 object-cover rounded border dark:border-surface-border" />
 
         <button
           type="button"
@@ -101,7 +101,7 @@
     @if (existingImages.length) {
       @for (img of existingImages; track img; let i = $index) {
         <div class="relative">
-          <img [src]="img" class="w-20 h-20 object-cover rounded border" />
+          <img [src]="img" class="w-20 h-20 object-cover rounded border dark:border-surface-border" />
 
           <button
             type="button"

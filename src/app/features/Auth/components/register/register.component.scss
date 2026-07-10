@@ -48,7 +48,7 @@
     right: -11px;
     width: 30px;
     height: 30px;
-    background: #eceaea;
+    background: var(--surface-hover);
     border-color: transparent;
   }
 
@@ -70,21 +70,21 @@
   font-size: 0;
   position: relative;
   overflow: hidden;
-  background: #f3f4f6;
-  border: 2px dashed #cbd5e1;
+  background: var(--surface-hover);
+  border: 2px dashed var(--input-border);
   transition: 0.3s ease;
 }
 
 /* Hover effect */
 :host ::ng-deep .profile-upload .p-button:hover {
   border-color: #3b82f6;
-  background: #eef2ff;
+  background: var(--surface-hover);
 }
 
 /* Upload icon centered */
 :host ::ng-deep .profile-upload .p-button .p-button-icon {
   font-size: 1.5rem;
-  color: #64748b;
+  color: var(--icon-color);
 }
 
 /* Remove text label completely */

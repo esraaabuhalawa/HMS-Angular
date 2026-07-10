@@ -7,7 +7,7 @@
 
   <!-- ============== LOADING STATE (SKELETON) ============== -->
   @if (loading()) {
-  <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+  <div class="bg-white dark:bg-surface rounded-xl shadow-sm border border-gray-100 dark:border-surface-border p-6">
     <div class="grid grid-cols-1 gap-8">
       <!-- Image skeleton -->
       <div>
@@ -47,7 +47,7 @@
   }
   <!-- ============== LOADED STATE ============== -->
   @else if (room(); as r) {
-  <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+  <div class="bg-white dark:bg-surface rounded-xl shadow-sm border border-gray-100 dark:border-surface-border p-6">
     <div class="grid grid-cols-1 gap-8">
       <div class="mb-4">
         <h1 class="text-2xl font-bold text-primary"> {{ 'ROOM_DETAILS.ROOM' | translate }} {{ r.roomNumber }}</h1>
@@ -66,7 +66,7 @@
           </ng-template>
         </p-galleria>
         } @else {
-        <div class="w-full h-[320px] rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
+        <div class="w-full h-[320px] rounded-lg bg-gray-100 dark:bg-surface-hover flex items-center justify-center text-gray-400 dark:text-text-secondary">
           <i class="pi pi-image text-4xl"></i>
         </div>
         }
@@ -75,8 +75,8 @@
       <!-- Details -->
       <div class="flex flex-col gap-4">
         <div>
-          <h2 class="text-2xl font-bold text-gray-600"> {{ 'ROOM_DETAILS.ROOM' | translate }} {{ r.roomNumber }}</h2>
-          <p class="text-sm text-gray-500 mt-1">
+          <h2 class="text-2xl font-bold text-gray-600 dark:text-text-secondary"> {{ 'ROOM_DETAILS.ROOM' | translate }} {{ r.roomNumber }}</h2>
+          <p class="text-sm text-gray-500 dark:text-text-secondary mt-1">
             {{ 'ROOM_DETAILS.ADDED_BY' | translate }} {{ r.createdBy.userName }}
           </p>
         </div>
@@ -84,17 +84,17 @@
         <!-- Price -->
         <div class="flex  flex-col sm:flex-row sm:items-end gap-2">
           @if (r.discount > 0) {
-          <span class="text-lg text-gray-400 line-through">{{ r.price }} EGP</span>
+          <span class="text-lg text-gray-400 dark:text-text-secondary line-through">{{ r.price }} EGP</span>
           <span class="text-2xl font-bold text-primary">{{ finalPrice(r) | number:'1.0-0' }} EGP</span>
           <p-tag severity="success" [value]="'-' + r.discount + '%'"></p-tag>
           } @else {
-          <span class="text-2xl font-bold text-gray-800">{{ r.price }} EGP</span>
+          <span class="text-2xl font-bold text-gray-800 dark:text-text-primary">{{ r.price }} EGP</span>
           }
-          <span class="text-sm text-gray-500 ml-1"> {{ 'ROOM_DETAILS.PER_NIGHT' | translate }}</span>
+          <span class="text-sm text-gray-500 dark:text-text-secondary ml-1"> {{ 'ROOM_DETAILS.PER_NIGHT' | translate }}</span>
         </div>
 
         <!-- Capacity -->
-        <div class="flex items-center gap-2 text-gray-600">
+        <div class="flex items-center gap-2 text-gray-600 dark:text-text-secondary">
           <i class="pi pi-users"></i>
           <span>
             {{ 'ROOM_DETAILS.UP_TO' | translate }} {{ r.capacity }} {{ 'ROOM_DETAILS.GUEST' | translate }}
@@ -105,7 +105,7 @@
 
         <!-- Facilities -->
         <div>
-          <h3 class="text-sm font-semibold text-gray-700 mb-2"> {{ 'ROOM_DETAILS.FACILITIES' | translate }}</h3>
+          <h3 class="text-sm font-semibold text-gray-700 dark:text-text-primary mb-2"> {{ 'ROOM_DETAILS.FACILITIES' | translate }}</h3>
           @if (r.facilities.length) {
           <div class="flex flex-wrap gap-2">
             @for (facility of r.facilities; track facility._id) {
@@ -113,14 +113,14 @@
             }
           </div>
           } @else {
-          <p class="text-sm text-gray-400">{{ 'ROOM_DETAILS.NO_FACILITIES' | translate }}</p>
+          <p class="text-sm text-gray-400 dark:text-text-secondary">{{ 'ROOM_DETAILS.NO_FACILITIES' | translate }}</p>
           }
         </div>
 
         <p-divider></p-divider>
 
         <!-- Meta -->
-        <div class="text-xs text-gray-400 flex flex-col gap-1">
+        <div class="text-xs text-gray-400 dark:text-text-secondary flex flex-col gap-1">
           <span> {{ 'ROOM_DETAILS.CREATED' | translate }}: {{ r.createdAt | date:'medium' }}</span>
           <span> {{ 'ROOM_DETAILS.LAST_UPDATED' | translate }}: {{ r.updatedAt | date:'medium' }}</span>
         </div>

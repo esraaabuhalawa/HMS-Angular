@@ -29,8 +29,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 13px 0 0 0;
-  border-top: 1px solid #e5e7eb;
-  background: #fff;
+  border-top: 1px solid var(--surface-border);
+  background: var(--white-color);
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--text-secondary-color);
 }
