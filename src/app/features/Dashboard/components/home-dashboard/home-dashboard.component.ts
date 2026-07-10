@@ -1,5 +1,5 @@
 import { AdminService } from './../../services/admin.service';
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { StaticsCardComponent } from '../../../../shared/components/dashboard/ui/statics-card/statics-card.component';
 import {  Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -7,13 +7,13 @@ import { Data } from '../../interfaces/iadmin.interface';
 import { UserChartComponent } from '../../../../shared/components/dashboard/ui/user-chart/user-chart.component';
 import { SkeletonModule } from 'primeng/skeleton';
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-dashboard',
   imports: [StaticsCardComponent, Toast, UserChartComponent, SkeletonModule],
   providers: [MessageService],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './home-dashboard.component.html',
+  styleUrl: './home-dashboard.component.scss',
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeDashboardComponent implements OnInit {
   private readonly adminService = inject(AdminService);
   private readonly messageService = inject(MessageService);
   mainData = signal<Data | null>(null);
@@ -40,6 +40,4 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
     });
   }
-
-  ngOnDestroy(): void {}
 }

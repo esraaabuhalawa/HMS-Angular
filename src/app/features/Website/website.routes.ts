@@ -4,7 +4,7 @@ import { userGuard } from '../../core/guards/user-guard';
 export const WEBSITE_ROUTES: Routes = [
   {
     path: '',
-    loadComponent: () => import('./components/home/home.component').then((c) => c.HomeComponent),
+    loadComponent: () => import('./components/home-user/home-user.component').then((c) => c.HomeUserComponent),
   },
   {
     path: 'rooms',
@@ -24,17 +24,8 @@ export const WEBSITE_ROUTES: Routes = [
     canActivate: [userGuard],
     title: 'profile',
     loadComponent: () =>
-      import('./components/user-profile/user-profile.component').then(
+      import('../../shared/components/general/user-profile/user-profile.component').then(
         (c) => c.UserProfileComponent,
       ),
   },
-
-  // {
-  //   path: 'Checkout',
-  //   canActivate: [userGuard],
-  //   title: 'Checkout',
-  //   loadComponent: () =>
-  //     import('./modules/favorites/components/favorites/favorites.component')
-  //       .then(c => c.CheckoutComponent),
-  // }
 ];

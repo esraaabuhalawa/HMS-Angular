@@ -57,7 +57,7 @@ export class FavoritesListComponent {
 
     this.breadcrumbs = [
       {
-        label: this.translate.instant('NAV.FAVORITES'),
+        label: this.translate.instant('NAVBAR.FAVORITES'),
       },
     ];
   }

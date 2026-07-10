@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, input, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -12,14 +12,17 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RoleEnum } from '../../../../../../core/enums/role.enum';
 import { Router } from '@angular/router';
 import { ConfirmEventType } from 'primeng/api';
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-comments',
-  imports: [FormsModule, ButtonModule, TextareaModule, ConfirmDialogModule, TranslatePipe],
+  imports: [FormsModule, ButtonModule, TextareaModule, ConfirmDialogModule, TranslatePipe, SkeletonModule],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.scss',
   providers: [ConfirmationService],
 })
 export class CommentsComponent implements OnInit {
+  @ViewChild('commentArea') commentArea?: ElementRef<HTMLElement>;
+
   private messageService = inject(MessageService);
   private confirmationService = inject(ConfirmationService);
   private readonly roomsService = inject(RoomsService);
@@ -36,6 +39,8 @@ export class CommentsComponent implements OnInit {
   currentUserId = this.authService.getCurrentUserId();
   isEditing = signal<boolean>(false);
   editingCommentId = signal<string | null>(null);
+  isUpdatingComment = signal<boolean>(false);
+  isDeletingComment = signal<boolean>(false);
 
   ngOnInit() {
     if (this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
@@ -96,6 +101,7 @@ export class CommentsComponent implements OnInit {
       },
     });
   }
+
   submitComment() {
     if (!this.commentText().trim()) return;
 
@@ -112,29 +118,30 @@ export class CommentsComponent implements OnInit {
           this.isSubmitting.set(false);
           this.commentText.set('');
 
-          const currentUserName = this.authService.getUserName() || 'You';
-          const currentUserImage = this.authService.getUserImage() || undefined;
+          // const currentUserName = this.authService.getUserName() || 'You';
+          // const currentUserImage = this.authService.getUserImage() || undefined;
 
-          const fallbackUser = {
-            _id: this.currentUserId || '',
-            userName: currentUserName,
-            profileImage: currentUserImage,
-          };
+          // const fallbackUser = {
+          //   _id: this.currentUserId || '',
+          //   userName: currentUserName,
+          //   profileImage: currentUserImage,
+          // };
 
-          const newComment: RoomComment = {
-            _id: res.data?._id || Math.random().toString(),
-            comment: typedCommentText,
-            room: {
-              _id: this.roomId(),
-              roomNumber: '',
-            },
-            user:
-              res.data?.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          };
+          // const newComment: RoomComment = {
+          //   _id: res.data?._id ,
+          //   comment: typedCommentText,
+          //   room: {
+          //     _id: this.roomId(),
+          //     roomNumber: '',
+          //   },
+          //   user:
+          //     res.data?.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
+          //   createdAt: new Date().toISOString(),
+          //   updatedAt: new Date().toISOString(),
+          // };
 
-          this.comments.update((list) => [newComment, ...list]);
+          this.loadComments();
+         // this.comments.update((list) => [newComment, ...list]);
 
           this.messageService.add({
             severity: 'success',
@@ -156,7 +163,17 @@ export class CommentsComponent implements OnInit {
     this.isEditing.set(true);
     this.editingCommentId.set(item._id);
     this.commentText.set(item.comment);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.scrollToComment();
+   // window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  private scrollToComment() {
+    setTimeout(() => {
+      this.commentArea?.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
   }
   updateComment() {
     const id = this.editingCommentId();
@@ -165,20 +182,23 @@ export class CommentsComponent implements OnInit {
     this.isSubmitting.set(true);
     const typedCommentText = this.commentText();
 
+    this.isUpdatingComment.set(true);
     this.roomsService.updateComment(id, typedCommentText).subscribe({
       next: (res) => {
         this.isSubmitting.set(false);
 
-        this.comments.update((list) =>
-          list.map((c) =>
-            c._id === id
-              ? { ...c, comment: typedCommentText, updatedAt: new Date().toISOString() }
-              : c,
-          ),
-        );
+        // this.comments.update((list) =>
+        //   list.map((c) =>
+        //     c._id === id
+        //       ? { ...c, comment: typedCommentText, updatedAt: new Date().toISOString() }
+        //       : c,
+        //   ),
+        // );
+
+        this.loadComments();
 
         this.cancelEdit();
-
+        this.isUpdatingComment.set(false);
         this.messageService.add({
           severity: 'success',
           summary: this.translate.instant('COMMON.SUCCESS'),
@@ -212,14 +232,15 @@ export class CommentsComponent implements OnInit {
       rejectButtonStyleClass: 'p-button-text p-button-secondary',
       acceptButtonStyleClass: 'p-button-danger',
       accept: () => {
+        this.isDeletingComment.set(true);
         this.roomsService.removeComment(commentId).subscribe({
           next: () => {
-            this.comments.update((list) => list.filter((c) => c._id !== commentId));
-
+            //this.comments.update((list) => list.filter((c) => c._id !== commentId));
+            this.loadComments();
             if (this.editingCommentId() === commentId) {
               this.cancelEdit();
             }
-
+            this.isDeletingComment.set(false);
             this.messageService.add({
               severity: 'success',
               summary: this.translate.instant('COMMON.SUCCESS'),
@@ -227,6 +248,7 @@ export class CommentsComponent implements OnInit {
             });
           },
           error: () => {
+            this.isDeletingComment.set(false);
             this.messageService.add({
               severity: 'error',
               summary: this.translate.instant('COMMON.ERROR'),

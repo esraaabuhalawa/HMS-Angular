@@ -1,29 +1,29 @@
 import { Component, computed, ElementRef, inject, signal, ViewChild } from '@angular/core';
-import { HeroSectionComponent } from '../../../../shared/components/website/home/hero-section/hero-section.component';
-import { CustomersSectionComponent } from '../../../../shared/components/website/home/customers-section/customers-section.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
-import { IAd, IAdsResponse } from '../../../Dashboard/modules/Ads/interfaces/ads.interface';
-import { AdsService } from '../../services/ads.service';
-import { IRoom } from '../../../../shared/interfaces/general.interface';
-import { RoomsService } from '../../modules/rooms/services/rooms.service';
-import { IRoomsResponse } from '../../modules/rooms/interfaces/rooms.interface';
-import { RoomInfoCardComponent } from '../../../../shared/components/website/ui/room-info-card/room-info-card.component';
-import { CardSkeltonComponent } from "../../../../shared/components/website/ui/card-skelton/card-skelton.component";
-import { FacilityEnum } from '../../../../core/enums/facility.enum';
 import { finalize } from 'rxjs';
-import { HomeCommonCardComponent } from "../../../../shared/components/website/ui/home-common-card/home-common-card.component";
+import { FacilityEnum } from '../../../../core/enums/facility.enum';
+import { IRoom } from '../../../../shared/interfaces/general.interface';
+import { IAd, IAdsResponse } from '../../../Dashboard/modules/Ads/interfaces/ads.interface';
+import { IRoomsResponse } from '../../modules/rooms/interfaces/rooms.interface';
+import { RoomsService } from '../../modules/rooms/services/rooms.service';
+import { AdsService } from '../../services/ads.service';
+import { HomeCommonCardComponent } from '../../../../shared/components/website/ui/home-common-card/home-common-card.component';
 import { DatePipe } from '@angular/common';
+import { CustomersSectionComponent } from '../../../../shared/components/website/home-components/customers-section/customers-section.component';
+import { HeroSectionComponent } from '../../../../shared/components/website/home-components/hero-section/hero-section.component';
+import { CardSkeltonComponent } from '../../../../shared/components/website/ui/card-skelton/card-skelton.component';
+import { RoomInfoCardComponent } from '../../../../shared/components/website/ui/room-info-card/room-info-card.component';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-user',
   imports: [HeroSectionComponent, RoomInfoCardComponent,
     CustomersSectionComponent, CardSkeltonComponent, DatePipe,
     TranslatePipe, HomeCommonCardComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './home-user.component.html',
+  styleUrl: './home-user.component.scss',
 })
-export class HomeComponent {
+export class HomeUserComponent {
   @ViewChild('resultsSection') resultsSection?: ElementRef<HTMLElement>;
 
   private adsService = inject(AdsService);
@@ -51,24 +51,24 @@ export class HomeComponent {
   fetchAdsData() {
     this.isLoading.set(true);
     this.adsService.getAllAds({ page: this.currentPage, size: 4 })
-    .pipe(finalize(() => this.isLoading.set(false))).subscribe({
-      next: (res: IAdsResponse) => {
-        this.adsList.set(res.data.ads);
-      },
-      error: (err) => { this.showError(err); }
-    });
+      .pipe(finalize(() => this.isLoading.set(false))).subscribe({
+        next: (res: IAdsResponse) => {
+          this.adsList.set(res.data.ads);
+        },
+        error: (err) => { this.showError(err); }
+      });
   }
 
   fetchAllRooms() {
     this.isLoadingRooms.set(true);
     this.roomsService.getAllRoomsLocally().pipe(
       finalize(() => this.isLoadingRooms.set(false))).subscribe({
-      next: (res: IRoomsResponse) => {
-        this.allRoomsList.set(res.data.rooms);
-        this.totalRecords = res.data.totalCount;
-      },
-      error: (err) => { this.showError(err); }
-    });
+        next: (res: IRoomsResponse) => {
+          this.allRoomsList.set(res.data.rooms);
+          this.totalRecords = res.data.totalCount;
+        },
+        error: (err) => { this.showError(err); }
+      });
   }
 
   private scrollToResults() {
@@ -79,16 +79,18 @@ export class HomeComponent {
       });
     });
   }
-  
+
   onSearch(payload: {
     startDate: string;
     endDate: string;
-    capacity: number;}) {
+    capacity: number;
+  }) {
     this.loadingSearch.set(true);
     this.hasSearched.set(true);
     this.dateRange.set([new Date(payload.startDate), new Date(payload.endDate)]);
 
-    this.roomsService.getAllRooms({page: 1,size: this.totalRecords,
+    this.roomsService.getAllRooms({
+      page: 1, size: this.totalRecords,
       startDate: payload.startDate,
       endDate: payload.endDate,
     }).pipe(finalize(() =>
@@ -113,10 +115,10 @@ export class HomeComponent {
   }
 
   onSearchClear() {
-  this.hasSearched.set(false);
-  this.searchResults.set([]);
-  this.dateRange.set(null);
-}
+    this.hasSearched.set(false);
+    this.searchResults.set([]);
+    this.dateRange.set(null);
+  }
 
   private showError(err: any) {
     this.messageService.add({

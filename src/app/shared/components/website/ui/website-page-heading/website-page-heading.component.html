@@ -1,12 +1,6 @@
-<div
-  class="p-6  border border-gray-100 mb-8 grid grid-cols-3 items-center gap-4"
->
+<div class="p-6  mb-8 grid grid-cols-3 items-center gap-4">
   <div>
-    <p-breadcrumb
-      [model]="breadcrumbs"
-      [home]="home"
-      styleClass="!border-none !bg-transparent !p-0 mb-10"
-    >
+    <p-breadcrumb [model]="breadcrumbs" [home]="home" styleClass="!border-none !bg-transparent !p-0 mb-10">
     </p-breadcrumb>
   </div>
 
@@ -16,9 +10,9 @@
     </h1>
 
     @if (description) {
-      <p class="mt-1 text-gray-400">
-        {{ description }}
-      </p>
+    <p class="mt-1 text-gray-400">
+      {{ description }}
+    </p>
     }
   </div>
 

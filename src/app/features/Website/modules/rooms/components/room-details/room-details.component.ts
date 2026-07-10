@@ -32,27 +32,43 @@ export class RoomDetailsComponent implements OnInit {
   private router = inject(Router);
   isLoading = signal<boolean>(false);
   bookingId = signal<string>('');
-
+  home!: MenuItem;
+  breadcrumbs!: MenuItem[];
   dateRange: Date[] | null = null;
   roomDetails: any | null = null;
 
   //id
   roomId = this.route.snapshot.paramMap.get('id') ?? '';
-  breadcrumbs: MenuItem[] = [
-    {
-      label: this.translate.instant('ROOM_DETAILS.ROOM_DETAILS_TITLE'),
-    },
-  ];
 
   ngOnInit() {
     this.getRoomDetails();
+    this.buildBreadcrumbs();
+    this.translate.onLangChange.subscribe(() => {
+      this.buildBreadcrumbs();
+    });
   }
+
+  buildBreadcrumbs() {
+    this.home = {
+      label: this.translate.instant('COMMON.HOME'),
+      routerLink: '/',
+    };
+    this.breadcrumbs = [
+      {
+        label: this.translate.instant('ROOMS.ROOMS'),
+        routerLink: '/rooms',
+      },
+      {
+        label: this.translate.instant('ROOM_DETAILS.ROOM_DETAILS_TITLE'),
+      },
+    ];
+  }
+
   getRoomDetails() {
     this.isLoading.set(true);
     this.roomService.getRoomDetails(this.roomId).subscribe({
       next: (response: { data: { room: IRoom } }) => {
         this.roomDetails = response.data.room;
-        console.log('Room Details:', response.data.room);
         this.isLoading.set(false);
       },
       error: (error) => {

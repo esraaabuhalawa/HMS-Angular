@@ -12,11 +12,12 @@ import { RoleEnum } from '../../../../../../core/enums/role.enum';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { Router } from '@angular/router';
 import { ConfirmEventType } from 'primeng/api';
+import { Skeleton } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [FormsModule, ButtonModule, TextareaModule, TranslatePipe, ConfirmDialog],
+  imports: [FormsModule, ButtonModule, TextareaModule, TranslatePipe, ConfirmDialog,Skeleton],
   templateUrl: './reviews.component.html',
   providers: [ConfirmationService],
 })
