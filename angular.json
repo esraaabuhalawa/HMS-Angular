@@ -82,7 +82,8 @@
               "buildTarget": "HMS-angular:build:production"
             },
             "development": {
-              "buildTarget": "HMS-angular:build:development"
+              "buildTarget": "HMS-angular:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

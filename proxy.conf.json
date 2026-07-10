@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://upskilling-egypt.com:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://upskilling-egypt.com:3000/api/v0/',
-  assetUrl: 'https://upskilling-egypt.com:3000/',
+  apiUrl: '/api/v0/',
+  assetUrl: '/api/',
   appName: 'HMS',
   googleClientId: '155662404542-qeg8enk67uu12h3mcpmfgebojk1sb5ik.apps.googleusercontent.com',
   stripePublishableKey:

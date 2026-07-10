@@ -84,37 +84,44 @@ export class ReviewsComponent implements OnInit {
       return;
     }
 
-    this.isSubmitting.set(true);
+    const typedReviewText = this.message().trim();
+    if (!typedReviewText) return;
 
-    const currentMessage = this.message();
+    this.isSubmitting.set(true);
     const currentRating = this.ratingValue();
 
     this.roomsService
       .createReview({
         roomId: this.roomId(),
         rating: currentRating,
-        review: currentMessage,
+        review: typedReviewText,
       })
       .subscribe({
         next: (res) => {
           this.isSubmitting.set(false);
-
-          const newReview = {
-            _id: res.data?._id || new Date().getTime().toString(),
-            rating: currentRating,
-            review: currentMessage,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-            room: this.roomId(),
-            user: {
-              _id: '',
-              userName: 'You',
-              profileImage: null,
-            },
-          } as any;
-
           this.message.set('');
           this.ratingValue.set(3.5);
+
+          const currentUserName = this.authService.getUserName() || 'You';
+          const currentUserImage = this.authService.getUserImage() || undefined;
+
+          const newReview: RoomReview = {
+            _id: res.data?._id || new Date().getTime().toString(),
+            rating: currentRating,
+            review: typedReviewText,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            room: {
+              _id: this.roomId(),
+              roomNumber: '',
+            },
+            user: {
+              _id: this.authService.getCurrentUserId() || '',
+              userName: currentUserName,
+              profileImage: currentUserImage,
+            },
+          };
+
           this.reviews.update((list) => [newReview, ...list]);
 
           this.messageService.add({
@@ -133,7 +140,6 @@ export class ReviewsComponent implements OnInit {
         },
       });
   }
-
   showLoginRequiredDialog() {
     this.confirmationService.confirm({
       message: this.translate.instant('REVIEWS.LOGIN_REQUIRED_MESSAGE'),

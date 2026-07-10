@@ -25,10 +25,11 @@
     </span>
     <textarea
       pTextarea
-      [(ngModel)]="message"
+      [ngModel]="message()"
+      (ngModelChange)="message.set($event)"
       rows="4"
       [placeholder]="'REVIEWS.MESSAGE_PLACEHOLDER' | translate"
-      class="w-full resize-none"
+      class="w-full resize-none border p-2 rounded-md focus:outline-none focus:border-[#152463]"
     ></textarea>
   </div>
 
