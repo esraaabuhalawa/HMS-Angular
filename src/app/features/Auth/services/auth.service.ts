@@ -26,8 +26,8 @@ export class AuthService {
   currentUser$ = this.currentUserSubject.asObservable();
 
   onLogin(data: ILogin): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>('portal/users/Login', data , {
-      context: new HttpContext().set(SKIP_AUTH_ERROR_HANDLING, true)
+    return this.http.post<ILoginResponse>('portal/users/Login', data, {
+      context: new HttpContext().set(SKIP_AUTH_ERROR_HANDLING, true),
     });
   }
 
@@ -83,7 +83,13 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('HMSToken');
   }
+  getUserName(): string | null {
+    return this.currentUserSubject.value?.userName || null;
+  }
 
+  getUserImage(): string | null {
+    return this.currentUserSubject.value?.profileImage || null;
+  }
   logout() {
     localStorage.removeItem('HMSToken');
     localStorage.removeItem('role');
@@ -124,12 +130,11 @@ export class AuthService {
     return this.http.post('portal/users/forgot-password', { email });
   }
 
-  changePassword(data:IChangePassword): Observable<IChangePasswordResponse> {
-    return this.http.post<IChangePasswordResponse>('portal/users/change-password',data);
+  changePassword(data: IChangePassword): Observable<IChangePasswordResponse> {
+    return this.http.post<IChangePasswordResponse>('portal/users/change-password', data);
   }
 
   register(data: FormData): Observable<ICurrentUserResponse> {
     return this.http.post<ICurrentUserResponse>('admin/users', data);
   }
-
 }

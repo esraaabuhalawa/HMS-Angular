@@ -96,27 +96,42 @@ export class CommentsComponent implements OnInit {
       },
     });
   }
-
   submitComment() {
+    if (!this.commentText().trim()) return;
+
     this.isSubmitting.set(true);
+    const typedCommentText = this.commentText();
+
     this.roomsService
       .createComment({
         roomId: this.roomId(),
-        comment: this.commentText(),
+        comment: typedCommentText,
       })
       .subscribe({
         next: (res) => {
           this.isSubmitting.set(false);
           this.commentText.set('');
 
-          const fallbackUser =
-            this.comments().length > 0
-              ? this.comments()[0].user
-              : { _id: '', userName: 'You', profileImage: undefined };
+          const currentUserName = this.authService.getUserName() || 'You';
+          const currentUserImage = this.authService.getUserImage() || undefined;
+
+          const fallbackUser = {
+            _id: this.currentUserId || '',
+            userName: currentUserName,
+            profileImage: currentUserImage,
+          };
 
           const newComment: RoomComment = {
-            ...res.data,
-            user: res.data.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
+            _id: res.data?._id || Math.random().toString(),
+            comment: typedCommentText,
+            room: {
+              _id: this.roomId(),
+              roomNumber: '',
+            },
+            user:
+              res.data?.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
           };
 
           this.comments.update((list) => [newComment, ...list]);
@@ -143,19 +158,27 @@ export class CommentsComponent implements OnInit {
     this.commentText.set(item.comment);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
   updateComment() {
     const id = this.editingCommentId();
     if (!id) return;
 
     this.isSubmitting.set(true);
-    this.roomsService.updateComment(id, this.commentText()).subscribe({
-      next: (res) => {
-        console.log('Update Response:', res);
+    const typedCommentText = this.commentText();
 
+    this.roomsService.updateComment(id, typedCommentText).subscribe({
+      next: (res) => {
         this.isSubmitting.set(false);
-        this.loadComments();
+
+        this.comments.update((list) =>
+          list.map((c) =>
+            c._id === id
+              ? { ...c, comment: typedCommentText, updatedAt: new Date().toISOString() }
+              : c,
+          ),
+        );
+
         this.cancelEdit();
+
         this.messageService.add({
           severity: 'success',
           summary: this.translate.instant('COMMON.SUCCESS'),
@@ -163,8 +186,6 @@ export class CommentsComponent implements OnInit {
         });
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err);
-
         this.isSubmitting.set(false);
         this.messageService.add({
           severity: 'error',
@@ -174,6 +195,7 @@ export class CommentsComponent implements OnInit {
       },
     });
   }
+
   cancelEdit() {
     this.isEditing.set(false);
     this.editingCommentId.set(null);
