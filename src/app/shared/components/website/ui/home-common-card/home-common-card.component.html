@@ -1,5 +1,5 @@
 <div [routerLink]="linkPrefix + room._id"
-  class="bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300" [class]="variant === 'ad'
+  class="bg-white dark:bg-surface rounded-2xl overflow-hidden cursor-pointer transition-all duration-300" [class]="variant === 'ad'
     ? 'group relative hover:-translate-y-2 hover:shadow-2xl'
     : 'h-full hover:shadow-md hover:-translate-y-1'">
 
@@ -20,7 +20,7 @@
     @if (variant === 'ad') {
     <p-tag [value]="'-' + room.discount + '%'" severity="warn" class="absolute top-3 end-3 z-10" />
     } @else {
-    <span class="absolute top-0 end-0 rtl:start-0 rtl:end-auto  flex items-center justify-center bg-[#FF498B] text-white
+    <span class="absolute top-0 end-0 rtl:start-0 rtl:end-auto  flex items-center justify-center bg-price-badge text-[#fff]
            px-3 py-1.5 text-base font-medium leading-[170%] room-discount">
       {{ room.discount }}% <span class="mx-2 inline-block" style="font-weight: 200;">
         {{ 'ROOM_DETAILS.OFF' | translate }}
@@ -32,7 +32,7 @@
     <!-- Multi-image indicator (ad only) -->
     @if (variant === 'ad' && room.images.length > 1) {
     <div
-      class="absolute bottom-3 end-3 z-10 flex items-center gap-1 bg-black/40 text-white text-xs px-2 py-1 rounded-full">
+      class="absolute bottom-3 end-3 z-10 flex items-center gap-1 bg-black/40 text-[#fff] text-xs px-2 py-1 rounded-full">
       <i class="pi pi-images text-[11px]"></i>
       {{ room.images.length }}
     </div>
@@ -50,7 +50,7 @@
       @if (variant === 'ad') {
       @if (room.discount > 0) {
       <div class="flex items-center gap-2">
-        <span class="text-xs text-gray-400 line-through">${{ room.price | number:'1.0-0' }}</span>
+        <span class="text-xs text-gray-400 dark:text-text-secondary line-through">${{ room.price | number:'1.0-0' }}</span>
         <span class="text-lg font-bold text-primary">
           ${{ (room.price * (1 - room.discount / 100)) | number:'1.0-0' }}
         </span>
@@ -65,13 +65,13 @@
     @if (variant === 'grid') {
     <div class="flex flex-wrap gap-2 mb-2">
       @for (facility of room.facilities.slice(0, 3); track facility) {
-      <span class="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-full">{{ facility.name }}</span>
+      <span class="px-2 py-1 text-xs bg-gray-100 dark:bg-surface-hover text-gray-700 dark:text-text-primary rounded-full">{{ facility.name }}</span>
       }
     </div>
     <div class="text-end">
       @if (room.discount > 0) {
       <div class="flex items-center gap-2">
-        <span class="text-xs text-gray-400 line-through">${{ room.price | number:'1.0-0' }}</span>
+        <span class="text-xs text-gray-400 dark:text-text-secondary line-through">${{ room.price | number:'1.0-0' }}</span>
         <span class="text-lg font-bold text-primary">
           ${{ (room.price * (1 - room.discount / 100)) | number:'1.0-0' }}
         </span>
@@ -84,7 +84,7 @@
 
     <!-- ad variant: capacity instead of facilities -->
     @if (variant === 'ad') {
-    <div class="flex items-center gap-1 text-sm text-gray-500">
+    <div class="flex items-center gap-1 text-sm text-gray-500 dark:text-text-secondary">
       <i class="pi pi-user text-xs"></i>
       <span>{{ room.capacity }} {{ 'ROOM_DETAILS.GUESTS' | translate }}</span>
     </div>

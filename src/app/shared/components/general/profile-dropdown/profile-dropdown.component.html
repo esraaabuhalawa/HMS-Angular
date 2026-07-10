@@ -1,7 +1,7 @@
 @if (currentUser$ | async; as user) {
 
 <!-- Trigger -->
-<div class="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-gray-100" (click)="op.toggle($event)">
+<div class="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-surface-hover" (click)="op.toggle($event)">
   <!-- Avatar -->
   @if (user.profileImage) {
   <img [src]="user.profileImage" class="w-5 h-5 md:w-10 md:h-10 rounded-full object-cover" (error)="onImageError($event)" />
@@ -23,7 +23,7 @@
 <p-popover #op [style]="{ width: '250px' }" class="p-0">
 
   <!-- Header -->
-  <div class="p-3 border-b flex items-center gap-3">
+  <div class="p-3 border-b dark:border-surface-border flex items-center gap-3">
     @if (user.profileImage) {
     <img [src]="user.profileImage" (error)="onImageError($event)" class="w-5 h-5 md:w-10 md:h-10 rounded-full object-cover" />
     } @else {
@@ -34,38 +34,38 @@
 
     <div>
       <div class="font-semibold">{{ user.userName }}</div>
-      <div class="text-xs text-gray-500 break-all">{{ user.email }}</div>
+      <div class="text-xs text-gray-500 dark:text-text-secondary break-all">{{ user.email }}</div>
     </div>
   </div>
 
   <!-- Menu -->
   <div class="p-2 flex flex-col gap-1">
-    <a routerLink="/profile" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
+    <a routerLink="/profile" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-surface-hover text-sm">
       <i class="pi pi-user"></i>
       {{ 'ACCOUNT.PROFILE' | translate }}
     </a>
 
     @if (isAdmin) {
-    <a routerLink="/dashboard" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
+    <a routerLink="/dashboard" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-surface-hover text-sm">
       <i class="pi pi-th-large"></i>
       {{ 'ACCOUNT.DASHBOARD' | translate }}
     </a>
     }
 
-    <a routerLink="/favorites" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
+    <a routerLink="/favorites" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-surface-hover text-sm">
       <i class="pi pi-heart"></i>
       {{ 'ACCOUNT.WISHLIST' | translate }}
     </a>
 
-    <a routerLink="/auth/change-password" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 text-sm">
+    <a routerLink="/auth/change-password" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-surface-hover text-sm">
       <i class="pi pi-key"></i>
       {{ 'ACCOUNT.CHANGE_PASSWORD' | translate }}
     </a>
 
-    <hr class="my-2" />
+    <hr class="my-2 dark:border-surface-border" />
 
     <button (click)="logout()"
-      class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-red-50 text-red-600 text-sm w-full text-left">
+      class="flex items-center gap-2 p-2 cursor-pointer rounded hover:bg-red-50 dark:hover:bg-login-red/10 text-red-600 dark:text-login-red text-sm w-full text-left">
       <i class="pi pi-sign-out"></i>
       {{ 'ACCOUNT.LOGOUT' | translate }}
     </button>

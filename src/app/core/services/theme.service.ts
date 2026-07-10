@@ -1,10 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
   private themeKey = 'theme';
+
+  /** Reactive theme state — use in computed()/effect() to react to theme toggles */
+  readonly theme = signal<'light' | 'dark'>(
+    document.documentElement.classList.contains('dark') ? 'dark' : 'light',
+  );
 
   initTheme() {
     const savedTheme = localStorage.getItem(this.themeKey) as 'light' | 'dark' | null;
@@ -27,14 +32,14 @@ export class ThemeService {
     }
 
     localStorage.setItem(this.themeKey, theme);
+    this.theme.set(theme);
   }
 
   toggleTheme() {
-    const isDark = document.documentElement.classList.contains('dark');
-    this.setTheme(isDark ? 'light' : 'dark');
+    this.setTheme(this.isDark() ? 'light' : 'dark');
   }
 
   isDark(): boolean {
-    return document.documentElement.classList.contains('dark');
+    return this.theme() === 'dark';
   }
 }

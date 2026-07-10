@@ -1,186 +1,133 @@
-<p-dialog
-  header="user Details"
-  [modal]="true"
-  [(visible)]="visible"
-  [style]="{ width: '550px' }"
-  [style]="{ width: '40rem', maxWidth: '95vw' }"
-  [breakpoints]="{
+<p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '550px' }"
+  [style]="{ width: '40rem', maxWidth: '95vw' }" [breakpoints]="{
     '1280px': '70vw',
     '1024px': '80vw',
     '768px': '90vw',
     '640px': '95vw',
-  }"
-  (onHide)="onHide()"
->
+  }" (onHide)="onHide()">
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
-      <i class="pi pi-eye text-gray-400"></i>
-      <span class="font-md">Add New user</span>
+      <i class="pi pi-eye text-gray-400 dark:text-text-secondary"></i>
+      <span class="font-md">{{ 'USER_FORM.HEADER' | translate }}</span>
     </div>
   </ng-template>
   <div class="user-form">
     <form class="pb-10" [formGroup]="registerForm">
       <div class="">
         <div class="profile-upload-wrapper mx-auto">
-          <p-fileupload
-            #fu
-            chooseIcon="pi pi-upload"
-            accept="image/*"
-            maxFileSize="1000000"
-            [customUpload]="true"
-            [auto]="true"
-            (onSelect)="onSelect($event)"
-            (onClear)="onClear()"
-            class="profile-upload"
-            aria-required
-          />
+          <p-fileupload #fu chooseIcon="pi pi-upload" accept="image/*" maxFileSize="1000000" [customUpload]="true"
+            [auto]="true" (onSelect)="onSelect($event)" (onClear)="onClear()" class="profile-upload" aria-required />
         </div>
         @if (f['profileImage'].touched && f['profileImage'].invalid) {
-          <small class="text-red-500 my-2">Profile image is required</small>
+        <small class="text-red-500 my-2">{{ 'USER_FORM.PROFILE_IMAGE_REQUIRED' | translate }}</small>
         }
       </div>
 
       <div class="mb-[2rem] mt-7">
-        <label class="text-primary font-normal mb-2 block">User Name</label>
-        <input
-          pInputText
-          class="w-full"
-          placeholder="Please type here ..."
-          formControlName="userName"
-        />
+        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.USER_NAME_LABEL' | translate }}</label>
+        <input pInputText class="w-full" [placeholder]="'USER_FORM.USER_NAME_PLACEHOLDER' | translate"
+          formControlName="userName" />
 
         @if (f['userName'].touched && f['userName'].errors?.['required']) {
-          <small class="text-red-500"> userName is required </small>
+        <small class="text-red-500">{{ 'USER_FORM.USER_NAME_REQUIRED' | translate }}</small>
         }
 
         @if (f['userName'].touched && f['userName'].errors?.['minlength']) {
-          <small class="text-red-500"> Username must be at least 3 characters </small>
+        <small class="text-red-500">{{ 'USER_FORM.USER_NAME_MINLENGTH' | translate }}</small>
         }
         @if (f['userName'].touched && f['userName'].errors?.['maxLength']) {
-          <small class="text-red-500"> Username cannot exceed 20 characters </small>
+        <small class="text-red-500">{{ 'USER_FORM.USER_NAME_MAXLENGTH' | translate }}</small>
         }
       </div>
       <div class="mb-[2rem] flex justify-content-between align-items-center gap-3">
         <div class="w-[50%]">
-          <label class="text-primary font-normal mb-2 block">Phone Number</label>
-          <input
-            pInputText
-            class="w-full"
-            placeholder="Please type here "
-            formControlName="phoneNumber"
-          />
+          <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.PHONE_NUMBER_LABEL' | translate }}</label>
+          <input pInputText class="w-full" [placeholder]="'USER_FORM.PHONE_NUMBER_PLACEHOLDER' | translate"
+            formControlName="phoneNumber" />
 
           @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['required']) {
-            <small class="text-red-500"> phone Number is required </small>
+          <small class="text-red-500">{{ 'USER_FORM.PHONE_NUMBER_REQUIRED' | translate }}</small>
           }
 
           @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['pattern']) {
-            <small class="text-red-500"> Must start with 010, 011, 012, or 015 (11 digits) </small>
+          <small class="text-red-500">{{ 'USER_FORM.PHONE_NUMBER_PATTERN' | translate }}</small>
           }
         </div>
         <div class="w-[50%]">
-          <label class="text-primary font-normal mb-2 block">Country</label>
-          <input
-            pInputText
-            class="w-full"
-            placeholder="Please type here ."
-            formControlName="country"
-          />
+          <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.COUNTRY_LABEL' | translate }}</label>
+          <input pInputText class="w-full" [placeholder]="'USER_FORM.COUNTRY_PLACEHOLDER' | translate"
+            formControlName="country" />
 
           @if (f['country'].touched && f['country'].errors?.['required']) {
-            <small class="text-red-500">country is required </small>
+          <small class="text-red-500">{{ 'USER_FORM.COUNTRY_REQUIRED' | translate }}</small>
           }
 
           @if (f['country'].touched && f['country'].errors?.['pattern']) {
-            <small class="text-red-500"> Country name must contain letters only </small>
+          <small class="text-red-500">{{ 'USER_FORM.COUNTRY_PATTERN' | translate }}</small>
           }
           @if (f['country'].touched && f['country'].errors?.['minlength']) {
-            <small class="text-red-500"> Country name is too short </small>
+          <small class="text-red-500">{{ 'USER_FORM.COUNTRY_MINLENGTH' | translate }}</small>
           }
         </div>
       </div>
       <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block">Email Address</label>
-        <input pInputText class="w-full" placeholder="Email" formControlName="email" />
+        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.EMAIL_LABEL' | translate }}</label>
+        <input pInputText class="w-full" [placeholder]="'USER_FORM.EMAIL_PLACEHOLDER' | translate"
+          formControlName="email" />
 
         @if (f['email'].touched && f['email'].errors?.['required']) {
-          <small class="text-red-500"> Email is required </small>
+        <small class="text-red-500">{{ 'USER_FORM.EMAIL_REQUIRED' | translate }}</small>
         }
 
         @if (f['email'].touched && f['email'].errors?.['email']) {
-          <small class="text-red-500"> Invalid email format </small>
+        <small class="text-red-500">{{ 'USER_FORM.EMAIL_INVALID' | translate }}</small>
         }
       </div>
 
       <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block">Password</label>
-        <p-password
-          formControlName="password"
-          [toggleMask]="true"
-          placeholder="Password"
-          styleClass="w-full"
-          inputStyleClass="w-full"
-          autocomplete="off"
-        >
+        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.PASSWORD_LABEL' | translate }}</label>
+        <p-password formControlName="password" [toggleMask]="true"
+          [placeholder]="'USER_FORM.PASSWORD_PLACEHOLDER' | translate" styleClass="w-full" inputStyleClass="w-full"
+          autocomplete="off">
         </p-password>
 
         @if (f['password'].touched && f['password'].errors?.['required']) {
-          <small class="text-red-500"> Password is required </small>
+        <small class="text-red-500">{{ 'USER_FORM.PASSWORD_REQUIRED' | translate }}</small>
         }
 
         @if (f['password'].touched && f['password'].errors?.['pattern']) {
-          <small class="text-red-500">
-            Password must contain uppercase, lowercase, special character and minimum 6 characters
-          </small>
+        <small class="text-red-500">{{ 'USER_FORM.PASSWORD_PATTERN' | translate }}</small>
         }
       </div>
       <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block">Confirm Password</label>
-        <p-password
-          formControlName="confirmPassword"
-          [toggleMask]="true"
-          placeholder="confirm Password"
-          styleClass="w-full"
-          inputStyleClass="w-full"
-        >
+        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.CONFIRM_PASSWORD_LABEL' | translate }}</label>
+        <p-password formControlName="confirmPassword" [toggleMask]="true"
+          [placeholder]="'USER_FORM.CONFIRM_PASSWORD_PLACEHOLDER' | translate" styleClass="w-full"
+          inputStyleClass="w-full">
         </p-password>
 
         @if (f['confirmPassword'].touched && f['confirmPassword'].errors?.['required']) {
-          <small class="text-red-500"> confirm Password is required </small>
+        <small class="text-red-500">{{ 'USER_FORM.CONFIRM_PASSWORD_REQUIRED' | translate }}</small>
         }
 
         @if (f['confirmPassword'].touched && registerForm.errors?.['passwordMismatch']) {
-          <small class="text-red-500">Passwords do not match.</small>
+        <small class="text-red-500">{{ 'USER_FORM.PASSWORD_MISMATCH' | translate }}</small>
         }
       </div>
       <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block">Create user as </label>
+        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.ROLE_LABEL' | translate }}</label>
 
-        <p-select
-          appendTo="body"
-          id="status"
-          formControlName="role"
-          [options]="rolesOption"
-          optionLabel="label"
-          optionValue="value"
-          placeholder="select role"
-          class="w-full"
-        >
+        <p-select appendTo="body" id="status" formControlName="role" [options]="rolesOption" optionLabel="label"
+          optionValue="value" [placeholder]="'USER_FORM.ROLE_PLACEHOLDER' | translate" class="w-full">
         </p-select>
         @if (f['role'].touched && f['role'].errors?.['required']) {
-          <small class="text-red-500">role is required</small>
+        <small class="text-red-500">{{ 'USER_FORM.ROLE_REQUIRED' | translate }}</small>
         }
       </div>
 
       <div class="mt-[50px]">
-        <p-button
-          type="submit"
-          label="Create"
-          [disabled]="loading"
-          [loading]="loading"
-          (click)="save()"
-          styleClass="w-full"
-        >
+        <p-button type="submit" [label]="'COMMON.CREATE' | translate" [disabled]="loading" [loading]="loading"
+          (click)="save()" styleClass="w-full">
         </p-button>
       </div>
     </form>

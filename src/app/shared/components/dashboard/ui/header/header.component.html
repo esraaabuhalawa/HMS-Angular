@@ -1,11 +1,10 @@
-<nav class="w-full bg-[#F8F9FB] shadow-xs  py-1 flex items-center justify-between gap-4">
+<nav class="w-full bg-[#F8F9FB] dark:bg-surface shadow-xs rounded-xl px-2  py-1 flex items-center justify-between gap-4">
   <!-- Search Input -->
   <div class="w-[70%]">
     <div class="relative w-full flex items-center">
-      <i class="pi pi-search text-gray-400 absolute start-3 z-10"></i>
-
+      <i class="pi pi-search text-gray-400 dark:text-text-secondary absolute start-3 z-10"></i>
       <input type="text" pInputText  [placeholder]="'SEARCH_PLACEHOLDER' | translate"
-        class="w-full !ps-10 !py-3 !rounded-xl !border-gray-200 !text-sm focus:!border-indigo-500 focus:!ring-1 focus:!ring-indigo-500 !bg-white shadow-sm"
+        class="w-full !ps-10 !py-3 !rounded-xl !border-gray-200 dark:!border-surface-border !text-sm focus:!border-indigo-500 focus:!ring-1 focus:!ring-indigo-500 !bg-white dark:!bg-surface-hover dark:!text-text-primary shadow-sm"
       />
     </div>
   </div>
@@ -13,11 +12,12 @@
   <!-- Actions -->
   <div class="flex items-center gap-3 shrink-0">
     <app-language-switcher></app-language-switcher>
+    <app-theme-toggle />
     <app-profile-dropdown></app-profile-dropdown>
     <!--Toggle Sidebar in small screens---->
     @if (isMobile$ | async) {
       <button
-        class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary-50 text-blue-600 hover:bg-secondary-100 border border-blue-400 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+        class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary-50 dark:bg-surface-hover text-blue-600 dark:text-primary hover:bg-secondary-100 dark:hover:bg-surface-border border border-blue-400 dark:border-surface-border hover:text-blue-600 transition-colors duration-200 cursor-pointer"
         (click)="toggleSidebar()">
         <i class="fa-solid fa-bars text-lg"></i>
       </button>

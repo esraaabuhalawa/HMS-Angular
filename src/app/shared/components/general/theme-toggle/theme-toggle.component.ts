@@ -14,6 +14,5 @@ export class ThemeToggleComponent {
   toggle() {
     this.themeService.toggleTheme();
     this.isDark = this.themeService.isDark();
-    console.log('Is dark now:', this.themeService.isDark());
   }
 }

@@ -7,7 +7,7 @@
 >
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
-      <i class="pi pi-eye text-gray-400"></i>
+      <i class="pi pi-eye text-gray-400 dark:text-text-secondary"></i>
       <span class="font-md">{{ 'BOOKING_VIEW.TITLE' | translate }}</span>
     </div>
   </ng-template>
@@ -15,7 +15,7 @@
   @if (loading) {
     <div class="flex flex-col gap-4 p-1">
       <!-- Header Card -->
-      <div class="rounded-xl border border-gray-200 p-4">
+      <div class="rounded-xl border border-gray-200 dark:border-surface-border p-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
             <p-skeleton shape="circle" size="42px" />
@@ -37,7 +37,7 @@
       </div>
 
       <!-- Audit Information Card -->
-      <div class="rounded-xl border border-gray-200 p-4">
+      <div class="rounded-xl border border-gray-200 dark:border-surface-border p-4">
         <div class="mb-4">
           <p-skeleton width="7rem" height="0.75rem" />
         </div>
@@ -47,7 +47,7 @@
           <p-skeleton width="10rem" height="1rem" />
         </div>
 
-        <div class="my-3 border-t border-gray-200"></div>
+        <div class="my-3 border-t border-gray-200 dark:border-surface-border"></div>
 
         <div class="flex items-center justify-between py-2">
           <p-skeleton width="6rem" height="1rem" />
@@ -59,10 +59,10 @@
   } @else if (selectedBooking) {
     <div class="flex flex-col gap-4 p-1">
       <!-- Hero banner -->
-      <div class="flex items-center justify-between rounded-lg bg-gray-100 p-3">
+      <div class="flex items-center justify-between rounded-lg bg-gray-100 dark:bg-surface-hover p-3">
         <div class="flex items-center gap-3">
-          <div class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-blue-50">
-            <i class="pi pi-home text-xl text-blue-800"></i>
+          <div class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950">
+            <i class="pi pi-home text-xl text-blue-800 dark:text-blue-300"></i>
           </div>
 
           <div>
@@ -70,7 +70,7 @@
               {{ 'BOOKING_VIEW.ROOM' | translate }} #{{ selectedBooking.room.roomNumber }}
             </div>
 
-            <div class="text-sm text-gray-500">
+            <div class="text-sm text-gray-500 dark:text-text-secondary">
               {{ selectedBooking.user.userName }}
             </div>
           </div>
@@ -92,8 +92,8 @@
           {{ 'BOOKING_VIEW.BOOKING_INFORMATION' | translate }}
         </div>
         <div class="grid grid-cols-2 gap-4">
-          <div class="rounded-lg p-3 bg-gray-100">
-            <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
+          <div class="rounded-lg p-3 bg-gray-100 dark:bg-surface-hover">
+            <div class="text-xs text-gray-500 dark:text-text-secondary mb-2 flex items-center gap-1">
               <i class="pi pi-dollar text-[11px]"></i>
               {{ 'BOOKING_VIEW.TOTAL_PRICE' | translate }}
             </div>
@@ -102,8 +102,8 @@
             </div>
           </div>
 
-          <div class="rounded-lg p-3 bg-gray-100">
-            <div class="text-xs text-gray-500 mb-2 flex items-center gap-1">
+          <div class="rounded-lg p-3 bg-gray-100 dark:bg-surface-hover">
+            <div class="text-xs text-gray-500 dark:text-text-secondary mb-2 flex items-center gap-1">
               <i class="pi pi-users text-[11px]"></i>
               {{ 'BOOKING_VIEW.ROOM_NUMBER' | translate }}
             </div>
@@ -112,16 +112,16 @@
             </div>
           </div>
 
-          <div class="rounded-lg bg-gray-100 p-3">
-            <div class="text-xs text-gray-500 mb-2">{{ 'BOOKING_VIEW.START_DATE' | translate }}</div>
+          <div class="rounded-lg bg-gray-100 dark:bg-surface-hover p-3">
+            <div class="text-xs text-gray-500 dark:text-text-secondary mb-2">{{ 'BOOKING_VIEW.START_DATE' | translate }}</div>
 
             <div class="font-medium">
               {{ selectedBooking.startDate | date: 'mediumDate' }}
             </div>
           </div>
 
-          <div class="rounded-lg bg-gray-100 p-3">
-            <div class="text-xs text-gray-500 mb-2">{{ 'BOOKING_VIEW.END_DATE' | translate }}</div>
+          <div class="rounded-lg bg-gray-100 dark:bg-surface-hover p-3">
+            <div class="text-xs text-gray-500 dark:text-text-secondary mb-2">{{ 'BOOKING_VIEW.END_DATE' | translate }}</div>
 
             <div class="font-medium">
               {{ selectedBooking.endDate | date: 'mediumDate' }}
@@ -134,12 +134,12 @@
 
       <!-- Audit -->
       <div>
-        <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3">
+        <div class="text-xs font-medium text-gray-500 dark:text-text-secondary uppercase tracking-wider mb-3">
           {{ 'BOOKING_VIEW.AUDIT_INFORMATION' | translate }}
         </div>
 
         <div class="flex items-center justify-between py-2">
-          <span class="flex items-center gap-2 text-sm text-gray-500">
+          <span class="flex items-center gap-2 text-sm text-gray-500 dark:text-text-secondary">
             <i class="pi pi-calendar-plus"></i>
             {{ 'BOOKING_VIEW.CREATED_AT' | translate }}
           </span>
@@ -149,10 +149,10 @@
           </span>
         </div>
 
-        <div class="my-1 border-t border-gray-200"></div>
+        <div class="my-1 border-t border-gray-200 dark:border-surface-border"></div>
 
         <div class="flex items-center justify-between py-2">
-          <span class="flex items-center gap-2 text-sm text-gray-500">
+          <span class="flex items-center gap-2 text-sm text-gray-500 dark:text-text-secondary">
             <i class="pi pi-calendar"></i>
             {{ 'BOOKING_VIEW.UPDATED_AT' | translate }}
           </span>

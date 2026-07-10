@@ -11,7 +11,8 @@
     "ACCESS_DENIED": "Access Denied",
     "LOGIN_AS_USER": "Please log in with a user account to access this page.",
     "USER_ONLY": "This page is available only for users.",
-    "LOGIN_SUCCESS_MESSAGE": "You have been logged in successfully!"
+    "LOGIN_SUCCESS_MESSAGE": "You have been logged in successfully!",
+    "LOGIN_SUCCESS_SUMMARY": "Success"
   },
   "HOME": {
     "HERO": {
@@ -149,6 +150,66 @@
     "UPLOAD_TEXT": "Drag & Drop or",
     "CHOOSE_IMAGES": "Choose Room Images",
     "UPLOAD_SUFFIX": "to Upload"
+  },
+  "USERS": {
+    "TITLE": "Users List",
+    "ADD_NEW": "Add New User",
+    "TABLE": {
+      "NAME": "Name",
+      "EMAIL": "Email",
+      "ROLE": "Role",
+      "COUNTRY": "Country",
+      "STATUS": "Status",
+      "CREATED_DATE": "Created Date",
+      "UPDATED_DATE": "Updated Date"
+    },
+    "STATUS": {
+      "ACTIVE": "Active",
+      "NOT_ACTIVE": "Not Active"
+    },
+    "EMPTY": "users"
+  },
+  "USER_DETAILS": {
+    "TITLE": "User Details",
+    "COUNTRY": "Country",
+    "PHONE_NUMBER": "Phone Number",
+    "ROLE": "Role",
+    "STATUS": "Status",
+    "ACTIVE": "Active",
+    "NOT_ACTIVE": "Not Active"
+  },
+  "USER_FORM": {
+    "HEADER": "Add New User",
+    "USER_NAME_LABEL": "User Name",
+    "USER_NAME_PLACEHOLDER": "Please type here ...",
+    "USER_NAME_REQUIRED": "User Name is required",
+    "USER_NAME_MINLENGTH": "Username must be at least 3 characters",
+    "USER_NAME_MAXLENGTH": "Username cannot exceed 20 characters",
+    "PHONE_NUMBER_LABEL": "Phone Number",
+    "PHONE_NUMBER_PLACEHOLDER": "Please type here",
+    "PHONE_NUMBER_REQUIRED": "Phone Number is required",
+    "PHONE_NUMBER_PATTERN": "Must start with 010, 011, 012, or 015 (11 digits)",
+    "COUNTRY_LABEL": "Country",
+    "COUNTRY_PLACEHOLDER": "Please type here .",
+    "COUNTRY_REQUIRED": "Country is required",
+    "COUNTRY_PATTERN": "Country name must contain letters only",
+    "COUNTRY_MINLENGTH": "Country name is too short",
+    "EMAIL_LABEL": "Email Address",
+    "EMAIL_PLACEHOLDER": "Email",
+    "EMAIL_REQUIRED": "Email is required",
+    "EMAIL_INVALID": "Invalid email format",
+    "PASSWORD_LABEL": "Password",
+    "PASSWORD_PLACEHOLDER": "Password",
+    "PASSWORD_REQUIRED": "Password is required",
+    "PASSWORD_PATTERN": "Password must contain uppercase, lowercase, special character and minimum 6 characters",
+    "CONFIRM_PASSWORD_LABEL": "Confirm Password",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "Confirm Password",
+    "CONFIRM_PASSWORD_REQUIRED": "Confirm Password is required",
+    "PASSWORD_MISMATCH": "Passwords do not match.",
+    "ROLE_LABEL": "Create user as",
+    "ROLE_PLACEHOLDER": "select role",
+    "ROLE_REQUIRED": "Role is required",
+    "PROFILE_IMAGE_REQUIRED": "Profile image is required"
   },
   "REVIEWS": {
     "YOUR_RATING": "Your Rating",

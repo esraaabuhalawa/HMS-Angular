@@ -7,7 +7,7 @@
 >
   <ng-template pTemplate="header">
     <div class="flex items-center gap-2">
-      <i class="pi pi-plus text-gray-400"></i>
+      <i class="pi pi-plus text-gray-400 dark:text-text-secondary"></i>
       <span class="font-semibold text-base"
         >{{ (isEditMode ? 'FACILITY_FORM.EDIT_HEADER' : 'FACILITY_FORM.ADD_TITLE') | translate }}
       </span>
@@ -16,7 +16,7 @@
 
   <div class="flex flex-col gap-4 p-1">
     <div class="flex flex-col gap-2">
-      <label class="text-sm text-gray-600">{{ 'FACILITY_FORM.NAME_LABEL' | translate }}</label>
+      <label class="text-sm text-gray-600 dark:text-text-secondary">{{ 'FACILITY_FORM.NAME_LABEL' | translate }}</label>
       <input
         pInputText
         [(ngModel)]="facilityName"

@@ -3,6 +3,10 @@
   font-weight: 600;
 }
 
+:host-context(.dark) .active {
+  color: var(--primary-color);
+}
+
 @media screen and (max-width:860px){
   img{
     width: 97px;

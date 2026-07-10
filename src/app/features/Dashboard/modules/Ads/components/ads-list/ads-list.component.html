@@ -28,28 +28,28 @@
   ]">
   </app-table-skeleton>
   } @else if (adsList().length === 0) {
-  <div class="w-full py-12 flex flex-col justify-center items-center bg-white">
+  <div class="w-full py-12 flex flex-col justify-center items-center bg-white dark:bg-surface">
     <app-empty-state [elementName]="'Rooms'"></app-empty-state>
   </div>
   } @else {
   <!-- Ads List -->
-  <div class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+  <div class="w-full bg-white dark:bg-surface rounded-2xl shadow-sm border border-gray-100 dark:border-surface-border overflow-hidden">
     <p-table [value]="adsList()" [tableStyle]="{ 'min-width': '60rem' }" styleClass="p-datatable-custom">
       <ng-template pTemplate="header">
-        <tr class="!bg-[#e9ecef]/50 border-b border-gray-100">
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
+        <tr class="!bg-[#e9ecef]/50 dark:!bg-surface-hover border-b border-gray-100 dark:border-surface-border">
+          <th class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
             {{ "ADS.TABLE.ROOM_NUMBER" | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
+          <th class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
             {{ "ADS.TABLE.PRICE" | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
+          <th class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
             {{ "ADS.TABLE.DISCOUNT" | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
+          <th class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
             {{ "ADS.TABLE.CAPACITY" | translate }}
           </th>
-          <th class="!bg-transparent !text-slate-700 !font-semibold !py-4 !px-6 !text-sm text-left">
+          <th class="!bg-transparent !text-slate-700 dark:!text-text-primary !font-semibold !py-4 !px-6 !text-sm text-left">
             {{ "ADS.TABLE.ACTIVE" | translate }}
           </th>
           <th class="!bg-transparent !py-4 !px-6 w-16"></th>
@@ -57,14 +57,14 @@
       </ng-template>
 
       <ng-template pTemplate="body" let-ad>
-        <tr class="border-b border-gray-100/70 hover:bg-slate-50/50 transition-colors">
-          <td class="py-4 px-6 text-sm font-medium text-gray-700">{{ ad.room.roomNumber }}</td>
-          <td class="py-4 px-6 text-sm text-gray-600">{{ ad.room.price | currency}}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">{{ ad.room.discount }}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">{{ ad.room.capacity }}</td>
-          <td class="py-4 px-6 text-sm text-gray-500">
+        <tr class="border-b border-gray-100/70 dark:border-surface-border hover:bg-slate-50/50 dark:hover:bg-surface-hover transition-colors">
+          <td class="py-4 px-6 text-sm font-medium text-gray-700 dark:text-text-primary">{{ ad.room.roomNumber }}</td>
+          <td class="py-4 px-6 text-sm text-gray-600 dark:text-text-secondary">{{ ad.room.price | currency}}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ ad.room.discount }}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">{{ ad.room.capacity }}</td>
+          <td class="py-4 px-6 text-sm text-gray-500 dark:text-text-secondary">
             <span class="px-2 py-1 rounded-full text-xs font-medium"
-              [class]="ad.isActive ? 'bg-green-50 text-green-600' : 'bg-red-100 text-red-500'">
+              [class]="ad.isActive ? 'bg-green-50 text-green-600 dark:bg-green-500/15 dark:text-green-400' : 'bg-red-100 text-red-500 dark:bg-red-500/15 dark:text-red-400'">
               {{ ad.isActive ? ('COMMON.ACTIVE' | translate) : ('COMMON.INACTIVE' | translate) }}
             </span>
           </td>
