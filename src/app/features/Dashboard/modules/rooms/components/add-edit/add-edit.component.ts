@@ -95,7 +95,7 @@ export class AddEditComponent implements OnInit {
       return;
     }
 
-    if (!this.roomId && this.selectedFiles.length === 0) {
+    if (this.selectedFiles.length === 0 && this.existingImages.length === 0) {
       this.showImageError = true;
       return;
     }
