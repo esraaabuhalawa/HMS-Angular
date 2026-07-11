@@ -88,7 +88,12 @@ export class AddEditComponent implements OnInit {
   }
 
   async save() {
-    this.showImageError = false;
+    this.showImageError = this.selectedFiles.length === 0 && this.existingImages.length === 0;
+
+    if (this.roomForm.invalid || this.showImageError) {
+      this.roomForm.markAllAsTouched();
+      return;
+    }
 
     if (this.roomForm.invalid) {
       this.roomForm.markAllAsTouched();
