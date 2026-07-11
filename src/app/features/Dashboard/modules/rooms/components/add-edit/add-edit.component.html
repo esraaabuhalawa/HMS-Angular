@@ -18,68 +18,152 @@
       [placeholder]="'ROOM_FORM.ROOM_NUMBER' | translate"
       class="w-full"
     />
+    @if (
+      roomForm.get('roomNumber')?.invalid &&
+      (roomForm.get('roomNumber')?.dirty || roomForm.get('roomNumber')?.touched)
+    ) {
+      <small class="text-red-500">
+        {{ 'ROOM_FORM.VALIDATION.ROOM_NUMBER_REQUIRED' | translate }}
+      </small>
+    }
   </div>
 
-  <!-- Price & Capacity -->
+  <!-- Price -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-    <p-inputNumber
-      formControlName="price"
-      [placeholder]="'ROOM_FORM.PRICE' | translate"
-      styleClass="w-full"
-    >
-    </p-inputNumber>
+    <div>
+      <p-inputNumber
+        formControlName="price"
+        [placeholder]="'ROOM_FORM.PRICE' | translate"
+        styleClass="w-full"
+      >
+      </p-inputNumber>
+      @if (
+        roomForm.get('price')?.hasError('required') &&
+        (roomForm.get('price')?.dirty || roomForm.get('price')?.touched)
+      ) {
+        <small class="text-red-500">
+          {{ 'ROOM_FORM.VALIDATION.PRICE_REQUIRED' | translate }}
+        </small>
+      }
 
-    <p-inputNumber
-      formControlName="capacity"
-      [placeholder]="'ROOM_FORM.CAPACITY' | translate"
-      styleClass="w-full"
-    >
-    </p-inputNumber>
+      @if (
+        roomForm.get('price')?.hasError('min') &&
+        (roomForm.get('price')?.dirty || roomForm.get('price')?.touched)
+      ) {
+        <small class="text-red-500">
+          {{ 'ROOM_FORM.VALIDATION.PRICE_MIN' | translate }}
+        </small>
+      }
+    </div>
+
+    <!--  Capacity -->
+    <div>
+      <p-inputNumber
+        formControlName="capacity"
+        [placeholder]="'ROOM_FORM.CAPACITY' | translate"
+        styleClass="w-full"
+      >
+      </p-inputNumber>
+      @if (
+        roomForm.get('capacity')?.hasError('required') &&
+        (roomForm.get('capacity')?.dirty || roomForm.get('capacity')?.touched)
+      ) {
+        <small class="text-red-500">
+          {{ 'ROOM_FORM.VALIDATION.CAPACITY_REQUIRED' | translate }}
+        </small>
+      }
+
+      @if (
+        roomForm.get('capacity')?.hasError('min') &&
+        (roomForm.get('capacity')?.dirty || roomForm.get('capacity')?.touched)
+      ) {
+        <small class="text-red-500">
+          {{ 'ROOM_FORM.VALIDATION.CAPACITY_MIN' | translate }}
+        </small>
+      }
+    </div>
   </div>
 
-  <!-- Discount & Facilities -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-    <p-inputNumber
-      formControlName="discount"
-      [placeholder]="'ROOM_FORM.DISCOUNT' | translate"
-      styleClass="w-full"
-    >
-    </p-inputNumber>
+    <!-- Discount -->
+    <div>
+      <p-inputNumber
+        formControlName="discount"
+        [placeholder]="'ROOM_FORM.DISCOUNT' | translate"
+        styleClass="w-full"
+      >
+      </p-inputNumber>
+      @if (
+        roomForm.get('discount')?.hasError('required') &&
+        (roomForm.get('discount')?.dirty || roomForm.get('discount')?.touched)
+      ) {
+        <small class="text-red-500">
+          {{ 'ROOM_FORM.VALIDATION.DISCOUNT_REQUIRED' | translate }}
+        </small>
+      }
 
-    <p-multiselect
-      [options]="facilities()"
-      optionLabel="name"
-      optionValue="_id"
-      formControlName="facilities"
-      [placeholder]="'ROOM_FORM.SELECT_FACILITIES' | translate"
-      class="w-full"
-    >
-    </p-multiselect>
+      @if (
+        (roomForm.get('discount')?.hasError('min') || roomForm.get('discount')?.hasError('max')) &&
+        (roomForm.get('discount')?.dirty || roomForm.get('discount')?.touched)
+      ) {
+        <small class="text-red-500">
+          {{ 'ROOM_FORM.VALIDATION.DISCOUNT_RANGE' | translate }}
+        </small>
+      }
+    </div>
+
+    <!-- Facilities -->
+    <div>
+      <p-multiselect
+        [options]="facilities()"
+        optionLabel="name"
+        optionValue="_id"
+        formControlName="facilities"
+        [placeholder]="'ROOM_FORM.SELECT_FACILITIES' | translate"
+        class="w-full"
+      >
+      </p-multiselect>
+      @if (
+        roomForm.get('facilities')?.invalid &&
+        (roomForm.get('facilities')?.dirty || roomForm.get('facilities')?.touched)
+      ) {
+        <small class="text-red-500">
+          {{ 'ROOM_FORM.VALIDATION.FACILITIES_REQUIRED' | translate }}
+        </small>
+      }
+    </div>
   </div>
 
   <!-- Upload -->
-  <p-fileUpload
-    #fileUpload
-    mode="advanced"
-    [multiple]="true"
-    [showUploadButton]="false"
-    [showCancelButton]="false"
-    (onSelect)="onSelectFiles($event)"
-  >
-    <ng-template pTemplate="content">
-      <div class="upload-area" (click)="fileUpload.choose()">
-        <i class="pi pi-upload text-4xl mb-4"></i>
+  <div>
+    <p-fileUpload
+      #fileUpload
+      mode="advanced"
+      [multiple]="true"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+      (onSelect)="onSelectFiles($event)"
+    >
+      <ng-template pTemplate="content">
+        <div class="upload-area" (click)="fileUpload.choose()">
+          <i class="pi pi-upload text-4xl mb-4"></i>
 
-        <p>
-          {{ 'ROOM_FORM.UPLOAD_TEXT' | translate }}
-          <span class="text-green-600 dark:text-green-400 font-medium">
-            {{ 'ROOM_FORM.CHOOSE_IMAGES' | translate }}
-          </span>
-          {{ 'ROOM_FORM.UPLOAD_SUFFIX' | translate }}
-        </p>
-      </div>
-    </ng-template>
-  </p-fileUpload>
+          <p>
+            {{ 'ROOM_FORM.UPLOAD_TEXT' | translate }}
+            <span class="text-green-600 dark:text-green-400 font-medium">
+              {{ 'ROOM_FORM.CHOOSE_IMAGES' | translate }}
+            </span>
+            {{ 'ROOM_FORM.UPLOAD_SUFFIX' | translate }}
+          </p>
+        </div>
+      </ng-template>
+    </p-fileUpload>
+    @if (showImageError) {
+      <small class="text-red-500">
+        {{ 'ROOM_FORM.VALIDATION.IMAGE_REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
   <div class="flex gap-3 mt-3 flex-wrap">
     <!-- new imgs -->
@@ -101,7 +185,10 @@
     @if (existingImages.length) {
       @for (img of existingImages; track img; let i = $index) {
         <div class="relative">
-          <img [src]="img" class="w-20 h-20 object-cover rounded border dark:border-surface-border" />
+          <img
+            [src]="img"
+            class="w-20 h-20 object-cover rounded border dark:border-surface-border"
+          />
 
           <button
             type="button"

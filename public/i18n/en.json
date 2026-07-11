@@ -149,7 +149,18 @@
     "SELECT_FACILITIES": "Select Facilities",
     "UPLOAD_TEXT": "Drag & Drop or",
     "CHOOSE_IMAGES": "Choose Room Images",
-    "UPLOAD_SUFFIX": "to Upload"
+    "UPLOAD_SUFFIX": "to Upload",
+  "VALIDATION": {
+    "ROOM_NUMBER_REQUIRED": "Room number is required.",
+    "PRICE_REQUIRED": "Price is required.",
+    "PRICE_MIN": "Price must be greater than 0.",
+    "CAPACITY_REQUIRED": "Capacity is required.",
+    "CAPACITY_MIN": "Capacity must be greater than 0.",
+    "DISCOUNT_REQUIRED": "Discount is required.",
+    "DISCOUNT_RANGE": "Discount must be between 0 and 100.",
+    "FACILITIES_REQUIRED": "Please select at least one facility.",
+    "IMAGE_REQUIRED": "Please upload at least one image."
+  }
   },
   "USERS": {
     "TITLE": "Users List",

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal, OnDestroy } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -23,7 +23,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     FileUploadModule,
     CommonModule,
     MultiSelectModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss',
@@ -38,18 +38,27 @@ export class AddEditComponent implements OnInit {
   roomId: string | null = null;
   existingImages: string[] = [];
   previewUrls: string[] = [];
+  showImageError = false;
   loading = false;
 
-  roomForm = this.fb.group({
-    roomNumber: [''],
-    price: [null as number | null],
-    capacity: [null as number | null],
-    discount: [null as number | null],
-    facilities: [[] as string[]],
-  });
+  roomForm!: FormGroup;
 
   facilities = signal<any[]>([]);
   selectedFiles: File[] = [];
+
+  constructor() {
+    this.formInit();
+  }
+
+  formInit() {
+    this.roomForm = this.fb.group({
+      roomNumber: ['', Validators.required],
+      price: [null as number | null, [Validators.required, Validators.min(1)]],
+      capacity: [null as number | null, [Validators.required, Validators.min(1)]],
+      discount: [0 as number | null, [Validators.required, Validators.min(0), Validators.max(100)]],
+      facilities: this.fb.control<string[]>([], Validators.required),
+    });
+  }
 
   ngOnInit() {
     this.loadFacilities();
@@ -61,6 +70,7 @@ export class AddEditComponent implements OnInit {
   }
 
   onSelectFiles(event: any) {
+    this.showImageError = false;
     const files = event.currentFiles as File[];
 
     this.selectedFiles = [...files];
@@ -78,6 +88,18 @@ export class AddEditComponent implements OnInit {
   }
 
   async save() {
+    this.showImageError = false;
+
+    if (this.roomForm.invalid) {
+      this.roomForm.markAllAsTouched();
+      return;
+    }
+
+    if (!this.roomId && this.selectedFiles.length === 0) {
+      this.showImageError = true;
+      return;
+    }
+
     this.loading = true;
 
     try {
