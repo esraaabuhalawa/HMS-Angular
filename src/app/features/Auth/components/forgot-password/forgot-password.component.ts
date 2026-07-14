@@ -17,7 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-forgot-password',
   imports: [AuthLayoutComponent, ReactiveFormsModule, InputTextModule, ButtonModule,
-    AuthHeaderComponent, AuthImageSectionComponent,TranslatePipe],
+    AuthHeaderComponent, AuthImageSectionComponent, TranslatePipe],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss',
 })
@@ -32,54 +32,54 @@ export class ForgotPasswordComponent {
 
 
   constructor() {
-  this.formInit();
-}
+    this.formInit();
+  }
 
 
   formInit(): void {
-  this.forgotForm = this.fb.group({
-    email: [null, [Validators.required, Validators.email]],
-  });
-}
-
-onSubmit(): void {
-  if (this.forgotForm.invalid) {
-    this.forgotForm.markAllAsTouched();
-    return;
+    this.forgotForm = this.fb.group({
+      email: [null, [Validators.required, Validators.email]],
+    });
   }
 
-  this.isLoading = true;
-
-  const email = this.forgotForm.value.email;
-
-  this.authservice.forgotPassword(email).subscribe({
-    next: (res) => {
-      localStorage.setItem('userEmail', email);
-      this.router.navigate(['/auth/reset-password']);
-      this.isLoading = false;
-
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'Reset link sent successfully'
-      });
-    },
-
-    error: (err) => {
-      this.isLoading = false;
-
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: err.error?.message || 'Something went wrong'
-      });
+  onSubmit(): void {
+    if (this.forgotForm.invalid) {
+      this.forgotForm.markAllAsTouched();
+      return;
     }
-  });
-}
 
-get f() {
-  return this.forgotForm.controls;
-}
+    this.isLoading = true;
+
+    const email = this.forgotForm.value.email;
+
+    this.authservice.forgotPassword(email).subscribe({
+      next: (res) => {
+        localStorage.setItem('userEmail', email);
+        this.router.navigate(['/auth/reset-password']);
+        this.isLoading = false;
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Reset link sent successfully'
+        });
+      },
+
+      error: (err) => {
+        this.isLoading = false;
+
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err.error?.message || 'Something went wrong'
+        });
+      }
+    });
+  }
+
+  get form() {
+    return this.forgotForm.controls;
+  }
 
 
 
