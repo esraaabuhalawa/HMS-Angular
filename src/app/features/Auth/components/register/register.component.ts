@@ -120,14 +120,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // passwordMatchValidator(pass: string, confirmPass: string): ValidatorFn {
-  //   return (control: AbstractControl): ValidationErrors | null => {
-  //     const password = control.get(pass)?.value;
-  //     const confirmPassword = control.get(confirmPass)?.value;
-
-  //     return password === confirmPassword ? null : { passwordMismatch: true };
-  //   };
-  // }
   get form() {
     return this.registerForm.controls;
   }

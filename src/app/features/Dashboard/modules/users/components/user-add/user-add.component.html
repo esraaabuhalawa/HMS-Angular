@@ -23,97 +23,65 @@
         }
       </div>
 
-      <div class="mb-[2rem] mt-7">
-        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.USER_NAME_LABEL' | translate }}</label>
-        <input pInputText class="w-full" [placeholder]="'USER_FORM.USER_NAME_PLACEHOLDER' | translate"
-          formControlName="userName" />
+      <!-- User Name -->
+      <app-form-field [control]="form['userName']" label="USER_FORM.USER_NAME_LABEL"
+        placeholder="USER_FORM.USER_NAME_PLACEHOLDER" [errorMessages]="{
+    required: 'USER_FORM.USER_NAME_REQUIRED',
+    minlength: 'USER_FORM.USER_NAME_MINLENGTH',
+    maxlength: 'USER_FORM.USER_NAME_MAXLENGTH'
+  }">
+      </app-form-field>
 
-        @if (form['userName'].touched && form['userName'].errors?.['required']) {
-        <small class="text-red-500">{{ 'USER_FORM.USER_NAME_REQUIRED' | translate }}</small>
-        }
-
-        @if (form['userName'].touched && form['userName'].errors?.['minlength']) {
-        <small class="text-red-500">{{ 'USER_FORM.USER_NAME_MINLENGTH' | translate }}</small>
-        }
-        @if (form['userName'].touched && form['userName'].errors?.['maxLength']) {
-        <small class="text-red-500">{{ 'USER_FORM.USER_NAME_MAXLENGTH' | translate }}</small>
-        }
-      </div>
       <div class="mb-[2rem] flex justify-content-between align-items-center gap-3">
+
+        <!-- Phone Number -->
         <div class="w-[50%]">
-          <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.PHONE_NUMBER_LABEL' | translate }}</label>
-          <input pInputText class="w-full" [placeholder]="'USER_FORM.PHONE_NUMBER_PLACEHOLDER' | translate"
-            formControlName="phoneNumber" />
-
-          @if (form['phoneNumber'].touched && form['phoneNumber'].errors?.['required']) {
-          <small class="text-red-500">{{ 'USER_FORM.PHONE_NUMBER_REQUIRED' | translate }}</small>
-          }
-
-          @if (form['phoneNumber'].touched && form['phoneNumber'].errors?.['pattern']) {
-          <small class="text-red-500">{{ 'USER_FORM.PHONE_NUMBER_PATTERN' | translate }}</small>
-          }
+          <app-form-field [control]="form['phoneNumber']" label="USER_FORM.PHONE_NUMBER_LABEL"
+            placeholder="USER_FORM.PHONE_NUMBER_PLACEHOLDER" [errorMessages]="{
+        required: 'USER_FORM.PHONE_NUMBER_REQUIRED',
+        pattern: 'USER_FORM.PHONE_NUMBER_PATTERN'
+      }">
+          </app-form-field>
         </div>
+
+        <!-- Country -->
         <div class="w-[50%]">
-          <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.COUNTRY_LABEL' | translate }}</label>
-          <input pInputText class="w-full" [placeholder]="'USER_FORM.COUNTRY_PLACEHOLDER' | translate"
-            formControlName="country" />
-
-          @if (form['country'].touched && form['country'].errors?.['required']) {
-          <small class="text-red-500">{{ 'USER_FORM.COUNTRY_REQUIRED' | translate }}</small>
-          }
-
-          @if (form['country'].touched && form['country'].errors?.['pattern']) {
-          <small class="text-red-500">{{ 'USER_FORM.COUNTRY_PATTERN' | translate }}</small>
-          }
-          @if (form['country'].touched && form['country'].errors?.['minlength']) {
-          <small class="text-red-500">{{ 'USER_FORM.COUNTRY_MINLENGTH' | translate }}</small>
-          }
+          <app-form-field [control]="form['country']" label="USER_FORM.COUNTRY_LABEL"
+            placeholder="USER_FORM.COUNTRY_PLACEHOLDER" [errorMessages]="{
+        required: 'USER_FORM.COUNTRY_REQUIRED',
+        pattern: 'USER_FORM.COUNTRY_PATTERN',
+        minlength: 'USER_FORM.COUNTRY_MINLENGTH'
+      }">
+          </app-form-field>
         </div>
-      </div>
-      <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.EMAIL_LABEL' | translate }}</label>
-        <input pInputText class="w-full" [placeholder]="'USER_FORM.EMAIL_PLACEHOLDER' | translate"
-          formControlName="email" />
 
-        @if (form['email'].touched && form['email'].errors?.['required']) {
-        <small class="text-red-500">{{ 'USER_FORM.EMAIL_REQUIRED' | translate }}</small>
-        }
-
-        @if (form['email'].touched && form['email'].errors?.['email']) {
-        <small class="text-red-500">{{ 'USER_FORM.EMAIL_INVALID' | translate }}</small>
-        }
       </div>
 
-      <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.PASSWORD_LABEL' | translate }}</label>
-        <p-password formControlName="password" [toggleMask]="true"
-          [placeholder]="'USER_FORM.PASSWORD_PLACEHOLDER' | translate" styleClass="w-full" inputStyleClass="w-full"
-          autocomplete="off">
-        </p-password>
+      <!-- Email -->
+      <app-form-field [control]="form['email']" type="email" label="USER_FORM.EMAIL_LABEL"
+        placeholder="USER_FORM.EMAIL_PLACEHOLDER" [errorMessages]="{
+    required: 'USER_FORM.EMAIL_REQUIRED',
+    email: 'USER_FORM.EMAIL_INVALID'
+  }">
+      </app-form-field>
 
-        @if (form['password'].touched && form['password'].errors?.['required']) {
-        <small class="text-red-500">{{ 'USER_FORM.PASSWORD_REQUIRED' | translate }}</small>
-        }
+      <!-- Password -->
+      <app-form-field [control]="form['password']" type="password" label="USER_FORM.PASSWORD_LABEL"
+        placeholder="USER_FORM.PASSWORD_PLACEHOLDER" [errorMessages]="{
+          required: 'USER_FORM.PASSWORD_REQUIRED',
+          pattern: 'USER_FORM.PASSWORD_PATTERN'
+        }" autocomplete="off">
+      </app-form-field>
 
-        @if (form['password'].touched && form['password'].errors?.['pattern']) {
-        <small class="text-red-500">{{ 'USER_FORM.PASSWORD_PATTERN' | translate }}</small>
-        }
-      </div>
-      <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.CONFIRM_PASSWORD_LABEL' | translate }}</label>
-        <p-password formControlName="confirmPassword" [toggleMask]="true"
-          [placeholder]="'USER_FORM.CONFIRM_PASSWORD_PLACEHOLDER' | translate" styleClass="w-full"
-          inputStyleClass="w-full">
-        </p-password>
-
-        @if (form['confirmPassword'].touched && form['confirmPassword'].errors?.['required']) {
-        <small class="text-red-500">{{ 'USER_FORM.CONFIRM_PASSWORD_REQUIRED' | translate }}</small>
-        }
-
-        @if (form['confirmPassword'].touched && registerForm.errors?.['passwordMismatch']) {
-        <small class="text-red-500">{{ 'USER_FORM.PASSWORD_MISMATCH' | translate }}</small>
-        }
-      </div>
+      <!-- Confirm Password -->
+      <app-form-field [control]="form['confirmPassword']" type="password" label="USER_FORM.CONFIRM_PASSWORD_LABEL"
+        placeholder="USER_FORM.CONFIRM_PASSWORD_PLACEHOLDER" [errorMessages]="{
+    required: 'USER_FORM.CONFIRM_PASSWORD_REQUIRED'
+  }" [customError]="
+    registerForm.hasError('passwordMismatch') &&
+    form['confirmPassword'].touched
+  " customErrorMessage="USER_FORM.PASSWORD_MISMATCH">
+      </app-form-field>
       <div class="mb-[2rem]">
         <label class="text-primary font-normal mb-2 block">{{ 'USER_FORM.ROLE_LABEL' | translate }}</label>
 
