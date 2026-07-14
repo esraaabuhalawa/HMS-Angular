@@ -50,7 +50,7 @@
     <!-- Loaded state -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
       @for (room of searchResults(); track room._id; let i = $index) {
-      <div [class.md:row-span-2]="i === 0">
+      <div>
         <app-room-info-card [room]="room"></app-room-info-card>
       </div>
       }

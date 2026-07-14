@@ -105,7 +105,7 @@ export class UserAddComponent implements OnChanges {
       return password === confirmPassword ? null : { passwordMismatch: true };
     };
   }
-  get f() {
+  get form() {
     return this.registerForm.controls;
   }
 

@@ -13,13 +13,13 @@
         <label class="text-primary font-normal mb-2 block"> {{ 'LOGIN.EMAIL_LABEL' | translate }}</label>
         <input pInputText class="w-full" [placeholder]="'LOGIN.EMAIL_LABEL' | translate" formControlName="email" />
 
-        @if (f['email']?.invalid && (f['email']?.touched || f['email']?.dirty) ) {
-          @if(f['email'].errors?.['required']){
-          <small class="text-login-red"> {{ 'LOGIN.EMAIL_REQUIRED' | translate }} </small>
-          }
-          @else{
-          <small class="text-login-red"> {{ 'LOGIN.EMAIL_INVALID' | translate }} </small>
-          }
+        @if (form['email']?.invalid && (form['email']?.touched || form['email']?.dirty) ) {
+        @if(form['email'].errors?.['required']){
+        <small class="text-login-red"> {{ 'LOGIN.EMAIL_REQUIRED' | translate }} </small>
+        }
+        @else{
+        <small class="text-login-red"> {{ 'LOGIN.EMAIL_INVALID' | translate }} </small>
+        }
         }
       </div>
 
@@ -29,13 +29,13 @@
           [placeholder]="'LOGIN.PASSWORD_LABEL' | translate" styleClass="w-full" inputStyleClass="w-full">
         </p-password>
 
-        @if (f['password']?.invalid && (f['password']?.touched || f['password']?.dirty) ) {
-          @if(f['password'].errors?.['required']){
-          <small class="text-login-red"> {{ 'LOGIN.PASSWORD_REQUIRED' | translate }} </small>
-          }
-          @else{
-          <small class="text-login-red"> {{ 'LOGIN.PASSWORD_PATTERN' | translate }} </small>
-          }
+        @if (form['password']?.invalid && (form['password']?.touched || form['password']?.dirty) ) {
+        @if(form['password'].errors?.['required']){
+        <small class="text-login-red"> {{ 'LOGIN.PASSWORD_REQUIRED' | translate }} </small>
+        }
+        @else{
+        <small class="text-login-red"> {{ 'LOGIN.PASSWORD_PATTERN' | translate }} </small>
+        }
         }
       </div>
 
@@ -45,7 +45,8 @@
       </div>
 
       <div class="mt-[50px]">
-        <p-button type="submit" [disabled]="isLoading" [label]="'LOGIN.BUTTON_LOGIN' | translate" [loading]="isLoading" styleClass="w-full">
+        <p-button type="submit" [disabled]="isLoading" [label]="'LOGIN.BUTTON_LOGIN' | translate" [loading]="isLoading"
+          styleClass="w-full">
         </p-button>
       </div>
     </form>

@@ -23,3 +23,10 @@
 .rooms-results {
   scroll-margin: 60px;
 }
+
+@media screen and (max-width: 768px) {
+  section{
+  padding: 0 23px;
+}
+}
+

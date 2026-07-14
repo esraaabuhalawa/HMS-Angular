@@ -92,7 +92,7 @@ export class ResetPasswordComponent implements OnInit {
       },
     });
   }
-  get f() {
+  get form() {
     return this.resetForm.controls;
   }
 }

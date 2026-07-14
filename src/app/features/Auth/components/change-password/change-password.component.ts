@@ -86,7 +86,7 @@ export class ChangePasswordComponent {
       },
     });
   }
-  get f() {
+  get form() {
     return this.changePasswordForm.controls;
   }
 }
