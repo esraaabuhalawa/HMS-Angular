@@ -1,7 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
+import { Component, inject,  signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { matchPasswordValidator } from '../../../../shared/validators/confirm-password-validator';
@@ -12,17 +9,16 @@ import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth
 import { AuthHeaderComponent } from '../../../../shared/components/auth/auth-header/auth-header.component';
 import { AuthImageSectionComponent } from '../../../../shared/components/auth/auth-image-section/auth-image-section.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { FormFieldComponent } from '../../../../shared/components/auth/form-field/form-field.component';
 
 @Component({
   selector: 'app-change-password',
   imports: [
     TranslatePipe,
     ReactiveFormsModule,
-    CommonModule,
-    InputTextModule,
-    PasswordModule,
     ButtonModule,
     AuthLayoutComponent,
+    FormFieldComponent,
     AuthHeaderComponent,
     AuthImageSectionComponent,
   ],

@@ -5,14 +5,18 @@
     class="absolute inset-0 w-full h-full object-cover"
   />
 
-  <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent dark:from-black/90 dark:to-black/20">
+  </div>
 
+  <!-- Content -->
   <div class="absolute left-20 bottom-10 right-10">
-    <h2 class="text-2xl font-semibold mb-1 font-poppins text-secondary">
+    <h2
+      class="text-2xl font-semibold mb-1 font-poppins text-white dark:text-gray-100">
       {{ title }}
     </h2>
 
-    <p class="text-lg font-normal font-poppins text-secondary">
+    <p class="text-lg font-normal font-poppins text-gray-200 dark:text-gray-300">
       {{ subtitle }}
     </p>
   </div>

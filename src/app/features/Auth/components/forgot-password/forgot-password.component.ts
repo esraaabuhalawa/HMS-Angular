@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import {
   FormBuilder,
@@ -14,10 +13,15 @@ import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-hea
 import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
 import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { FormFieldComponent } from '../../../../shared/components/auth/form-field/form-field.component';
 @Component({
   selector: 'app-forgot-password',
-  imports: [AuthLayoutComponent, ReactiveFormsModule, InputTextModule, ButtonModule,
-    AuthHeaderComponent, AuthImageSectionComponent, TranslatePipe],
+  imports: [AuthLayoutComponent,
+    ReactiveFormsModule,
+     ButtonModule,
+    AuthHeaderComponent,
+    AuthImageSectionComponent, TranslatePipe ,
+    FormFieldComponent],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss',
 })
@@ -29,12 +33,9 @@ export class ForgotPasswordComponent {
   forgotForm!: FormGroup;
   isLoading: boolean = false;
 
-
-
   constructor() {
     this.formInit();
   }
-
 
   formInit(): void {
     this.forgotForm = this.fb.group({
@@ -80,8 +81,4 @@ export class ForgotPasswordComponent {
   get form() {
     return this.forgotForm.controls;
   }
-
-
-
-
 }

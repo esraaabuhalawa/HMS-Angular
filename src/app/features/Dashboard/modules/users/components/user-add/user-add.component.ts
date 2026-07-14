@@ -11,9 +11,6 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  ValidatorFn,
-  AbstractControl,
-  ValidationErrors,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -21,11 +18,11 @@ import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { AuthService } from '../../../../../Auth/services/auth.service';
 import { Button } from 'primeng/button';
-import { PasswordModule } from 'primeng/password';
 import { SelectModule } from 'primeng/select';
 import { RoleEnum } from '../../../../../../core/enums/role.enum';
-import { InputTextModule } from 'primeng/inputtext';
 import { TranslatePipe } from '@ngx-translate/core';
+import { FormFieldComponent } from '../../../../../../shared/components/auth/form-field/form-field.component';
+import { matchPasswordValidator } from '../../../../../../shared/validators/confirm-password-validator';
 
 @Component({
   selector: 'app-user-add',
@@ -33,10 +30,9 @@ import { TranslatePipe } from '@ngx-translate/core';
     DialogModule,
     FileUploadModule,
     Button,
-    PasswordModule,
     SelectModule,
-    InputTextModule,
     ReactiveFormsModule,
+    FormFieldComponent,
     TranslatePipe,
   ],
   templateUrl: './user-add.component.html',
@@ -70,7 +66,7 @@ export class UserAddComponent implements OnChanges {
   formInit() {
     this.registerForm = this.fb.group(
       {
-        userName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+        userName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
         email: [null, [Validators.required, Validators.email]],
         password: [
           null,
@@ -93,18 +89,11 @@ export class UserAddComponent implements OnChanges {
         profileImage: [null, [Validators.required]],
       },
       {
-        validators: this.passwordMatchValidator('password', 'confirmPassword'),
+        validators: matchPasswordValidator('password', 'confirmPassword'),
       },
     );
   }
-  passwordMatchValidator(pass: string, confirmPass: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const password = control.get(pass)?.value;
-      const confirmPassword = control.get(confirmPass)?.value;
 
-      return password === confirmPassword ? null : { passwordMismatch: true };
-    };
-  }
   get form() {
     return this.registerForm.controls;
   }

@@ -17,10 +17,12 @@ import {
 import { AuthHeaderComponent } from "../../../../shared/components/auth/auth-header/auth-header.component";
 import { AuthImageSectionComponent } from "../../../../shared/components/auth/auth-image-section/auth-image-section.component";
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { FormFieldComponent } from '../../../../shared/components/auth/form-field/form-field.component';
 @Component({
   selector: 'app-login',
   imports: [
     AuthLayoutComponent,
+    FormFieldComponent,
     ReactiveFormsModule,
     GoogleSigninButtonDirective,
     ButtonModule,
