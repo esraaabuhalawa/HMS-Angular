@@ -1,4 +1,4 @@
-<div
+<div #commentArea
   class="flex flex-col gap-6 w-full p-7 rounded-xl border border-gray-200 dark:border-surface-border bg-white dark:bg-surface shadow-sm">
   <div class="flex flex-col gap-3">
     <span class="text-primary font-semibold text-lg uppercase tracking-wide">
@@ -9,7 +9,7 @@
       'COMMENTS.COMMENT' | translate
       }}</span>
 
-    <textarea #commentArea pTextarea [ngModel]="commentText()" (ngModelChange)="commentText.set($event)" rows="4"
+    <textarea pTextarea [ngModel]="commentText()" (ngModelChange)="commentText.set($event)" rows="4"
       [placeholder]="'COMMENTS.COMMENT_PLACEHOLDER' | translate"
       class="w-full resize-none border dark:border-surface-border p-2 rounded-md focus:outline-none focus:border-primary"></textarea>
   </div>
@@ -80,7 +80,7 @@
           </span>
         </div>
         @if (item.user._id === currentUserId) {
-        <div class="hidden group-hover:flex items-center gap-3 transition-opacity duration-200">
+          <div class="flex lg:hidden lg:[@media(hover:hover)]:group-hover:flex items-center gap-3 transition-opacity duration-200">
           <button (click)="editComment(item)" [attr.title]="'COMMENTS.EDIT_COMMENT' | translate"
             class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer p-1 rounded hover:bg-blue-50 dark:hover:bg-surface transition-colors">
             <i class="pi pi-pencil text-base md:text-lg"></i>

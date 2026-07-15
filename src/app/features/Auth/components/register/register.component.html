@@ -13,7 +13,7 @@
           <p-fileupload #fu chooseIcon="pi pi-upload" accept="image/*" maxFileSize="1000000" [customUpload]="true"
             [auto]="true" (onSelect)="onSelect($event)" (onClear)="onClear()" class="profile-upload" aria-required />
         </div>
-        @if (f['profileImage'].touched && f['profileImage'].invalid) {
+        @if (form['profileImage'].touched && form['profileImage'].invalid) {
         <small class="text-login-red my-2">Profile image is required</small>
         }
       </div>
@@ -22,14 +22,14 @@
         <label class="text-primary font-normal mb-2 block">User Name</label>
         <input pInputText class="w-full" placeholder="Please type here ..." formControlName="userName" />
 
-        @if (f['userName'].touched && f['userName'].errors?.['required']) {
+        @if (form['userName'].touched && form['userName'].errors?.['required']) {
         <small class="text-login-red"> userName is required </small>
         }
 
-        @if (f['userName'].touched && f['userName'].errors?.['minLength']) {
+        @if (form['userName'].touched && form['userName'].errors?.['minLength']) {
         <small class="text-login-red"> Username must be at least 3 characters </small>
         }
-        @if (f['userName'].touched && f['userName'].errors?.['maxLength']) {
+        @if (form['userName'].touched && form['userName'].errors?.['maxLength']) {
         <small class="text-login-red"> Username cannot exceed 20 characters </small>
         }
       </div>
@@ -38,11 +38,11 @@
           <label class="text-primary font-normal mb-2 block">Phone Number</label>
           <input pInputText class="w-full" placeholder="Please type here " formControlName="phoneNumber" />
 
-          @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['required']) {
+          @if (form['phoneNumber'].touched && form['phoneNumber'].errors?.['required']) {
           <small class="text-login-red"> phone Number is required </small>
           }
 
-          @if (f['phoneNumber'].touched && f['phoneNumber'].errors?.['pattern']) {
+          @if (form['phoneNumber'].touched && form['phoneNumber'].errors?.['pattern']) {
           <small class="text-login-red"> Must start with 010, 011, 012, or 015 (11 digits) </small>
           }
         </div>
@@ -50,14 +50,14 @@
           <label class="text-primary font-normal mb-2 block">Country</label>
           <input pInputText class="w-full" placeholder="Please type here ." formControlName="country" />
 
-          @if (f['country'].touched && f['country'].errors?.['required']) {
+          @if (form['country'].touched && form['country'].errors?.['required']) {
           <small class="text-login-red">country is required </small>
           }
 
-          @if (f['country'].touched && f['country'].errors?.['pattern']) {
+          @if (form['country'].touched && form['country'].errors?.['pattern']) {
           <small class="text-login-red"> Country name must contain letters only </small>
           }
-          @if (f['country'].touched && f['country'].errors?.['minlength']) {
+          @if (form['country'].touched && form['country'].errors?.['minlength']) {
           <small class="text-login-red"> Country name is too short </small>
           }
         </div>
@@ -66,11 +66,11 @@
         <label class="text-primary font-normal mb-2 block">Email Address</label>
         <input pInputText class="w-full" placeholder="Email" formControlName="email" />
 
-        @if (f['email'].touched && f['email'].errors?.['required']) {
+        @if (form['email'].touched && form['email'].errors?.['required']) {
         <small class="text-login-red"> Email is required </small>
         }
 
-        @if (f['email'].touched && f['email'].errors?.['email']) {
+        @if (form['email'].touched && form['email'].errors?.['email']) {
         <small class="text-login-red"> Invalid email format </small>
         }
       </div>
@@ -81,11 +81,11 @@
           inputStyleClass="w-full" autocomplete="off">
         </p-password>
 
-        @if (f['password'].touched && f['password'].errors?.['required']) {
+        @if (form['password'].touched && form['password'].errors?.['required']) {
         <small class="text-login-red"> Password is required </small>
         }
 
-        @if (f['password'].touched && f['password'].errors?.['pattern']) {
+        @if (form['password'].touched && form['password'].errors?.['pattern']) {
         <small class="text-login-red">
           Password must contain uppercase, lowercase, special character and minimum 6 characters
         </small>
@@ -97,11 +97,11 @@
           styleClass="w-full" inputStyleClass="w-full">
         </p-password>
 
-        @if (f['confirmPassword'].touched && f['confirmPassword'].errors?.['required']) {
+        @if (form['confirmPassword'].touched && form['confirmPassword'].errors?.['required']) {
         <small class="text-login-red"> confirm Password is required </small>
         }
 
-        @if (f['confirmPassword'].touched && registerForm.errors?.['passwordMismatch']) {
+        @if (form['confirmPassword'].touched && registerForm.errors?.['passwordMismatch']) {
         <small class="text-login-red">Passwords do not match.</small>
         }
       </div>

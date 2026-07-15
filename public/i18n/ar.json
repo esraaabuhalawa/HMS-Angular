@@ -150,19 +150,19 @@
     "UPLOAD_TEXT": "اسحب وأفلت أو",
     "CHOOSE_IMAGES": "اختر صور الغرفة",
     "UPLOAD_SUFFIX": "للرفع",
-  "VALIDATION": {
-    "ROOM_NUMBER_REQUIRED": "رقم الغرفة مطلوب.",
-    "PRICE_REQUIRED": "السعر مطلوب.",
-    "PRICE_MIN": "يجب أن يكون السعر أكبر من 0.",
-    "CAPACITY_REQUIRED": "السعة مطلوبة.",
-    "CAPACITY_MIN": "يجب أن تكون السعة أكبر من 0.",
-    "DISCOUNT_REQUIRED": "الخصم مطلوب.",
-    "DISCOUNT_RANGE": "يجب أن يكون الخصم بين 0 و100.",
-    "FACILITIES_REQUIRED": "يرجى اختيار مرفق واحد على الأقل.",
-    "IMAGE_REQUIRED": "يرجى رفع صورة واحدة على الأقل."
-  }
+    "VALIDATION": {
+      "ROOM_NUMBER_REQUIRED": "رقم الغرفة مطلوب.",
+      "PRICE_REQUIRED": "السعر مطلوب.",
+      "PRICE_MIN": "يجب أن يكون السعر أكبر من 0.",
+      "CAPACITY_REQUIRED": "السعة مطلوبة.",
+      "CAPACITY_MIN": "يجب أن تكون السعة أكبر من 0.",
+      "DISCOUNT_REQUIRED": "الخصم مطلوب.",
+      "DISCOUNT_RANGE": "يجب أن يكون الخصم بين 0 و100.",
+      "FACILITIES_REQUIRED": "يرجى اختيار مرفق واحد على الأقل.",
+      "IMAGE_REQUIRED": "يرجى رفع صورة واحدة على الأقل."
+    }
   },
-    "USERS": {
+  "USERS": {
     "TITLE": "قائمة المستخدمين",
     "ADD_NEW": "إضافة مستخدم جديد",
     "TABLE": {
@@ -180,7 +180,7 @@
     },
     "EMPTY": "المستخدمين"
   },
-   "USER_DETAILS": {
+  "USER_DETAILS": {
     "TITLE": "تفاصيل المستخدم",
     "COUNTRY": "الدولة",
     "PHONE_NUMBER": "رقم الهاتف",
@@ -383,7 +383,7 @@
   "CHANGE_PASSWORD": {
     "TITLE": "تغيير كلمة المرور",
     "DESCRIPTION": "قم بتحديث كلمة المرور للحفاظ على أمان حسابك. أدخل كلمة المرور الحالية واختر كلمة مرور جديدة.",
-    "CHANGE_BUTTON": "يتغير"
+    "CHANGE_BUTTON": "تغيير"
   },
   "BOOKING_DETAILS": {
     "TITLE": "تفاصيل الحجوزات",

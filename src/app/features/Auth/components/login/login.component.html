@@ -9,35 +9,16 @@
 
     <!--Start Of Form-->
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <div class="mb-[2rem]">
-        <label class="text-primary font-normal mb-2 block"> {{ 'LOGIN.EMAIL_LABEL' | translate }}</label>
-        <input pInputText class="w-full" [placeholder]="'LOGIN.EMAIL_LABEL' | translate" formControlName="email" />
+      <app-form-field [control]="form['email']" type="email" label="LOGIN.EMAIL_LABEL" placeholder="LOGIN.EMAIL_LABEL"
+        [errorMessages]="{required: 'LOGIN.EMAIL_REQUIRED',email: 'LOGIN.EMAIL_INVALID'}">
+      </app-form-field>
 
-        @if (f['email']?.invalid && (f['email']?.touched || f['email']?.dirty) ) {
-          @if(f['email'].errors?.['required']){
-          <small class="text-login-red"> {{ 'LOGIN.EMAIL_REQUIRED' | translate }} </small>
-          }
-          @else{
-          <small class="text-login-red"> {{ 'LOGIN.EMAIL_INVALID' | translate }} </small>
-          }
-        }
-      </div>
-
-      <div class="mb-3">
-        <label class="text-primary font-normal mb-2 block">{{ 'LOGIN.PASSWORD_LABEL' | translate }}</label>
-        <p-password formControlName="password" [toggleMask]="true" [feedback]="false"
-          [placeholder]="'LOGIN.PASSWORD_LABEL' | translate" styleClass="w-full" inputStyleClass="w-full">
-        </p-password>
-
-        @if (f['password']?.invalid && (f['password']?.touched || f['password']?.dirty) ) {
-          @if(f['password'].errors?.['required']){
-          <small class="text-login-red"> {{ 'LOGIN.PASSWORD_REQUIRED' | translate }} </small>
-          }
-          @else{
-          <small class="text-login-red"> {{ 'LOGIN.PASSWORD_PATTERN' | translate }} </small>
-          }
-        }
-      </div>
+      <app-form-field [control]="form['password']" type="password" label="LOGIN.PASSWORD_LABEL"
+        placeholder="LOGIN.PASSWORD_LABEL" [errorMessages]="{
+        required: 'LOGIN.PASSWORD_REQUIRED',
+        pattern: 'LOGIN.PASSWORD_PATTERN'
+        }">
+      </app-form-field>
 
       <div class="text-right mt-1">
         <a routerLink="/auth/forgot-password" class="text-xs text-primary font-medium hover:underline">{{
@@ -45,7 +26,8 @@
       </div>
 
       <div class="mt-[50px]">
-        <p-button type="submit" [disabled]="isLoading" [label]="'LOGIN.BUTTON_LOGIN' | translate" [loading]="isLoading" styleClass="w-full">
+        <p-button type="submit" [disabled]="isLoading" [label]="'LOGIN.BUTTON_LOGIN' | translate" [loading]="isLoading"
+          styleClass="w-full">
         </p-button>
       </div>
     </form>
