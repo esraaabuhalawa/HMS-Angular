@@ -9,7 +9,7 @@
       'COMMENTS.COMMENT' | translate
       }}</span>
 
-    <textarea  pTextarea [ngModel]="commentText()" (ngModelChange)="commentText.set($event)" rows="4"
+    <textarea pTextarea [ngModel]="commentText()" (ngModelChange)="commentText.set($event)" rows="4"
       [placeholder]="'COMMENTS.COMMENT_PLACEHOLDER' | translate"
       class="w-full resize-none border dark:border-surface-border p-2 rounded-md focus:outline-none focus:border-primary"></textarea>
   </div>
@@ -24,8 +24,8 @@
       class="!rounded-md !text-sm p-button-secondary bg-gray-200 dark:bg-surface-hover !text-gray-700 dark:!text-text-primary hover:bg-gray-300 dark:hover:bg-surface-border"></button>
     }
   </div>
-  <!---isUpdatingComment() ||-->
-  @if (isLoadingComments() ||  isDeletingComment()) {
+
+  @if (isLoadingComments() || isUpdatingComment() || isDeletingComment()) {
   <!-- Comment Skeletons -->
   <div class="flex flex-col gap-3 mt-3">
     @for (_ of [1]; track $index) {
@@ -80,7 +80,7 @@
           </span>
         </div>
         @if (item.user._id === currentUserId) {
-        <div class="hidden group-hover:flex items-center gap-3 transition-opacity duration-200">
+        <div class="hidden [@media(hover:hover)]:group-hover:flex items-center gap-3 transition-opacity duration-200">
           <button (click)="editComment(item)" [attr.title]="'COMMENTS.EDIT_COMMENT' | translate"
             class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer p-1 rounded hover:bg-blue-50 dark:hover:bg-surface transition-colors">
             <i class="pi pi-pencil text-base md:text-lg"></i>

@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, input, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, input, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -6,7 +6,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RoomsService } from '../../services/rooms.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RoomComment, RoomCommentUser } from '../../interfaces/rooms.interface';
+import { RoomComment } from '../../interfaces/rooms.interface';
 import { AuthService } from '../../../../../Auth/services/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RoleEnum } from '../../../../../../core/enums/role.enum';
@@ -21,372 +21,188 @@ import { SkeletonModule } from 'primeng/skeleton';
   providers: [ConfirmationService],
 })
 export class CommentsComponent implements OnInit {
-  // @ViewChild('commentArea') commentArea?: ElementRef<HTMLElement>;
+  @ViewChild('commentArea') commentArea?: ElementRef<HTMLElement>;
 
-  // private messageService = inject(MessageService);
-  // private confirmationService = inject(ConfirmationService);
-  // private readonly roomsService = inject(RoomsService);
-  // private readonly authService = inject(AuthService);
-  // private translate = inject(TranslateService);
-  // private router = inject(Router);
+  private messageService = inject(MessageService);
+  private confirmationService = inject(ConfirmationService);
+  private readonly roomsService = inject(RoomsService);
+  private readonly authService = inject(AuthService);
+  private translate = inject(TranslateService);
+  private router = inject(Router);
 
-  // roomId = input.required<string>();
-  // showComments = signal<boolean>(false);
-  // commentText = signal<string>('');
-  // isSubmitting = signal<boolean>(false);
-  // isLoadingComments = signal<boolean>(false);
-  // comments = signal<RoomComment[]>([]);
-  // currentUserId = this.authService.getCurrentUserId();
-  // isEditing = signal<boolean>(false);
-  // editingCommentId = signal<string | null>(null);
-  // isUpdatingComment = signal<boolean>(false);
-  // isDeletingComment = signal<boolean>(false);
+  roomId = input.required<string>();
+  showComments = signal<boolean>(false);
+  commentText = signal<string>('');
+  isSubmitting = signal<boolean>(false);
+  isLoadingComments = signal<boolean>(false);
+  comments = signal<RoomComment[]>([]);
+  currentUserId = this.authService.getCurrentUserId();
+  isEditing = signal<boolean>(false);
+  editingCommentId = signal<string | null>(null);
+  isUpdatingComment = signal<boolean>(false);
+  isDeletingComment = signal<boolean>(false);
 
-  // ngOnInit() {
-  //   if (this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
-  //     this.loadComments();
-  //   }
-  // }
-
-  // loadComments() {
-  //   this.isLoadingComments.set(true);
-  //   this.roomsService.getAllComments(this.roomId()).subscribe({
-  //     next: (res) => {
-  //       this.comments.set(res.data.roomComments);
-  //       this.isLoadingComments.set(false);
-  //     },
-  //     error: () => {
-  //       this.isLoadingComments.set(false);
-  //     },
-  //   });
-  // }
-
-  // handleCommentSubmit() {
-  //   if (!this.authService.isLoggedIn()) {
-  //     this.showLoginRequiredDialog();
-  //     return;
-  //   }
-
-  //   if (!this.commentText().trim()) return;
-
-  //   if (this.isEditing() && this.editingCommentId()) {
-  //     this.updateComment();
-  //   } else {
-  //     this.submitComment();
-  //   }
-  // }
-
-  // showLoginRequiredDialog() {
-  //   this.confirmationService.confirm({
-  //     message: this.translate.instant('COMMENTS.LOGIN_REQUIRED_MESSAGE'),
-  //     header: this.translate.instant('COMMENTS.LOGIN_REQUIRED_TITLE'),
-  //     icon: 'pi pi-user',
-  //     acceptLabel: this.translate.instant('COMMENTS.LOGIN_BUTTON'),
-  //     rejectLabel: this.translate.instant('COMMENTS.REGISTER_BUTTON'),
-  //     acceptIcon: 'none',
-  //     rejectIcon: 'none',
-  //     acceptButtonStyleClass: 'p-button-primary',
-  //     rejectButtonStyleClass: 'p-button-outlined',
-  //     accept: () => {
-  //       this.router.navigate(['/auth/login']);
-  //     },
-  //     reject: (type: ConfirmEventType) => {
-  //       switch (type) {
-  //         case ConfirmEventType.REJECT:
-  //           this.router.navigate(['/auth/register']);
-  //           break;
-  //         case ConfirmEventType.CANCEL:
-  //           break;
-  //       }
-  //     },
-  //   });
-  // }
-
-  // submitComment() {
-  //   if (!this.commentText().trim()) return;
-
-  //   this.isSubmitting.set(true);
-  //   const typedCommentText = this.commentText();
-
-  //   this.roomsService
-  //     .createComment({
-  //       roomId: this.roomId(),
-  //       comment: typedCommentText,
-  //     })
-  //     .subscribe({
-  //       next: (res) => {
-  //         this.isSubmitting.set(false);
-  //         this.commentText.set('');
-
-  //         // const currentUserName = this.authService.getUserName() || 'You';
-  //         // const currentUserImage = this.authService.getUserImage() || undefined;
-
-  //         // const fallbackUser = {
-  //         //   _id: this.currentUserId || '',
-  //         //   userName: currentUserName,
-  //         //   profileImage: currentUserImage,
-  //         // };
-
-  //         // const newComment: RoomComment = {
-  //         //   _id: res.data?._id ,
-  //         //   comment: typedCommentText,
-  //         //   room: {
-  //         //     _id: this.roomId(),
-  //         //     roomNumber: '',
-  //         //   },
-  //         //   user:
-  //         //     res.data?.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
-  //         //   createdAt: new Date().toISOString(),
-  //         //   updatedAt: new Date().toISOString(),
-  //         // };
-
-  //         this.loadComments();
-  //        // this.comments.update((list) => [newComment, ...list]);
-
-  //         this.messageService.add({
-  //           severity: 'success',
-  //           summary: this.translate.instant('COMMON.SUCCESS'),
-  //           detail: this.translate.instant('COMMENTS.SUBMIT_SUCCESS'),
-  //         });
-  //       },
-  //       error: (err: HttpErrorResponse) => {
-  //         this.isSubmitting.set(false);
-  //         this.messageService.add({
-  //           severity: 'error',
-  //           summary: this.translate.instant('COMMON.ERROR'),
-  //           detail: err.error?.message ?? this.translate.instant('COMMENTS.SUBMIT_ERROR'),
-  //         });
-  //       },
-  //     });
-  // }
-  // editComment(item: RoomComment) {
-  //   this.isEditing.set(true);
-  //   this.editingCommentId.set(item._id);
-  //   this.commentText.set(item.comment);
-  //   this.scrollToComment();
-  //  // window.scrollTo({ top: 0, behavior: 'smooth' });
-  // }
-
-  // private scrollToComment() {
-  //   setTimeout(() => {
-  //     this.commentArea?.nativeElement.scrollIntoView({
-  //       behavior: 'smooth',
-  //       block: 'start'
-  //     });
-  //   });
-  // }
-  // updateComment() {
-  //   const id = this.editingCommentId();
-  //   if (!id) return;
-
-  //   this.isSubmitting.set(true);
-  //   const typedCommentText = this.commentText();
-
-  //   this.isUpdatingComment.set(true);
-  //   this.roomsService.updateComment(id, typedCommentText).subscribe({
-  //     next: (res) => {
-  //       this.isSubmitting.set(false);
-
-  //       // this.comments.update((list) =>
-  //       //   list.map((c) =>
-  //       //     c._id === id
-  //       //       ? { ...c, comment: typedCommentText, updatedAt: new Date().toISOString() }
-  //       //       : c,
-  //       //   ),
-  //       // );
-
-  //       this.loadComments();
-
-  //       this.cancelEdit();
-  //       this.isUpdatingComment.set(false);
-  //       this.messageService.add({
-  //         severity: 'success',
-  //         summary: this.translate.instant('COMMON.SUCCESS'),
-  //         detail: this.translate.instant('COMMENTS.UPDATE_SUCCESS'),
-  //       });
-  //     },
-  //     error: (err: HttpErrorResponse) => {
-  //       this.isSubmitting.set(false);
-  //       this.messageService.add({
-  //         severity: 'error',
-  //         summary: this.translate.instant('COMMON.ERROR'),
-  //         detail: err.error?.message ?? this.translate.instant('COMMENTS.UPDATE_ERROR'),
-  //       });
-  //     },
-  //   });
-  // }
-
-  // cancelEdit() {
-  //   this.isEditing.set(false);
-  //   this.editingCommentId.set(null);
-  //   this.commentText.set('');
-  // }
-
-  // deleteComment(commentId: string) {
-  //   this.confirmationService.confirm({
-  //     message: this.translate.instant('COMMENTS.DELETE_CONFIRM_MESSAGE'),
-  //     header: this.translate.instant('COMMENTS.DELETE_CONFIRM_TITLE'),
-  //     icon: 'pi pi-exclamation-triangle',
-  //     acceptIcon: 'none',
-  //     rejectIcon: 'none',
-  //     rejectButtonStyleClass: 'p-button-text p-button-secondary',
-  //     acceptButtonStyleClass: 'p-button-danger',
-  //     accept: () => {
-  //       this.isDeletingComment.set(true);
-  //       this.roomsService.removeComment(commentId).subscribe({
-  //         next: () => {
-  //           //this.comments.update((list) => list.filter((c) => c._id !== commentId));
-  //           this.loadComments();
-  //           if (this.editingCommentId() === commentId) {
-  //             this.cancelEdit();
-  //           }
-  //           this.isDeletingComment.set(false);
-  //           this.messageService.add({
-  //             severity: 'success',
-  //             summary: this.translate.instant('COMMON.SUCCESS'),
-  //             detail: this.translate.instant('COMMENTS.DELETE_SUCCESS'),
-  //           });
-  //         },
-  //         error: () => {
-  //           this.isDeletingComment.set(false);
-  //           this.messageService.add({
-  //             severity: 'error',
-  //             summary: this.translate.instant('COMMON.ERROR'),
-  //             detail: this.translate.instant('COMMENTS.DELETE_ERROR'),
-  //           });
-  //         },
-  //       });
-  //     },
-  //   });
-  // }
-@ViewChild('commentArea') commentArea?: ElementRef<HTMLElement>;
-
-private messageService = inject(MessageService);
-private confirmationService = inject(ConfirmationService);
-private readonly roomsService = inject(RoomsService);
-private readonly authService = inject(AuthService);
-private translate = inject(TranslateService);
-private router = inject(Router);
-
-roomId = input.required<string>();
-
-comments = signal<RoomComment[]>([]);
-isLoadingComments = signal<boolean>(false);
-
-commentText = signal<string>('');
-isSubmitting = signal<boolean>(false); // covers create + update
-isDeletingComment = signal<string | null>(null); // holds the id currently being deleted
-
-isEditing = signal<boolean>(false);
-editingCommentId = signal<string | null>(null);
-
-currentUserId = this.authService.getCurrentUserId();
-showComments = signal<boolean>(false);
-canSubmit = computed(() => this.commentText().trim().length > 0 && !this.isSubmitting());
-
-ngOnInit() {
-  if (this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
-    this.loadComments();
-  }
-}
-
-loadComments() {
-  this.isLoadingComments.set(true);
-  this.roomsService.getAllComments(this.roomId()).subscribe({
-    next: (res) => {
-      this.comments.set(res.data.roomComments);
-      this.isLoadingComments.set(false);
-    },
-    error: () => {
-      this.isLoadingComments.set(false);
-    },
-  });
-}
-
-handleCommentSubmit() {
-  if (!this.authService.isLoggedIn()) {
-    this.showLoginRequiredDialog();
-    return;
+  ngOnInit() {
+    if (this.authService.isLoggedIn() && this.authService.getRole() === RoleEnum.User) {
+      this.loadComments();
+    }
   }
 
-  if (!this.canSubmit()) return;
-
-  this.isEditing() && this.editingCommentId()
-    ? this.updateComment()
-    : this.submitComment();
-}
-
-showLoginRequiredDialog() {
-  this.confirmationService.confirm({
-    message: this.translate.instant('COMMENTS.LOGIN_REQUIRED_MESSAGE'),
-    header: this.translate.instant('COMMENTS.LOGIN_REQUIRED_TITLE'),
-    icon: 'pi pi-user',
-    acceptLabel: this.translate.instant('COMMENTS.LOGIN_BUTTON'),
-    rejectLabel: this.translate.instant('COMMENTS.REGISTER_BUTTON'),
-    acceptIcon: 'none',
-    rejectIcon: 'none',
-    acceptButtonStyleClass: 'p-button-primary',
-    rejectButtonStyleClass: 'p-button-outlined',
-    accept: () => this.router.navigate(['/auth/login']),
-    reject: (type: ConfirmEventType) => {
-      if (type === ConfirmEventType.REJECT) {
-        this.router.navigate(['/auth/register']);
-      }
-    },
-  });
-}
-
-submitComment() {
-  const typedCommentText = this.commentText().trim();
-  if (!typedCommentText) return;
-
-  this.isSubmitting.set(true);
-
-  this.roomsService.createComment({ roomId: this.roomId(), comment: typedCommentText })
-    .subscribe({
+  loadComments() {
+    this.isLoadingComments.set(true);
+    this.roomsService.getAllComments(this.roomId()).subscribe({
       next: (res) => {
-        console.log(res);
+        this.comments.set(res.data.roomComments);
+        this.isLoadingComments.set(false);
+      },
+      error: () => {
+        this.isLoadingComments.set(false);
+      },
+    });
+  }
 
+  handleCommentSubmit() {
+    if (!this.authService.isLoggedIn()) {
+      this.showLoginRequiredDialog();
+      return;
+    }
+
+    if (!this.commentText().trim()) return;
+
+    if (this.isEditing() && this.editingCommentId()) {
+      this.updateComment();
+    } else {
+      this.submitComment();
+    }
+  }
+
+  showLoginRequiredDialog() {
+    this.confirmationService.confirm({
+      message: this.translate.instant('COMMENTS.LOGIN_REQUIRED_MESSAGE'),
+      header: this.translate.instant('COMMENTS.LOGIN_REQUIRED_TITLE'),
+      icon: 'pi pi-user',
+      acceptLabel: this.translate.instant('COMMENTS.LOGIN_BUTTON'),
+      rejectLabel: this.translate.instant('COMMENTS.REGISTER_BUTTON'),
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      acceptButtonStyleClass: 'p-button-primary',
+      rejectButtonStyleClass: 'p-button-outlined',
+      accept: () => {
+        this.router.navigate(['/auth/login']);
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.router.navigate(['/auth/register']);
+            break;
+          case ConfirmEventType.CANCEL:
+            break;
+        }
+      },
+    });
+  }
+
+  submitComment() {
+    if (!this.commentText().trim()) return;
+
+    this.isSubmitting.set(true);
+    const typedCommentText = this.commentText();
+
+    this.roomsService
+      .createComment({
+        roomId: this.roomId(),
+        comment: typedCommentText,
+      })
+      .subscribe({
+        next: (res) => {
+          this.isSubmitting.set(false);
+          this.commentText.set('');
+
+          // const currentUserName = this.authService.getUserName() || 'You';
+          // const currentUserImage = this.authService.getUserImage() || undefined;
+
+          // const fallbackUser = {
+          //   _id: this.currentUserId || '',
+          //   userName: currentUserName,
+          //   profileImage: currentUserImage,
+          // };
+
+          // const newComment: RoomComment = {
+          //   _id: res.data?._id ,
+          //   comment: typedCommentText,
+          //   room: {
+          //     _id: this.roomId(),
+          //     roomNumber: '',
+          //   },
+          //   user:
+          //     res.data?.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
+          //   createdAt: new Date().toISOString(),
+          //   updatedAt: new Date().toISOString(),
+          // };
+
+          this.loadComments();
+         // this.comments.update((list) => [newComment, ...list]);
+
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translate.instant('COMMON.SUCCESS'),
+            detail: this.translate.instant('COMMENTS.SUBMIT_SUCCESS'),
+          });
+        },
+        error: (err: HttpErrorResponse) => {
+          this.isSubmitting.set(false);
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translate.instant('COMMON.ERROR'),
+            detail: err.error?.message ?? this.translate.instant('COMMENTS.SUBMIT_ERROR'),
+          });
+        },
+      });
+  }
+  editComment(item: RoomComment) {
+    this.isEditing.set(true);
+    this.editingCommentId.set(item._id);
+    this.commentText.set(item.comment);
+    this.scrollToComment();
+   // window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  private scrollToComment() {
+    setTimeout(() => {
+      this.commentArea?.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  }
+  updateComment() {
+    const id = this.editingCommentId();
+    if (!id) return;
+
+    this.isSubmitting.set(true);
+    const typedCommentText = this.commentText();
+
+    this.isUpdatingComment.set(true);
+    this.roomsService.updateComment(id, typedCommentText).subscribe({
+      next: (res) => {
         this.isSubmitting.set(false);
-        this.commentText.set('');
-  const fallbackUser: RoomCommentUser = {
-  _id: this.currentUserId ?? '',
-  userName: this.authService.getUserName() ?? 'You',
-  profileImage: this.authService.getUserImage() ?? undefined,
-};
 
-  const responseComment = res.data;
+        // this.comments.update((list) =>
+        //   list.map((c) =>
+        //     c._id === id
+        //       ? { ...c, comment: typedCommentText, updatedAt: new Date().toISOString() }
+        //       : c,
+        //   ),
+        // );
 
-  const newComment: RoomComment = {
-    _id: responseComment?._id ,
-    comment: typedCommentText,
-    room: responseComment?.room ?? { _id: this.roomId(), roomNumber: '' },
-    user:
-      responseComment?.user && typeof responseComment.user === 'object'
-        ? responseComment.user
-        : fallbackUser,
-    createdAt: responseComment?.createdAt ?? new Date().toISOString(),
-    updatedAt: responseComment?.updatedAt ?? new Date().toISOString(),
-  };
-        // const newComment: RoomComment = res.data ?? {
-        //   _id:  crypto.randomUUID(),
-        //   comment: typedCommentText,
-        //   room: { _id: this.roomId(), roomNumber: '' },
-        //   user: {
-        //     _id: this.currentUserId ?? '',
-        //     userName: this.authService.getUserName() ?? 'You',
-        //     profileImage: this.authService.getUserImage(),
-        //   },
-        //   createdAt: new Date().toISOString(),
-        //   updatedAt: new Date().toISOString(),
-        // };
+        this.loadComments();
 
-        this.comments.update((list) => [newComment, ...list]);
-
+        this.cancelEdit();
+        this.isUpdatingComment.set(false);
         this.messageService.add({
           severity: 'success',
           summary: this.translate.instant('COMMON.SUCCESS'),
-          detail: this.translate.instant('COMMENTS.SUBMIT_SUCCESS'),
+          detail: this.translate.instant('COMMENTS.UPDATE_SUCCESS'),
         });
       },
       error: (err: HttpErrorResponse) => {
@@ -394,104 +210,56 @@ submitComment() {
         this.messageService.add({
           severity: 'error',
           summary: this.translate.instant('COMMON.ERROR'),
-          detail: err.error?.message ?? this.translate.instant('COMMENTS.SUBMIT_ERROR'),
+          detail: err.error?.message ?? this.translate.instant('COMMENTS.UPDATE_ERROR'),
         });
       },
     });
-}
+  }
 
-editComment(item: RoomComment) {
-  this.isEditing.set(true);
-  this.editingCommentId.set(item._id);
-  this.commentText.set(item.comment);
-  this.scrollToComment();
-}
+  cancelEdit() {
+    this.isEditing.set(false);
+    this.editingCommentId.set(null);
+    this.commentText.set('');
+  }
 
-private scrollToComment() {
-  setTimeout(() => {
-    this.commentArea?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-}
+  deleteComment(commentId: string) {
+    this.confirmationService.confirm({
+      message: this.translate.instant('COMMENTS.DELETE_CONFIRM_MESSAGE'),
+      header: this.translate.instant('COMMENTS.DELETE_CONFIRM_TITLE'),
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      rejectButtonStyleClass: 'p-button-text p-button-secondary',
+      acceptButtonStyleClass: 'p-button-danger',
+      accept: () => {
+        this.isDeletingComment.set(true);
+        this.roomsService.removeComment(commentId).subscribe({
+          next: () => {
+            //this.comments.update((list) => list.filter((c) => c._id !== commentId));
+            this.loadComments();
+            if (this.editingCommentId() === commentId) {
+              this.cancelEdit();
+            }
+            this.isDeletingComment.set(false);
+            this.messageService.add({
+              severity: 'success',
+              summary: this.translate.instant('COMMON.SUCCESS'),
+              detail: this.translate.instant('COMMENTS.DELETE_SUCCESS'),
+            });
+          },
+          error: () => {
+            this.isDeletingComment.set(false);
+            this.messageService.add({
+              severity: 'error',
+              summary: this.translate.instant('COMMON.ERROR'),
+              detail: this.translate.instant('COMMENTS.DELETE_ERROR'),
+            });
+          },
+        });
+      },
+    });
+  }
 
-updateComment() {
-  const id = this.editingCommentId();
-  const typedCommentText = this.commentText().trim();
-  if (!id || !typedCommentText) return;
-
-  this.isSubmitting.set(true);
-
-  this.roomsService.updateComment(id, typedCommentText).subscribe({
-    next: () => {
-      this.isSubmitting.set(false);
-
-      this.comments.update((list) =>
-        list.map((c) =>
-          c._id === id
-            ? { ...c, comment: typedCommentText, updatedAt: new Date().toISOString() }
-            : c,
-        ),
-      );
-
-      this.cancelEdit();
-      this.messageService.add({
-        severity: 'success',
-        summary: this.translate.instant('COMMON.SUCCESS'),
-        detail: this.translate.instant('COMMENTS.UPDATE_SUCCESS'),
-      });
-    },
-    error: (err: HttpErrorResponse) => {
-      this.isSubmitting.set(false);
-      this.messageService.add({
-        severity: 'error',
-        summary: this.translate.instant('COMMON.ERROR'),
-        detail: err.error?.message ?? this.translate.instant('COMMENTS.UPDATE_ERROR'),
-      });
-    },
-  });
-}
-
-cancelEdit() {
-  this.isEditing.set(false);
-  this.editingCommentId.set(null);
-  this.commentText.set('');
-}
-
-deleteComment(commentId: string) {
-  this.confirmationService.confirm({
-    message: this.translate.instant('COMMENTS.DELETE_CONFIRM_MESSAGE'),
-    header: this.translate.instant('COMMENTS.DELETE_CONFIRM_TITLE'),
-    icon: 'pi pi-exclamation-triangle',
-    acceptIcon: 'none',
-    rejectIcon: 'none',
-    rejectButtonStyleClass: 'p-button-text p-button-secondary',
-    acceptButtonStyleClass: 'p-button-danger',
-    accept: () => {
-      this.isDeletingComment.set(commentId);
-      this.roomsService.removeComment(commentId).subscribe({
-        next: () => {
-          this.comments.update((list) => list.filter((c) => c._id !== commentId));
-          if (this.editingCommentId() === commentId) {
-            this.cancelEdit();
-          }
-          this.isDeletingComment.set(null);
-          this.messageService.add({
-            severity: 'success',
-            summary: this.translate.instant('COMMON.SUCCESS'),
-            detail: this.translate.instant('COMMENTS.DELETE_SUCCESS'),
-          });
-        },
-        error: () => {
-          this.isDeletingComment.set(null);
-          this.messageService.add({
-            severity: 'error',
-            summary: this.translate.instant('COMMON.ERROR'),
-            detail: this.translate.instant('COMMENTS.DELETE_ERROR'),
-          });
-        },
-      });
-    },
-  });
-}
   toggleComments() {
     this.showComments.update((v) => !v);
   }

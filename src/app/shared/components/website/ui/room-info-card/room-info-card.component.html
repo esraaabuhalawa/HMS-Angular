@@ -22,7 +22,8 @@
 
   <!-- Hover Icons -->
   <div
-    class="absolute inset-0 z-10 flex items-center justify-center gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
+    class="absolute inset-0 z-10 flex items-center justify-center gap-2 opacity-0
+    transition duration-300 [@media(hover:hover)]:group-hover:opacity-100]">
     @if(showDetailsIcon){
     <button pButton pRipple rounded icon="pi pi-eye" class="!text-icon" [routerLink]="`/rooms/${room._id}`"
       [pTooltip]="'ROOM_CARD.VIEW_DETAILS' | translate" tooltipPosition="top"></button>
