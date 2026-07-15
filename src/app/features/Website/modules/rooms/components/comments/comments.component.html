@@ -80,7 +80,7 @@
           </span>
         </div>
         @if (item.user._id === currentUserId) {
-        <div class="hidden [@media(hover:hover)]:group-hover:flex items-center gap-3 transition-opacity duration-200">
+          <div class="flex lg:hidden lg:[@media(hover:hover)]:group-hover:flex items-center gap-3 transition-opacity duration-200">
           <button (click)="editComment(item)" [attr.title]="'COMMENTS.EDIT_COMMENT' | translate"
             class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 cursor-pointer p-1 rounded hover:bg-blue-50 dark:hover:bg-surface transition-colors">
             <i class="pi pi-pencil text-base md:text-lg"></i>
