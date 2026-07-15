@@ -118,30 +118,30 @@ export class CommentsComponent implements OnInit {
           this.isSubmitting.set(false);
           this.commentText.set('');
 
-          // const currentUserName = this.authService.getUserName() || 'You';
-          // const currentUserImage = this.authService.getUserImage() || undefined;
+          const currentUserName = this.authService.getUserName() || 'You';
+          const currentUserImage = this.authService.getUserImage() || undefined;
 
-          // const fallbackUser = {
-          //   _id: this.currentUserId || '',
-          //   userName: currentUserName,
-          //   profileImage: currentUserImage,
-          // };
+          const fallbackUser = {
+            _id: this.currentUserId || '',
+            userName: currentUserName,
+            profileImage: currentUserImage,
+          };
 
-          // const newComment: RoomComment = {
-          //   _id: res.data?._id ,
-          //   comment: typedCommentText,
-          //   room: {
-          //     _id: this.roomId(),
-          //     roomNumber: '',
-          //   },
-          //   user:
-          //     res.data?.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
-          //   createdAt: new Date().toISOString(),
-          //   updatedAt: new Date().toISOString(),
-          // };
+          const newComment: RoomComment = {
+            _id: res.data?._id ,
+            comment: typedCommentText,
+            room: {
+              _id: this.roomId(),
+              roomNumber: '',
+            },
+            user:
+              res.data?.user && typeof res.data.user === 'object' ? res.data.user : fallbackUser,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+          };
 
-          this.loadComments();
-         // this.comments.update((list) => [newComment, ...list]);
+         // this.loadComments();
+         this.comments.update((list) => [newComment, ...list]);
 
           this.messageService.add({
             severity: 'success',
@@ -195,7 +195,7 @@ export class CommentsComponent implements OnInit {
         //   ),
         // );
 
-        this.loadComments();
+       this.loadComments();
 
         this.cancelEdit();
         this.isUpdatingComment.set(false);
@@ -235,8 +235,8 @@ export class CommentsComponent implements OnInit {
         this.isDeletingComment.set(true);
         this.roomsService.removeComment(commentId).subscribe({
           next: () => {
-            //this.comments.update((list) => list.filter((c) => c._id !== commentId));
-            this.loadComments();
+            this.comments.update((list) => list.filter((c) => c._id !== commentId));
+            //this.loadComments();
             if (this.editingCommentId() === commentId) {
               this.cancelEdit();
             }
