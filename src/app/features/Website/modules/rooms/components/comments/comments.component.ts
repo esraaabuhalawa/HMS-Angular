@@ -235,8 +235,8 @@ export class CommentsComponent implements OnInit {
         this.isDeletingComment.set(true);
         this.roomsService.removeComment(commentId).subscribe({
           next: () => {
-            this.comments.update((list) => list.filter((c) => c._id !== commentId));
-            //this.loadComments();
+            //this.comments.update((list) => list.filter((c) => c._id !== commentId));
+            this.loadComments();
             if (this.editingCommentId() === commentId) {
               this.cancelEdit();
             }
