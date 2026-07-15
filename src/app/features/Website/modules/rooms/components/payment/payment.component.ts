@@ -24,7 +24,7 @@ export class PaymentComponent implements OnInit {
 
   @ViewChild('cardInfo') cardInfo!: ElementRef;
 
-  activeStep = signal<number>(2);
+  activeStep = signal<number>(1);
   bookingId = '';
   subTotal = 0;
 
@@ -93,7 +93,7 @@ export class PaymentComponent implements OnInit {
         this.roomsService.payBooking(this.bookingId, token.id).subscribe({
           next: (res) => {
             this.isProcessing.set(false);
-            this.activeStep.set(3);
+            this.activeStep.set(2);
           },
           error: (err) => {
             this.isProcessing.set(false);
