@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 export const generalInterceptor: HttpInterceptorFn = (request, next) => {
   const token = localStorage.getItem('HMSToken');
 
-  if (request.url.includes('/i18n/') || /^https?:\/\//i.test(request.url)) {
+  if (request.url.includes('/i18n/')) { //|| /^https?:\/\//i.test(request.url)
     return next(request);
   }
 
