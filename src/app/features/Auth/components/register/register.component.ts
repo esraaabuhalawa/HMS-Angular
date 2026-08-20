@@ -20,6 +20,8 @@ import { AuthHeaderComponent } from '../../../../shared/components/auth/auth-hea
 import { AuthImageSectionComponent } from '../../../../shared/components/auth/auth-image-section/auth-image-section.component';
 import { AuthLayoutComponent } from '../../../../shared/layouts/auth-layout/auth-layout.component';
 import { matchPasswordValidator } from '../../../../shared/validators/confirm-password-validator';
+import { FormFieldComponent } from '../../../../shared/components/auth/form-field/form-field.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -36,6 +38,8 @@ import { matchPasswordValidator } from '../../../../shared/validators/confirm-pa
     ProgressBarModule,
     AuthHeaderComponent,
     AuthImageSectionComponent,
+    FormFieldComponent,
+    TranslatePipe
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
