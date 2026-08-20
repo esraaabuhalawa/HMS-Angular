@@ -2,9 +2,9 @@
   <div class="h-full" auth-form>
 
     <!--Header Component-->
-    <app-auth-header title="Sign Up" description="If you already have an account register " subText="You can"
-      linkText="Login here !" linkUrl="/auth/login">
-    </app-auth-header>
+    <app-auth-header [title]="'REGISTER.HEADER_TITLE' | translate" [description]="'REGISTER.DESCRIPTION' | translate"
+      [subText]="'REGISTER.SUB_TEXT' | translate" [linkText]="'REGISTER.LOGIN' | translate" linkUrl="/auth/login"
+      linkClass="text-primary" />
 
     <!--Start Of Form-->
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="pb-10">
@@ -164,7 +164,7 @@
       </div> -->
 
       <div class="mt-[50px]">
-        <p-button type="submit" label="Sign up" [loading]="isLoading" styleClass="w-full">
+        <p-button type="submit" [label]="'REGISTER.HEADER_TITLE' | translate" [loading]="isLoading" styleClass="w-full">
         </p-button>
       </div>
     </form>
@@ -172,8 +172,8 @@
 
   <!-- IMAGE SLOT -->
   <div auth-image class="w-full h-full">
-    <app-auth-image-section imageSrc="/images/register.jpg" imageAlt="Login" title="Sign up to Roamhome"
-      subtitle="Homes as unique as you.">
+    <app-auth-image-section imageSrc="/images/register.jpg" imageAlt="Login"  [title]="'REGISTER.HEADER_TITLE' | translate"
+      [subtitle]="'LOGIN.HEADER_DESC' | translate">
     </app-auth-image-section>
   </div>
 
