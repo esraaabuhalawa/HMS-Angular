@@ -27,7 +27,7 @@ export class HomeDashboardComponent implements OnInit {
     this.isLoading.set(true);
     this.adminService.getDashboardStats().subscribe({
       next: (res) => {
-        this.mainData.set(res.data);
+        this.mainData.set(res?.data ?? null);
         this.isLoading.set(false);
       },
       error: (err) => {

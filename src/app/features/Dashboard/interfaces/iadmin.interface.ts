@@ -7,9 +7,9 @@ export interface IDashbordStatsResponse {
 export interface Data {
   rooms: number;
   facilities: number;
-  bookings: Bookings;
+  bookings?: Bookings;
   ads: number;
-  users: Users;
+  users?: Users;
 }
 
 export interface Users {

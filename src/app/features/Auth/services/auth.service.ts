@@ -61,14 +61,30 @@ export class AuthService {
 
   loadCurrentUser(): void {
     const token = localStorage.getItem('HMSToken');
-    if (!token) return;
+    if (!token) {
+      this.currentUserSubject.next(null);
+      return;
+    }
 
-    const decoded = jwtDecode<IDecodedToken>(token);
-    localStorage.setItem('role', decoded.role);
+    let decoded: IDecodedToken;
+    try {
+      decoded = jwtDecode<IDecodedToken>(token);
+    } catch {
+      // stored value is not a valid JWT anymore, drop it instead of crashing on boot
+      localStorage.removeItem('HMSToken');
+      localStorage.removeItem('role');
+      this.currentUserSubject.next(null);
+      return;
+    }
+
+    if (decoded.role) {
+      localStorage.setItem('role', decoded.role);
+    }
 
     this.getCurrentUserProfile(decoded._id).subscribe({
       next: (res: ICurrentUserResponse) => {
-        this.currentUserSubject.next(res.data.user);
+        // the API does not always send a `data` payload (auth errors, empty body)
+        this.currentUserSubject.next(res?.data?.user ?? null);
       },
       error: () => {
         this.currentUserSubject.next(null);
