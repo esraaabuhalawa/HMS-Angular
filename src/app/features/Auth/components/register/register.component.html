@@ -14,11 +14,19 @@
             [auto]="true" (onSelect)="onSelect($event)" (onClear)="onClear()" class="profile-upload" aria-required />
         </div>
         @if (form['profileImage'].touched && form['profileImage'].invalid) {
-        <small class="text-login-red my-2">Profile image is required</small>
+        <small class="text-login-red my-2">{{ 'USER_FORM.PROFILE_IMAGE_REQUIRED' | translate }}</small>
         }
       </div>
 
-      <div class="mb-[2rem] mt-7">
+      <!-- User Name -->
+      <app-form-field [control]="form['userName']" label="USER_FORM.USER_NAME_LABEL"
+        placeholder="USER_FORM.USER_NAME_PLACEHOLDER" [errorMessages]="{
+    required: 'USER_FORM.USER_NAME_REQUIRED',
+    minlength: 'USER_FORM.USER_NAME_MINLENGTH',
+    maxlength: 'USER_FORM.USER_NAME_MAXLENGTH'
+  }">
+      </app-form-field>
+      <!-- <div class="mb-[2rem] mt-7">
         <label class="text-primary font-normal mb-2 block">User Name</label>
         <input pInputText class="w-full" placeholder="Please type here ..." formControlName="userName" />
 
@@ -32,8 +40,32 @@
         @if (form['userName'].touched && form['userName'].errors?.['maxLength']) {
         <small class="text-login-red"> Username cannot exceed 20 characters </small>
         }
-      </div>
+      </div> -->
       <div class="mb-[2rem] flex justify-content-between align-items-center gap-3">
+
+        <!-- Phone Number -->
+        <div class="w-[50%]">
+          <app-form-field [control]="form['phoneNumber']" label="USER_FORM.PHONE_NUMBER_LABEL"
+            placeholder="USER_FORM.PHONE_NUMBER_PLACEHOLDER" [errorMessages]="{
+        required: 'USER_FORM.PHONE_NUMBER_REQUIRED',
+        pattern: 'USER_FORM.PHONE_NUMBER_PATTERN'
+      }">
+          </app-form-field>
+        </div>
+
+        <!-- Country -->
+        <div class="w-[50%]">
+          <app-form-field [control]="form['country']" label="USER_FORM.COUNTRY_LABEL"
+            placeholder="USER_FORM.COUNTRY_PLACEHOLDER" [errorMessages]="{
+        required: 'USER_FORM.COUNTRY_REQUIRED',
+        pattern: 'USER_FORM.COUNTRY_PATTERN',
+        minlength: 'USER_FORM.COUNTRY_MINLENGTH'
+      }">
+          </app-form-field>
+        </div>
+
+      </div>
+      <!-- <div class="mb-[2rem] flex justify-content-between align-items-center gap-3">
         <div class="w-[50%]">
           <label class="text-primary font-normal mb-2 block">Phone Number</label>
           <input pInputText class="w-full" placeholder="Please type here " formControlName="phoneNumber" />
@@ -61,8 +93,33 @@
           <small class="text-login-red"> Country name is too short </small>
           }
         </div>
-      </div>
-      <div class="mb-[2rem]">
+      </div> -->
+      <!-- Email -->
+      <app-form-field [control]="form['email']" type="email" label="USER_FORM.EMAIL_LABEL"
+        placeholder="USER_FORM.EMAIL_PLACEHOLDER" [errorMessages]="{
+    required: 'USER_FORM.EMAIL_REQUIRED',
+    email: 'USER_FORM.EMAIL_INVALID'
+  }">
+      </app-form-field>
+
+      <!-- Password -->
+      <app-form-field [control]="form['password']" type="password" label="USER_FORM.PASSWORD_LABEL"
+        placeholder="USER_FORM.PASSWORD_PLACEHOLDER" [errorMessages]="{
+          required: 'USER_FORM.PASSWORD_REQUIRED',
+          pattern: 'USER_FORM.PASSWORD_PATTERN'
+        }" autocomplete="off">
+      </app-form-field>
+
+      <!-- Confirm Password -->
+      <app-form-field [control]="form['confirmPassword']" type="password" label="USER_FORM.CONFIRM_PASSWORD_LABEL"
+        placeholder="USER_FORM.CONFIRM_PASSWORD_PLACEHOLDER" [errorMessages]="{
+    required: 'USER_FORM.CONFIRM_PASSWORD_REQUIRED'
+  }" [customError]="
+    registerForm.hasError('passwordMismatch') &&
+    form['confirmPassword'].touched
+  " customErrorMessage="USER_FORM.PASSWORD_MISMATCH">
+      </app-form-field>
+      <!-- <div class="mb-[2rem]">
         <label class="text-primary font-normal mb-2 block">Email Address</label>
         <input pInputText class="w-full" placeholder="Email" formControlName="email" />
 
@@ -104,7 +161,7 @@
         @if (form['confirmPassword'].touched && registerForm.errors?.['passwordMismatch']) {
         <small class="text-login-red">Passwords do not match.</small>
         }
-      </div>
+      </div> -->
 
       <div class="mt-[50px]">
         <p-button type="submit" label="Sign up" [loading]="isLoading" styleClass="w-full">
