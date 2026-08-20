@@ -3,7 +3,7 @@ import {
   provideBrowserGlobalErrorListeners,
   TransferState,
 } from '@angular/core';
-import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular/router';
+import { provideRouter,  withInMemoryScrolling } from '@angular/router'; //withHashLocation,
 import { MessageService } from 'primeng/api';
 
 import { providePrimeNG } from 'primeng/config';
@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(
       routes,
-      withHashLocation(),
+     // withHashLocation(),
       withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
     ),
 
