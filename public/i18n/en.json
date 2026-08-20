@@ -32,6 +32,12 @@
       "ADS": "Ads"
     }
   },
+    "REGISTER": {
+    "HEADER_TITLE": "Sign Up",
+    "DESCRIPTION": "Create your account to get started",
+    "SUB_TEXT": "If you already have an account",
+    "LOGIN": "Login here!"
+  },
   "LOGIN": {
     "TITLE": "Sign in",
     "DESCRIPTION": "If you don't have an account register.",
