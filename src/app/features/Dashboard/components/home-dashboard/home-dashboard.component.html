@@ -24,16 +24,16 @@
         <div class="grid grid-cols-2 md:grid-cols-2 gap-6 mt-[20px]">
           <app-user-chart
             [data]="[
-              { label: 'Pending', value: data.bookings.pending, color: '#5368F0' },
-              { label: 'Completed', value: data.bookings.completed, color: '#9D57D5' },
+              { label: 'Pending', value: data.bookings?.pending ?? 0, color: '#5368F0' },
+              { label: 'Completed', value: data.bookings?.completed ?? 0, color: '#9D57D5' },
             ]"
           />
           <div class="card">
             <app-user-chart
               title="Users"
               [data]="[
-                { label: 'User', value: data.users.user, color: '#4ade80' },
-                { label: 'Admin', value: data.users.admin, color: '#60a5fa' },
+                { label: 'User', value: data.users?.user ?? 0, color: '#4ade80' },
+                { label: 'Admin', value: data.users?.admin ?? 0, color: '#60a5fa' },
               ]"
               cutout="90%"
             />

@@ -1,10 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 export const generalInterceptor: HttpInterceptorFn = (request, next) => {
   const token = localStorage.getItem('HMSToken');
 
-  if (request.url.includes('/i18n/')) {
+  if (request.url.includes('/i18n/') || /^https?:\/\//i.test(request.url)) {
     return next(request);
   }
 

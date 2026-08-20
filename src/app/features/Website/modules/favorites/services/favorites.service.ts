@@ -21,10 +21,18 @@ export class FavoritesService {
   readonly favoriteCount = computed(() => this.favorites().length);
 
   loadFavorites() {
+    if (!localStorage.getItem('HMSToken')) {
+      this.favorites.set([]);
+      this.favoriteRooms.set([]);
+      return;
+    }
+
     this.isUpdating.set(true);
     this.getAllFavorites().subscribe({
       next: (res) => {
-        const rooms = res.data.favoriteRooms.flatMap(favorite => favorite.rooms);
+        // the API does not always send a `data` payload (auth errors, empty body)
+        const favoriteRooms = res?.data?.favoriteRooms ?? [];
+        const rooms = favoriteRooms.flatMap(favorite => favorite?.rooms ?? []);
         this.favorites.set(rooms.map(room => room._id));
         this.favoriteRooms.set(rooms);
       },
